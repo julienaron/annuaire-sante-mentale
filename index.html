@@ -1,0 +1,1555 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Annuaire Santé Mentale Marseille</title>
+<meta name="application-name" content="Annuaire Santé Mentale Marseille">
+<meta name="apple-mobile-web-app-title" content="Annuaire Santé Mentale Marseille">
+<meta name="theme-color" content="#0d5a88">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+/* Mise en page centrée portable : 1) questions en parcours guidé, 2) résultats avec carte dessinée + liste numérotée, 3) fiche plein écran.
+   Palette : sable des calanques, bleu de rade, pastilles de métro RTM. */
+:root{
+  --bg:#f6f3ee; --surface:#ffffff; --sunk:#efeae2; --fg:#1b2a35; --muted:#5f6b75; --line:#e2dbd0;
+  --accent:#0d5a88; --accent-deep:#0b4a70; --accent-soft:#e6f0f7; --on-accent:#ffffff;
+  --good:#2b6a3c; --good-soft:#e2f0e5; --warn:#8a5a00; --warn-soft:#fbf1dc; --bad:#a3322a; --bad-soft:#f8e2df;
+  --m1:#0075be; --m2:#e30513; --tram:#96be0d; --t1:#f18e00; --t2:#f5e615; --t3:#96be0d; --bus:#4c5a63;
+  --t-cure:#b2473a; --t-postcure:#2b7a46; --t-hdj:#a8720c; --t-resid:#7a55a0; --t-csapa:#0d5a88; --t-liberal:#3d7480; --t-rdr:#b85a12; --t-cmp:#8a3d6b; --t-urg:#b3261e; --t-mob:#2f7d6d;
+  --sea:#bcd5e3; --sea-ink:#5f8aa6; --land:#ece6dc; --land-ink:#8a8173; --pin-ring:#ffffff; --pin-text:#ffffff;
+  --shadow:0 8px 24px -12px rgba(20,40,55,.35);
+  --display:"Newsreader",Georgia,"Times New Roman",serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0f1a22; --surface:#17252f; --sunk:#1c2c37; --fg:#e4ebef; --muted:#9db0bb; --line:#2a3c48;
+  --accent:#7fbde2; --accent-deep:#0b3550; --accent-soft:#183140; --on-accent:#0b1c26;
+  --good:#8fcb9b; --good-soft:#1a2e21; --warn:#e8bf6a; --warn-soft:#2e2715; --bad:#ef9a8f; --bad-soft:#36201d;
+  --m1:#3f9be0; --m2:#f0484f; --tram:#a8d12a; --t1:#f5a030; --t2:#f5e615; --t3:#a8d12a; --bus:#9aa8b1;
+  --t-cure:#e8968a; --t-postcure:#8fcb9b; --t-hdj:#e8bf6a; --t-resid:#c3a6e2; --t-csapa:#7fbde2; --t-liberal:#8fc1cc; --t-rdr:#f0a86e; --t-cmp:#e3a2c8; --t-urg:#ff8f86; --t-mob:#7fd1bf;
+  --sea:#14354a; --sea-ink:#6f9bb6; --land:#1b2932; --land-ink:#8797a1; --pin-ring:#0f1a22; --pin-text:#0b1c26;
+  --shadow:0 8px 24px -12px rgba(0,0,0,.7); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1a22; --surface:#17252f; --sunk:#1c2c37; --fg:#e4ebef; --muted:#9db0bb; --line:#2a3c48;
+  --accent:#7fbde2; --accent-deep:#0b3550; --accent-soft:#183140; --on-accent:#0b1c26;
+  --good:#8fcb9b; --good-soft:#1a2e21; --warn:#e8bf6a; --warn-soft:#2e2715; --bad:#ef9a8f; --bad-soft:#36201d;
+  --m1:#3f9be0; --m2:#f0484f; --tram:#a8d12a; --t1:#f5a030; --t2:#f5e615; --t3:#a8d12a; --bus:#9aa8b1;
+  --t-cure:#e8968a; --t-postcure:#8fcb9b; --t-hdj:#e8bf6a; --t-resid:#c3a6e2; --t-csapa:#7fbde2; --t-liberal:#8fc1cc; --t-rdr:#f0a86e; --t-cmp:#e3a2c8; --t-urg:#ff8f86; --t-mob:#7fd1bf;
+  --sea:#14354a; --sea-ink:#6f9bb6; --land:#1b2932; --land-ink:#8797a1; --pin-ring:#0f1a22; --pin-text:#0b1c26;
+  --shadow:0 8px 24px -12px rgba(0,0,0,.7); color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 var(--body);-webkit-tap-highlight-color:transparent}
+body.locked{overflow:hidden}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+a{color:var(--accent)}
+:focus-visible{outline:2.5px solid var(--accent);outline-offset:2px}
+.mono{font-family:var(--mono)}
+.view{min-height:100vh;min-height:100dvh}
+.col{max-width:640px;margin:0 auto;padding:0 16px}
+
+/* ---------- Bandeau ---------- */
+.hero{background:linear-gradient(180deg,#0d5a88,#0b4a70);color:#fff;position:relative;padding:22px 0 40px}
+.hero .col{display:grid;gap:6px}
+.eyebrow{display:flex;align-items:center;gap:8px;font:600 11.5px var(--mono);letter-spacing:.1em;text-transform:uppercase;opacity:.9}
+.dot13{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;border:1.5px solid rgba(255,255,255,.7);font:600 11px var(--mono);letter-spacing:0}
+.hero h1{font:600 clamp(26px,7.4vw,34px)/1.1 var(--display);margin:6px 0 2px;letter-spacing:-.01em}
+.hero p{margin:0;opacity:.88;font-size:15px;max-width:34em}
+.wave{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:26px;display:block}
+.wave path{fill:var(--bg)}
+.hero.small{padding:14px 0 34px}
+.hero.small h1{font-size:clamp(23px,6.4vw,28px)}
+.backlink{background:none;border:0;color:#fff;opacity:.9;padding:6px 0;font-size:14.5px;font-weight:500;justify-self:start;display:inline-flex;gap:6px;align-items:center}
+
+/* ---------- Questions ---------- */
+.prog{display:flex;gap:6px;margin:6px 0 16px}
+.prog i{flex:1;height:5px;border-radius:3px;background:var(--line)}
+.prog i.on{background:var(--accent)}
+.qh{font:600 23px/1.2 var(--display);margin:0}
+.qsub{color:var(--muted);font-size:14px;margin:2px 0 14px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.op{background:var(--surface);border:1.5px solid var(--line);border-radius:18px;padding:12px 12px 11px;display:grid;gap:3px;text-align:left;position:relative;align-content:start;min-height:132px;transition:border-color .15s,background .15s,transform .1s}
+.op:active{transform:scale(.98)}
+.op .ic{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;margin-bottom:4px;color:var(--c);background:color-mix(in srgb,var(--c) 14%,transparent)}
+.op .ic svg{width:22px;height:22px}
+.op b{font-size:15.5px;line-height:1.25}
+.op span{font-size:12.8px;color:var(--muted);line-height:1.3}
+.op em{font:500 11.5px var(--mono);font-style:normal;color:var(--muted);margin-top:auto;padding-top:4px}
+.op:last-child:nth-child(odd){grid-column:1/-1;min-height:0}
+.op[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.op .tick{position:absolute;top:11px;right:11px;width:22px;height:22px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;font-size:12px;font-weight:700;color:transparent}
+.op[aria-pressed="true"] .tick{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.alllink{display:block;margin:16px auto 0;background:none;border:0;color:var(--accent);font-weight:600;font-size:14.5px;padding:8px}
+.arca{margin:18px 0 0;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:12px 14px;display:grid;gap:4px;font-size:13.5px;color:var(--muted)}
+.arca b{color:var(--fg);font-size:14.5px}
+.arca .arcanum{font:600 17px var(--mono);color:var(--fg);text-decoration:none}
+
+.qcard{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:14px;display:grid;gap:10px;margin-bottom:12px}
+.qcard .lbl{font:600 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.qcard h3{margin:0;font:600 19px/1.25 var(--display)}
+.seg{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:6px;background:var(--sunk);border-radius:14px;padding:4px}
+.seg button{border:0;background:none;border-radius:11px;padding:11px 6px;font-weight:600;font-size:15px;color:var(--muted);line-height:1.2}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--fg);box-shadow:0 1px 3px rgba(0,0,0,.14)}
+.seg.four{grid-auto-flow:row;grid-template-columns:1fr 1fr}
+.hint{margin:0;font-size:13.3px;color:var(--muted);line-height:1.4}
+select.arrsel{width:100%;border:1.5px solid var(--line);background:var(--surface);border-radius:12px;padding:12px;font-size:15.5px}
+
+.bottombar{position:sticky;bottom:0;z-index:5;background:color-mix(in srgb,var(--surface) 94%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-top:1px solid var(--line);margin-top:20px}
+.bottombar .col{display:flex;gap:12px;align-items:center;padding-top:10px;padding-bottom:calc(10px + env(safe-area-inset-bottom))}
+.bb-arca{font-size:12px;color:var(--muted);line-height:1.2;text-decoration:none;flex:none}
+.bb-arca b{display:block;color:var(--fg);font:600 13px var(--mono)}
+.cta{flex:1;border:0;background:var(--accent);color:var(--on-accent);border-radius:14px;padding:14px 16px;font-weight:600;font-size:16px;text-align:center;text-decoration:none}
+.qpad{padding-bottom:8px}
+
+.modetabs{display:grid;grid-template-columns:1fr 1fr;gap:4px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);border-radius:14px;padding:4px;margin-top:12px}
+.modetabs button{border:0;background:none;color:#fff;border-radius:10px;padding:10px 6px;font-weight:600;font-size:14.5px;opacity:.85}
+.modetabs button[aria-selected="true"]{background:#fff;color:#0b4a70;opacity:1;box-shadow:0 1px 4px rgba(0,0,0,.2)}
+.howgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.howgrid .op{min-height:0}
+.dob{display:grid;grid-template-columns:1fr 1.6fr;gap:8px}
+.presult{margin-top:12px;background:var(--surface);border:2px solid var(--t-cmp);border-radius:18px;padding:14px;display:grid;gap:8px}
+.presult .lbl{font:600 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--t-cmp)}
+.presult h3{margin:0;font:600 20px/1.2 var(--display)}
+.presult .meta{font-size:13.5px;color:var(--muted)}
+.presult .row{display:flex;gap:8px;flex-wrap:wrap}
+.presult.err{border-color:var(--warn)}
+.sectbox{border-left:4px solid var(--t-cmp)}
+
+.iconback{flex:none;width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.45);background:rgba(255,255,255,.1);color:#fff;font-size:20px;line-height:1;display:grid;place-items:center}
+.fab-back{position:fixed;left:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:25;border:0;border-radius:99px;padding:12px 18px;background:var(--accent);color:var(--on-accent);font-weight:600;font-size:15px;box-shadow:0 6px 18px -6px rgba(0,0,0,.45)}
+@media (min-width:900px){.fab-back{left:calc(50% - 320px)}}
+.mobbtn{margin-top:10px;width:100%;display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;text-align:left;background:var(--surface);border:1.5px solid var(--line);border-radius:18px;padding:12px 14px;color:var(--fg)}
+.mobbtn .ic{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;color:var(--t-mob);background:color-mix(in srgb,var(--t-mob) 14%,transparent)}
+.mobbtn .ic svg{width:22px;height:22px}
+.mobbtn b{display:block;font-size:15.5px}
+.mobbtn small{display:block;font-size:12.8px;color:var(--muted);line-height:1.3}
+.list{grid-template-columns:minmax(0,1fr)}
+.list>section,.cards,.card{min-width:0}
+.group-h h2{min-width:0;overflow-wrap:anywhere}
+.card h3,.card .org,.fact,.crow .v,.box{overflow-wrap:anywhere}
+.maptog{white-space:nowrap}
+@media (max-width:440px){.legend .lg-hint{display:none}}
+@media (max-width:400px){.legend{gap:6px;font-size:10.5px}.legend i{width:11px}.maptools{padding-left:12px}.maptog{padding:6px 10px}}
+.installbtn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin:6px 0 0;border:1.5px dashed var(--accent);background:var(--accent-soft);color:var(--accent);border-radius:14px;padding:12px;font-weight:600;font-size:15px}
+.installbtn svg{width:20px;height:20px}
+.isheet-scrim{position:fixed;inset:0;z-index:40;background:rgba(10,20,30,.55);display:flex;align-items:flex-end;justify-content:center}
+.isheet{background:var(--bg);width:100%;max-width:560px;max-height:92vh;overflow:auto;border-radius:22px 22px 0 0;padding:10px 18px calc(18px + env(safe-area-inset-bottom));display:grid;gap:12px}
+.isheet .grab{width:40px;height:5px;border-radius:3px;background:var(--line);margin:0 auto}
+.isheet h2{margin:0;font:600 22px/1.2 var(--display)}
+.steps{margin:0;padding:0;list-style:none;display:grid;gap:10px;counter-reset:s}
+.steps li{counter-increment:s;display:grid;grid-template-columns:30px 1fr;gap:10px;align-items:start;font-size:15px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px 12px}
+.steps li::before{content:counter(s);width:26px;height:26px;border-radius:50%;background:var(--accent);color:var(--on-accent);display:grid;place-items:center;font-weight:700;font-size:13px}
+.steps .k{display:inline-flex;align-items:center;gap:4px;border:1px solid var(--line);background:var(--sunk);border-radius:8px;padding:1px 7px;font-weight:600;white-space:nowrap}
+.steps .k svg{width:16px;height:16px}
+/* ---------- Résultats ---------- */
+.rtop{position:sticky;top:0;z-index:6;background:#0d5a88;color:#fff}
+.rtop .col{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:10px;padding-bottom:10px}
+.rtop h1{margin:0;font:600 20px/1.2 var(--display)}
+.rtop .sub{font-size:12.5px;opacity:.85}
+.pill{border:1px solid rgba(255,255,255,.45);background:rgba(255,255,255,.1);color:#fff;border-radius:99px;padding:8px 13px;font-size:14px;font-weight:600;white-space:nowrap}
+.chips{display:flex;gap:6px;overflow-x:auto;padding:10px 16px;scrollbar-width:none;background:var(--surface);border-bottom:1px solid var(--line)}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;white-space:nowrap;border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:6px 11px;font-size:13px;font-weight:600;display:inline-flex;gap:6px;align-items:center;color:var(--fg)}
+.chip i{width:9px;height:9px;border-radius:50%;background:var(--c)}
+.chip.cond{background:var(--sunk);border-color:transparent;color:var(--muted)}
+.chip.edit{color:var(--accent);border-style:dashed}
+.searchbox{padding:10px 16px 0}
+.searchbox input{width:100%;border:1.5px solid var(--line);background:var(--surface);border-radius:12px;padding:11px 12px;font-size:15.5px}
+
+.mapwrap{background:var(--surface);border-bottom:1px solid var(--line);overflow:hidden}
+.maptools{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:7px 10px 7px 16px}
+.legend{display:flex;flex-wrap:wrap;min-width:0;gap:10px;row-gap:4px;align-items:center;font:600 11.5px var(--mono);color:var(--muted)}
+.legend span{display:inline-flex;gap:5px;align-items:center}
+.legend i{width:16px;height:4px;border-radius:2px;background:var(--c)}
+.legend .lg-hint{font:400 12px var(--body)}
+.maptog{background:var(--sunk);color:var(--fg);border:0;border-radius:99px;padding:6px 12px;font-size:13px;font-weight:600}
+.mapbox{position:relative;background:var(--land)}
+.mapbox svg{touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none}
+.zoom{position:absolute;right:10px;top:10px;z-index:3;display:grid;background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);overflow:hidden}
+.zoom button{border:0;background:none;width:40px;height:38px;font-size:20px;line-height:1;font-weight:500}
+.zoom button + button{border-top:1px solid var(--line)}
+.zoom #zfit{font-size:17px}
+.mapwrap svg.map{display:block;width:100%;height:min(50vh,360px)}
+.mapwrap.collapsed .mapbox,.mapwrap.collapsed .offmap{display:none!important}
+.offmap{display:flex;gap:6px;overflow-x:auto;padding:8px 16px 10px;scrollbar-width:none;align-items:center;border-top:1px solid var(--line)}
+.offmap::-webkit-scrollbar{display:none}
+.offmap > span{flex:none;font-size:12.5px;color:var(--muted)}
+.offmap button{flex:none;white-space:nowrap;border:1px solid var(--line);background:var(--bg);border-radius:99px;padding:6px 11px;font-size:13px;font-weight:600}
+.offmap button[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
+.pin{cursor:pointer}
+.pin circle.dot{stroke:var(--pin-ring)}
+.pin text{font-weight:700;font-family:var(--body);fill:var(--pin-text);text-anchor:middle;dominant-baseline:central;pointer-events:none}
+.pin.sel circle.dot{stroke:var(--fg)}
+.bubble{position:absolute;left:10px;right:10px;bottom:10px;z-index:4;background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:12px 12px 12px 14px;display:grid;gap:8px;max-height:70%;overflow:auto}
+.bubble .bh{display:flex;justify-content:space-between;gap:8px;align-items:start}
+.bubble b{font:600 16.5px/1.25 var(--display)}
+.bubble .meta{font-size:12.5px;color:var(--muted)}
+.bubble .x{border:0;background:var(--sunk);border-radius:50%;width:30px;height:30px;flex:none;font-size:17px;line-height:1}
+.bubble .row{display:flex;gap:8px;flex-wrap:wrap}
+.bubble .blist{display:grid;gap:6px}
+.bubble .blist button{text-align:left;border:1px solid var(--line);background:var(--bg);border-radius:12px;padding:9px 11px;font-size:14px;font-weight:600}
+.bubble .blist small{display:block;font-weight:400;color:var(--muted);font-size:12px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:12px;padding:10px 13px;font-size:14px;font-weight:600;text-decoration:none;line-height:1.2}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btn svg{width:17px;height:17px;flex:none}
+
+.list{padding:14px 16px 8px;display:grid;gap:20px}
+.group-h{scroll-margin-top:78px;display:flex;align-items:center;gap:8px;margin:0 2px 8px}
+.group-h i{width:10px;height:10px;border-radius:50%;background:var(--c)}
+.group-h h2{margin:0;font:600 18px/1.2 var(--display)}
+.group-h span{margin-left:auto;font:500 12px var(--mono);color:var(--muted)}
+.cards{display:grid;gap:10px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:12px 14px;display:grid;gap:6px;text-align:left;width:100%;position:relative}
+.card.sel{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft)}
+.card .h{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:start}
+.num{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--c);color:var(--pin-text);font:700 12.5px var(--body);margin-top:1px}
+.card h3{margin:0;font:600 17px/1.25 var(--display)}
+.card .org{font-size:13px;color:var(--muted);line-height:1.35;margin-top:1px}
+.card .where{font:500 12px var(--mono);color:var(--muted);white-space:nowrap;text-align:right;padding-top:3px}
+.tags{display:flex;flex-wrap:wrap;gap:5px}
+.tag{font:600 10.5px var(--mono);text-transform:uppercase;letter-spacing:.04em;border:1px solid currentColor;border-radius:5px;padding:1px 6px;color:var(--c)}
+.prive,.verify{font:600 10.5px var(--mono);text-transform:uppercase;border-radius:5px;padding:2px 6px}
+.prive{background:var(--sunk);color:var(--muted)}
+.verify{background:var(--warn-soft);color:var(--warn)}
+.fact{font-size:13.6px;color:var(--fg);line-height:1.4}
+.transit{display:flex;flex-wrap:wrap;gap:4px 10px;font-size:12.8px;color:var(--muted)}
+.transit .line{display:inline-flex;gap:5px;align-items:center}
+.transit i{font:700 10.5px var(--body);font-style:normal;color:#fff;border-radius:9px;padding:1px 7px;background:var(--bus)}
+.transit i.M1{background:var(--m1)}.transit i.M2{background:var(--m2)}.transit i.T1{background:var(--t1);color:#fff}.transit i.T2{background:var(--t2);color:#1b2a35}.transit i.T3{background:var(--t3);color:#1b2a35}
+.transit em{font-style:normal;color:var(--muted)}
+.transit .line i+i{margin-left:-2px}
+.legend i.dash{background:repeating-linear-gradient(90deg,var(--c) 0 4px,transparent 4px 7px)}
+.badges{display:flex;flex-wrap:wrap;gap:5px}
+.b{font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:99px;background:var(--sunk);color:var(--muted)}
+.b.mention,.b.confirmee{background:var(--good-soft);color:var(--good)}
+.b.conditions{background:var(--warn-soft);color:var(--warn)}
+.b.non{background:var(--bad-soft);color:var(--bad)}
+.b.form{background:var(--accent-soft);color:var(--accent)}
+.card .go{position:absolute;right:12px;bottom:10px;font-size:13px;font-weight:600;color:var(--accent)}
+.empty{margin:4px 16px;background:var(--surface);border:1px dashed var(--line);border-radius:16px;padding:16px;color:var(--muted);font-size:14.5px}
+.foot{padding:16px 16px 40px;display:grid;gap:12px;font-size:13px;color:var(--muted)}
+.foot .arca{margin:0}
+.mailbar{display:grid;gap:6px}
+.mailbar input{border:1.5px solid var(--line);background:var(--surface);border-radius:12px;padding:10px 12px;font-size:15px;width:100%}
+.sign{font:italic 500 14px var(--display);text-align:center;color:var(--muted);padding-top:4px}
+
+@media (min-width:900px){
+  .res-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);max-width:1240px;margin:0 auto;align-items:start}
+  .res-map{position:sticky;top:58px;padding:14px 0 14px 16px}
+  .mapwrap{border:1px solid var(--line);border-radius:18px}
+  .mapwrap svg.map{height:calc(100vh - 230px);max-height:720px;min-height:380px}
+  .res-right{min-width:0}
+  .rtop .col,.chips-in{max-width:1240px}
+}
+
+/* ---------- Fiche ---------- */
+.fiche:focus{outline:none}
+.fiche{position:fixed;inset:0;z-index:20;background:var(--bg);overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+.fh{background:linear-gradient(180deg,#0d5a88,#0b4a70);color:#fff;position:relative;padding:8px 0 38px}
+.fh .col{display:grid;gap:6px}
+.fh h2{font:600 clamp(24px,6.6vw,30px)/1.15 var(--display);margin:4px 0 0}
+.fh .org{opacity:.85;font-size:14px}
+.fh .tags .tag{color:#fff;border-color:rgba(255,255,255,.6)}
+.fh .transit{color:rgba(255,255,255,.88)}
+.fh .prive{background:rgba(255,255,255,.16);color:#fff}
+.big{display:grid;grid-template-columns:repeat(auto-fit,minmax(0,1fr));gap:8px;margin-top:-22px;position:relative;z-index:1}
+.big a,.big button{display:grid;justify-items:center;gap:4px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:12px 6px 10px;font-size:13.5px;font-weight:600;color:var(--fg);text-decoration:none;box-shadow:var(--shadow)}
+.big .p{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.big svg{width:24px;height:24px}
+.big small{font:500 11px var(--mono);color:inherit;opacity:.8;font-weight:400}
+.links{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.minimap{display:block;margin-top:12px;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--land);position:relative;text-decoration:none}
+.minimap svg{display:block;width:100%;height:150px}
+.minimap span{position:absolute;right:8px;bottom:8px;background:var(--surface);color:var(--fg);border-radius:99px;padding:5px 10px;font-size:12.5px;font-weight:600;box-shadow:var(--shadow)}
+.sec{margin-top:20px}
+.sec h3{margin:0 0 8px;font:600 11.5px var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--accent)}
+.sec p{margin:0 0 8px;font-size:15px}
+.ul{margin:0;padding-left:18px;display:grid;gap:4px;font-size:15px}
+.ul li::marker{color:var(--muted)}
+.act{display:flex;flex-wrap:wrap;gap:6px}
+.act span{background:var(--surface);border:1px solid var(--line);border-radius:99px;padding:5px 11px;font-size:13.5px}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:12px 14px;display:grid;gap:8px;font-size:14px}
+.has-lvl{font:600 17px var(--display)}
+.warnbox{background:var(--warn-soft);color:var(--warn);border-radius:10px;padding:8px 10px}
+.hbar{display:grid;grid-template-columns:118px 1fr 28px;gap:8px;align-items:center;font-size:13px}
+.hbar .tr{height:7px;border-radius:4px;background:var(--sunk);overflow:hidden}
+.hbar .fl{height:100%;background:var(--good)}
+.hbar .n{font:600 12.5px var(--mono);text-align:right}
+.box small{color:var(--muted);font-size:12.5px}
+.doc{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.doc + .doc{border-top:1px solid var(--line);padding-top:8px}
+.doc small{display:block;color:var(--muted);font-size:12.3px}
+.crow{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.crow + .crow{border-top:1px solid var(--line);padding-top:8px}
+.crow .l{display:block;font-size:12.3px;color:var(--muted)}
+.crow .v{font:500 14.5px var(--mono);word-break:break-word}
+.crow .acts{display:flex;gap:6px;flex:none}
+.copy{border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:7px 10px;font-size:13px;font-weight:600}
+.note{font-size:13px;color:var(--muted)}
+.mailbox input{width:100%;border:1.5px solid var(--line);background:var(--bg);border-radius:12px;padding:11px 12px;font-size:15.5px}
+.mailbox textarea{width:100%;min-height:150px;border:1px solid var(--line);background:var(--bg);border-radius:12px;padding:10px;font:12.5px/1.45 var(--mono);resize:vertical}
+.fpad{padding-bottom:110px}
+</style>
+</head>
+<body>
+
+
+<div id="v-q1" class="view" data-view="q1">
+  <header class="hero">
+    <div class="col">
+      <button class="backlink" type="button" data-back data-ifhist hidden>← Retour</button>
+      <div class="eyebrow"><span class="dot13">13</span>Marseille · Bouches-du-Rhône</div>
+      <h1>Trouver un lieu de soin en addictologie</h1>
+      <p>Deux questions, puis la carte et les fiches à montrer au patient.</p>
+      <div class="modetabs" role="tablist" aria-label="Domaine">
+        <button type="button" role="tab" data-mode="addicto">Addictologie</button>
+        <button type="button" role="tab" data-mode="psy">Psychiatrie · CMP</button>
+      </div>
+    </div>
+    <svg class="wave" viewBox="0 0 390 26" preserveAspectRatio="none" aria-hidden="true"><path d="M0 16 C55 4 110 24 190 13 S320 3 390 15 V26 H0Z"/></svg>
+  </header>
+  <main class="col qpad">
+    <div class="prog" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+    <h2 class="qh">Que cherchez-vous ?</h2>
+    <p class="qsub">Plusieurs choix possibles.</p>
+    <div class="opts" id="opts"></div>
+    <button class="alllink" type="button" id="seeall">Tout voir, sans filtre →</button>
+    <button class="installbtn" type="button" data-install><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M12 7.5v7M9 11.5l3 3 3-3"/></svg>Installer sur mon téléphone</button>
+    <div class="arca">
+      <b>Un doute sur l'orientation ? ARCA-Sud</b>
+      <span>Le dispositif régional d'appui en addictologie conseille soignants et usagers et aide à trouver la bonne structure. Équipe des Bouches-du-Rhône basée à Marseille (3 rue d'Arcole, 6ᵉ).</span>
+      <a class="arcanum" href="tel:+33488926888">04 88 92 68 88</a>
+      <span class="mono" style="font-size:12.5px">contact@arca-sud.fr</span>
+    </div>
+  </main>
+  <div class="bottombar"><div class="col">
+    <a class="bb-arca" href="tel:+33488926888">Un doute ?<b>ARCA-Sud</b></a>
+    <button class="cta" type="button" id="next1">Continuer →</button>
+  </div></div>
+</div>
+
+<div id="v-p1" class="view" data-view="p1" hidden>
+  <header class="hero">
+    <div class="col">
+      <button class="backlink" type="button" data-back data-ifhist hidden>← Retour</button>
+      <div class="eyebrow"><span class="dot13">13</span>Marseille · psychiatrie adulte</div>
+      <h1>Trouver le CMP de secteur</h1>
+      <p>Par l'adresse du patient, ou par sa date de naissance s'il est sans domicile.</p>
+      <div class="modetabs" role="tablist" aria-label="Domaine">
+        <button type="button" role="tab" data-mode="addicto">Addictologie</button>
+        <button type="button" role="tab" data-mode="psy">Psychiatrie · CMP</button>
+      </div>
+    </div>
+    <svg class="wave" viewBox="0 0 390 26" preserveAspectRatio="none" aria-hidden="true"><path d="M0 16 C55 4 110 24 190 13 S320 3 390 15 V26 H0Z"/></svg>
+  </header>
+  <main class="col qpad">
+    <h2 class="qh" style="margin-top:8px">Le patient a-t-il un domicile ?</h2>
+    <p class="qsub">Le CMP dépend du lieu de vie.</p>
+    <div class="howgrid" id="p-how">
+      <button type="button" class="op" data-how="addr" aria-pressed="false" style="--c:var(--t-cmp)"><span class="tick">✓</span><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v10h13V10"/><path d="M10 20v-5h4v5"/></svg></span><b>Oui, il a une adresse</b><span>Hébergé, en CHRS, CADA ou à l'hôtel compte aussi : c'est l'adresse du lieu de vie</span></button>
+      <button type="button" class="op" data-how="sdf" aria-pressed="false" style="--c:var(--t-cmp)"><span class="tick">✓</span><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></span><b>Sans domicile</b><span>Rue, squat, hébergement d'urgence : le secteur dépend de la date de naissance</span></button>
+    </div>
+    <button type="button" class="mobbtn" id="p-mob"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="7" r="3"/><circle cx="17" cy="8" r="2.5"/><path d="M2.5 20c0-3.3 2.5-6 5.5-6s5.5 2.7 5.5 6M14 14.3c.9-.5 1.9-.8 3-.8 2.5 0 4.5 2.2 4.5 5"/></svg></span><span><b>Équipes mobiles</b><small>Personne à la rue ou qui ne vient pas au CMP : MARSS, EMLPP</small></span><span aria-hidden="true">→</span></button>
+    <section class="qcard" id="p-addr" hidden style="margin-top:12px">
+      <span class="lbl">Adresse</span>
+      <h3>Arrondissement ou commune</h3>
+      <select id="p-arr" class="arrsel" aria-label="Arrondissement"><option value="">Choisir…</option></select>
+      <div id="p-subwrap" hidden style="display:grid;gap:8px">
+        <span class="hint">Cet arrondissement est partagé entre deux secteurs :</span>
+        <div class="seg four" id="p-sub" style="grid-template-columns:1fr"></div>
+      </div>
+      <p class="hint">Le secteur dépend de l'adresse exacte. En cas de doute, appelez le CMP : il réoriente si besoin.</p>
+    </section>
+    <section class="qcard" id="p-sdf" hidden style="margin-top:12px">
+      <span class="lbl">Sans domicile</span>
+      <h3>Date de naissance</h3>
+      <div class="dob"><select id="p-day" class="arrsel" aria-label="Jour"><option value="">Jour</option></select><select id="p-month" class="arrsel" aria-label="Mois"><option value="">Mois</option></select></div>
+      <p class="hint">Règle marseillaise pour les personnes sans domicile sans suivi, ou dont le suivi est interrompu depuis plus de 6 mois. S'il est déjà suivi, il reste dans son CMP. Si son état ne lui permet pas d'aller loin, le CMP de rattachement oriente vers le CMP le plus proche.</p>
+    </section>
+    <div id="p-result" class="presult" hidden aria-live="polite"></div>
+    <button class="alllink" type="button" id="p-all">Voir tous les CMP et les urgences →</button>
+    <button class="installbtn" type="button" data-install><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M12 7.5v7M9 11.5l3 3 3-3"/></svg>Installer sur mon téléphone</button>
+    <div class="arca">
+      <b>Urgences psychiatriques, 24h/24</b>
+      <span><b>CAP 48</b>, hôpital de la Timone (AP-HM) :</span>
+      <a class="arcanum" href="tel:+33413429300">04 13 42 93 00</a>
+      <span><b>CAP 72</b>, hôpital Nord (CH Édouard Toulouse) :</span>
+      <a class="arcanum" href="tel:+33491964956">04 91 96 49 56</a>
+      <span><b>CACC</b> de l'hôpital Valvert, accueil de crise : 04 91 87 67 67. À Aubagne : UPAUL, 04 42 84 72 94. Sinon le 15.</span>
+      <span>Idées suicidaires : <a href="tel:3114"><b>3114</b></a>, prévention du suicide, 24h/24, gratuit.</span>
+      <span>Personne à la rue : équipe mobile <b>MARSS</b> (AP-HM), 06 16 19 33 42, ou <b>EMLPP</b> du CH Édouard Toulouse, 04 91 96 97 17.</span>
+      <button type="button" class="btn" id="p-urg" style="justify-self:start;margin-top:4px">Voir les urgences sur la carte</button>
+    </div>
+  </main>
+  <div class="bottombar"><div class="col">
+    <a class="bb-arca" href="tel:15">Urgence<b>15</b></a>
+    <button class="cta" type="button" id="pnext">Voir sur la carte →</button>
+  </div></div>
+</div>
+
+<div id="v-q2" class="view" data-view="q2" hidden>
+  <header class="hero small">
+    <div class="col">
+      <button class="backlink" type="button" data-back>← Retour</button>
+      <h1>Quelques précisions</h1>
+      <p id="q2-sub"></p>
+    </div>
+    <svg class="wave" viewBox="0 0 390 26" preserveAspectRatio="none" aria-hidden="true"><path d="M0 16 C55 4 110 24 190 13 S320 3 390 15 V26 H0Z"/></svg>
+  </header>
+  <main class="col qpad">
+    <div class="prog" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i></div>
+    <section class="qcard" id="q-lg">
+      <span class="lbl">Pour la cure</span>
+      <h3>Le patient a-t-il un logement ?</h3>
+      <div class="seg" data-key="lg"><button type="button" data-v="oui">Oui</button><button type="button" data-v="non">Non</button></div>
+      <p class="hint">Sans logement, les cliniques privées ne sont pas proposées pour la cure : seuls les hôpitaux publics restent.</p>
+    </section>
+    <section class="qcard" id="q-hm">
+      <span class="lbl" id="hm-lbl">Pour les structures</span>
+      <h3>Peut-il aller hors de Marseille ?</h3>
+      <div class="seg" data-key="hm"><button type="button" data-v="oui">Oui</button><button type="button" data-v="non">Non</button></div>
+      <p class="hint">Non : uniquement Marseille et Allauch (métro M1 jusqu'à La Rose, puis bus).</p>
+    </section>
+    <section class="qcard" id="q-sec">
+      <span class="lbl">Médecins libéraux</span>
+      <h3>Secteur de conventionnement</h3>
+      <div class="seg four" data-key="sec"><button type="button" data-v="all">Tous</button><button type="button" data-v="1">Secteur 1</button><button type="button" data-v="2O">Secteur 2 OPTAM</button><button type="button" data-v="2">Secteur 2</button></div>
+      <p class="hint">Secteur 1 : sans dépassement. OPTAM : dépassements limités. Secteur 2 : dépassements libres.</p>
+    </section>
+    <section class="qcard" id="q-arr">
+      <span class="lbl">Médecins libéraux</span>
+      <h3>Quartier</h3>
+      <select id="arr" class="arrsel" aria-label="Quartier"><option value="">Tous les quartiers</option></select>
+      <p class="hint">Le cabinet ou l'un des lieux de consultation du médecin.</p>
+    </section>
+  </main>
+  <div class="bottombar"><div class="col">
+    <a class="bb-arca" href="tel:+33488926888">Un doute ?<b>ARCA-Sud</b></a>
+    <button class="cta" type="button" id="next2">Voir les résultats →</button>
+  </div></div>
+</div>
+
+<div id="v-res" class="view" data-view="resultats" hidden>
+  <div class="rtop"><div class="col" style="max-width:1240px">
+    <button class="iconback" type="button" data-back aria-label="Retour">←</button>
+    <div style="flex:1;min-width:0"><h1 id="count"></h1><div class="sub" id="countsub"></div></div>
+    <button class="pill" type="button" id="modify">Modifier ✎</button>
+  </div></div>
+  <div class="chips" id="chips" aria-label="Filtres actifs"></div>
+  <div class="res-grid">
+    <div class="res-map">
+      <div class="mapwrap" id="mapwrap">
+        <div class="maptools">
+          <div class="legend" aria-hidden="true"><span><i style="--c:var(--m1)"></i>M1</span><span><i style="--c:var(--m2)"></i>M2</span><span><i class="dash" style="--c:var(--t1)"></i>T1</span><span><i class="dash" style="--c:var(--t2);outline:1px solid rgba(0,0,0,.15)"></i>T2</span><span><i class="dash" style="--c:var(--t3)"></i>T3</span><span class="lg-hint">Carte schématique</span></div>
+          <button class="maptog" type="button" id="maptog">Réduire</button>
+        </div>
+        <div class="mapbox">
+          <svg class="map" id="map" role="img" aria-label="Carte de Marseille avec les lieux numérotés" preserveAspectRatio="xMidYMid meet"></svg>
+          <div class="zoom" role="group" aria-label="Zoom"><button type="button" id="zin" aria-label="Zoomer">+</button><button type="button" id="zout" aria-label="Dézoomer">−</button><button type="button" id="zfit" aria-label="Recadrer sur les résultats">⤢</button></div>
+          <div class="bubble" id="bubble" hidden></div>
+        </div>
+        <div class="offmap" id="offmap" hidden></div>
+      </div>
+    </div>
+    <div class="res-right">
+      <div class="searchbox"><input id="q" type="search" placeholder="Rechercher un nom, un quartier, une activité…" aria-label="Rechercher"></div>
+      <div class="list" id="out" aria-live="polite"></div>
+      <div class="empty" id="empty" hidden></div>
+      <footer class="foot">
+        <div class="arca">
+          <b>ARCA-Sud · appui à l'orientation</b>
+          <a class="arcanum" href="tel:+33488926888">04 88 92 68 88</a>
+          <span class="mono" style="font-size:12.5px">contact@arca-sud.fr</span>
+        </div>
+        <div class="mailbar"><label for="defmail">Adresse d'envoi par défaut des fiches</label><input id="defmail" type="email" placeholder="secretariat@votre-structure.fr" autocomplete="email"></div>
+        <p style="margin:0">Relevé d'octobre 2026 : annuaires d'ARCA-Sud, de Santé publique France, de la Fédération Addiction, sante.fr, sites des établissements et <a href="https://www.has-sante.fr/jcms/c_1725555/fr/qualiscope-qualite-des-hopitaux-et-des-cliniques" target="_blank" rel="noopener">fiches Qualiscope de la HAS</a>. Les fiches « À confirmer » s'appuient sur une seule source. Numéros, formulaires et résultats HAS évoluent : vérifiez avant tout envoi. Carte schématique : positions et lignes de métro approximatives. L'adresse d'envoi n'est mémorisée que sur cet appareil.</p>
+        <button class="installbtn" type="button" data-install style="margin:0">Installer sur mon téléphone</button>
+        <div class="sign">De l'Estaque aux Goudes · pensé pour les consultations marseillaises</div>
+      </footer>
+    </div>
+  </div>
+</div>
+
+<div class="isheet-scrim" id="install" hidden>
+  <div class="isheet" role="dialog" aria-modal="true" aria-labelledby="ins-title">
+    <div class="grab"></div>
+    <h2 id="ins-title">Installer l'annuaire</h2>
+    <p class="hint">L'annuaire s'ajoute à l'écran d'accueil comme une application. Il se met à jour tout seul : chaque ouverture affiche la dernière version.</p>
+    <div id="ins-now" hidden><button type="button" class="btn primary" id="ins-prompt" style="width:100%;padding:14px">Installer maintenant</button></div>
+    <ol class="steps" id="ins-steps"></ol>
+    <div class="box"><span class="hint">Nom à donner au raccourci :</span><div style="display:flex;gap:8px;align-items:center;justify-content:space-between"><b id="ins-name">Annuaire Santé Mentale Marseille</b><button type="button" class="copy" data-copyname>Copier</button></div></div>
+    <div class="seg" id="ins-os" style="margin-top:4px"><button type="button" data-os="ios">iPhone</button><button type="button" data-os="android">Android</button></div>
+    <button type="button" class="btn" data-closeinstall style="width:100%">Fermer</button>
+  </div>
+</div>
+
+<div class="fiche" id="fiche" tabindex="-1" hidden role="dialog" aria-modal="true" aria-labelledby="fh-title"></div>
+
+<script>
+const HASURL=f=>"https://www.has-sante.fr/fiche-etablissement/"+f;
+/* t: types · pub: public ou associatif · mrs: Marseille ou Allauch · p: lieu affiché · tr: accès en transports
+   has: [niveau, date, [patient, équipes, établissement]|null, satisfaction|null, résumé, finess] */
+const D=[
+{id:"allauch",t:["cure","postcure","hdj"],pub:1,mrs:1,p:"Allauch",tr:[["M1","La Rose"],["bus","144 · Hôpital-Mille Écus"]],
+ n:"Unité d'addictologie du CH d'Allauch",o:"Centre hospitalier Louis Brunet · public",a:"Chemin des Mille Écus, 13190 Allauch",
+ f:["12 lits de sevrage complexe","10 lits de post-cure (SMR) et 15 à 20 places en hôpital de jour","Alcool, drogues, médicaments, jeux, chemsex ; entourage reçu"],
+ act:["Groupes de parole","Ateliers d'expression","Art-thérapie","Relaxation","Sport doux avec éducateur sportif","Diététique","Pair-aidant","Éducation thérapeutique post-sevrage","Suivi social"],
+ der:["Séjours programmés sur orientation médicale","Une commission étudie les demandes chaque jour","Hôpital de jour surtout pour les personnes déjà sevrées"],
+ docs:[["Plaquette hospitalisation temps plein","https://www.ch-allauch.fr/media/bloc_file/Plaquette_pr%C3%A9sentation_ADDICTO_HTP_V09_2020.pdf","PDF, édition 2020 · lien non vérifié"],["Flyer de présentation","https://www.ch-allauch.fr/media/bloc_file//Flyer_de_pr%C3%A9sentation_ADDICTO.pdf","PDF · lien non vérifié"]],
+ send:"Le questionnaire de pré-admission n'est pas téléchargeable directement : demandez-le au 04 91 10 13 12. Retour par e-mail à addictologie@ch-allauch.fr ou par fax au 04 91 10 46 00.",
+ site:"https://www.ch-allauch.fr/nos_services_secteur_sanitaire/",
+ has:["confirmee","08/11/2023",[97,93,94],null,"Qualité des soins confirmée. Très bons indicateurs sur la douleur (A) et le courrier de sortie en court séjour (A).","130000516"],
+ c:[["Pré-admission","04 91 10 13 12"],["Fax","04 91 10 46 00"],["E-mail","addictologie@ch-allauch.fr"]],note:"Secrétariat du lundi au vendredi, 8h–16h."},
+{id:"barnabe",t:["cure","postcure","hdj"],pub:0,mrs:1,p:"Marseille 14ᵉ",tr:[["bus","31"]],
+ n:"Clinique Saint-Barnabé",o:"Ramsay Santé · privé conventionné",a:"72 chemin de Fontainieu, quartier Saint-Joseph, 13014 Marseille",
+ f:["Environ 75 lits et 15 places d'hôpital de jour","Cure et post-cure enchaînées : programme de 6 semaines débutant par 5 à 7 jours de sevrage","Programme dédié aux troubles cognitifs liés à l'alcool"],
+ act:["Psychothérapie de groupe","Ateliers de groupe obligatoires","Approche TCC","Éducation thérapeutique","Thérapie communautaire","Relaxation psychocorporelle chaque soir","Activité physique, salle de sport","Conférences patient et famille"],
+ der:["Programme de 6 semaines, sevrage médicamenteux les premiers jours","Pas de sortie les 9 premiers jours","Visites des proches à partir du 2ᵉ week-end","Sorties entre patients à partir du 2ᵉ vendredi","Sorties thérapeutiques avec un proche à partir de la 4ᵉ semaine","Contrat de soins et de vie communautaire signé à l'entrée"],
+ docs:[["Dossier de pré-admission (septembre 2026)","https://clinique-saint-barnabe.ramsaysante.fr/sites/default/files/biblio/domaines/clinique_saint_barnabe/2026%2009%20Dossier%20pr%C3%A9-admission%20hospitalisation.pdf","PDF · hospitalisation complète, troubles cognitifs et hôpital de jour","form"],["Page admission","https://clinique-saint-barnabe.ramsaysante.fr/vous-%C3%AAtes-patient/votre-admission-%C3%A0-la-clinique-saint-barnab%C3%A9","Site officiel"]],
+ send:"Un seul dossier pour les trois parcours : partie administrative, partie médicale à remplir par le médecin, contrat de soins signé. À envoyer par messagerie sécurisée MSSanté à sba.admin.mss@ramsaysante.mssante.fr, ou par courrier au Secrétariat Pré-Admissions, 72 chemin de Fontainieu, 13014 Marseille.",
+ site:"https://clinique-saint-barnabe.ramsaysante.fr/vous-%C3%AAtes-patient/nos-prises-en-charge-75",
+ has:["confirmee","22/03/2023",[98,85,93],"Satisfaction des patients en SMR : 69/100 (C). 51 % la recommanderaient certainement.","Qualité des soins confirmée, avec de très bons indicateurs cliniques (A). Satisfaction des patients moyenne.","130784812"],
+ c:[["Pré-admissions","04 96 15 87 29"],["Hôpital de jour","04 96 15 87 03"],["MSSanté","sba.admin.mss@ramsaysante.mssante.fr"]],note:"Hôpital de jour aussi sur Doctolib."},
+{id:"aphm",t:["hdj","csapa"],pub:1,mrs:1,p:"Marseille 9ᵉ",tr:[["M2","Sainte-Marguerite Dromel"]],
+ n:"Centre des addictions, hôpital Sainte-Marguerite",o:"AP-HM · public",a:"270 bd de Sainte-Marguerite, pavillon 1, 13009 Marseille",
+ f:["Hôpital de jour d'addictologie (adultes), consultations Solaris, CSAPA, CAARUD","Méthadone du lundi au vendredi, 9h–13h","Pas de lits de sevrage à temps complet à l'AP-HM"],
+ send:"Pas de formulaire en ligne : rendez-vous par téléphone. Courrier médical à secretariat.addictologie.sud@ap-hm.fr.",
+ site:"https://www.sante.fr/centre-hospitalier-regional-chr/marseille/ap-hm-hopitaux-sud-ste-marguerite-salvator-marseille/4838-hj-addictologie-sud",
+ has:["confirmee","27/11/2024",[98,96,93],"Satisfaction en hospitalisation : 72/100 (C).","Qualité des soins confirmée, très bons scores de certification. Les indicateurs de psychiatrie sont surtout au niveau C.","130784234"],
+ c:[["Consultations","04 91 74 44 76"],["CSAPA / CAARUD","04 91 74 40 89"],["Standard","04 91 38 00 00"],["E-mail","secretariat.addictologie.sud@ap-hm.fr"]],note:""},
+{id:"montperrin",t:["cure","hdj"],pub:1,mrs:0,p:"Aix-en-Provence",
+ n:"Service d'addictologie du CH Montperrin",o:"Centre hospitalier spécialisé · public",a:"13 av. Louis Coirard, 13617 Aix-en-Provence",
+ f:["Sevrage hospitalier de plus de 7 jours","Structure de jour du lundi au vendredi, équipe mobile à domicile","Alcool, drogues, médicaments, jeux"],
+ act:["Groupes d'échange","Groupes psychocorporels","Rencontre avec les groupes d'entraide","Information nutrition","TCC, hypnose, EMDR","Atelier d'écriture autobiographique","Groupes familles","Yoga et relaxation","Ateliers art et écriture","Café-philo","Sorties théâtre et opéra","Repas thérapeutiques","ETP « Choisir mon projet de soins »"],
+ der:["Le patient doit être lui-même demandeur","Consultation de pré-admission, pas d'admission en urgence","Structure de jour 9h–17h (04 42 16 18 00)","Visites de l'entourage en semaine, 14h–18h","Chambres simples ou doubles"],
+ docs:[["Plaquette hospitalisation temps plein","https://www.ch-montperrin.fr/PublishingImages/Pages/Page%20de%20contenu%20publique/POLE-TRANSVERSAL/flyerTP.pdf","PDF"],["Plaquette structure de jour","https://www.ch-montperrin.fr/PublishingImages/Pages/Page%20de%20contenu%20publique/POLE-TRANSVERSAL/flyer%20SDJ.pdf","PDF"],["Groupe « Choisir mon projet de soins »","https://www.ch-montperrin.fr/PublishingImages/Pages/Page%20de%20contenu%20publique/POLE-TRANSVERSAL/flyer%20CPS.pdf","PDF"]],
+ send:"Pas de formulaire : le patient appelle le secrétariat (04 42 16 16 24) pour une consultation de pré-admission. Courrier médical possible à secretariat_addicto@ch-montperrin.fr.",
+ site:"https://www.ch-montperrin.fr/Pages/Page%20de%20contenu%20publique/POLE-TRANSVERSAL.aspx",
+ has:["confirmee","11/06/2025",[96,93,93],null,"Qualité des soins confirmée. Le courrier de sortie reste à améliorer (C).","130000433"],
+ c:[["Secrétariat","04 42 16 16 24"],["Structure de jour","04 42 16 18 00"],["Équipe mobile","04 42 16 17 78"],["E-mail","secretariat_addicto@ch-montperrin.fr"]],note:"Secrétariat du lundi au vendredi, 9h–17h."},
+{id:"lauranne",t:["cure","postcure"],pub:0,mrs:0,p:"Bouc-Bel-Air",
+ n:"Clinique La Lauranne, pôle L'Étoile",o:"Clinique psychiatrique privée",a:"1059 chemin de Saint-Hilaire, 13320 Bouc-Bel-Air",
+ f:["48 lits dédiés aux conduites addictives, adultes","Sevrage de plus de 7 jours puis soins résidentiels collectifs","Alcool, cannabis, héroïne, cocaïne"],
+ act:["TCC","Psychothérapie individuelle et de groupe","Relaxation","Art-thérapie","Éducation sportive","Salle de sport","Ostéopathie","Kinésithérapie","Ateliers thérapeutiques chaque après-midi","Théâtre, danse, dessin, musique"],
+ der:["Dossier examiné en commission","Sécurité sociale et mutuelle requises","Chambre individuelle : supplément de 50 €","Visites sur rendez-vous avec l'accueil"],
+ docs:[["Page du pôle L'Étoile","https://www.clinique-la-lauranne.fr/pole-de-l-etoile","Site officiel, avec photos"]],
+ send:"Pas de formulaire en ligne : le médecin rédige un rapport médical de pré-admission (antécédents, éléments diagnostiques), envoyé à admission@lalauranne.fr ou par fax au 04 42 22 97 96.",
+ photos:"https://www.clinique-la-lauranne.fr/pole-de-l-etoile",site:"https://www.clinique-la-lauranne.fr/pole-de-l-etoile",
+ has:["confirmee","03/12/2025",[97,99,97],null,"Qualité des soins confirmée avec des scores très élevés. Suivi des addictions noté A ; la prise en charge de la douleur physique est à améliorer (C).","130798002"],
+ c:[["Accueil","04 42 22 97 97"],["Fax","04 42 22 97 96"],["E-mail","admission@lalauranne.fr"]],note:"Accueil 7j/7, 8h–19h."},
+{id:"salon",t:["cure","csapa"],pub:1,mrs:0,p:"Salon-de-Provence",
+ n:"Alcoologie et ELSA du CH du Pays salonais",o:"Centre hospitalier · public",a:"207 av. Julien Fabre, 13300 Salon-de-Provence",
+ f:["Sevrage hospitalier court (environ 7 jours) alcool et drogues, en hépato-gastro-alcoologie","Sevrage ambulatoire et consultations externes"],
+ der:["Accès par consultation sur rendez-vous ou via l'ELSA pour un patient déjà hospitalisé","Service : pavillon Laurent Arnoux, niveau 4","ELSA : pavillon Anne Dauphin, 2ᵉ étage"],
+ docs:[["Page du service","https://www.ch-salon.fr/hepato-gastro-enterologie-alcoologie/","Site officiel"]],
+ send:"Pas de formulaire : rendez-vous par téléphone au 04 90 44 98 27, du lundi au vendredi, 9h–16h.",
+ site:"https://www.ch-salon.fr/hepato-gastro-enterologie-alcoologie/",
+ has:["confirmee","20/03/2024",[97,93,97],"Satisfaction en hospitalisation : 71/100 (C) ; en ambulatoire : 81/100 (A).","Qualité des soins confirmée.","130001225"],
+ c:[["Addictologie / ELSA","04 90 44 98 27"],["Hépato-gastro-alcoologie","04 90 44 94 23"],["Standard","04 90 44 91 44"]],note:""},
+{id:"arles",t:["cure","csapa"],pub:1,mrs:0,v:1,p:"Arles",
+ n:"Consultations d'addictologie et ELSA du CH d'Arles",o:"Centre hospitalier Joseph Imbert · public",a:"Quartier Fourchon, 6ᵉ étage, 13637 Arles",
+ f:["Consultations sur rendez-vous : drogues, alcool, médicaments, tabac","Sevrage hospitalier court pour l'alcool selon une seule source"],
+ send:"Rendez-vous par téléphone au secrétariat. Demandez si le sevrage court est toujours proposé.",
+ has:["confirmee","07/02/2024",[97,92,91],"Satisfaction en hospitalisation : 74/100 (B).","Qualité des soins confirmée. L'indicateur de repérage des addictions est faible (C).","130002827"],
+ c:[["Secrétariat","04 90 49 29 35"],["Standard","04 90 49 29 29"]],note:"Du lundi au vendredi, 9h–16h."},
+
+/* Consultations hospitalières */
+{id:"valvert",t:["csapa"],pub:1,mrs:1,p:"Marseille 11ᵉ",
+ n:"Service d'addictologie du CH Valvert",o:"Centre hospitalier spécialisé · public",a:"78 bd des Libérateurs, 13011 Marseille",
+ f:["Consultations confidentielles et gratuites dès 15 ans, sevrage ambulatoire","Produits et addictions sans produit (jeux, écrans, achats…)"],
+ has:["confirmee","07/02/2024",[93,88,93],null,"Qualité des soins confirmée. La plupart des indicateurs de suivi sont au niveau C.","130002496"],
+ c:[["Téléphone","04 91 87 67 32"],["E-mail","addictologie@ch-valvert.fr"]],note:"Petit bâtiment à droite de l'entrée."},
+{id:"edt",t:["csapa"],pub:1,mrs:1,v:1,p:"Marseille 15ᵉ",
+ n:"Consultations d'addictologie du CH Édouard Toulouse",o:"Centre hospitalier spécialisé · public",a:"118 chemin de Mimet, 13015 Marseille",
+ f:["Consultations d'addictologie","Lits d'addictologie non confirmés aujourd'hui"],
+ has:["confirmee","08/11/2023",[95,84,86],null,"Qualité des soins confirmée. Scores sur les équipes et l'organisation plus bas que la moyenne.","130000235"],
+ c:[["Standard","04 91 96 98 00"]],note:""},
+{id:"martigues",t:["csapa"],pub:1,mrs:0,p:"Martigues",
+ n:"Unité d'addictologie du CH de Martigues",o:"Centre hospitalier · public",a:"3 bd des Rayettes, 13500 Martigues",
+ f:["Consultations sur rendez-vous, sevrage ambulatoire et à domicile, substitution","ELSA pour les patients hospitalisés"],
+ has:["confirmee","03/07/2024",[98,94,93],"Satisfaction en hospitalisation : 71/100 (C) ; en ambulatoire : 80/100 (A).","Qualité des soins confirmée, très bonne prise en charge de la douleur (A).","130002835"],
+ c:[["Secrétariat","04 42 43 27 75"],["E-mail","secretariat.addictologie@ch-martigues.fr"]],note:"Secrétariat fermé le mercredi."},
+{id:"ciotat",t:["csapa"],pub:1,mrs:0,p:"La Ciotat",
+ n:"Consultations et ELSA du CH de La Ciotat",o:"Centre hospitalier · public",a:"Bd Lamartine, 13600 La Ciotat",
+ f:["Consultations d'addictologie et équipe de liaison"],c:[["Téléphone","04 42 08 75 98"]],note:""},
+
+/* CSAPA Marseille */
+{id:"semaphore",t:["csapa"],pub:1,mrs:1,p:"Marseille 4ᵉ",tr:[["M1","Cinq-Avenues"],["T2","Cinq-Avenues"]],
+ n:"CSAPA Le Sémaphore",o:"Addiction Méditerranée · associatif",a:"6 rue de Provence, 13004 Marseille",
+ f:["Drogues, alcool, jeux ; plutôt plus de 25 ans","Méthadone chaque matin sauf jeudi ; sevrage ambulatoire ou orientation vers un sevrage hospitalier","Café-accueil sans rendez-vous le lundi matin"],
+ c:[["Téléphone","04 91 91 50 52"],["E-mail","lesemaphore@ad-med.fr"]],site:"https://www.addiction-mediterranee.fr/lesemaphore",note:""},
+{id:"jam",t:["csapa"],pub:1,mrs:1,p:"Marseille 1er",tr:[["M1","Réformés"]],
+ n:"JAM, consultation jeunes consommateurs",o:"Addiction Méditerranée · associatif",a:"7 square Stalingrad, 4ᵉ étage, 13001 Marseille",
+ f:["11–25 ans et leurs familles","Équipe mobile dans plusieurs centres sociaux de Marseille"],
+ c:[["Téléphone","04 91 91 00 65"],["E-mail","jam@ad-med.fr"]],note:"Lundi 9h–18h, mercredi 14h–19h, vendredi 14h–17h."},
+{id:"filrouge",t:["csapa"],pub:1,mrs:1,p:"Marseille 1er",tr:[["M1","Réformés"]],
+ n:"Le Fil Rouge",o:"Addiction Méditerranée · associatif",a:"7 square Stalingrad, 13001 Marseille",
+ f:["Équipe mobile pour les parents concernés par une addiction"],c:[["Téléphone","04 96 11 57 66"]],note:""},
+{id:"casanova",t:["csapa"],pub:1,mrs:1,p:"Marseille 1er",tr:[["M1","Colbert"]],
+ n:"CSAPA Danielle Casanova",o:"Groupe SOS Solidarités · associatif",a:"26 rue Sainte-Barbe, 13001 Marseille",
+ f:["Méthadone tous les matins et le jeudi soir, sevrage ambulatoire, groupe d'entraide","Accueil des personnes précaires et vivant avec le VIH ou une hépatite C"],
+ c:[["Téléphone","04 95 04 35 25"],["E-mail","danielle.casanova@groupe-sos.org"]],note:"Sur rendez-vous."},
+{id:"afmrs",t:["csapa"],pub:1,mrs:1,p:"Marseille 7ᵉ",tr:[["M1","Vieux-Port"]],
+ n:"CSAPA Addictions France Marseille",o:"Association Addictions France",a:"24A rue Fort Notre-Dame, 1er étage, 13007 Marseille",
+ f:["Consultations gratuites et confidentielles sur rendez-vous","Ouvert aussi le samedi matin"],
+ c:[["Téléphone","04 91 84 75 12"],["E-mail","csapa.notredame@addictions-france.org"]],note:""},
+{id:"puget",t:["csapa"],pub:1,mrs:1,p:"Marseille 6ᵉ",
+ n:"CSAPA Puget-Corderie",o:"CH Édouard Toulouse · public",a:"2 bd Notre-Dame, 13006 Marseille",
+ f:["Méthadone en semaine le matin, sevrage ambulatoire, consultations psychiatriques"],c:[["Téléphone","04 91 54 70 70"]],note:""},
+{id:"pugetbis",t:["csapa"],pub:1,mrs:1,p:"Marseille 6ᵉ",
+ n:"Espace Puget Bis, consultation jeunes",o:"CH Édouard Toulouse · public",a:"175 rue Paradis, 13006 Marseille",
+ f:["15–25 ans et leurs familles","Équipe mobile Téma 13 : 06 98 07 90 52"],
+ c:[["Téléphone","04 96 17 67 75"],["E-mail","espacepugetbis@ch-edouard-toulouse.fr"]],site:"https://www.espacepugetbis.fr",note:"Café-accueil le mardi, 14h–15h."},
+{id:"bus",t:["csapa"],pub:1,mrs:1,p:"Marseille 3ᵉ",
+ n:"Bus Méthadone",o:"Bus 31/32 · associatif",a:"4 av. Rostand, 13003 Marseille",
+ f:["Délivrance mobile de méthadone et accompagnement"],c:[["Téléphone","04 95 04 56 06"]],note:""},
+{id:"baumettes",t:["csapa"],pub:1,mrs:1,p:"Marseille 9ᵉ",
+ n:"CSAPA des prisons de Marseille",o:"AP-HM · public",a:"239 chemin de Morgiou, 13009 Marseille",
+ f:["Réservé aux personnes détenues aux Baumettes","Peut préparer une cure à la sortie"],
+ c:[["Téléphone","04 91 74 41 21"],["E-mail","baumettes.CSAPA@ap-hm.fr"]],note:""},
+
+/* CSAPA hors Marseille */
+{id:"tremplin",t:["csapa","resid"],pub:1,mrs:0,p:"Aix-en-Provence",
+ n:"CSAPA Tremplin",o:"Addiction Méditerranée · associatif",a:"560 av. du Club Hippique, 13090 Aix-en-Provence",
+ f:["Substitution, sevrage ambulatoire ou orientation vers l'hôpital, consultation jeunes","Appartements thérapeutiques : 6 mois renouvelables, jusqu'à 18 mois"],
+ act:["Sophrologie","Soutien aux familles","Caminando : cuisine et repas partagés","Sorties culturelles","Balades et randonnées","Ciné-débats","Atelier d'écriture","Groupe femmes"],
+ der:["Appartements : lettre de motivation et dossier médical, puis entretiens avec psychologue, chef de service et éducateur","Café-accueil sans rendez-vous le jeudi matin","Fermé le vendredi matin"],
+ docs:[["Plaquette Tremplin","https://www.addiction-mediterranee.fr/_files/ugd/b5dda5_77fcb76909ca4f21a2f2c40d36662e98.pdf","PDF"]],
+ send:"Pas de formulaire : contact par téléphone ou e-mail. Pour les appartements, lettre de motivation et dossier médical à tremplin@ad-med.fr.",
+ site:"https://www.addiction-mediterranee.fr/tremplin",
+ c:[["Téléphone","04 42 26 15 16"],["E-mail","tremplin@ad-med.fr"]],note:""},
+{id:"floreal",t:["csapa"],pub:1,mrs:0,p:"Aix-en-Provence",
+ n:"CSAPA Villa Floréal",o:"Rattaché au CH Montperrin (à confirmer)",a:"Av. du Petit Barthélémy, Aix-en-Provence",
+ f:["Méthadone, sevrage ambulatoire","Consultations jeux le mercredi soir","Antenne à Salon, 356 bd Clemenceau, mardi et vendredi après-midi"],
+ c:[["Téléphone","04 42 16 18 35"],["E-mail","contact@addiction-villafloreal.fr"]],note:""},
+{id:"afaix",t:["csapa"],pub:1,mrs:0,p:"Aix-en-Provence",
+ n:"CSAPA Addictions France Pays d'Aix",o:"Association Addictions France",a:"CH du Pays d'Aix, av. des Tamaris, 13616 Aix-en-Provence",
+ f:["Consultations et sevrage ambulatoire"],
+ c:[["Téléphone","04 42 33 50 66"],["E-mail","csapa.aix@addictions-france.org"]],note:"Secrétariat fermé le mercredi."},
+{id:"afsalon",t:["csapa"],pub:1,mrs:0,p:"Salon-de-Provence",
+ n:"CSAPA Addictions France Salon",o:"Association Addictions France",a:"14 rue Coutellerie, 13300 Salon-de-Provence",
+ f:["Accueil gratuit et confidentiel, jeunes consommateurs","Sevrage ambulatoire, consultations médicales et psychiatriques","Permanence à Miramas le mardi pour Miramas, Istres et Saint-Chamas"],
+ c:[["Téléphone","04 90 55 64 22"],["E-mail","csapa.salon@addictions-france.org"]],note:"Fermé le mercredi."},
+{id:"entretemps",t:["csapa","resid"],pub:1,mrs:0,p:"Martigues",
+ n:"CSAPA L'Entre-Temps",o:"Addiction Méditerranée · associatif",a:"22 bd Marcel Cachin, 13500 Martigues",
+ f:["Substitution, sevrage ambulatoire, consultation jeunes (12–25 ans) le mercredi","1 appartement thérapeutique, jusqu'à 24 mois","Antennes à Istres et Marignane le jeudi"],
+ c:[["Téléphone","04 42 81 00 56"],["E-mail","lentretemps@ad-med.fr"]],note:""},
+{id:"afmart",t:["csapa"],pub:1,mrs:0,p:"Martigues",
+ n:"CSAPA Addictions France Martigues",o:"Association Addictions France",a:"Maison de santé de l'Escaillon, av. Jean-Paul Marat, 13500 Martigues",
+ f:["Premier accueil possible sans rendez-vous","Permanence à Vitrolles deux mercredis par mois, mineurs reçus"],
+ c:[["Téléphone","04 42 07 28 23"],["Autre ligne","04 88 60 64 65"],["E-mail","csapa.martigues@addictions-france.org"]],note:"Du lundi au vendredi, 9h–16h30."},
+{id:"maisonjaune",t:["csapa","resid"],pub:1,mrs:0,p:"Arles",
+ n:"CSAPA Camargue « La Maison Jaune »",o:"Groupe SOS Solidarités · associatif",a:"10 rue Jean Saler, 13200 Arles",
+ f:["Substitution, sevrage ambulatoire, suivi en détention","Appartements thérapeutiques relais","Consultation jeunes 11–25 ans"],
+ c:[["Téléphone","04 90 93 46 50"],["E-mail","csapa.arles@groupe-sos.org"]],note:""},
+{id:"aftarascon",t:["csapa"],pub:1,mrs:0,p:"Tarascon",
+ n:"Antenne Addictions France Tarascon",o:"Association Addictions France",a:"Centre socioculturel, quartier Kilmaine, 13150 Tarascon",
+ f:["Consultations et sevrage ambulatoire"],
+ c:[["Téléphone","04 90 43 35 86"],["E-mail","csapa.tarascon@addictions-france.org"]],note:""},
+{id:"lesept",t:["csapa"],pub:1,mrs:0,p:"Aubagne",
+ n:"CSAPA Le Sept",o:"Addiction Méditerranée · associatif",a:"7 av. Joseph Fallen, 13400 Aubagne",
+ f:["Méthadone le lundi après-midi, sevrage ambulatoire","Consultation jeunes le mercredi sur rendez-vous"],
+ c:[["Téléphone","04 42 70 54 30"],["E-mail","lesept@ad-med.fr"]],note:""},
+{id:"afciotat",t:["csapa"],pub:1,mrs:0,p:"La Ciotat",
+ n:"CSAPA Addictions France La Ciotat",o:"Association Addictions France",a:"Av. de la Paix, derrière l'hôpital, 13600 La Ciotat",
+ f:["Consultations sur rendez-vous","Accueil jeunes et familles sans rendez-vous le mercredi, 15h30–17h"],
+ c:[["Téléphone","04 42 71 61 72"],["E-mail","csapa.laciotat@addictions-france.org"]],note:""},
+
+/* Hébergement thérapeutique */
+{id:"corniche",t:["resid"],pub:1,mrs:1,p:"Marseille 7ᵉ",
+ n:"Centre thérapeutique résidentiel La Corniche",o:"Groupe SOS Solidarités · associatif",a:"3 traverse Nicolas, 13007 Marseille",
+ f:["10 places pour les 18–22 ans (livret 2026)","Séjour de 1 mois à 1 an, contrat renouvelé chaque mois","L'abstinence n'est pas un préalable"],
+ act:["Réunion du matin","Activités thérapeutiques quotidiennes","Tâches collectives","Travail éducatif et entretiens santé","Insertion : formation, chantiers, bénévolat","Ateliers et loisirs collectifs","Compétences psychosociales"],
+ der:["Lever 8h–9h, réunion 9h30, activité thérapeutique 10h","Repas et tâches 12h, travail éducatif 14h, temps libre 17h","Repas 19h, coucher 23h","Admission le lundi, environ 10 jours après accord"],
+ docs:[["Dossier de candidature (majeurs)","https://www.groupe-sos.org/wp-content/uploads/2026/08/Dossier-de-Candidature-CSAPA-La-Corniche-Version-Majeur.pdf","PDF · 2026","form"],["Livret d'accueil","https://www.groupe-sos.org/wp-content/uploads/2026/08/Livret-accueil-version-numerique.pdf","PDF · 2026"]],
+ send:"Dossier complet avec lettre de motivation manuscrite, pièces d'identité, carte Vitale, mutuelle, carnet de santé, photo et, si orienté par une institution, une évaluation sociale. À envoyer à corniche@groupe-sos.org ou par courrier, à l'attention du chef de service éducatif. Puis entretien de pré-admission sur place.",
+ site:"https://www.groupe-sos.org/structure/csapa-marseille-la-corniche/",
+ c:[["Téléphone","04 91 59 11 63"],["Portable du service","06 76 93 91 45"],["E-mail","corniche@groupe-sos.org"]],note:"Ouvert 24h/24."},
+{id:"baita",t:["resid"],pub:1,mrs:1,p:"Marseille 4ᵉ",tr:[["M1","Cinq-Avenues"]],
+ n:"Appartements thérapeutiques Baïta",o:"Addiction Méditerranée · associatif",a:"6 rue de Provence, 13004 Marseille",
+ f:["9 appartements à Marseille et 9 à Aix, adultes seuls sans enfant à charge","Contrat de 4 mois renouvelable, jusqu'à 20 mois","Consommation non interdite : réduction des risques ou abstinence"],
+ act:["Visites à domicile chaque semaine","Entretiens au bureau","Brunch hebdomadaire","Atelier créatif","Sorties culturelles","Groupe d'usagers"],
+ der:["Être en situation régulière et disposer de ressources minimales","Participation : 10 % des ressources au début, puis 20 % et 30 % (plafond 250 € si en emploi)","Deux entretiens de candidature puis décision commune"],
+ docs:[["Livret d'accueil","https://www.addiction-mediterranee.fr/_files/ugd/b5dda5_0def8bf33d2e4405b49608529573343f.pdf","PDF"]],
+ send:"Pas de formulaire : lettre de motivation (parcours, attentes, lieu souhaité Marseille ou Aix) au chef de service, à baita@ad-med.fr ou par courrier.",
+ site:"https://www.addiction-mediterranee.fr/baita",
+ c:[["Téléphone","04 91 91 90 18"],["E-mail","baita@ad-med.fr"]],note:""},
+{id:"point",t:["resid"],pub:1,mrs:1,p:"Marseille 7ᵉ",tr:[["M1","Vieux-Port"]],
+ n:"CSAPA Point Marseille, appartements relais",o:"Groupe SOS Solidarités · associatif",a:"24A rue Fort Notre-Dame, 2ᵉ étage, 13007 Marseille",
+ f:["Appartements thérapeutiques pour adultes, environ 6 mois renouvelables","Uniquement sur orientation d'un professionnel de justice, santé ou social","Participation : 50 € par mois après APL et 100 € de caution pour les minima sociaux"],
+ send:"Le dossier d'admission n'est pas publié : le professionnel référent le demande au service. Deux entretiens préalables.",
+ site:"https://www.groupe-sos.org/structure/csapa-marseille-point-marseille/",
+ c:[["Téléphone","04 96 11 29 11"],["E-mail","point-marseille@groupe-sos.org"]],note:""},
+{id:"masthibert",t:["resid"],pub:1,mrs:0,p:"Arles · Mas-Thibert",
+ n:"Centre thérapeutique résidentiel du Mas Thibert",o:"Groupe SOS Solidarités · associatif",a:"Mas des Lauriers, 10802 route de Port-Saint-Louis-du-Rhône, 13104 Mas-Thibert",
+ f:["12 places, adultes, séjour court","Pour les personnes sous main de justice, en fin de peine ou sortant de prison"],
+ act:["Soins résidentiels collectifs","Musculation, vélo, natation, marche","Entretien du jardin","Groupes de parole"],
+ send:"Pas de formulaire en ligne : le dossier de candidature est envoyé sur demande (téléphone, courrier ou e-mail), puis entretien, au téléphone si la personne est loin.",
+ site:"https://www.groupe-sos.org/structure/csapa-camargue-mas-thibert/",
+ c:[["Téléphone","04 90 98 75 70"],["E-mail","mas.thibert@groupe-sos.org"]],note:""}
+];
+D.push(
+{id:"lib-balaresque",t:["liberal"],pub:1,mrs:1,p:"Marseille 6ᵉ",
+ n:"Dr Pierre Balaresque",o:"Psychiatre · addictologie · secteur 2",a:"116 bd Vauban, 13006 Marseille",
+ f:["Psychiatrie et addictologie selon sante.fr","Secteur 2 : dépassements d'honoraires possibles"],
+ send:"Prise de rendez-vous sur Doctolib.",
+ docs:[["Prendre rendez-vous (Doctolib)","https://www.doctolib.fr/psychiatre/marseille/pierre-balaresque","Doctolib"],["Fiche sante.fr","https://www.sante.fr/addictologie/marseille/dr-balaresque-pierre","Annuaire officiel"]],
+ c:[],note:""},
+{id:"lib-rasson",t:["liberal"],pub:1,mrs:1,p:"Marseille 10ᵉ · Aubagne",
+ n:"Dr Sophie Rasson",o:"Psychiatre · addictologie · secteur 2 OPTAM",a:"Centre Médipsy, 41 av. Comtesse Lily Pastré, 13010 Marseille",
+ f:["Psychiatrie et addictologie selon sante.fr","Consulte aussi à l'hôpital privé La Casamance, 33 bd des Farigoules, 13400 Aubagne","Secteur 2 avec OPTAM : dépassements modérés"],
+ send:"Rendez-vous sur Doctolib, par le formulaire de son site ou par téléphone au secrétariat.",
+ docs:[["Prendre rendez-vous (Doctolib)","https://www.doctolib.fr/psychiatre/aubagne/sophie-rasson","Doctolib"],["Site du cabinet","https://www.docteur-rasson.com/contact","Formulaire de contact"],["Fiche sante.fr","https://www.sante.fr/addictologie/marseille/dr-rasson-sophie","Annuaire officiel"]],
+ c:[["Secrétariat","07 83 68 14 11"]],note:""},
+{id:"lib-prochaska",t:["liberal"],pub:1,mrs:1,p:"Marseille 11ᵉ",
+ n:"Dr Jean-Michel Prochaska",o:"Médecin généraliste · addictologie · secteur 1",a:"Cabinet médical de la Valentine, 155 route des Trois Lucs, 13011 Marseille",
+ f:["Médecin généraliste et addictologue (présentation Doctolib) ; seul généraliste listé en addictologie par sante.fr à Marseille","Capacité d'addictologie clinique (faculté de Marseille, 2008)","Secteur 1, carte Vitale acceptée"],
+ send:"Rendez-vous sur Doctolib ou par téléphone.",
+ docs:[["Prendre rendez-vous (Doctolib)","https://www.doctolib.fr/medecin-generaliste/marseille/jean-michel-prochaska","Doctolib"],["Fiche sante.fr","https://www.sante.fr/addictologie/marseille/dr-prochaska-jean-michel","Annuaire officiel"]],
+ c:[["Cabinet","04 91 43 00 03"]],note:"Confirmé sur Doctolib et sante.fr le 13 octobre 2026."},
+{id:"lib-jaquetvinel",t:["liberal"],pub:1,mrs:1,v:1,p:"Marseille 1er",
+ n:"Dr Isabelle Jaquet-Vinel",o:"Psychiatre · addictologie",a:"Bd Voltaire, 13001 Marseille",
+ f:["Psychiatrie et addictologie selon sante.fr","Mode d'exercice et secteur non précisés"],
+ send:"Contact par téléphone.",
+ docs:[["Recherche sante.fr (addictologie, 13001)","https://www.sante.fr/recherche/trouver/Addictologie/13001%20Marseille%201er%20Arrondissement","Annuaire officiel"]],
+ c:[["Téléphone","04 95 04 10 16"]],note:"Relevé sur sante.fr le 13 octobre 2026."},
+{id:"lib-boukhelifa",t:["liberal"],pub:1,mrs:1,v:1,p:"Marseille 11ᵉ",
+ n:"Dr Sonia Boukhelifa Belaid",o:"Psychiatre · addictologie · secteur 1",a:"160 route des Camoins, 13011 Marseille",
+ f:["Psychiatrie et addictologie selon sante.fr","Adresse probablement celle de la clinique Saint Roch Montfleuri (à confirmer)","Secteur 1"],
+ send:"Rendez-vous sur Doctolib ou par téléphone au secrétariat.",
+ docs:[["Prendre rendez-vous (Doctolib)","https://www.doctolib.fr/psychiatre/marseille/sonia-boukhelifa-belaid","Doctolib"],["Fiche sante.fr","https://www.sante.fr/addictologie/marseille/dr-boukhelifa-belaid-sonia","Annuaire officiel"]],
+ c:[["Secrétariat","04 91 43 01 20"]],note:""},
+{id:"lib-brun",t:["liberal"],pub:1,mrs:1,v:1,p:"Marseille 14ᵉ",
+ n:"Dr François Brun",o:"Médecin généraliste · secteur 1",a:"Bd Jourdan, La Busserine, 13014 Marseille",
+ f:["Président du réseau national des microstructures (CNRMS), fondateur du Réseau Canebière à Marseille","La Busserine est l'un des deux sites de microstructure de Bus 31/32 à Marseille","Rapprochement avec ce cabinet fait sur le nom et le quartier : à confirmer","Secteur 1"],
+ docs:[["Fiche sante.fr","https://www.sante.fr/medecin-generaliste/marseille/dr-brun-francois","Annuaire officiel"]],
+ c:[["Cabinet","04 91 63 53 08"]],note:""},
+{id:"lib-zami",t:["liberal"],pub:1,mrs:1,v:1,p:"Marseille 14ᵉ",tr:[["bus","31"]],
+ n:"Dr Marion Zami",o:"Médecin addictologue · secteur 1",a:"Clinique Saint-Barnabé, 72 chemin de Fontainieu, 13014 Marseille",
+ f:["Se présente comme addictologue sur Doctolib","Consulte à la clinique Saint-Barnabé : utile pour préparer une admission","Secteur 1"],
+ send:"Prise de rendez-vous sur Doctolib.",
+ docs:[["Prendre rendez-vous (Doctolib)","https://www.doctolib.fr/addictologue/marseille/marion-zami","Doctolib"]],
+ c:[],note:""},
+{id:"lib-vermersch",t:["liberal"],pub:1,mrs:1,p:"Marseille 1er · 4ᵉ",tr:[["M1","Colbert"]],
+ n:"Dr Marie Vermersch",o:"Médecin généraliste · secteur 1 · microstructure addictions",a:"Centre de santé Cara Santé Alcazar, 32 cours Belsunce, 13001 Marseille",
+ f:["Exerce en microstructure médicale addictions (information de terrain ; Bus 31/32 situe l'une de ses microstructures à Belsunce)","Consulte aussi au 54 La Canebière, 13001, et au 24 bd Georges Clemenceau, 13004","Secteur 1, carte Vitale acceptée"],
+ send:"Rendez-vous sur Doctolib ou par le standard du centre de santé.",
+ docs:[["Prendre rendez-vous (Doctolib, Belsunce et Canebière)","https://www.doctolib.fr/medecin-generaliste/marseille/marie-vermersch","Doctolib"],["Prendre rendez-vous (Doctolib, Clemenceau)","https://www.doctolib.fr/medecin-generaliste/marseille/marie-vermersch-marseille","Doctolib"],["Fiche sante.fr","https://www.sante.fr/medecine-generale/marseille/dr-vermersch-marie","Annuaire officiel"]],
+ c:[["Centre Cara Santé Belsunce","04 91 91 91 15"],["Cabinet Canebière","09 88 77 77 77"]],note:"La pratique addictologique est signalée par un confrère, pas par les annuaires."},
+{id:"lib-lutaud",t:["liberal"],pub:1,mrs:1,p:"Marseille 6ᵉ · 16ᵉ",
+ n:"Dr Romain Lutaud",o:"Médecin généraliste · secteur 2 OPTAM · microstructure addictions",a:"La Fabrique de Soins, 21 rue Bonnefoy, 13006 Marseille",
+ f:["Prise en charge et suivi des addictions : alcool, tabac, cannabis, opiacés, polyaddictions (présentation Doctolib)","Intervient dans le dispositif microstructure Santé mentale, Addictions, Précarité : travailleur social, psychologues, psychiatre et généralistes","Cabinet de groupe avec remplaçants ; visites à domicile possibles","Secteur 2 avec OPTAM, carte Vitale acceptée"],
+ der:["Second lieu signalé : maison de santé de l'Estaque, 2 av. de la Gare, 13016 (non confirmé par Doctolib)"],
+ send:"Rendez-vous sur Doctolib ou par téléphone au cabinet.",
+ docs:[["Prendre rendez-vous (Doctolib)","https://www.doctolib.fr/medecin-generaliste/marseille/romain-lutaud","Doctolib"],["Fiche sante.fr","https://www.sante.fr/medecine-generale/marseille/dr-lutaud-romain","Annuaire officiel"]],
+ c:[["Cabinet","04 22 91 61 54"]],note:"Confirmé sur Doctolib le 13 octobre 2026."},
+{id:"lib-mareposa",t:["liberal","csapa"],pub:1,mrs:1,p:"Marseille 14ᵉ",
+ n:"Centre de santé Mareposa",o:"Centre de santé communautaire · Collectif Enchanté · secteur 1",a:"98 bd Alphonse Allais, La Paternelle, 13014 Marseille",
+ f:["Ouvert en mars 2025 dans les quartiers nord ; 3 à 4 généralistes, IPA, sage-femme, médiatrice en santé, éducatrice spécialisée","Prise en charge des addictions en microstructure (information de terrain ; les sources publiques ne le précisent pas)","Lundi–vendredi 9h–18h et samedi matin ; accueil possible sans rendez-vous"],
+ der:["Médecins cités dans la presse : Drs Arnaud Boudet-Girard, Mathieu Fayet, Yann Magot, Aude Ferran, Antoine Vaccarini","Locaux provisoires ; installation prévue dans la bastide Massenet vers 2029"],
+ send:"Rendez-vous sur Doctolib ou sur place. Aucun numéro de téléphone publié.",
+ docs:[["Prendre rendez-vous (Doctolib)","https://www.doctolib.fr/cabinet-medical/marseille/mareposa","Doctolib"],["Fiche sante.fr","https://www.sante.fr/centre-de-sante/marseille/cds-mareposa","Annuaire officiel"]],
+ c:[],note:"Souvent orthographié « Mariposa » ; le nom officiel est Mareposa."},
+{id:"lib-ipso",t:["liberal"],pub:1,mrs:1,p:"Marseille 10ᵉ",
+ n:"Cabinet Ipso Menpenti",o:"Cabinet médical de groupe · secteur 1 · tiers payant",a:"182 av. de Toulon, 13010 Marseille",
+ f:["Dr Antoine Magnien (titulaire) et Dr Guillaume Lefebvre Deuse, signalés pour l'addictologie (information de terrain)","Secteur 1 sans dépassement ; tiers payant C2S, AME, ALD","Ouvert du lundi au samedi, 9h–21h"],
+ der:["Autres médecins : Drs Olga Maurin et Henri Sonrel (titulaires), et plusieurs remplaçants","Second cabinet Ipso ouvert en 2025 dans le quartier Baille"],
+ send:"Rendez-vous en ligne sur ipsosante.fr ou Doctolib, ou par téléphone.",
+ docs:[["Prendre rendez-vous (ipsosante.fr)","https://ipsosante.fr/rendez-vous/preselection/localisation/marseille/cabinet/menpenti/demander-profil/","Site du cabinet"],["Prendre rendez-vous (Doctolib)","https://www.doctolib.fr/cabinet-medical/marseille/cabinet-medical-ipso-menpenti","Doctolib"],["Dr Antoine Magnien","https://ipsosante.fr/les-cabinets-ipso/marseille/menpenti/antoine-magnien/","Site du cabinet"],["Dr Guillaume Lefebvre Deuse","https://ipsosante.fr/les-cabinets-ipso/marseille/menpenti/guillaume-lefebvre-deuse/","Site du cabinet"]],
+ c:[["Cabinet","04 84 83 43 43"],["E-mail","menpenti@ipsosante.fr"]],note:"Les pages du cabinet ne mentionnent pas l'addictologie."},
+{id:"lib-khouani",t:["liberal"],pub:1,mrs:1,p:"Marseille 2ᵉ",tr:[["M2","Désirée Clary"]],
+ n:"Dr Jérémy Khouani",o:"Médecin généraliste · secteur 1 · tabacologie",a:"Maison de santé Peyssonnel, 19 rue Désirée Clary, 13002 Marseille",
+ f:["Sevrage tabagique et tabacologie affichés sur Doctolib ; formé à l'entretien motivationnel","Pas de mention de substitution ni d'alcool","Secteur 1, consultation 25–30 €"],
+ send:"Prise de rendez-vous sur Doctolib.",
+ docs:[["Prendre rendez-vous (Doctolib)","https://www.doctolib.fr/medecin-generaliste/marseille/jeremy-khouani","Doctolib"]],
+ c:[["Maison de santé","04 91 62 66 00"]],note:""},
+{id:"lib-magalon",t:["liberal"],pub:1,mrs:1,p:"Marseille 8ᵉ",
+ n:"Dr David Magalon",o:"Psychiatre · addictologie · secteur 2 OPTAM",a:"255 av. du Prado, bâtiment C, 13008 Marseille",
+ f:["Listé par Doctolib dans les consultations d'addictologie à Marseille","Ancien praticien du service d'addictologie de l'AP-HM (Sainte-Marguerite)","Secteur 2 avec OPTAM"],
+ send:"Rendez-vous sur Doctolib ou par téléphone.",
+ docs:[["Prendre rendez-vous (Doctolib)","https://www.doctolib.fr/psychiatre/marseille/david-magalon","Doctolib"]],
+ c:[["Cabinet","04 91 79 60 24"]],note:"Relevé sur Doctolib le 13 octobre 2026."},
+{id:"lib-gourdon",t:["liberal"],pub:1,mrs:1,p:"Marseille 8ᵉ",
+ n:"Dr Xavier Gourdon",o:"Psychiatre · addictologie · secteur 2",a:"393 av. du Prado, 13008 Marseille",
+ f:["Listé par Doctolib dans les consultations d'addictologie à Marseille","Secteur 2 : dépassements d'honoraires possibles"],
+ send:"Prise de rendez-vous sur Doctolib.",
+ docs:[["Prendre rendez-vous (Doctolib)","https://www.doctolib.fr/psychiatre/marseille/xavier-gourdon","Doctolib"]],
+ c:[],note:"Relevé sur Doctolib le 13 octobre 2026."},
+{id:"lib-kansoun",t:["liberal"],pub:1,mrs:1,p:"Marseille 8ᵉ",
+ n:"Dr Ziad Kansoun",o:"Psychiatre · addictologie · secteur 2 OPTAM",a:"65-67 rue du Rouet, 13008 Marseille",
+ f:["Listé par Doctolib dans les consultations d'addictologie à Marseille","Téléconsultation possible","Secteur 2 avec OPTAM"],
+ send:"Prise de rendez-vous sur Doctolib, au cabinet ou en vidéo.",
+ docs:[["Prendre rendez-vous (Doctolib)","https://www.doctolib.fr/psychiatre/marseille/ziad-kansoun","Doctolib"]],
+ c:[],note:"Relevé sur Doctolib le 13 octobre 2026."},
+{id:"lib-cutarella",t:["liberal"],pub:1,mrs:1,p:"Marseille 14ᵉ",tr:[["bus","31"]],
+ n:"Dr Christophe Cutarella",o:"Psychiatre addictologue · secteur 1",a:"Clinique Saint-Barnabé, 72 chemin de Fontainieu, 13014 Marseille",
+ f:["Listé par Doctolib dans les consultations d'addictologie ; psychiatre addictologue de la clinique Saint-Barnabé","Consultations utiles pour préparer une admission à la clinique","Secteur 1"],
+ send:"Prise de rendez-vous sur Doctolib.",
+ docs:[["Prendre rendez-vous (Doctolib)","https://www.doctolib.fr/psychiatre/marseille/christophe-cutarella","Doctolib"]],
+ c:[],note:"Relevé sur Doctolib le 13 octobre 2026."},
+{id:"lib-vincenti",t:["liberal"],pub:1,mrs:1,p:"Marseille 14ᵉ",tr:[["bus","31"]],
+ n:"Dr Marine Vincenti",o:"Psychiatre · addictologie · secteur 1",a:"Clinique Saint-Barnabé, 72 chemin de Fontainieu, 13014 Marseille",
+ f:["Listée par Doctolib dans les consultations d'addictologie à Marseille","Consulte à la clinique Saint-Barnabé","Secteur 1"],
+ send:"Prise de rendez-vous sur Doctolib.",
+ docs:[["Prendre rendez-vous (Doctolib)","https://www.doctolib.fr/psychiatre/marseille/marine-vincenti","Doctolib"]],
+ c:[],note:"Relevé sur Doctolib le 13 octobre 2026."},
+{id:"lib-microstructures",t:["liberal"],pub:1,mrs:1,p:"Marseille · Aix · Martigues",
+ n:"Microstructures médicales addictions",o:"Réseau coordonné par l'association Bus 31/32",a:"Siège : 4 av. Rostand, 13003 Marseille · CSAPA : 129 av. de Toulon, 13005",
+ f:["Cabinets de médecine générale où interviennent aussi un psychologue et un travailleur social, gratuitement pour le patient","Sites connus : maisons de santé de Belsunce (1er) et de la Busserine (14ᵉ), maisons de santé des 13ᵉ et 15ᵉ, une MSP à Aix, Martigues, Le Puy-Sainte-Réparade","La liste nominative des médecins n'est pas publiée : la demander à Bus 31/32"],
+ send:"Appelez Bus 31/32 pour connaître les cabinets participants proches du patient.",
+ c:[["Bus 31/32, siège","04 95 04 56 06"],["CSAPA Bus Méthadone","04 86 11 09 14"],["E-mail","bus3132@bus3132.org"]],note:"D'après les fiches OSCARS 2020–2022 de l'ARS."}
+);
+
+/* Médecins libéraux : secteur (1, 2O = secteur 2 OPTAM, 2) et quartiers */
+const LIB={"lib-balaresque":["2",["6"]],"lib-rasson":["2O",["10","Aubagne"]],"lib-prochaska":["1",["11"]],"lib-jaquetvinel":[null,["1"]],
+ "lib-boukhelifa":["1",["11"]],"lib-brun":["1",["14"]],"lib-zami":["1",["14"]],"lib-vermersch":["1",["1","4"]],"lib-lutaud":["2O",["6","16"]],
+ "lib-mareposa":["1",["14"]],"lib-ipso":["1",["10"]],"lib-khouani":["1",["2"]],"lib-magalon":["2O",["8"]],"lib-gourdon":["2",["8"]],"lib-kansoun":["2O",["8"]],"lib-cutarella":["1",["14"]],"lib-vincenti":["1",["14"]],"lib-microstructures":[null,["1","14"]]};
+D.forEach(d=>{if(LIB[d.id]){d.sec=LIB[d.id][0];d.arr=LIB[d.id][1];}});
+const SECL={"1":"Secteur 1","2O":"Secteur 2 OPTAM","2":"Secteur 2"};
+const ARRL={"1":"1er · Belsunce, Noailles, Canebière","2":"2ᵉ · Joliette, Le Panier","4":"4ᵉ · Cinq-Avenues, Chartreux","6":"6ᵉ · Castellane, Notre-Dame-du-Mont","8":"8ᵉ · Prado, Périer, Rouet","10":"10ᵉ · Menpenti, La Capelette","11":"11ᵉ · La Valentine, Les Camoins","14":"14ᵉ · Saint-Joseph, La Busserine","16":"16ᵉ · L'Estaque","Aubagne":"Aubagne"};
+(()=>{const sel=document.getElementById("arr");const used=new Set(D.flatMap(d=>d.arr||[]));Object.keys(ARRL).filter(k=>used.has(k)).forEach(k=>{const o=document.createElement("option");o.value=k;o.textContent=ARRL[k];sel.appendChild(o);});})();
+
+const GEO={"allauch":[43.33633,5.47073],"barnabe":[43.35012,5.37962],"aphm":[43.26252,5.41269],"montperrin":[43.51995,5.43824],"lauranne":[43.46451,5.39637],"salon":[43.6389,5.10244],"arles":[43.66914,4.63725],"valvert":[43.29736,5.46053],"edt":[43.38156,5.35844],"martigues":[43.41306,5.04077],"ciotat":[43.17954,5.60775],"semaphore":[43.30151,5.39637],"jam":[43.30009,5.38503],"filrouge":[43.30009,5.38503],"casanova":[43.29995,5.37444],"afmrs":[43.29196,5.3716],"puget":[43.29042,5.37225],"pugetbis":[43.28558,5.38019],"bus":[43.31195,5.3779],"baumettes":[43.23527,5.41087],"tremplin":[43.51399,5.42999],"floreal":[43.52057,5.43711],"afaix":[43.5361,5.44067],"afsalon":[43.64186,5.09721],"entretemps":[43.39932,5.05488],"afmart":[43.43065,5.04544],"maisonjaune":[43.70281,4.64231],"aftarascon":[43.79275,4.69329],"lesept":[43.29335,5.56543],"afciotat":[43.17954,5.60775],"corniche":[43.27753,5.36219],"baita":[43.30151,5.39637],"point":[43.29196,5.3716],"masthibert":[43.57836,4.6907],"lib-balaresque":[43.28235,5.37367],"lib-rasson":[43.28302,5.42417],"lib-prochaska":[43.30372,5.4746],"lib-jaquetvinel":[43.30242,5.38378],"lib-boukhelifa":[43.2976,5.49566],"lib-brun":[43.33389,5.39281],"lib-zami":[43.35012,5.37962],"lib-vermersch":[43.29794,5.37724],"lib-lutaud":[43.28626,5.375],"lib-mareposa":[43.34116,5.38119],"lib-ipso":[43.28482,5.39426],"lib-khouani":[43.30824,5.36957],"lib-magalon":[43.27437,5.39067],"lib-gourdon":[43.26867,5.38579],"lib-kansoun":[43.28212,5.38864],"lib-cutarella":[43.35012,5.37962],"lib-vincenti":[43.35012,5.37962],"lib-microstructures":[43.31195,5.3779]};
+const COMMUNE={"montperrin":"Aix-en-Provence","tremplin":"Aix-en-Provence","floreal":"Aix-en-Provence","afaix":"Aix-en-Provence","lauranne":"Bouc-Bel-Air","salon":"Salon","afsalon":"Salon","arles":"Arles","maisonjaune":"Arles","masthibert":"Arles","aftarascon":"Tarascon","martigues":"Martigues","entretemps":"Martigues","afmart":"Martigues","ciotat":"La Ciotat","afciotat":"La Ciotat","lesept":"Aubagne"};
+
+/* Ajouts d'après l'annuaire ARCA-Sud (relevé d'octobre 2026) */
+const ARCA="D'après l'annuaire ARCA-Sud, relevé d'octobre 2026.";
+D.push(
+{id:"conception",t:["csapa"],pub:1,mrs:1,v:1,p:"Marseille 5ᵉ",tr:[["M1","Baille"]],
+ n:"Consultation d'addictologie, hôpital de la Conception",o:"AP-HM, pôle psychiatrie · public",a:"Hôpital de la Conception, pôle psychiatrie, 147 bd Baille, 13005 Marseille",
+ f:["Consultation hospitalière d'addictologie rattachée au pôle psychiatrie de la Conception","Prise en charge globale, avec accès au plateau technique de l'hôpital si besoin"],
+ c:[["Secrétariat","04 91 43 55 51"],["Autres lignes","04 91 43 55 52 / 04 91 43 55 56"]],note:ARCA},
+{id:"aphmprec",t:["csapa"],pub:1,mrs:1,p:"Marseille 9ᵉ",tr:[["M2","Sainte-Marguerite Dromel"]],
+ n:"CSAPA Précarité Addictions Sud",o:"AP-HM, hôpital Sainte-Marguerite · public",a:"17 avenue Viton, 13009 Marseille",
+ f:["Pour les personnes précaires : droits en cours d'ouverture, C2S, AME ou sans droits ouverts","Du lundi au vendredi, 9h–16h15"],
+ c:[["Secrétariat","04 91 74 40 66"],["Autre ligne","04 91 74 61 89"],["E-mail","csapa-caarud@ap-hm.fr"]],note:ARCA},
+{id:"emap",t:["csapa"],pub:1,mrs:1,v:1,p:"Marseille 15ᵉ",
+ n:"EMAP, équipe mobile addiction prévention",o:"Antenne Nord du CSAPA Danielle Casanova · Groupe SOS Solidarités",a:"10 rue de Lyon, 13015 Marseille",
+ f:["Équipe mobile du CSAPA Danielle Casanova pour les quartiers Nord","Prévention et lien vers le soin, au plus près des lieux de vie"],
+ c:[["Téléphone","07 86 56 06 23"],["E-mail","Coordinatriceprojet1516@groupe-sos.org"]],note:ARCA},
+{id:"sleepin",t:["rdr"],pub:1,mrs:1,p:"Marseille 1er",warn:"Fermé jusqu'à fin 2026 – début 2027",
+ n:"CAARUD Sleep In",o:"Groupe SOS Solidarités · associatif",a:"8 rue Marcel Sembat, 13001 Marseille",
+ f:["Usagers en grande précarité et jeunes en errance","Accueil de jour (jusqu'à 50 personnes) et 15 places d'hébergement d'urgence à la nuitée","Consultations médico-psycho-sociales sans rendez-vous le matin, sur rendez-vous l'après-midi"],
+ der:["Hébergement d'urgence : réservation uniquement sur place, à midi","Entrée à partir de 18h en semaine (19h sans réservation), 20h30 le week-end","Maraudes mardi et jeudi après-midi : Porte d'Aix, Colbert, Saint-Charles, Réformés, Gambetta"],
+ c:[["Téléphone","04 91 62 84 84"],["E-mail","sleepin.marseille@groupe-sos.org"]],note:ARCA},
+{id:"tipi",t:["rdr"],pub:1,mrs:1,p:"Marseille 1er",tr:[["M2","Notre-Dame-du-Mont"]],
+ n:"CAARUD ASUD Le Tipi",o:"ASUD Marseille · association d'usagers",a:"26A rue de la Bibliothèque, 13001 Marseille",
+ f:["Accueil collectif sans rendez-vous : mardi et jeudi 14h–17h45, mercredi 9h30–13h","Matériel de réduction des risques lundi et vendredi (9h30–13h, 14h–17h45)","Accueil réservé aux femmes le mardi, 14h–16h30"],
+ c:[["Téléphone","04 91 92 53 11"],["E-mail","asud.equipe@gmail.com"]],note:ARCA},
+{id:"caarudbus",t:["rdr"],pub:1,mrs:1,p:"Marseille 5ᵉ",
+ n:"CAARUD Bus 31/32",o:"Bus 31/32, avec Médecins du Monde · associatif",a:"129 avenue de Toulon, 13005 Marseille",
+ f:["Sans rendez-vous : matériel de réduction des risques, dépistages, soins infirmiers","Permanence médicosociale mardi et jeudi 9h30–12h30, avec inclusions méthadone","Point de collecte Drug Lab pour faire analyser un produit, anonyme et gratuit"],
+ c:[["Téléphone","04 86 11 09 14"],["E-mail","bus3132@bus3132.org"]],note:ARCA},
+{id:"protox",t:["rdr"],pub:1,mrs:1,p:"Marseille 9ᵉ",tr:[["M2","Sainte-Marguerite Dromel"]],
+ n:"CAARUD Protox",o:"AP-HM, hôpital Sainte-Marguerite · public",a:"270 bd de Sainte-Marguerite, 13009 Marseille",
+ f:["Sans rendez-vous, anonyme, gratuit et inconditionnel","Usagers, personnes précaires et entourage","Lundi, mardi, jeudi et vendredi 9h–16h15 ; mercredi 13h–16h15"],
+ c:[["Téléphone","04 91 74 61 87"],["E-mail","csapa-caarud@ap-hm.fr"]],note:ARCA}
+);
+/* Numéros donnés par ARCA-Sud, les anciens gardés à côté */
+(()=>{const g=id=>D.find(d=>d.id===id);
+ const a=g("aphm");if(a)a.c=[["Consultations Solaris","04 91 74 45 15"],["CAARUD Protox","04 91 74 61 87"],["Consultations, autre numéro","04 91 74 44 76"],["CSAPA / CAARUD, autre numéro","04 91 74 40 89"],["Standard","04 91 38 00 00"],["E-mail","secretariat.addictologie.sud@ap-hm.fr"]];
+ const b=g("bus");if(b)b.c=[["Téléphone","04 86 11 09 14"],["Autre ligne","04 86 11 09 16"],["Autre numéro","04 95 04 56 06"]];
+})();
+Object.assign(GEO,{conception:[43.29141,5.39606],aphmprec:[43.25954,5.41056],emap:[43.3237,5.3676],sleepin:[43.30168,5.38222],tipi:[43.29545,5.38491],caarudbus:[43.28489,5.39343],protox:[43.26252,5.41269]});
+
+/* ===== Psychiatrie adulte : CMP de secteur de Marseille =====
+   Sectorisation et règle « sans domicile » : site de l'AP-HM (secteur Centre) et guide d'orientation
+   vers la psychiatrie ambulatoire à Marseille (2017). Coordonnées : annuaire ARCA-Sud (octobre 2026),
+   sites de l'AP-HM et sante.fr. */
+const SRC_PSY="Sectorisation : site de l'AP-HM et guide d'orientation 2017. Coordonnées : sites du CH Édouard Toulouse, du CH Valvert et de l'AP-HM, annuaire ARCA-Sud (octobre 2026).";
+const CMP=[
+ {id:"cmp-13g01",sect:"13G01",p:"Marseille 10ᵉ",v:1,n:"CMP du secteur 1 · Sainte-Baume",o:"AP-HM, psychiatrie Sud (secteurs 1 et 5) · public",a:"40 rue Sainte-Baume, 13010 Marseille",
+  cover:"10ᵉ arrondissement",sdf:"1er au 26 janvier",
+  f:["CMP adulte du secteur 13G01","Secrétariat commun aux secteurs 1 et 5, à l'hôpital Sainte-Marguerite"],
+  c:[["Secrétariat secteurs 1 et 5","04 91 74 67 30"],["CMP Sainte-Baume (numéro de 2017)","04 91 38 54 60"]],
+  note:"Adresse du CMP d'après le guide de 2017 : à confirmer auprès du secrétariat."},
+ {id:"cmp-13g02",sect:"13G02",p:"Marseille 6ᵉ",n:"CMP Lafon · secteur 2",o:"AP-HM, psychiatrie Centre · public",a:"9 rue Lafon, 13006 Marseille",
+  cover:"5ᵉ et moitié est du 6ᵉ (Lodi, Notre-Dame-du-Mont)",sdf:"27 janvier au 21 février",
+  f:["CMP adulte du secteur 13G02 (service du Dr Dassa), adultes de 18 à 65 ans","Du lundi au vendredi, 9h–17h30"],
+  c:[["Secrétariat du service","04 91 43 51 02"],["CMP Lafon (numéro de 2017)","04 91 43 59 25"],["Standard AP-HM","04 91 38 00 00"]]},
+ {id:"cmp-13g03",sect:"13G03",p:"Marseille 6ᵉ",n:"CMP Lafon · secteur 3",o:"AP-HM, psychiatrie Centre · public",a:"9 rue Lafon, 13006 Marseille",
+  cover:"Moitié ouest du 6ᵉ (Préfecture, Vauban, Palais de justice), 7ᵉ et îles du Frioul",sdf:"22 février au 19 mars",
+  f:["CMP adulte du secteur 13G03 (service du Dr Zendjidjian)","Consultations spécialisées et accompagnement psychothérapeutique"],
+  c:[["Secrétariat du service","04 91 43 51 03"],["CMP Lafon (numéro de 2017)","04 91 43 59 39"]]},
+ {id:"cmp-13g04",sect:"13G04",p:"Marseille 6ᵉ",n:"CMP Lafon · secteur 4",o:"AP-HM, psychiatrie Centre · public",a:"9 rue Lafon, 13006 Marseille",
+  cover:"4ᵉ arrondissement",sdf:"20 mars au 14 avril",
+  f:["CMP adulte du secteur 13G04 (service du Dr Chabannes)"],
+  c:[["CMP Lafon","04 91 43 59 10"],["Secrétariat du service","04 91 43 51 04"]]},
+ {id:"cmp-13g05",sect:"13G05",p:"Marseille 9ᵉ",v:1,tr:[["M2","Sainte-Marguerite Dromel"]],n:"Consultations du secteur 5 · Sainte-Marguerite",o:"AP-HM, psychiatrie Sud (secteurs 1 et 5) · public",a:"Hôpital Sainte-Marguerite, pôle Solaris, 270 bd de Sainte-Marguerite, 13009 Marseille",
+  cover:"8ᵉ arrondissement",sdf:"15 avril au 10 mai",
+  f:["Consultations adultes du secteur 13G05 à l'hôpital Sainte-Marguerite","Secrétariat commun aux secteurs 1 et 5"],
+  c:[["Secrétariat secteurs 1 et 5","04 91 74 67 30"],["Standard AP-HM","04 91 38 00 00"]],
+  note:"Le lieu exact de consultation est à confirmer auprès du secrétariat."},
+ {id:"cmp-13g06",sect:"13G06",p:"Marseille 9ᵉ",tr:[["M2","Sainte-Marguerite Dromel"]],n:"Consultations du secteur 6 · Pr Lançon",o:"AP-HM, psychiatrie Sud · public",a:"Hôpital Sainte-Marguerite, bâtiment Solaris, 1er étage, 270 bd de Sainte-Marguerite, 13009 Marseille",
+  cover:"9ᵉ arrondissement et Sormiou",sdf:"11 mai au 6 juin",
+  f:["Rendez-vous au CMP Prado, à l'hôpital Sainte-Marguerite ou à la Conception : confirmer le lieu","Secrétariat du lundi au vendredi, 9h–16h ; rendez-vous aussi sur Doctolib (AP-HM)"],
+  c:[["Secrétariat","04 91 74 44 91"],["Autres lignes","04 91 74 44 88 / 04 91 74 44 89"],["E-mail","secretariat.psy.lancon@ap-hm.fr"]]},
+ {id:"cmp-13g07",sect:"13G07",p:"Marseille 11ᵉ",n:"CMP Saint-Marcel",o:"CH Valvert · public",a:"2 traverse Notre-Dame, 13011 Marseille",
+  cover:"11ᵉ arrondissement",sdf:"7 juin au 2 juillet",
+  f:["CMP et CATTG adultes du secteur 13G07"],
+  c:[["Téléphone","04 13 94 05 20"],["Ancien numéro (2017)","04 91 35 74 92"]],
+  site:"https://www.ch-valvert.fr/information-transversale/annuaires-de-batiments-structures/annuaire-des-structures/centre-medico-psychologique-cmp-saint-marcel-299"},
+ {id:"cmp-13g08",sect:"13G08",p:"Marseille 12ᵉ",n:"CMP / CATTG Saint-Barnabé",o:"CH Valvert · public",a:"101 avenue des Caillols, 13012 Marseille",
+  cover:"12ᵉ arrondissement",sdf:"3 au 28 juillet",
+  f:["CMP et CATTP adultes du secteur 13G08","En semaine, 9h–17h : accueil et orientation"],
+  c:[["Téléphone","04 91 93 95 30"]]},
+ {id:"cmp-allauch",sect:"Valvert",p:"Allauch",n:"CMP / CATTG Allauch – Plan-de-Cuques",o:"CH Valvert · public",a:"830 avenue Salvador Allende, 13190 Allauch",
+  cover:"Allauch et Plan-de-Cuques",sdf:null,
+  f:["CMP et CATTG adultes du CH Valvert pour Allauch et Plan-de-Cuques"],
+  c:[["Téléphone","04 91 05 48 33"]]},
+ {id:"cmp-13g11",sect:"13G11",p:"Marseille 15ᵉ",n:"CMP Pressensé",o:"CH Édouard Toulouse · public",a:"Site du CH Édouard Toulouse, 118 chemin de Mimet, 13015 Marseille",
+  cover:"1er et 2ᵉ (Le Panier, Hôtel de Ville, Grands Carmes)",sdf:"29 juillet au 23 août",
+  f:["CMP adulte du secteur 13G11, installé sur le site de l'hôpital Édouard Toulouse","Du lundi au vendredi, 9h–17h","Il n'est plus rue Francis de Pressensé (1er) malgré son nom"],
+  c:[["Secrétariat","04 91 90 01 28"],["E-mail","CMPPressense@ch-edouard-toulouse.fr"]]},
+ {id:"cmp-13g12",sect:"13G12",p:"Marseille 3ᵉ",n:"CMP Belle de Mai",o:"CH Édouard Toulouse · public",a:"150 rue de Crimée, 13003 Marseille",
+  cover:"2ᵉ (La Joliette, Arenc) et 3ᵉ",sdf:"24 août au 18 septembre",
+  f:["CMP adulte du secteur 13G12","Lundi 9h–13h, mardi 12h–17h, mercredi à vendredi 9h–17h"],
+  c:[["Secrétariat","04 91 50 20 37"],["E-mail","CMPBELLEDEMAIS12@ch-edouard-toulouse.fr"]]},
+ {id:"cmp-13g13",sect:"13G13",p:"Marseille 4ᵉ",n:"CMP Sainte-Agnès",o:"CH Édouard Toulouse · public",a:"1A rue Sainte-Agnès, 13004 Marseille",
+  cover:"13ᵉ arrondissement",sdf:"19 septembre au 14 octobre",
+  f:["CMP adulte du secteur 13G13, installé dans le 4ᵉ"],
+  c:[["Téléphone","04 91 70 90 72"]]},
+ {id:"cmp-13g14",sect:"13G14",p:"Marseille 14ᵉ",n:"CMP 14 (ex-Marine Blanche)",o:"CH Édouard Toulouse · public",a:"266 chemin de Sainte-Marthe, 13014 Marseille",
+  cover:"14ᵉ arrondissement",sdf:"15 octobre au 9 novembre",
+  f:["CMP adulte du secteur 13G14","Nouvelle adresse : ce n'est plus le 3 chemin de Saint-Joseph à Sainte-Marthe"],
+  c:[["Secrétariat","04 91 11 64 70"],["E-mail","CMP14@ch-edouard-toulouse.fr"]]},
+ {id:"cmp-13g15",sect:"13G15",p:"Marseille 15ᵉ",n:"CMP La Viste",o:"CH Édouard Toulouse · public",a:"43 avenue de la Viste, 13015 Marseille",
+  cover:"15ᵉ : Notre-Dame-Limite, Saint-Antoine, Les Borels, Les Aygalades, La Delorme, La Cabucelle, La Viste",sdf:"10 novembre au 5 décembre",
+  f:["CMP adulte du secteur 13G15 : accueil, orientation, entretiens infirmiers, consultations médicales, suivi psychologique et social","Du lundi au vendredi, 9h–17h","CATTG La Viste Méditerranée à la même adresse (04 91 96 19 59)"],
+  c:[["Secrétariat","04 91 60 44 43"],["E-mail","cmplaviste@ch-edouard-toulouse.fr"]]},
+ {id:"cmp-13g16",sect:"13G16",p:"Marseille 16ᵉ",n:"CMP Le Parc",o:"CH Édouard Toulouse · public",a:"50 avenue André Roussin, 1er étage, 13016 Marseille",
+  cover:"15ᵉ (Les Crottes, Saint-Louis, Saint-Henri, Verduron, La Calade, Campagne-l'Évêque), 16ᵉ, Septèmes-les-Vallons et Les Pennes-Mirabeau",sdf:"6 au 31 décembre",
+  f:["CMP adulte du secteur 13G16 : accueil, orientation, entretiens infirmiers, consultations médicales, suivi psychologique et social","Du lundi au vendredi, 9h–17h"],
+  c:[["Téléphone","04 91 03 09 95"],["E-mail","secretariatcmpduparc@ch-edouard-toulouse.fr"]],
+  site:"https://ch-edouard-toulouse.fr/ou-consulter/cmp-du-parc-s16"}
+];
+CMP.forEach(d=>{d.t=["cmp"];d.pub=1;d.mrs=1;if(!d.note)d.note=SRC_PSY;else d.note+=" "+SRC_PSY;});
+D.push(...CMP);
+Object.assign(GEO,{"cmp-13g01":[43.28681,5.40095],"cmp-13g02":[43.29152,5.38162],"cmp-13g03":[43.29152,5.38162],"cmp-13g04":[43.29152,5.38162],
+ "cmp-13g05":[43.26252,5.41269],"cmp-13g06":[43.26252,5.41269],"cmp-13g07":[43.29555,5.47653],"cmp-13g08":[43.30395,5.43245],"cmp-allauch":[43.35659,5.48594],
+ "cmp-13g11":[43.38156,5.35844],"cmp-13g12":[43.30985,5.37766],"cmp-13g13":[43.31435,5.40769],"cmp-13g14":[43.33329,5.3906],"cmp-13g15":[43.35626,5.3562],"cmp-13g16":[43.35995,5.33808]});
+/* Personnes sans domicile, sans suivi ou suivi interrompu depuis plus de 6 mois : secteur selon la date de naissance */
+const SDF_TABLE=[[1,26,"13G01"],[2,21,"13G02"],[3,19,"13G03"],[4,14,"13G04"],[5,10,"13G05"],[6,6,"13G06"],[7,2,"13G07"],[7,28,"13G08"],[8,23,"13G11"],[9,18,"13G12"],[10,14,"13G13"],[11,9,"13G14"],[12,5,"13G15"],[12,31,"13G16"]];
+const sectFromDob=(day,month)=>{for(const[m,dd,s]of SDF_TABLE)if(month<m||(month===m&&day<=dd))return s;return null;};
+/* Domicile : secteur selon l'arrondissement (et le quartier quand l'arrondissement est partagé) */
+const ARR_PSY=[["1","1er"],["2","2ᵉ"],["3","3ᵉ"],["4","4ᵉ"],["5","5ᵉ"],["6","6ᵉ"],["7","7ᵉ"],["8","8ᵉ"],["9","9ᵉ"],["10","10ᵉ"],["11","11ᵉ"],["12","12ᵉ"],["13","13ᵉ"],["14","14ᵉ"],["15","15ᵉ"],["16","16ᵉ"],["allauch","Allauch"],["plan","Plan-de-Cuques"],["septemes","Septèmes-les-Vallons"],["pennes","Les Pennes-Mirabeau"]];
+const ARR_SECT={"1":"13G11","2":{a:["Le Panier, Hôtel de Ville, Grands Carmes","13G11"],b:["La Joliette, Arenc","13G12"]},"3":"13G12","4":"13G04","5":"13G02",
+ "6":{a:["Est : Lodi, Notre-Dame-du-Mont","13G02"],b:["Ouest : Préfecture, Vauban, Palais de justice","13G03"]},"7":"13G03","8":"13G05","9":"13G06","10":"13G01","11":"13G07","12":"13G08",
+ "13":"13G13","14":"13G14","15":{a:["Notre-Dame-Limite, Saint-Antoine, Les Borels, Les Aygalades, La Delorme, La Cabucelle, La Viste","13G15"],b:["Les Crottes, Saint-Louis, Saint-Henri, Verduron, La Calade, Campagne-l'Évêque","13G16"]},
+ "16":"13G16","allauch":"Valvert","plan":"Valvert","septemes":"13G16","pennes":"13G16"};
+const cmpOfSect=s=>CMP.find(d=>d.sect===s);
+const MOIS=["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"];
+
+/* Urgences psychiatriques et crise */
+const URG=[
+ {id:"urg-cap48",p:"Marseille 5ᵉ",tr:[["M1","La Timone"]],n:"CAP 48 · urgences psychiatriques de la Timone",o:"AP-HM, fédération des urgences psychiatriques · public",a:"Hôpital de la Timone, à côté des urgences générales, entrée boulevard Jean Moulin, 264 rue Saint-Pierre, 13005 Marseille",
+  f:["Urgences psychiatriques 24h/24 pour les adultes à partir de 16 ans, surtout des 4ᵉ au 12ᵉ arrondissements","Reçoit notamment les crises suicidaires, troubles de l'humeur, décompensations psychotiques et troubles anxieux","Lits d'hospitalisation de courte durée (jusqu'à 48 h)","Venue spontanée possible, ou adressé par un médecin ou les urgences d'un autre hôpital"],
+  der:["A remplacé en 2019 les urgences psychiatriques de l'hôpital de la Conception"],
+  c:[["Accueil 24h/24","04 13 42 93 00"],["Accueil, autre ligne","04 13 42 93 01"],["Secrétariat","04 13 42 93 03"]],
+  note:"Source : site de l'AP-HM (fédération des urgences psychiatriques)."},
+ {id:"urg-crps",p:"Marseille 6ᵉ",v:1,n:"Centre régional de prévention du suicide · VigilanS",o:"AP-HM et ARS PACA · public",a:"146 rue Paradis, 13006 Marseille",
+  f:["VigilanS : recontact et suivi des adultes après une tentative de suicide, sur signalement des urgences ou du médecin","Programme pour les adolescents (Asma) dans les mêmes locaux","Pas d'accueil de crise sans rendez-vous : en urgence, CAP 48, CAP 72 ou le 15"],
+  c:[["Prévention du suicide, 24h/24, gratuit","3114"]],
+  note:"Source : annonces de l'ouverture du centre (2023). Coordonnées directes du centre non publiées."},
+ {id:"urg-cap72",p:"Marseille 15ᵉ",n:"CAP 72 · urgences psychiatriques de l'hôpital Nord",o:"CH Édouard Toulouse, à l'hôpital Nord · public",a:"Hôpital Nord, chemin des Bourrely, 13015 Marseille",
+  f:["Urgences psychiatriques et centre de crise du CH Édouard Toulouse","Avec une unité d'hospitalisation sur place","Le CH Édouard Toulouse couvre le 1er, le 2ᵉ, le 3ᵉ, du 13ᵉ au 16ᵉ, Septèmes-les-Vallons et Les Pennes-Mirabeau"],
+  c:[["Urgences psychiatriques","04 91 96 49 56"],["Autre ligne","04 91 96 48 32"],["Secrétariat de l'hospitalisation","04 91 96 55 92"]],
+  site:"https://ch-edouard-toulouse.fr/ou-consulter/cap-72-hospitalisation",note:"Source : site du CH Édouard Toulouse."},
+ {id:"urg-cacc",p:"Marseille 11ᵉ",n:"Hôpital Valvert · CACC, accueil de crise",o:"CH Valvert, centre d'accueil de crise et de consultations · public",a:"Hôpital Valvert, 78 bd des Libérateurs, 13011 Marseille",
+  f:["Accueil et soutien des personnes en effondrement psychique","Consultations, ou hospitalisation de courte durée librement consentie","Pour le grand Marseille et les secteurs du CH Valvert (11ᵉ, 12ᵉ, Allauch, Plan-de-Cuques, Aubagne, La Ciotat…)"],
+  c:[["CACC","04 91 87 67 67"],["Autre ligne (ARCA-Sud)","04 91 87 67 45"],["Standard de l'hôpital Valvert","04 91 87 67 00"]],
+  site:"https://www.ch-valvert.fr/information-transversale/annuaires-de-batiments-structures/annuaire-des-structures/cacc-centre-daccueil-de-crise-et-de-consultations-199",note:"Source : site du CH Valvert."},
+ {id:"urg-upaul",p:"Aubagne",mrs:0,n:"UPAUL · urgences psychiatriques d'Aubagne",o:"CH Valvert, à l'hôpital Edmond Garcin · public",a:"Centre hospitalier Edmond Garcin, 179 avenue des Sœurs Gastine, 13400 Aubagne",
+  f:["Psychiatres du CH Valvert aux urgences de l'hôpital d'Aubagne, à la demande des urgentistes","Avis psychiatriques et liaison dans les services"],
+  c:[["UPAUL","04 42 84 72 94"]],note:"Source : site du CH Valvert."}
+];
+URG.forEach(d=>{d.t=["urg"];d.pub=1;if(d.mrs===undefined)d.mrs=1;});
+D.push(...URG);
+Object.assign(GEO,{"urg-cap48":[43.29158,5.40322],"urg-cap72":[43.38273,5.36204],"urg-cacc":[43.29736,5.46053],"urg-upaul":[43.29157,5.56353],"urg-crps":[43.28678,5.3795]});
+COMMUNE["urg-upaul"]="Aubagne";
+
+/* Équipes mobiles santé mentale et précarité */
+const MOB=[
+ {id:"mob-marss",p:"Marseille 6ᵉ",n:"MARSS · équipe mobile psychiatrie précarité",o:"EMPP MARSS, AP-HM (service du Pr Cermolacce) · public",a:"Locaux : 9 rue Dragon, 13006 Marseille",
+  f:["Équipe mobile psychiatrie précarité (EMPP) de l'AP-HM, issue du collectif MARSS (Mouvement pour le rétablissement sanitaire et social)","Va vers les personnes à la rue ou en grande exclusion qui ont des troubles psychiques, avec une approche orientée rétablissement et des travailleurs pairs","Pas d'accueil du public : on contacte l'équipe, qui se déplace"],
+  der:["Adresse postale : EMPP MARSS, service du Pr Cermolacce, hôpital Sainte-Marguerite, bâtiment Solaris, 270 bd de Sainte-Marguerite, 13009 Marseille","Le collectif a aussi porté la recherche « Un chez-soi d'abord » à Marseille"],
+  c:[["Secrétariat (base arrière)","06 16 19 33 42"],["E-mail","empp.marss@ap-hm.fr"],["Coordination de l'équipe","06 80 27 49 20"],["Ligne fixe (ARCA-Sud)","04 91 58 24 57"]],
+  site:"https://marssmarseille.eu/",note:"Sources : site marssmarseille.eu et annuaire ARCA-Sud (octobre 2026)."},
+ {id:"mob-emlpp",p:"Marseille 15ᵉ",n:"EMLPP · équipe mobile psychiatrie précarité",o:"CH Édouard Toulouse · public",a:"CH Édouard Toulouse, 118 chemin de Mimet, 13015 Marseille",
+  f:["Équipe mobile de liaison psychiatrie précarité du CH Édouard Toulouse","Pour les personnes en grande précarité, en lien avec les équipes sociales"],
+  c:[["Téléphone","04 91 96 97 17"],["E-mail","emlpp@ch-edouard-toulouse.fr"]],note:"Coordonnées d'après l'annuaire ARCA-Sud (octobre 2026)."}
+];
+MOB.forEach(d=>{d.t=["mob"];d.pub=1;d.mrs=1;});
+D.push(...MOB);
+Object.assign(GEO,{"mob-marss":[43.28847,5.38159],"mob-emlpp":[43.38108,5.3596]});
+
+/* ================= Interface ================= */
+const ORDER=["cure","postcure","hdj","resid","csapa","rdr","liberal","cmp","mob","urg"];
+const L={cure:"Cure",postcure:"Post-cure",hdj:"Hôpital de jour",resid:"Hébergement",csapa:"Consultation",rdr:"Réduction des risques",liberal:"Médecin libéral",cmp:"CMP adulte",mob:"Équipe mobile",urg:"Urgences psy"};
+const LV={mention:"Certifié avec mention",confirmee:"Qualité des soins confirmée",conditions:"Certifié sous conditions",non:"Non certifié"};
+const GROUPS={cure:"Cure · sevrage hospitalier",postcure:"Post-cure",hdj:"Hôpital de jour",resid:"Hébergement thérapeutique",csapa:"Consultation · CSAPA",rdr:"Réduction des risques · CAARUD",liberal:"Médecins libéraux",cmp:"CMP adultes de Marseille",match:"CMP de rattachement",urg:"Urgences psychiatriques et crise",mob:"Équipes mobiles · personnes à la rue"};
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const dest=d=>(/Microstructures/.test(d.n)?"":d.n+", ")+d.a;
+const mapUrl=d=>"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(dest(d));
+const dirUrl=d=>"https://www.google.com/maps/dir/?api=1&destination="+encodeURIComponent(dest(d))+"&travelmode=transit";
+const forms=d=>(d.docs||[]).filter(x=>x[3]==="form");
+const isLib=d=>d.t.includes("liberal");
+function store(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(_){return null}}
+const telHref=v=>{const g=String(v).replace(/\D/g,"");return /^0\d{9}$/.test(g)?"tel:+33"+g.slice(1):/^(3114|15|112)$/.test(g)?"tel:"+g:null;};
+/* Métro et tram : arrêts relevés dans OpenStreetMap (octobre 2026) */
+const LINES={"T1":[["Noailles",43.2968,5.3812],["Eugène Pierre",43.2951,5.3896],["Camas",43.2954,5.3931],["George",43.2956,5.3971],["Jean Martin",43.2959,5.4017],["La Blancarde",43.2958,5.4062],["Sainte-Thérèse",43.294,5.4096],["Saint-Pierre",43.2918,5.4144],["La Parette",43.295,5.4192],["La Boiseraie",43.2949,5.4225],["Air-Bel",43.2943,5.429],["La Grognarde",43.2946,5.4323],["William Booth",43.2927,5.4368],["Les Caillols",43.2947,5.4439]],"T2":[["La Blancarde",43.2966,5.4055],["Foch Boisson",43.2981,5.4033],["Foch Sakakini",43.3003,5.4001],["Cinq Avenues",43.3023,5.3971],["Palais Longchamp",43.3033,5.3923],["Longchamp National",43.3015,5.3886],["Réformés Canebière",43.3,5.3855],["Noailles",43.2979,5.3816],["Canebière Capucins",43.2969,5.379],["Belsunce Alcazar",43.2985,5.3767],["Sadi Carnot",43.2999,5.3712],["République Dames",43.3022,5.3693],["Joliette",43.3054,5.3672],["Euroméditerranée Le Silo",43.3087,5.3682],["Arenc Euroméditerranée",43.3133,5.3681]],"T3":[["Gèze",43.327,5.3662],["Salengro Cougit",43.3216,5.3675],["Salengro Bachas",43.3173,5.3687],["Arenc Euroméditerranée",43.3133,5.3681],["Euroméditerranée Le Silo",43.3087,5.3681],["Joliette",43.3054,5.3672],["République Dames",43.3022,5.3693],["Sadi Carnot",43.2999,5.3712],["Belsunce Alcazar",43.2985,5.3766],["Cours Saint-Louis",43.296,5.378],["Rome Davso",43.2936,5.3794],["Place de Rome",43.2913,5.3807],["Rome Dragon",43.2891,5.382],["Castellane",43.2854,5.3848],["Parc du 26e Centenaire",43.2824,5.3903],["Cantini Rouet",43.2799,5.3949],["Place Ferrié",43.2769,5.3993],["Sainte-Marguerite Dromel",43.2712,5.4021],["Aubert Ganay",43.2664,5.4029],["Parc Sévigné",43.2619,5.4048],["Hôpital Sainte-Marguerite",43.2594,5.4088],["La Gaye",43.2568,5.411]],"M1":[["La Fourragère",43.3038,5.4241],["Saint-Barnabé",43.3033,5.4188],["Louis Armand",43.3,5.4135],["La Blancarde",43.2956,5.4062],["La Timone",43.2911,5.4004],["Baille",43.2881,5.392],["Castellane",43.2863,5.3846],["Estrangin - Préfecture",43.2902,5.3781],["Vieux Port",43.2956,5.3744],["Colbert",43.3003,5.3744],["Saint-Charles",43.3024,5.3801],["Réformés - Canebière",43.3004,5.3863],["Cinq Avenues Longchamp",43.3041,5.3963],["Chartreux",43.3091,5.4015],["Saint-Just",43.3154,5.4064],["Malpassé",43.321,5.4165],["Frais Vallon",43.3255,5.4232],["La Rose",43.3331,5.4297]],"M2":[["Capitaine Gèze",43.328,5.3673],["Bougainville",43.3208,5.3714],["National",43.3152,5.373],["Désirée Clary",43.3093,5.3722],["Joliette",43.3039,5.3679],["Jules Guesde",43.3019,5.374],["Saint-Charles",43.3024,5.38],["Noailles",43.2968,5.3812],["Notre-Dame-du-Mont - Cours Julien",43.2925,5.3837],["Castellane",43.285,5.3845],["Périer",43.2794,5.3876],["Rond-Point du Prado",43.2713,5.3926],["Sainte-Marguerite Dromel",43.2706,5.4022]]};
+const hav=(a,b)=>{const R=6371000,t=Math.PI/180,dl=(b[0]-a[0])*t,dg=(b[1]-a[1])*t;const x=Math.sin(dl/2)**2+Math.cos(a[0]*t)*Math.cos(b[0]*t)*Math.sin(dg/2)**2;return 2*R*Math.asin(Math.sqrt(x));};
+const normStop=s=>s.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z]/g,"").replace(/longchamp$/,"");
+const walk=m=>Math.max(1,Math.round(m*1.3/80));
+function nearStops(d){
+  const g=GEO[d.id];if(!g||/Microstructures/.test(d.n))return[];
+  const groups={};
+  Object.entries(LINES).forEach(([ref,stops])=>{let best=null;stops.forEach(s=>{const m=hav(g,[s[1],s[2]]);if(!best||m<best.m)best={m,name:s[0]};});
+    if(best&&best.m<=(ref[0]==="M"?1000:800)){const k=normStop(best.name);const gr=groups[k]||(groups[k]={name:best.name.replace(" - "," "),lines:[],m:best.m});gr.lines.push(ref);gr.m=Math.min(gr.m,best.m);if(ref[0]==="M")gr.name=best.name.replace(" - "," ");}});
+  return Object.values(groups).sort((a,b)=>a.m-b.m).slice(0,2);
+}
+function access(d){
+  const near=nearStops(d),items=near.map(g=>({lines:g.lines.sort(),txt:g.name,min:walk(g.m)}));
+  (d.tr||[]).forEach(([l,s])=>{if(l==="bus"||!near.length)items.push({lines:[l],txt:s});});
+  return items;
+}
+const transit=d=>{const it=access(d);return it.length?`<div class="transit">${it.map(x=>`<span class="line">${x.lines.map(l=>`<i class="${l}">${l==="bus"?"Bus":l}</i>`).join("")}${esc(x.txt)}${x.min?` <em>· ${x.min} min à pied</em>`:""}</span>`).join("")}</div>`:"";};
+const accessText=d=>access(d).map(x=>`${x.lines.map(l=>l==="bus"?"bus":l).join("/")} ${x.txt}${x.min?` (${x.min} min à pied)`:""}`).join(", ");
+const tagsHtml=d=>ORDER.filter(t=>d.t.includes(t)).map(t=>`<span class="tag" style="--c:var(--t-${t})">${L[t]}</span>`).join("");
+
+const I={
+ cure:'<path d="M3 19V6M3 15h18v4M21 15v-2.5A3.5 3.5 0 0 0 17.5 9H11v6"/><circle cx="7" cy="11.5" r="2"/>',
+ postcure:'<path d="M12 21v-8"/><path d="M12 13C12 9 9 7 5 7c0 4 3 6 7 6z"/><path d="M12 11c0-3 2.5-5 6.5-5 0 3.5-2.5 5-6.5 5z"/>',
+ hdj:'<circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6 6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4"/>',
+ resid:'<path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v10h13V10"/><path d="M10 20v-5h4v5"/>',
+ csapa:'<path d="M20.5 12a8.5 8.5 0 0 1-12.3 7.6L3.5 20.5l1-4.4A8.5 8.5 0 1 1 20.5 12z"/>',
+ rdr:'<path d="M12 20.5s-7.5-4.6-7.5-10.4A4.4 4.4 0 0 1 12 7.3a4.4 4.4 0 0 1 7.5 2.8c0 5.8-7.5 10.4-7.5 10.4z"/><path d="M9 12.5h6M12 9.5v6"/>',
+ liberal:'<path d="M6 3v6a5 5 0 0 0 10 0V3"/><path d="M11 14v2.5a4.5 4.5 0 0 0 9 0V14"/><circle cx="20" cy="12" r="2"/>',
+ doc:'<path d="M14 3H6.5A1.5 1.5 0 0 0 5 4.5v15A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V8z"/><path d="M14 3v5h5M8.5 13h7M8.5 17h5"/>',
+ phone:'<path d="M5 3.5h3.2l1.6 4.2-2.1 1.4a11 11 0 0 0 7.2 7.2l1.4-2.1 4.2 1.6V19a2 2 0 0 1-2.1 2A16.5 16.5 0 0 1 3 5.6 2 2 0 0 1 5 3.5z"/>',
+ mail:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/>',
+ pin:'<path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>',
+ route:'<circle cx="6" cy="18" r="2.2"/><circle cx="18" cy="6" r="2.2"/><path d="M8.2 18H15a3 3 0 0 0 0-6H9a3 3 0 0 1 0-6h6.8"/>',
+ web:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/>',
+ photo:'<rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.8"/><path d="m21 16-5-5-9 8"/>'
+};
+const ico=(k,extra="")=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"${extra}>${I[k]}</svg>`;
+const OPTS=[["cure","Cure","Sevrage hospitalier, 1 à 3 semaines"],["postcure","Post-cure","Consolidation, 5 semaines à 3 mois"],["hdj","Hôpital de jour","Soins en journée, retour le soir"],["resid","Hébergement","Centre ou appartement thérapeutique"],["csapa","Consultation · CSAPA","Premier contact, bilan, suivi"],["rdr","Réduction des risques","CAARUD, sans rendez-vous ni démarche de soin"],["liberal","Médecin libéral","Suivi en cabinet, substitution"]];
+
+/* ---------- État et filtres ---------- */
+const S={mode:"addicto",types:[],lg:"oui",hm:"oui",sec:"all",arr:"",q:"",psy:{how:"",arr:"",sub:"",day:"",month:""}};
+const base=(d,s)=>{
+  if(s.q&&!JSON.stringify(d).toLowerCase().includes(s.q))return false;
+  const psyT=d.t.includes("cmp")||d.t.includes("urg")||d.t.includes("mob");
+  if(s.mode==="psy")return psyT;
+  if(psyT)return false;
+  if(isLib(d)){
+    if(!s.types.includes("liberal"))return true;
+    return (s.sec==="all"||d.sec===s.sec)&&(!s.arr||(d.arr||[]).includes(s.arr));
+  }
+  return s.hm==="oui"||d.mrs;
+};
+/* Types sous lesquels une fiche apparaît ; sans logement, une clinique privée n'apparaît plus comme cure */
+const matched=(d,s)=>{if(s.mode==="psy")return[d.t[0]];let ts=d.t.filter(t=>!s.types.length||s.types.includes(t));
+  if(s.types.includes("cure")&&s.lg==="non"&&!d.pub)ts=ts.filter(t=>t!=="cure");return ts;};
+const rank=(d,s)=>Math.min(...matched(d,s).map(t=>ORDER.indexOf(t)));
+const needs=()=>({lg:S.types.includes("cure"),hm:!S.types.length||S.types.some(t=>t!=="liberal"),lib:S.types.includes("liberal")});
+
+/* ---------- Étape 1 ---------- */
+const optsEl=document.getElementById("opts");
+optsEl.innerHTML=OPTS.map(([k,l,s])=>`<button type="button" class="op" data-k="${k}" aria-pressed="false" style="--c:var(--t-${k})"><span class="tick">✓</span><span class="ic">${ico(k)}</span><b>${l}</b><span>${s}</span><em data-c="${k}"></em></button>`).join("");
+function paintQ1(){
+  optsEl.querySelectorAll(".op").forEach(b=>{
+    const k=b.dataset.k;b.setAttribute("aria-pressed",S.types.includes(k));
+    const n=D.filter(d=>d.t.includes(k)).length;
+    b.querySelector("em").textContent=n+(k==="liberal"?" fiche":" lieu")+(n>1?(k==="liberal"?"s":"x"):"");
+  });
+  document.getElementById("next1").textContent=S.types.length?"Continuer →":"Continuer sans choisir →";
+}
+optsEl.addEventListener("click",e=>{const b=e.target.closest(".op");if(!b)return;const k=b.dataset.k;
+  S.types=S.types.includes(k)?S.types.filter(x=>x!==k):[...S.types,k];paintQ1();});
+document.getElementById("next1").addEventListener("click",()=>go("q2"));
+document.getElementById("seeall").addEventListener("click",()=>{S.types=[];S.lg="oui";S.hm="oui";S.sec="all";S.arr="";document.getElementById("arr").value="";paintQ1();go("resultats");});
+
+/* ---------- Étape 2 ---------- */
+function paintQ2(){
+  const n=needs();
+  document.getElementById("q-lg").hidden=!n.lg;
+  document.getElementById("q-hm").hidden=!n.hm;
+  document.getElementById("q-sec").hidden=!n.lib;
+  document.getElementById("q-arr").hidden=!n.lib;
+  document.getElementById("hm-lbl").textContent=n.lib?"Pour les structures (pas les médecins)":"Pour les structures";
+  document.getElementById("q2-sub").textContent=S.types.length?"Pour : "+ORDER.filter(t=>S.types.includes(t)).map(t=>L[t].toLowerCase()).join(", ")+".":"Pour tous les types de lieux.";
+  document.querySelectorAll("#v-q2 .seg").forEach(g=>g.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",S[g.dataset.key]===b.dataset.v)));
+  document.getElementById("arr").value=S.arr;
+}
+document.getElementById("v-q2").addEventListener("click",e=>{const b=e.target.closest(".seg button");if(!b)return;S[b.closest(".seg").dataset.key]=b.dataset.v;paintQ2();});
+document.getElementById("arr").addEventListener("change",e=>{S.arr=e.target.value;});
+document.getElementById("next2").addEventListener("click",()=>go("resultats"));
+
+/* ---------- Carte schématique ---------- */
+const LAT0=43.39,LAT1=43.21,LNG0=5.30,LNG1=5.51,K=4000,CX=0.728;
+const W=Math.round((LNG1-LNG0)*CX*K),H=Math.round((LAT0-LAT1)*K);
+const P=(lat,lng)=>[+((lng-LNG0)*CX*K).toFixed(1),+((LAT0-lat)*K).toFixed(1)];
+const inFrame=([lat,lng])=>lat<=LAT0&&lat>=LAT1&&lng>=LNG0&&lng<=LNG1;
+const COAST=[[43.37,4.8],[43.37,5.10],[43.365,5.25],[43.365,5.29],[43.362,5.315],[43.358,5.323],[43.352,5.333],[43.343,5.345],[43.330,5.350],[43.315,5.357],[43.307,5.362],[43.298,5.362],[43.2965,5.368],[43.2955,5.3745],[43.2935,5.366],[43.293,5.358],[43.289,5.360],[43.281,5.349],[43.276,5.355],[43.266,5.366],[43.258,5.373],[43.245,5.370],[43.237,5.358],[43.222,5.350],[43.214,5.343],[43.211,5.355],[43.212,5.380],[43.208,5.420],[43.212,5.445],[43.210,5.470],[43.212,5.535],[43.205,5.60],[43.17,5.62],[43.0,5.62],[43.0,4.8]];
+const landmarks=k=>`<g style="pointer-events:none">${LANDMARKS.map(([n,la,lo,side])=>{const[x,y]=P(la,lo);return `<rect x="${x-3.2*k}" y="${y-3.2*k}" width="${6.4*k}" height="${6.4*k}" transform="rotate(45 ${x} ${y})" fill="var(--fg)" stroke="var(--land)" stroke-width="${1.5*k}"/><text x="${x+(side==="l"?-7:side==="b"?0:7)*k}" y="${y+(side==="b"?10*k:0)}" style="font:600 ${10.5*k}px var(--body);fill:var(--fg);paint-order:stroke;stroke:var(--land);stroke-width:${3.2*k}px;stroke-linejoin:round;text-anchor:${side==="l"?"end":side==="b"?"middle":"start"};dominant-baseline:central">${n}</text>`;}).join("")}</g>`;
+const LPTS=ref=>LINES[ref].map(s=>[s[1],s[2]]);
+/* Repères de la ville */
+const LANDMARKS=[["Gare Saint-Charles",43.3030,5.3807,"l"],["Vieux-Port",43.2952,5.3712,"b"],["Castellane",43.2856,5.3836,"r"],["Stade Vélodrome",43.2698,5.3959,"r"],["Hôpital de la Timone",43.2899,5.4032,"r"],["Notre-Dame-de-la-Garde",43.2840,5.3713,"l"],["Mucem",43.2966,5.3612,"l"],["Palais Longchamp",43.3047,5.3946,"r"],["Hôpital Nord",43.3796,5.3602,"r"]];
+const pts=a=>a.map(p=>P(...p).join(",")).join(" ");
+/* k = unités SVG par pixel écran : textes et traits gardent la même taille quel que soit le zoom */
+const baseMap=k=>{
+  const lbl=(lat,lng,t)=>{const[x,y]=P(lat,lng);return `<text x="${x}" y="${y}" style="font:500 ${11*k}px var(--body);fill:var(--land-ink);paint-order:stroke;stroke:var(--land);stroke-width:${3*k}px;text-anchor:middle">${t}</text>`;};
+  const c=(lat,lng)=>P(lat,lng);
+  return `<rect x="-3000" y="-3000" width="7000" height="7000" fill="var(--land)"/>
+<polygon points="${pts(COAST)}" fill="var(--sea)"/>
+<ellipse cx="${c(43.2865,5.311)[0]}" cy="${c(43.2865,5.311)[1]}" rx="30" ry="12" fill="var(--land)" transform="rotate(-12 ${c(43.2865,5.311).join(" ")})"/>
+<ellipse cx="${c(43.2685,5.298)[0]}" cy="${c(43.2685,5.298)[1]}" rx="22" ry="11" fill="var(--land)" transform="rotate(-35 ${c(43.2685,5.298).join(" ")})"/>
+<circle cx="${c(43.280,5.325)[0]}" cy="${c(43.280,5.325)[1]}" r="5" fill="var(--land)"/>
+${["T1","T2","T3"].map(r=>`<polyline points="${pts(LPTS(r))}" fill="none" stroke="var(--land-ink)" stroke-width="${3.6*k}" stroke-dasharray="${4.6*k} ${2.9*k}" stroke-linejoin="round" opacity=".35"/><polyline points="${pts(LPTS(r))}" fill="none" stroke="var(--${r.toLowerCase()})" stroke-width="${2.6*k}" stroke-dasharray="${4*k} ${3.5*k}" stroke-linejoin="round" stroke-linecap="round"/>`).join("")}
+<polyline points="${pts(LPTS("M1"))}" fill="none" stroke="var(--m1)" stroke-width="${3.5*k}" stroke-linejoin="round" stroke-linecap="round" opacity=".6"/>
+<polyline points="${pts(LPTS("M2"))}" fill="none" stroke="var(--m2)" stroke-width="${3.5*k}" stroke-linejoin="round" stroke-linecap="round" opacity=".6"/>
+
+${lbl(43.368,5.322,"L'Estaque")}${lbl(43.2205,5.336,"Les Goudes")}${lbl(43.3445,5.482,"Allauch")}${lbl(43.252,5.448,"Mazargues")}${lbl(43.272,5.505,"La Valentine")}
+<text x="${c(43.245,5.318)[0]}" y="${c(43.245,5.318)[1]}" style="font:italic 500 ${15*k}px var(--display);fill:var(--sea-ink);text-anchor:middle">Méditerranée</text>`;
+};
+const ARROWS=["→","↗","↑","↖","←","↙","↓","↘"];
+let cur=[],numOf={},kindOf={},selId=null,offSel=null;
+
+let VB={cx:W/2,cy:H/2,k:2},inside=[];
+const KMAX=()=>{const svg=document.getElementById("map");return Math.max(W/(svg.clientWidth||390),H/(svg.clientHeight||360))*1.15;};
+function drawMap(items){
+  cur=items;
+  const svg=document.getElementById("map");
+  inside=[];const outside={};
+  items.forEach(d=>{const g=GEO[d.id];if(!g)return;if(inFrame(g))inside.push(d);else{const c=COMMUNE[d.id]||d.p;(outside[c]=outside[c]||[]).push(d);}});
+  /* cadrage : on zoome sur les lieux affichés, à la forme de l'écran */
+  const vw=svg.clientWidth||390,vh=svg.clientHeight||360;
+  let x0=W,x1=0,y0=H,y1=0;
+  inside.forEach(d=>{const[x,y]=P(...GEO[d.id]);x0=Math.min(x0,x);x1=Math.max(x1,x);y0=Math.min(y0,y);y1=Math.max(y1,y);});
+  if(!inside.length){x0=0;x1=W;y0=0;y1=H;}
+  const bw=Math.max(x1-x0,300),bh=Math.max(y1-y0,300),pad=34;
+  VB={cx:(x0+x1)/2,cy:(y0+y1)/2,k:Math.min(Math.max(bw/(vw-2*pad),bh/(vh-2*pad)),KMAX())};
+  svg._outside=outside;
+  paintMap();
+  /* lieux hors cadre : pastilles sous la carte, avec la direction */
+  const [mx,my]=P(43.30,5.40);
+  const off=Object.entries(outside).map(([c,arr])=>{const g=arr.map(d=>GEO[d.id]),lat=g.reduce((s,v)=>s+v[0],0)/g.length,lng=g.reduce((s,v)=>s+v[1],0)/g.length;
+    const[tx,ty]=P(lat,lng),ang=Math.atan2(-(ty-my),tx-mx),ar=ARROWS[((Math.round(ang/(Math.PI/4))%8)+8)%8];
+    return {c,arr,ar,dist:Math.hypot(tx-mx,ty-my)};}).sort((a,b)=>a.dist-b.dist);
+  const om=document.getElementById("offmap");om.hidden=!off.length;
+  if(offSel&&!outside[offSel])offSel=null;
+  om.innerHTML=off.length?`<span>Hors carte :</span>`+off.map(o=>`<button type="button" data-c="${esc(o.c)}" aria-pressed="${o.c===offSel}">${o.ar} ${esc(o.c)} · ${o.arr.length}</button>`).join(""):"";
+}
+function setVB(){const svg=document.getElementById("map"),vw=svg.clientWidth||390,vh=svg.clientHeight||360,w=vw*VB.k,h=vh*VB.k;
+  svg.setAttribute("viewBox",`${(VB.cx-w/2).toFixed(1)} ${(VB.cy-h/2).toFixed(1)} ${w.toFixed(1)} ${h.toFixed(1)}`);}
+function paintMap(){
+  const svg=document.getElementById("map"),k=VB.k;
+  setVB();
+  /* les numéros qui se chevauchent sont légèrement écartés (carte schématique) */
+  const R=11*k,gap=2*R+1.5*k,pos=inside.map(d=>{const[x,y]=P(...GEO[d.id]);return[x,y];}),ox=pos.map(p=>p.slice());
+  for(let it=0;it<60;it++){let moved=false;
+    for(let i=0;i<pos.length;i++)for(let j=i+1;j<pos.length;j++){let dx=pos[j][0]-pos[i][0],dy=pos[j][1]-pos[i][1],dd=Math.hypot(dx,dy);
+      if(dd<gap){if(dd<1e-3){const a=(i*2.4+j)%6.28;dx=Math.cos(a);dy=Math.sin(a);dd=1;}const m=(gap-dd)/2/dd;pos[i][0]-=dx*m;pos[i][1]-=dy*m;pos[j][0]+=dx*m;pos[j][1]+=dy*m;moved=true;}}
+    if(!moved)break;}
+  const order=inside.map((d,i)=>i).sort((a,b)=>numOf[inside[b].id]-numOf[inside[a].id]);
+  const ticks=order.map(i=>{const[x,y]=pos[i],[a,b]=ox[i];return Math.hypot(x-a,y-b)>R*0.6?`<line x1="${a.toFixed(1)}" y1="${b.toFixed(1)}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="var(--land-ink)" stroke-width="${1.2*k}"/><circle cx="${a.toFixed(1)}" cy="${b.toFixed(1)}" r="${2.2*k}" fill="var(--land-ink)"/>`:"";}).join("");
+  const pins=order.map(i=>{const d=inside[i],[x,y]=pos[i];
+    return `<g class="pin" data-id="${d.id}" tabindex="0" role="button" aria-label="${numOf[d.id]} · ${esc(d.n)}" transform="translate(${x.toFixed(1)} ${y.toFixed(1)})"><circle class="dot" r="${R}" fill="var(--t-${kindOf[d.id]})" stroke-width="${2.5*k}"/><text style="font-size:${11*k}px">${numOf[d.id]}</text></g>`;}).join("");
+  /* les numéros passent devant les repères ; en zoomant, les repères se dégagent */
+  svg.innerHTML=baseMap(k)+landmarks(k)+ticks+pins;
+  svg._k=k;
+  markSel();
+}
+/* zoom sans redessiner (pendant un geste), puis redessin à la fin pour garder la taille des numéros */
+function zoomVB(f,px,py){
+  const svg=document.getElementById("map"),vw=svg.clientWidth,vh=svg.clientHeight;
+  if(px==null){px=vw/2;py=vh/2;}
+  const nk=Math.max(0.25,Math.min(KMAX(),VB.k*f));
+  const wx=VB.cx+(px-vw/2)*VB.k,wy=VB.cy+(py-vh/2)*VB.k;
+  VB.cx=wx-(px-vw/2)*nk;VB.cy=wy-(py-vh/2)*nk;VB.k=nk;clampVB();setVB();
+}
+function clampVB(){VB.cx=Math.max(-150,Math.min(W+150,VB.cx));VB.cy=Math.max(-150,Math.min(H+150,VB.cy));}
+function zoom(f,px,py){zoomVB(f,px,py);paintMap();}
+/* déplacement au doigt, pincement à deux doigts, molette */
+(()=>{const svg=document.getElementById("map"),pts=new Map();let moved=0,lastD=0,lastMid=null,dirty=false,wt=0;
+  const loc=e=>{const r=svg.getBoundingClientRect();return[e.clientX-r.left,e.clientY-r.top];};
+  const cap=id=>{try{if(!svg.hasPointerCapture(id))svg.setPointerCapture(id)}catch(_){}};
+  const two=()=>{const[a,b]=[...pts.values()];return{d:Math.hypot(a[0]-b[0],a[1]-b[1]),m:[(a[0]+b[0])/2,(a[1]+b[1])/2]};};
+  svg.addEventListener("pointerdown",e=>{
+    if(e.pointerType==="mouse"&&e.button!==0)return;
+    pts.set(e.pointerId,loc(e));
+    if(pts.size===1)moved=0;
+    if(pts.size===2){moved=99;pts.forEach((_,id)=>cap(id));const t=two();lastD=t.d;lastMid=t.m;}
+  });
+  svg.addEventListener("pointermove",e=>{
+    if(!pts.has(e.pointerId))return;
+    const p=loc(e),q=pts.get(e.pointerId);pts.set(e.pointerId,p);
+    if(pts.size===1){
+      const dx=p[0]-q[0],dy=p[1]-q[1];moved+=Math.abs(dx)+Math.abs(dy);
+      if(moved>6){cap(e.pointerId);VB.cx-=dx*VB.k;VB.cy-=dy*VB.k;clampVB();setVB();}
+    }else if(pts.size>=2){
+      const t=two();
+      if(lastD&&t.d>10){zoomVB(lastD/t.d,t.m[0],t.m[1]);dirty=true;}
+      if(lastMid){VB.cx-=(t.m[0]-lastMid[0])*VB.k;VB.cy-=(t.m[1]-lastMid[1])*VB.k;clampVB();setVB();}
+      lastD=t.d;lastMid=t.m;
+    }
+  });
+  const up=e=>{
+    if(!pts.delete(e.pointerId))return;
+    if(pts.size===1){const[p]=[...pts.values()];lastD=0;lastMid=null;}
+    if(pts.size===0){lastD=0;lastMid=null;if(dirty){dirty=false;paintMap();}}
+  };
+  svg.addEventListener("pointerup",up);svg.addEventListener("pointercancel",up);
+  svg.addEventListener("click",e=>{if(moved>6){e.stopImmediatePropagation();e.preventDefault();moved=0;}},true);
+  svg.addEventListener("wheel",e=>{e.preventDefault();const[x,y]=loc(e);zoomVB(e.deltaY>0?1.15:1/1.15,x,y);clearTimeout(wt);wt=setTimeout(paintMap,120);},{passive:false});
+})();
+document.getElementById("zin").addEventListener("click",()=>zoom(1/1.5));
+document.getElementById("zout").addEventListener("click",()=>zoom(1.5));
+document.getElementById("zfit").addEventListener("click",()=>drawMap(cur));
+function bubblePin(id){
+  const d=D.find(x=>x.id===id);selId=id;offSel=null;
+  const b=document.getElementById("bubble");
+  b.innerHTML=`<div class="bh"><div style="display:grid;gap:4px"><div style="display:flex;gap:8px;align-items:center"><span class="num" style="--c:var(--t-${kindOf[id]})">${numOf[id]}</span><b>${esc(d.n)}</b></div><span class="meta">${esc(d.p)} · ${esc(d.o)}</span></div><button class="x" type="button" data-closebubble aria-label="Fermer">×</button></div>
+  <div class="row"><button class="btn primary" type="button" data-open="${id}">Voir la fiche</button><a class="btn" href="${mapUrl(d)}" target="_blank" rel="noopener">${ico("pin")}Ouvrir sur Google Maps</a></div>`;
+  b.hidden=false;markSel();
+}
+function bubbleEdge(c){
+  const arr=document.getElementById("map")._outside[c]||[];selId=null;offSel=c;markSel();
+  const b=document.getElementById("bubble");
+  b.innerHTML=`<div class="bh"><b>${esc(c)} · ${arr.length} lieu${arr.length>1?"x":""}</b><button class="x" type="button" data-closebubble aria-label="Fermer">×</button></div>
+  <div class="blist">${arr.map(d=>`<button type="button" data-open="${d.id}"><span style="display:flex;gap:8px;align-items:center"><span class="num" style="--c:var(--t-${kindOf[d.id]})">${numOf[d.id]}</span>${esc(d.n)}</span><small>${esc(d.o)}</small></button>`).join("")}</div>`;
+  b.hidden=false;
+}
+function markSel(){
+  const k=document.getElementById("map")._k||1;
+  document.querySelectorAll("#map .pin").forEach(g=>{const on=g.dataset.id===selId;g.classList.toggle("sel",on);const c=g.querySelector("circle");c.setAttribute("r",(on?14:11)*k);c.setAttribute("stroke-width",(on?3:2.5)*k);if(on)g.parentNode.appendChild(g);});
+  document.querySelectorAll("#offmap button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.c===offSel));
+  document.querySelectorAll("#out .card").forEach(c=>c.classList.toggle("sel",c.dataset.id===selId));
+}
+const mapEl=document.getElementById("map");
+const closeBubble=()=>{document.getElementById("bubble").hidden=true;selId=null;offSel=null;markSel();};
+mapEl.addEventListener("click",e=>{const p=e.target.closest(".pin");if(p)return bubblePin(p.dataset.id);closeBubble();});
+mapEl.addEventListener("keydown",e=>{if(e.key!=="Enter"&&e.key!==" ")return;const p=e.target.closest(".pin");if(!p)return;e.preventDefault();bubblePin(p.dataset.id);});
+document.getElementById("offmap").addEventListener("click",e=>{const b=e.target.closest("button[data-c]");if(!b)return;if(offSel===b.dataset.c)return closeBubble();bubbleEdge(b.dataset.c);});
+let rz;window.addEventListener("resize",()=>{clearTimeout(rz);rz=setTimeout(()=>{if(!document.getElementById("v-res").hidden)paintMap();},150);});
+document.getElementById("bubble").addEventListener("click",e=>{
+  if(e.target.closest("[data-closebubble]"))return closeBubble();
+  const o=e.target.closest("[data-open]");if(o)push("fiche:"+o.dataset.open);
+});
+const mapwrap=document.getElementById("mapwrap"),maptog=document.getElementById("maptog");
+function setMap(open){mapwrap.classList.toggle("collapsed",!open);maptog.textContent=open?"Réduire ▴":"Afficher la carte ▾";maptog.setAttribute("aria-expanded",open);store("addicto13.map",open?"1":"0");if(open&&cur.length)drawMap(cur);}
+maptog.addEventListener("click",()=>setMap(mapwrap.classList.contains("collapsed")));
+setMap(store("addicto13.map")!=="0");
+
+/* ---------- Résultats ---------- */
+const card=d=>`<button type="button" class="card" data-id="${d.id}" aria-label="Ouvrir la fiche ${esc(d.n)}">
+  <div class="h"><span class="num" style="--c:var(--t-${kindOf[d.id]})">${numOf[d.id]}</span><div><h3>${esc(d.n)}</h3><div class="org">${esc(d.o)}</div></div><span class="where">${esc(d.p.replace(/^Marseille /,""))}</span></div>
+  <div class="tags">${tagsHtml(d)}${d.warn?`<span class="verify">${esc(d.warn)}</span>`:""}${d.v?`<span class="verify">À confirmer</span>`:""}${d.pub?"":`<span class="prive">Privé</span>`}</div>
+  <div class="fact">${esc(d.f[0]||"")}</div>
+  ${transit(d)}
+  ${(d.has||forms(d).length||d.sec||d.cover)?`<div class="badges">${d.cover?`<span class="b">Secteur ${esc(d.sect)} · ${esc(d.cover)}</span>`:""}${d.sec?`<span class="b">${SECL[d.sec]}</span>`:""}${d.has?`<span class="b ${d.has[0]}">HAS · ${LV[d.has[0]]}</span>`:""}${forms(d).length?`<span class="b form">Dossier en ligne</span>`:""}</div>`:""}
+</button>`;
+
+function render(){
+  const n0=needs();
+  const items=D.filter(d=>base(d,S)&&matched(d,S).length);
+  const groups={};const psy=S.mode==="psy",mid=psy?psyMatch().id:null;
+  items.forEach(d=>{const k=psy?(d.id===mid?"match":d.t[0]):ORDER[rank(d,S)];(groups[k]=groups[k]||[]).push(d);});
+  numOf={};kindOf={};let i=1;const keys=(psy?["match","cmp","mob","urg"]:ORDER).filter(k=>groups[k]);
+  keys.forEach(k=>{if(!psy)groups[k].sort((a,b)=>b.mrs-a.mrs);groups[k].forEach(d=>{numOf[d.id]=i++;kindOf[d.id]=k==="match"?"cmp":k;});});
+  if(selId&&!numOf[selId]){selId=null;document.getElementById("bubble").hidden=true;}
+  document.getElementById("out").innerHTML=keys.map(k=>`<section><div class="group-h" style="--c:var(--t-${k==="match"?"cmp":k})"><i></i><h2>${GROUPS[k]}</h2><span>${groups[k].length}</span></div><div class="cards">${groups[k].map(card).join("")}</div></section>`).join("");
+  const n=items.length;
+  const nU=items.filter(d=>d.t.includes("urg")).length,nM=items.filter(d=>d.t.includes("mob")).length,nC=n-nU-nM;
+  document.getElementById("count").textContent=psy?(n?`${n} lieu${n>1?"x":""}`:"Aucun résultat"):(n?`${n} lieu${n>1?"x":""}`:"Aucun lieu");
+  const off=items.filter(d=>GEO[d.id]&&!inFrame(GEO[d.id])).length;
+  document.getElementById("countsub").textContent=psy?[`${nC} CMP`,nM&&`${nM} équipes mobiles`,nU&&`${nU} urgences`].filter(Boolean).join(" · "):off?`dont ${off} hors carte, listés sous la carte`:"Touchez un numéro sur la carte";
+  /* pastilles */
+  const ch=[];
+  if(psy){const pm=psyMatch();ch.push(`<button type="button" class="chip" data-to="p1" style="--c:var(--t-cmp)"><i></i>CMP adultes</button>`);
+    if(pm.label)ch.push(`<button type="button" class="chip cond" data-to="p1">${esc(pm.label)}</button>`);
+    ch.push(`<button type="button" class="chip edit" data-to="p1">✎ Modifier</button>`);}
+  else{
+  if(S.types.length)ORDER.filter(t=>S.types.includes(t)).forEach(t=>ch.push(`<button type="button" class="chip" data-to="q1" style="--c:var(--t-${t})"><i></i>${L[t]}</button>`));
+  else ch.push(`<button type="button" class="chip" data-to="q1">Tous les types</button>`);
+  if(n0.lg)ch.push(`<button type="button" class="chip cond" data-to="q2">Logement : ${S.lg}</button>`);
+  if(n0.hm)ch.push(`<button type="button" class="chip cond" data-to="q2">${S.hm==="oui"?"Hors Marseille accepté":"Marseille et Allauch"}</button>`);
+  if(n0.lib){ch.push(`<button type="button" class="chip cond" data-to="q2">${S.sec==="all"?"Tous secteurs":SECL[S.sec]}</button>`);if(S.arr)ch.push(`<button type="button" class="chip cond" data-to="q2">${esc(ARRL[S.arr])}</button>`);}
+  ch.push(`<button type="button" class="chip edit" data-to="q1">✎ Modifier</button>`);}
+  document.getElementById("chips").innerHTML=ch.join("");
+  const em=document.getElementById("empty");em.hidden=n>0;
+  if(!n){
+    const onlyLib=S.types.length===1&&S.types[0]==="liberal";
+    let msg=S.q?"Aucun lieu ne correspond à cette recherche.":"Aucun lieu ne correspond à ces choix.";
+    if(onlyLib)msg+=" Essayez un autre secteur ou un autre quartier.";
+    else if(n0.lg&&S.hm==="non"&&S.lg==="non")msg+=" À Marseille, la seule cure publique est celle du CH d'Allauch : vérifiez les filtres.";
+    else if(S.hm==="non")msg+=" Essayez d'accepter un lieu hors de Marseille.";
+    em.textContent=msg+" ARCA-Sud (04 88 92 68 88) peut aider à trouver une solution.";
+  }
+  drawMap(items);
+}
+document.getElementById("chips").addEventListener("click",e=>{const c=e.target.closest("[data-to]");if(c)go(c.dataset.to);});
+document.getElementById("modify").addEventListener("click",()=>go(S.mode==="psy"?"p1":"q1"));
+document.getElementById("q").addEventListener("input",e=>{S.q=e.target.value.trim().toLowerCase();render();});
+document.getElementById("out").addEventListener("click",e=>{const c=e.target.closest(".card");if(c)push("fiche:"+c.dataset.id);});
+const dm=document.getElementById("defmail");dm.value=store("addicto13.mail")||"";
+dm.addEventListener("change",()=>store("addicto13.mail",dm.value.trim()));
+
+/* ---------- Fiche ---------- */
+function mailText(d){
+  const lines=[d.n,d.o,`Adresse : ${d.a}`];if(d.warn)lines.push("Attention : "+d.warn);
+  {const ac=accessText(d);if(ac)lines.push("Accès : "+ac);}
+  lines.push("");
+  if(d.c.length){lines.push("Contacts :");d.c.forEach(([l,v])=>lines.push(`- ${l} : ${v}`));lines.push("");}
+  const docs=d.docs||[];
+  if(docs.length){lines.push("Documents :");docs.forEach(([l,u])=>lines.push(`- ${l} : ${u}`));lines.push("");}
+  if(d.send){lines.push("Comment envoyer la demande :",d.send,"");}
+  lines.push(`Localisation et avis : ${mapUrl(d)}`);
+  lines.push(`Itinéraire en transports : ${dirUrl(d)}`);
+  if(d.has)lines.push(`Évaluation HAS : ${LV[d.has[0]]} (${d.has[1]}) – ${HASURL(d.has[5])}`);
+  return lines.join("\n");
+}
+function miniMap(d){
+  const g=GEO[d.id];if(!g)return"";
+  const[x,y]=P(...g),vw=Math.min(innerWidth,640)-32,k=0.9,w=vw*k,h=150*k;
+  return `<a class="minimap" href="${mapUrl(d)}" target="_blank" rel="noopener" aria-label="Ouvrir sur Google Maps"><svg viewBox="${(x-w/2).toFixed(1)} ${(y-h/2).toFixed(1)} ${w.toFixed(1)} ${h.toFixed(1)}" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${baseMap(k)}<g transform="translate(${x} ${y})"><circle r="${10*k}" fill="var(--t-${kindOf[d.id]||d.t[0]})" stroke="var(--pin-ring)" stroke-width="${3*k}"/><circle r="${3.5*k}" fill="#fff"/></g></svg><span>Carte et avis Google ↗</span></a>`;
+}
+function fiche(d){
+  const h=d.has,docs=d.docs||[],f=forms(d);
+  const ph=d.c.find(([l,v])=>telHref(v)&&!/fax/i.test(l));
+  const big=[];
+  if(f.length)big.push(`<a class="p" href="${esc(f[0][1])}" target="_blank" rel="noopener">${ico("doc")}Dossier<small>en ligne</small></a>`);
+  if(ph)big.push(`<a href="${telHref(ph[1])}">${ico("phone")}Appeler<small>${esc(ph[1])}</small></a>`);
+  big.push(`<button type="button" data-tomail>${ico("mail")}Envoyer<small>par e-mail</small></button>`);
+  const hasHtml=h?`<section class="sec"><h3>Évaluation HAS</h3><div class="box">
+      <div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;align-items:baseline"><span class="has-lvl">${LV[h[0]]}</span><span class="b ${h[0]}">Décision du ${esc(h[1])}</span></div>
+      ${h[0]==="non"||h[0]==="conditions"?`<div class="warnbox">${esc(h[4])}</div>`:`<div>${esc(h[4])}</div>`}
+      ${h[2]?`<div style="display:grid;gap:6px">${[["Patient",h[2][0]],["Équipes de soins",h[2][1]],["Établissement",h[2][2]]].map(([l,v])=>`<div class="hbar"><span>${l}</span><div class="tr"><div class="fl" style="width:${v}%"></div></div><span class="n">${v}</span></div>`).join("")}</div>`:""}
+      ${h[3]?`<div>${esc(h[3])}</div>`:""}
+      <small>Scores de certification sur 100. Source : <a href="${HASURL(h[5])}" target="_blank" rel="noopener">fiche Qualiscope</a>.</small>
+    </div></section>`:"";
+  const def=store("addicto13.mail")||"";
+  return `<header class="fh"><div class="col">
+      <button class="backlink" type="button" data-close>← Résultats</button>
+      <div class="tags">${tagsHtml(d)}${d.v?`<span class="verify">À confirmer</span>`:""}${d.pub?"":`<span class="prive">Privé</span>`}${d.sec?`<span class="prive">${SECL[d.sec]}</span>`:""}</div>
+      <h2 id="fh-title">${esc(d.n)}</h2>
+      <div class="org">${esc(d.o)} · ${esc(d.p)}</div>
+      ${transit(d)}
+    </div><svg class="wave" viewBox="0 0 390 26" preserveAspectRatio="none" aria-hidden="true"><path d="M0 16 C55 4 110 24 190 13 S320 3 390 15 V26 H0Z"/></svg></header>
+    <div class="col fpad">
+      <div class="big">${big.join("")}</div>
+      <div class="links">
+        <a class="btn" href="${mapUrl(d)}" target="_blank" rel="noopener">${ico("pin")}Ouvrir sur Google Maps</a>
+        <a class="btn" href="${dirUrl(d)}" target="_blank" rel="noopener">${ico("route")}Itinéraire</a>
+        ${d.site?`<a class="btn" href="${esc(d.site)}" target="_blank" rel="noopener">${ico("web")}Site officiel</a>`:""}
+        ${d.photos?`<a class="btn" href="${esc(d.photos)}" target="_blank" rel="noopener">${ico("photo")}Photos</a>`:""}
+      </div>
+      ${miniMap(d)}
+      ${d.cover?`<section class="sec"><h3>Secteur</h3><div class="box sectbox"><div><b>${/^13G/.test(d.sect)?"Secteur "+esc(d.sect):"CH Valvert"}</b> · ${esc(d.o.split(" · ")[0])}</div><div>Couvre : ${esc(d.cover)}</div>${d.sdf?`<div>Personnes sans domicile nées du ${esc(d.sdf)}</div>`:""}</div></section>`:""}
+      <section class="sec"><h3>En bref</h3>${d.warn?`<div class="warnbox" style="margin-bottom:8px">${esc(d.warn)} (selon ARCA-Sud) : appelez avant d'orienter.</div>`:""}<p>${esc(d.a)}</p><ul class="ul">${d.f.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></section>
+      ${d.der?`<section class="sec"><h3>Déroulement</h3><ul class="ul">${d.der.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></section>`:""}
+      ${d.act?`<section class="sec"><h3>Activités proposées</h3><div class="act">${d.act.map(x=>`<span>${esc(x)}</span>`).join("")}</div></section>`:""}
+      ${hasHtml}
+      ${(docs.length||d.send)?`<section class="sec"><h3>Admission</h3><div class="box">
+        ${docs.length?docs.map(([l,u,s,k])=>`<div class="doc"><div><b>${esc(l)}</b><small>${esc(s||"")}</small></div><a class="btn ${k==="form"?"primary":""}" href="${esc(u)}" target="_blank" rel="noopener">Ouvrir</a></div>`).join(""):`<span class="note">Pas de formulaire téléchargeable.</span>`}
+        ${d.send?`<div style="${docs.length?"border-top:1px solid var(--line);padding-top:8px":""}">${esc(d.send)}</div>`:""}
+      </div></section>`:""}
+      ${d.c.length?`<section class="sec"><h3>Contacts</h3><div class="box">${d.c.map(([l,v])=>{const t=telHref(v);return `<div class="crow"><div style="min-width:0"><span class="l">${esc(l)}</span><span class="v">${esc(v)}</span></div><div class="acts">${t&&!/fax/i.test(l)?`<a class="copy" href="${t}" style="text-decoration:none;color:inherit">Appeler</a>`:""}<button class="copy" type="button" data-v="${esc(v)}">Copier</button></div></div>`;}).join("")}</div>${d.note?`<p class="note" style="margin-top:8px">${esc(d.note)}</p>`:""}</section>`:""}
+      <button class="fab-back" type="button" data-close>← Retour</button>
+      <section class="sec" id="mail-sec"><h3>Envoyer cette fiche par e-mail</h3>
+        <div class="box mailbox">
+          <input id="to-${d.id}" type="email" value="${esc(def)}" placeholder="adresse@exemple.fr" aria-label="Destinataire">
+          <a class="btn primary" id="send-${d.id}" href="#" target="_blank" rel="noopener">${ico("mail")}Ouvrir dans ma messagerie</a>
+          <textarea id="body-${d.id}" aria-label="Contenu de l'e-mail" readonly>${esc(mailText(d))}</textarea>
+          <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><button class="btn" type="button" data-copytext="body-${d.id}">Copier le texte</button><span class="note">Le message contient les liens vers les dossiers, pas les fichiers. Si la messagerie ne s'ouvre pas, copiez le texte.</span></div>
+        </div>
+      </section>
+    </div>`;
+}
+const fEl=document.getElementById("fiche");let lastFocus=null;
+function openFiche(id){
+  const d=D.find(x=>x.id===id);if(!d)return;
+  if(!fEl.hidden&&fEl.dataset.id===id)return;
+  lastFocus=document.activeElement;
+  fEl.innerHTML=fiche(d);fEl.dataset.id=id;fEl.hidden=false;document.body.classList.add("locked");fEl.scrollTop=0;
+  const to=document.getElementById("to-"+id),send=document.getElementById("send-"+id);
+  const upd=()=>{send.href="mailto:"+encodeURIComponent(to.value.trim()).replace(/%40/g,"@")+"?subject="+encodeURIComponent("Addictologie – "+d.n)+"&body="+encodeURIComponent(mailText(d));};
+  upd();to.addEventListener("input",upd);
+  fEl.focus({preventScroll:true});
+}
+function hideFiche(){if(fEl.hidden)return;fEl.hidden=true;fEl.innerHTML="";fEl.dataset.id="";document.body.classList.remove("locked");if(lastFocus&&lastFocus.focus)lastFocus.focus({preventScroll:true});}
+const closeFiche=()=>back();
+fEl.addEventListener("click",e=>{
+  if(e.target.closest("[data-close]"))return closeFiche();
+  if(e.target.closest("[data-tomail]")){document.getElementById("mail-sec").scrollIntoView({behavior:"smooth",block:"start"});return;}
+  const c=e.target.closest(".copy[data-v]");if(c)return copy(c.dataset.v,c);
+  const t=e.target.closest("[data-copytext]");if(t){const ta=document.getElementById(t.dataset.copytext);return copy(ta.value,t,ta);}
+});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!fEl.hidden)closeFiche();});
+function copy(text,btn,el){
+  if(!btn.dataset.label)btn.dataset.label=btn.textContent;
+  const label=btn.dataset.label;
+  const done=()=>{btn.textContent="Copié";clearTimeout(btn._t);btn._t=setTimeout(()=>btn.textContent=label,1500)};
+  const fallback=()=>{if(el&&el.select){el.focus();el.select();}else{const v=btn.closest(".crow")?.querySelector(".v");if(v){const r=document.createRange();r.selectNodeContents(v);const s=getSelection();s.removeAllRanges();s.addRange(r);}}};
+  try{navigator.clipboard.writeText(text).then(done,fallback)}catch(_){fallback()}
+}
+
+/* ---------- Psychiatrie : CMP de secteur ---------- */
+function psyMatch(){
+  const P=S.psy;let sect=null,label="",err="";
+  if(P.how==="addr"&&P.arr){const v=ARR_SECT[P.arr],al=(ARR_PSY.find(x=>x[0]===P.arr)||[])[1]||"";
+    if(typeof v==="string"){sect=v;label=/^\d/.test(P.arr)?al+" arrondissement":al;}
+    else if(P.sub&&v[P.sub]){sect=v[P.sub][1];label=al+" · "+v[P.sub][0].split(":")[0].split(",")[0];}}
+  if(P.how==="sdf"&&P.day&&P.month){const d=+P.day,m=+P.month,max=[31,29,31,30,31,30,31,31,30,31,30,31][m-1];
+    if(d>max)err="Cette date n'existe pas.";else{sect=sectFromDob(d,m);label="Sans domicile, né(e) le "+(d===1?"1er":d)+" "+MOIS[m-1];}}
+  const c=sect?(sect==="Valvert"?CMP.find(x=>x.id==="cmp-allauch"):cmpOfSect(sect)):null;
+  return {id:c?c.id:null,c,label,sect,err};
+}
+(()=>{const a=document.getElementById("p-arr");ARR_PSY.forEach(([v,l])=>{const o=document.createElement("option");o.value=v;o.textContent=/^\d/.test(v)?l+" arrondissement":l;a.appendChild(o);});
+  const dd=document.getElementById("p-day");for(let i=1;i<=31;i++){const o=document.createElement("option");o.value=i;o.textContent=i;dd.appendChild(o);}
+  const mm=document.getElementById("p-month");MOIS.forEach((m,i)=>{const o=document.createElement("option");o.value=i+1;o.textContent=m;mm.appendChild(o);});})();
+function paintP1(){
+  const P=S.psy;
+  document.querySelectorAll("#p-how .op").forEach(b=>b.setAttribute("aria-pressed",b.dataset.how===P.how));
+  document.getElementById("p-addr").hidden=P.how!=="addr";
+  document.getElementById("p-sdf").hidden=P.how!=="sdf";
+  document.getElementById("p-arr").value=P.arr;document.getElementById("p-day").value=P.day;document.getElementById("p-month").value=P.month;
+  const v=ARR_SECT[P.arr],sw=document.getElementById("p-subwrap");
+  if(P.how==="addr"&&v&&typeof v==="object"){sw.hidden=false;document.getElementById("p-sub").innerHTML=["a","b"].map(k=>`<button type="button" data-v="${k}" aria-pressed="${P.sub===k}">${esc(v[k][0])}</button>`).join("");}
+  else sw.hidden=true;
+  const m=psyMatch(),r=document.getElementById("p-result");
+  if(m.err){r.hidden=false;r.className="presult err";r.innerHTML=`<span class="lbl">Date</span><div>${esc(m.err)}</div>`;}
+  else if(m.c){const c=m.c,ph=c.c.find(([l,x])=>telHref(x));r.hidden=false;r.className="presult";
+    r.innerHTML=`<span class="lbl">CMP de rattachement${/^13G/.test(c.sect)?" · secteur "+esc(c.sect):""}</span><h3>${esc(c.n)}</h3>
+    <div class="meta">${esc(c.o)}<br>${esc(c.a)}</div>
+    ${P.how==="sdf"&&c.sdf?`<div class="meta">Personnes sans domicile nées du ${esc(c.sdf)}.</div>`:`<div class="meta">Couvre : ${esc(c.cover)}</div>`}
+    <div class="row"><button type="button" class="btn primary" data-open="${c.id}">Voir la fiche</button>${ph?`<a class="btn" href="${telHref(ph[1])}">${ico("phone")}${esc(ph[1])}</a>`:""}</div>`;}
+  else r.hidden=true;
+  document.getElementById("pnext").textContent=m.c?"Voir sur la carte →":"Voir tous les CMP →";
+}
+document.getElementById("v-p1").addEventListener("click",e=>{
+  const h=e.target.closest("#p-how .op");if(h){S.psy.how=S.psy.how===h.dataset.how?"":h.dataset.how;paintP1();return;}
+  const sb=e.target.closest("#p-sub button");if(sb){S.psy.sub=sb.dataset.v;paintP1();return;}
+  const o=e.target.closest("[data-open]");if(o){push("fiche:"+o.dataset.open);}
+});
+document.getElementById("p-arr").addEventListener("change",e=>{S.psy.arr=e.target.value;S.psy.sub="";paintP1();});
+document.getElementById("p-day").addEventListener("change",e=>{S.psy.day=e.target.value;paintP1();});
+document.getElementById("p-month").addEventListener("change",e=>{S.psy.month=e.target.value;paintP1();});
+document.getElementById("pnext").addEventListener("click",()=>go("resultats"));
+document.getElementById("p-all").addEventListener("click",()=>{S.psy.how="";paintP1();go("resultats");});
+const toGroup=re=>{S.psy.how="";paintP1();go("resultats");setTimeout(()=>{const g=[...document.querySelectorAll("#out .group-h")].find(h=>re.test(h.textContent));if(g){const top=g.getBoundingClientRect().top+scrollY-document.querySelector(".rtop").offsetHeight-12;window.scrollTo({top});}},80);};
+document.getElementById("p-urg").addEventListener("click",()=>toGroup(/Urgences/));
+document.getElementById("p-mob").addEventListener("click",()=>toGroup(/Équipes mobiles/));
+document.querySelectorAll(".modetabs").forEach(t=>t.addEventListener("click",e=>{const b=e.target.closest("[data-mode]");if(!b||b.dataset.mode===S.mode)return;
+  S.mode=b.dataset.mode;store("addicto13.mode",S.mode);S.q="";document.getElementById("q").value="";selId=null;
+  const v=S.mode==="psy"?"p1":"q1";stack[stack.length-1]=v;display(v);
+  try{history.replaceState({i:stack.length,e:v},"","#"+v);}catch(_){}}));
+
+/* ---------- Navigation ----------
+   Une pile d'écrans gérée par l'application : les boutons « Retour » marchent toujours,
+   et le bouton retour du téléphone suit la même pile quand le navigateur le permet. */
+const VIEWS={q1:"v-q1",p1:"v-p1",q2:"v-q2",resultats:"v-res"};
+const PARENT=e=>e.startsWith("fiche:")?"resultats":e==="resultats"?(S.mode==="psy"?"p1":"q2"):(S.mode==="psy"?"p1":"q1");
+let stack=[],skipPop=0,skipT=0;
+const tok=e=>e.replace(":","-");
+function show(v){
+  Object.entries(VIEWS).forEach(([k,id])=>document.getElementById(id).hidden=k!==v);
+  document.querySelectorAll(".modetabs button").forEach(b=>b.setAttribute("aria-selected",b.dataset.mode===S.mode));
+  if(v==="q1")paintQ1();if(v==="p1")paintP1();if(v==="q2")paintQ2();if(v==="resultats")render();
+}
+function display(e){
+  document.querySelectorAll("[data-ifhist]").forEach(b=>b.hidden=stack.length<2);
+  document.querySelectorAll(".modetabs button").forEach(b=>b.setAttribute("aria-selected",b.dataset.mode===S.mode));
+  if(e.startsWith("fiche:")){if(document.getElementById("v-res").hidden)show("resultats");openFiche(e.slice(6));return;}
+  const wasFiche=!fEl.hidden;hideFiche();
+  if(document.getElementById(VIEWS[e]).hidden){show(e);window.scrollTo(0,0);}
+  else if(!wasFiche)window.scrollTo(0,0);
+}
+function push(e){
+  if(e==="q2"){const n=needs();if(!n.lg&&!n.hm&&!n.lib)e="resultats";}
+  if(stack[stack.length-1]===e)return display(e);
+  stack.push(e);display(e);
+  try{history.pushState({i:stack.length,e},"","#"+tok(e));}catch(_){}
+}
+const go=push;
+function back(){
+  if(stack.length>1){
+    stack.pop();display(stack[stack.length-1]);
+    skipPop++;clearTimeout(skipT);skipT=setTimeout(()=>skipPop=0,700);
+    try{history.back();}catch(_){skipPop=0;}
+  }else{
+    const p=PARENT(stack[0]||"q1");stack=[p];display(p);
+    try{history.replaceState({i:1,e:p},"","#"+tok(p));}catch(_){}
+  }
+}
+window.addEventListener("popstate",e=>{
+  if(skipPop>0){skipPop--;return;}
+  const i=e.state&&e.state.i;
+  if(i&&i<stack.length){stack.length=i;display(stack[i-1]);}
+  else if(i&&i>stack.length&&e.state.e){stack.push(e.state.e);display(e.state.e);}
+  else if(!i&&stack.length>1){stack.length=1;display(stack[0]);}
+});
+document.querySelectorAll("[data-back]").forEach(b=>b.addEventListener("click",back));
+(()=>{const h=(location.hash||"").slice(1);
+  if(store("addicto13.mode")==="psy"||h==="p1"||h.startsWith("fiche-cmp-"))S.mode="psy";
+  let e=h.startsWith("fiche-")&&D.some(d=>d.id===h.slice(6))?"fiche:"+h.slice(6):(VIEWS[h]?h:(S.mode==="psy"?"p1":"q1"));
+  if(e==="q1"&&S.mode==="psy")e="p1";if(e==="p1")S.mode="psy";if(e==="q1"||e==="q2")S.mode="addicto";
+  paintQ1();
+  if(e.startsWith("fiche:")){stack=["resultats"];show("resultats");try{history.replaceState({i:1,e:"resultats"},"","#resultats");}catch(_){}push(e);}
+  else{stack=[e];display(e);try{history.replaceState({i:1,e},"","#"+tok(e));}catch(_){}}
+})();
+
+/* ---------- Installer sur l'écran d'accueil ---------- */
+let bip=null;window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();bip=e;});
+const standalone=()=>{try{return matchMedia("(display-mode: standalone)").matches||navigator.standalone===true}catch(_){return false}};
+if(standalone())document.querySelectorAll("[data-install]").forEach(b=>b.hidden=true);
+const SHARE_I='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3M8 7l4-4 4 4"/><path d="M6 11H5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1h-1"/></svg>';
+const MENU_I='<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="12" cy="19" r="1.8"/></svg>';
+const STEPS={
+ ios:[`Ouvrez ce lien dans <b>Safari</b> (pas dans l'aperçu d'une autre application : utilisez « Ouvrir dans Safari » si besoin).`,
+      `Touchez le bouton <span class="k">${SHARE_I}Partager</span> en bas de l'écran.`,
+      `Faites défiler et choisissez <span class="k">Sur l'écran d'accueil</span>.`,
+      `Remplacez le nom proposé par <b>Annuaire Santé Mentale Marseille</b>, puis touchez <span class="k">Ajouter</span>.`],
+ android:[`Ouvrez ce lien dans <b>Chrome</b>.`,
+      `Touchez le menu <span class="k">${MENU_I}</span> en haut à droite.`,
+      `Choisissez <span class="k">Ajouter à l'écran d'accueil</span> (ou <span class="k">Installer</span>).`,
+      `Remplacez le nom proposé par <b>Annuaire Santé Mentale Marseille</b>, puis validez <span class="k">Ajouter</span>.`]};
+const insEl=document.getElementById("install");let insOS=/iPhone|iPad|iPod|Macintosh.*Mobile/.test(navigator.userAgent)?"ios":"android";
+const HASMAN=!!document.querySelector('link[rel="manifest"]');
+if(HASMAN){STEPS.ios[3]=`Le nom <b>Annuaire Santé Mentale Marseille</b> et le logo sont déjà remplis : touchez <span class="k">Ajouter</span>.`;STEPS.android[3]=`Confirmez avec <span class="k">Installer</span> : l'annuaire apparaît avec son logo.`;}
+function paintInstall(){
+  document.getElementById("ins-steps").innerHTML=STEPS[insOS].map(s=>`<li><span>${s}</span></li>`).join("");
+  document.querySelectorAll("#ins-os button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.os===insOS));
+  document.getElementById("ins-now").hidden=!bip;
+}
+function openInstall(){paintInstall();insEl.hidden=false;document.body.classList.add("locked");}
+function closeInstall(){insEl.hidden=true;if(fEl.hidden)document.body.classList.remove("locked");}
+document.addEventListener("click",e=>{if(e.target.closest("[data-install]"))openInstall();});
+insEl.addEventListener("click",e=>{
+  if(e.target===insEl||e.target.closest("[data-closeinstall]"))return closeInstall();
+  const o=e.target.closest("#ins-os button");if(o){insOS=o.dataset.os;paintInstall();return;}
+  const c=e.target.closest("[data-copyname]");if(c)return copy("Annuaire Santé Mentale Marseille",c);
+  if(e.target.closest("#ins-prompt")&&bip){bip.prompt();bip.userChoice.finally(()=>{bip=null;closeInstall();});}
+});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!insEl.hidden)closeInstall();});
+
+/* Application installable : service worker (copie hors connexion, mises à jour automatiques) */
+if("serviceWorker" in navigator&&location.protocol!=="file:"){window.addEventListener("load",()=>{navigator.serviceWorker.register("sw.js").then(r=>r.update()).catch(()=>{});});}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "name": "Annuaire Santé Mentale Marseille",
+  "short_name": "Santé Mentale 13",
+  "description": "Addictologie, CMP de secteur, urgences psychiatriques et équipes mobiles à Marseille et dans les Bouches-du-Rhône.",
+  "lang": "fr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f6f3ee",
+  "theme_color": "#0d5a88",
+  "icons": [
+    {"src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}
