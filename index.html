@@ -23,7 +23,7 @@
   --accent:#0d5a88; --accent-deep:#0b4a70; --accent-soft:#e6f0f7; --on-accent:#ffffff;
   --good:#2b6a3c; --good-soft:#e2f0e5; --warn:#8a5a00; --warn-soft:#fbf1dc; --bad:#a3322a; --bad-soft:#f8e2df;
   --m1:#0075be; --m2:#e30513; --tram:#96be0d; --t1:#f18e00; --t2:#f5e615; --t3:#96be0d; --bus:#4c5a63;
-  --t-cure:#b2473a; --t-postcure:#2b7a46; --t-hdj:#a8720c; --t-resid:#7a55a0; --t-csapa:#0d5a88; --t-liberal:#3d7480; --t-rdr:#b85a12; --t-cmp:#8a3d6b; --t-urg:#b3261e; --t-mob:#2f7d6d;
+  --t-cure:#b2473a; --t-postcure:#2b7a46; --t-hdj:#a8720c; --t-resid:#7a55a0; --t-csapa:#0d5a88; --t-liberal:#3d7480; --t-rdr:#b85a12; --t-hosp:#4b5fa8; --t-cmp:#8a3d6b; --t-urg:#b3261e; --t-mob:#2f7d6d;
   --sea:#bcd5e3; --sea-ink:#5f8aa6; --land:#ece6dc; --land-ink:#8a8173; --pin-ring:#ffffff; --pin-text:#ffffff;
   --shadow:0 8px 24px -12px rgba(20,40,55,.35);
   --display:"Newsreader",Georgia,"Times New Roman",serif;
@@ -35,7 +35,7 @@
   --accent:#7fbde2; --accent-deep:#0b3550; --accent-soft:#183140; --on-accent:#0b1c26;
   --good:#8fcb9b; --good-soft:#1a2e21; --warn:#e8bf6a; --warn-soft:#2e2715; --bad:#ef9a8f; --bad-soft:#36201d;
   --m1:#3f9be0; --m2:#f0484f; --tram:#a8d12a; --t1:#f5a030; --t2:#f5e615; --t3:#a8d12a; --bus:#9aa8b1;
-  --t-cure:#e8968a; --t-postcure:#8fcb9b; --t-hdj:#e8bf6a; --t-resid:#c3a6e2; --t-csapa:#7fbde2; --t-liberal:#8fc1cc; --t-rdr:#f0a86e; --t-cmp:#e3a2c8; --t-urg:#ff8f86; --t-mob:#7fd1bf;
+  --t-cure:#e8968a; --t-postcure:#8fcb9b; --t-hdj:#e8bf6a; --t-resid:#c3a6e2; --t-csapa:#7fbde2; --t-liberal:#8fc1cc; --t-rdr:#f0a86e; --t-hosp:#a3b1ef; --t-cmp:#e3a2c8; --t-urg:#ff8f86; --t-mob:#7fd1bf;
   --sea:#14354a; --sea-ink:#6f9bb6; --land:#1b2932; --land-ink:#8797a1; --pin-ring:#0f1a22; --pin-text:#0b1c26;
   --shadow:0 8px 24px -12px rgba(0,0,0,.7); color-scheme:dark}}
 :root[data-theme="dark"]{
@@ -43,7 +43,7 @@
   --accent:#7fbde2; --accent-deep:#0b3550; --accent-soft:#183140; --on-accent:#0b1c26;
   --good:#8fcb9b; --good-soft:#1a2e21; --warn:#e8bf6a; --warn-soft:#2e2715; --bad:#ef9a8f; --bad-soft:#36201d;
   --m1:#3f9be0; --m2:#f0484f; --tram:#a8d12a; --t1:#f5a030; --t2:#f5e615; --t3:#a8d12a; --bus:#9aa8b1;
-  --t-cure:#e8968a; --t-postcure:#8fcb9b; --t-hdj:#e8bf6a; --t-resid:#c3a6e2; --t-csapa:#7fbde2; --t-liberal:#8fc1cc; --t-rdr:#f0a86e; --t-cmp:#e3a2c8; --t-urg:#ff8f86; --t-mob:#7fd1bf;
+  --t-cure:#e8968a; --t-postcure:#8fcb9b; --t-hdj:#e8bf6a; --t-resid:#c3a6e2; --t-csapa:#7fbde2; --t-liberal:#8fc1cc; --t-rdr:#f0a86e; --t-hosp:#a3b1ef; --t-cmp:#e3a2c8; --t-urg:#ff8f86; --t-mob:#7fd1bf;
   --sea:#14354a; --sea-ink:#6f9bb6; --land:#1b2932; --land-ink:#8797a1; --pin-ring:#0f1a22; --pin-text:#0b1c26;
   --shadow:0 8px 24px -12px rgba(0,0,0,.7); color-scheme:dark}
 *{box-sizing:border-box}
@@ -884,6 +884,11 @@ if(!ARRL["3"])ARRL["3"]="3ᵉ · Belle de Mai, Saint-Lazare";
 (()=>{const sel=document.getElementById("arr");if(!sel)return;const have=new Set([...sel.options].map(o=>o.value));const used=new Set(D.flatMap(d=>d.arr||[]));
  sel.innerHTML='<option value="">Tous les quartiers</option>';Object.keys(ARRL).filter(k=>used.has(k)).sort((a,b)=>(parseInt(a)||99)-(parseInt(b)||99)).forEach(k=>{const o=document.createElement("option");o.value=k;o.textContent=ARRL[k];sel.appendChild(o);});})();
 
+/* « CSAPA » ne garde que les vrais CSAPA (et leurs consultations jeunes, antennes et équipes) ;
+   les consultations d'addictologie des hôpitaux passent dans leur propre catégorie */
+(()=>{const HOSP=["salon","arles","valvert","edt","martigues","ciotat","conception"];
+ D.forEach(d=>{if(HOSP.includes(d.id))d.t=d.t.map(t=>t==="csapa"?"hosp":t);if(d.id==="lib-mareposa")d.t=d.t.filter(t=>t!=="csapa");});})();
+
 
 /* ===== Psychiatrie adulte : CMP de secteur de Marseille =====
    Sectorisation et règle « sans domicile » : site de l'AP-HM (secteur Centre) et guide d'orientation
@@ -1018,10 +1023,10 @@ Object.assign(GEO,{"mob-marss":[43.28847,5.38159],"mob-emlpp":[43.38108,5.3596]}
 
 
 /* ================= Interface ================= */
-const ORDER=["cure","postcure","hdj","resid","csapa","rdr","liberal","cmp","mob","urg"];
-const L={cure:"Cure",postcure:"Post-cure",hdj:"Hôpital de jour",resid:"Hébergement",csapa:"Consultation",rdr:"Réduction des risques",liberal:"Médecin libéral",cmp:"CMP adulte",mob:"Équipe mobile",urg:"Urgences psy"};
+const ORDER=["cure","postcure","hdj","resid","csapa","hosp","rdr","liberal","cmp","mob","urg"];
+const L={cure:"Cure",postcure:"Post-cure",hdj:"Hôpital de jour",resid:"Hébergement",csapa:"CSAPA",hosp:"Consultation hospitalière",rdr:"Réduction des risques",liberal:"Médecin libéral",cmp:"CMP adulte",mob:"Équipe mobile",urg:"Urgences psy"};
 const LV={mention:"Certifié avec mention",confirmee:"Qualité des soins confirmée",conditions:"Certifié sous conditions",non:"Non certifié"};
-const GROUPS={cure:"Cure · sevrage hospitalier",postcure:"Post-cure",hdj:"Hôpital de jour",resid:"Hébergement thérapeutique",csapa:"Consultation · CSAPA",rdr:"Réduction des risques · CAARUD",liberal:"Médecins libéraux",cmp:"CMP adultes de Marseille",match:"CMP de rattachement",urg:"Urgences psychiatriques et crise",mob:"Équipes mobiles · personnes à la rue"};
+const GROUPS={cure:"Cure · sevrage hospitalier",postcure:"Post-cure",hdj:"Hôpital de jour",resid:"Hébergement thérapeutique",csapa:"CSAPA",hosp:"Consultations d'addictologie à l'hôpital",rdr:"Réduction des risques · CAARUD",liberal:"Médecins libéraux",cmp:"CMP adultes de Marseille",match:"CMP de rattachement",urg:"Urgences psychiatriques et crise",mob:"Équipes mobiles · personnes à la rue"};
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const dest=d=>(/Microstructures/.test(d.n)?"":d.n+", ")+d.a;
 const mapUrl=d=>"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(dest(d));
@@ -1057,6 +1062,7 @@ const I={
  hdj:'<circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6 6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4"/>',
  resid:'<path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v10h13V10"/><path d="M10 20v-5h4v5"/>',
  csapa:'<path d="M20.5 12a8.5 8.5 0 0 1-12.3 7.6L3.5 20.5l1-4.4A8.5 8.5 0 1 1 20.5 12z"/>',
+ hosp:'<rect x="4" y="6" width="16" height="15" rx="1.5"/><path d="M9 21v-4h6v4M12 9v5M9.5 11.5h5M8 3h8v3H8z"/>',
  rdr:'<path d="M12 20.5s-7.5-4.6-7.5-10.4A4.4 4.4 0 0 1 12 7.3a4.4 4.4 0 0 1 7.5 2.8c0 5.8-7.5 10.4-7.5 10.4z"/><path d="M9 12.5h6M12 9.5v6"/>',
  liberal:'<path d="M6 3v6a5 5 0 0 0 10 0V3"/><path d="M11 14v2.5a4.5 4.5 0 0 0 9 0V14"/><circle cx="20" cy="12" r="2"/>',
  doc:'<path d="M14 3H6.5A1.5 1.5 0 0 0 5 4.5v15A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V8z"/><path d="M14 3v5h5M8.5 13h7M8.5 17h5"/>',
@@ -1068,7 +1074,7 @@ const I={
  photo:'<rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.8"/><path d="m21 16-5-5-9 8"/>'
 };
 const ico=(k,extra="")=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"${extra}>${I[k]}</svg>`;
-const OPTS=[["cure","Cure","Sevrage hospitalier, 1 à 3 semaines"],["postcure","Post-cure","Consolidation, 5 semaines à 3 mois"],["hdj","Hôpital de jour","Soins en journée, retour le soir"],["resid","Hébergement","Centre ou appartement thérapeutique"],["csapa","Consultation · CSAPA","Premier contact, bilan, suivi"],["rdr","Réduction des risques","CAARUD, sans rendez-vous ni démarche de soin"],["liberal","Médecin libéral","Suivi en cabinet, substitution"]];
+const OPTS=[["cure","Cure","Sevrage hospitalier, 1 à 3 semaines"],["postcure","Post-cure","Consolidation, 5 semaines à 3 mois"],["hdj","Hôpital de jour","Soins en journée, retour le soir"],["resid","Hébergement","Centre ou appartement thérapeutique"],["csapa","CSAPA","Centre spécialisé : accueil, bilan, suivi, substitution"],["hosp","Consultation à l'hôpital","Addictologue hospitalier, ELSA"],["rdr","Réduction des risques","CAARUD, sans rendez-vous ni démarche de soin"],["liberal","Médecin libéral","Suivi en cabinet, substitution"]];
 
 /* ---------- État et filtres ---------- */
 const S={mode:"addicto",types:[],lg:"oui",hm:"oui",sec:"all",arr:"",q:"",psy:{how:"",arr:"",sub:"",day:"",month:""}};
