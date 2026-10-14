@@ -864,6 +864,27 @@ D.push(
 })();
 Object.assign(GEO,{conception:[43.29141,5.39606],aphmprec:[43.25954,5.41056],emap:[43.3237,5.3676],sleepin:[43.30168,5.38222],tipi:[43.29545,5.38491],caarudbus:[43.28489,5.39343],protox:[43.26252,5.41269]});
 
+/* Médecins libéraux signalés par un confrère (octobre 2026) */
+D.push(
+{id:"lib-achour",t:["liberal"],pub:1,mrs:1,p:"Marseille 3ᵉ",sec:"1",arr:["3"],
+ n:"Dr Yannis Achour",o:"Médecin généraliste · secteur 1",a:"54 rue Clovis Hugues, 13003 Marseille",
+ f:["Médecin généraliste signalé par un confrère pour le suivi en addictologie","Secteur 1, carte Vitale acceptée","Prise de rendez-vous par son site ; pas de numéro de téléphone publié"],
+ send:"Prise de rendez-vous en ligne sur le site du cabinet.",
+ docs:[["Prendre rendez-vous (site du cabinet)","https://docteurachour.fr","docteurachour.fr"]],
+ c:[],note:"Coordonnées d'après sante.fr. Pratique de l'addictologie à confirmer auprès du médecin."},
+{id:"lib-driot",t:["liberal"],pub:1,mrs:1,p:"Marseille 6ᵉ",sec:"1",arr:["6"],
+ n:"Dr Damien Driot",o:"Médecin généraliste · secteur 1",a:"21 rue Bonnefoy, 13006 Marseille (Vauban)",
+ f:["Médecin généraliste signalé par un confrère pour le suivi en addictologie","Secteur 1","Rendez-vous sur Doctolib ou par le secrétariat"],
+ send:"Prise de rendez-vous sur Doctolib ou par téléphone.",
+ docs:[["Prendre rendez-vous (Doctolib)","https://www.doctolib.fr/medecin-generaliste/marseille/damien-driot","Doctolib"]],
+ c:[["Secrétariat","04 91 55 61 61"]],note:"Coordonnées d'après sante.fr. Pratique de l'addictologie à confirmer auprès du médecin."}
+);
+Object.assign(GEO,{"lib-achour":[43.31046,5.38534],"lib-driot":[43.28626,5.37499]});
+if(!ARRL["3"])ARRL["3"]="3ᵉ · Belle de Mai, Saint-Lazare";
+(()=>{const sel=document.getElementById("arr");if(!sel)return;const have=new Set([...sel.options].map(o=>o.value));const used=new Set(D.flatMap(d=>d.arr||[]));
+ sel.innerHTML='<option value="">Tous les quartiers</option>';Object.keys(ARRL).filter(k=>used.has(k)).sort((a,b)=>(parseInt(a)||99)-(parseInt(b)||99)).forEach(k=>{const o=document.createElement("option");o.value=k;o.textContent=ARRL[k];sel.appendChild(o);});})();
+
+
 /* ===== Psychiatrie adulte : CMP de secteur de Marseille =====
    Sectorisation et règle « sans domicile » : site de l'AP-HM (secteur Centre) et guide d'orientation
    vers la psychiatrie ambulatoire à Marseille (2017). Coordonnées : annuaire ARCA-Sud (octobre 2026),
@@ -994,6 +1015,7 @@ const MOB=[
 MOB.forEach(d=>{d.t=["mob"];d.pub=1;d.mrs=1;});
 D.push(...MOB);
 Object.assign(GEO,{"mob-marss":[43.28847,5.38159],"mob-emlpp":[43.38108,5.3596]});
+
 
 /* ================= Interface ================= */
 const ORDER=["cure","postcure","hdj","resid","csapa","rdr","liberal","cmp","mob","urg"];
@@ -1547,7 +1569,6 @@ insEl.addEventListener("click",e=>{
 });
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!insEl.hidden)closeInstall();});
 
-/* Application installable : service worker (copie hors connexion, mises à jour automatiques) */
 if("serviceWorker" in navigator&&location.protocol!=="file:"){window.addEventListener("load",()=>{navigator.serviceWorker.register("sw.js").then(r=>r.update()).catch(()=>{});});}
 
 </script>
