@@ -1099,7 +1099,9 @@ const base=(d,s)=>{
 const matched=(d,s)=>{if(s.mode==="psy")return[d.t[0]];let ts=d.t.filter(t=>!s.types.length||s.types.includes(t));
   if(s.types.includes("cure")&&s.lg==="non"&&!d.pub)ts=ts.filter(t=>t!=="cure");return ts;};
 const rank=(d,s)=>Math.min(...matched(d,s).map(t=>ORDER.indexOf(t)));
-const needs=()=>({lg:S.types.includes("cure"),hm:!S.types.length||S.types.some(t=>t!=="liberal"),lib:S.types.includes("liberal")});
+/* « Hors de Marseille ? » n'est demandé que si un des types choisis a vraiment des lieux hors de Marseille */
+const hasOutside=()=>D.some(d=>!d.mrs&&!isLib(d)&&!["cmp","urg","mob"].includes(d.t[0])&&matched(d,{...S,mode:"addicto"}).length);
+const needs=()=>({lg:S.types.includes("cure"),hm:(!S.types.length||S.types.some(t=>t!=="liberal"))&&hasOutside(),lib:S.types.includes("liberal")});
 
 /* ---------- Étape 1 ---------- */
 const optsEl=document.getElementById("opts");
