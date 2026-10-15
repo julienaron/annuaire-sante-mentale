@@ -152,6 +152,22 @@ select.arrsel{width:100%;border:1.5px solid var(--line);background:var(--surface
 .steps li::before{content:counter(s);width:26px;height:26px;border-radius:50%;background:var(--accent);color:var(--on-accent);display:grid;place-items:center;font-weight:700;font-size:13px}
 .steps .k{display:inline-flex;align-items:center;gap:4px;border:1px solid var(--line);background:var(--sunk);border-radius:8px;padding:1px 7px;font-weight:600;white-space:nowrap}
 .steps .k svg{width:16px;height:16px}
+.searchopen{display:flex;align-items:center;gap:10px;width:100%;margin-top:12px;border:0;border-radius:14px;background:#fff;color:#5f6b75;padding:13px 14px;font-size:15.5px;text-align:left;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.searchopen svg{width:20px;height:20px;flex:none;color:#0d5a88}
+.stop{position:sticky;top:0;z-index:6;background:#0d5a88;padding:10px 0}
+.stop .col{display:flex;gap:10px;align-items:center}
+.sfield{flex:1;min-width:0;display:flex;align-items:center;gap:8px;background:#fff;border-radius:14px;padding:0 6px 0 12px}
+.sfield svg{width:19px;height:19px;flex:none;color:#0d5a88}
+.sfield input{flex:1;min-width:0;border:0;outline:0;background:none;color:#1b2a35;font-size:16px;padding:12px 0}
+.sfield input::-webkit-search-cancel-button{display:none}
+.sfield button{border:0;background:#eef1f3;color:#1b2a35;border-radius:50%;width:30px;height:30px;font-size:18px;line-height:1;flex:none}
+.sugg{display:flex;flex-wrap:wrap;gap:8px}
+.sugg button{border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:8px 13px;font-size:14px;font-weight:600;color:var(--fg)}
+.scard{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:12px 14px;display:grid;gap:5px;text-align:left;width:100%;min-width:0}
+.scard h3{margin:0;font:600 17px/1.25 var(--display);overflow-wrap:anywhere}
+.scard .org{font-size:13px;color:var(--muted);overflow-wrap:anywhere}
+.scard .where{font:500 12px var(--mono);color:var(--muted)}
+.scard mark{background:color-mix(in srgb,var(--accent) 22%,transparent);color:inherit;border-radius:3px;padding:0 1px}
 /* ---------- Résultats ---------- */
 .rtop{position:sticky;top:0;z-index:6;background:#0d5a88;color:#fff}
 .rtop .col{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:10px;padding-bottom:10px}
@@ -313,6 +329,7 @@ select.arrsel{width:100%;border:1.5px solid var(--line);background:var(--surface
       <div class="eyebrow"><span class="dot13">13</span>Marseille · Bouches-du-Rhône</div>
       <h1>Trouver un lieu de soin en addictologie</h1>
       <p>Deux questions, puis la carte et les fiches à montrer au patient.</p>
+      <button class="searchopen" type="button" data-search><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>Rechercher un lieu, un médecin, une ville…</button>
       <div class="modetabs" role="tablist" aria-label="Domaine">
         <button type="button" role="tab" data-mode="addicto">Addictologie</button>
         <button type="button" role="tab" data-mode="psy">Psychiatrie · CMP</button>
@@ -347,6 +364,7 @@ select.arrsel{width:100%;border:1.5px solid var(--line);background:var(--surface
       <div class="eyebrow"><span class="dot13">13</span>Marseille · psychiatrie adulte</div>
       <h1>Trouver le CMP de secteur</h1>
       <p>Par l'adresse du patient, ou par sa date de naissance s'il est sans domicile.</p>
+      <button class="searchopen" type="button" data-search><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>Rechercher un lieu, un médecin, une ville…</button>
       <div class="modetabs" role="tablist" aria-label="Domaine">
         <button type="button" role="tab" data-mode="addicto">Addictologie</button>
         <button type="button" role="tab" data-mode="psy">Psychiatrie · CMP</button>
@@ -397,6 +415,21 @@ select.arrsel{width:100%;border:1.5px solid var(--line);background:var(--surface
     <a class="bb-arca" href="tel:15">Urgence<b>15</b></a>
     <button class="cta" type="button" id="pnext">Voir sur la carte →</button>
   </div></div>
+</div>
+
+<div id="v-search" class="view" data-view="recherche" hidden>
+  <div class="stop"><div class="col">
+    <button class="iconback" type="button" data-back aria-label="Retour">←</button>
+    <div class="sfield"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg><input id="sq" type="search" placeholder="Nom, ville, quartier, produit…" aria-label="Rechercher dans l'annuaire" autocomplete="off" enterkeyhint="search"><button type="button" id="sqclear" aria-label="Effacer" hidden>×</button></div>
+  </div></div>
+  <main class="col" style="padding-top:12px;padding-bottom:40px">
+    <div id="shint">
+      <p class="qsub" style="margin:0 0 10px">Cherche dans tout l'annuaire : addictologie et psychiatrie.</p>
+      <div class="sugg" id="sugg"></div>
+    </div>
+    <p class="qsub" id="scount" hidden></p>
+    <div class="cards" id="sout"></div>
+  </main>
 </div>
 
 <div id="v-q2" class="view" data-view="q2" hidden>
@@ -1495,22 +1528,52 @@ document.querySelectorAll(".modetabs").forEach(t=>t.addEventListener("click",e=>
   const v=S.mode==="psy"?"p1":"q1";stack[stack.length-1]=v;display(v);
   try{history.replaceState({i:stack.length,e:v},"","#"+v);}catch(_){}}));
 
+/* ---------- Recherche dans tout l'annuaire ---------- */
+const nrm=s=>String(s??"").replace(/ᵉ/g,"e").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
+const TYPEWORDS={cure:"cure sevrage hospitalisation",postcure:"post-cure postcure ssr smr",hdj:"hopital de jour hdj",resid:"hebergement appartement therapeutique residentiel",csapa:"csapa",hosp:"consultation hopital elsa",spec:"jeunes consommateurs cjc parents",amob:"equipe mobile",rdr:"reduction des risques caarud rdr",liberal:"medecin liberal generaliste",cmp:"cmp centre medico-psychologique psychiatrie secteur",urg:"urgences psychiatriques crise",mob:"equipe mobile rue precarite"};
+const SEARCHIDX=new Map();
+const sIndex=d=>{if(!SEARCHIDX.has(d.id))SEARCHIDX.set(d.id,{name:nrm(d.n+" "+(d.o||"")),all:nrm([d.n,d.o,d.a,d.p,(d.f||[]).join(" "),(d.act||[]).join(" "),(d.der||[]).join(" "),d.cover||"",d.sect||"",(d.c||[]).map(c=>c.join(" ")).join(" "),d.t.map(t=>TYPEWORDS[t]||"").join(" "),(d.tr||[]).map(x=>x.join(" ")).join(" "),accessText(d)].join(" "))});return SEARCHIDX.get(d.id);};
+const hl=(s,words)=>{let h=esc(s);words.forEach(w=>{if(w.length<2)return;const src=nrm(s);let out="",i=0,j;const plain=String(s);let k=0;let res="";let idx=src.indexOf(w);if(idx<0)return;
+  /* surligne la première occurrence (texte d'origine, même longueur une fois normalisé) */
+  h=esc(plain.slice(0,idx))+"<mark>"+esc(plain.slice(idx,idx+w.length))+"</mark>"+esc(plain.slice(idx+w.length));});return h;};
+function paintSearch(focus){
+  const inp=document.getElementById("sq"),q=nrm(inp.value).trim(),words=q.split(/\s+/).filter(Boolean);
+  document.getElementById("sqclear").hidden=!q;document.getElementById("shint").hidden=!!q;
+  const out=document.getElementById("sout"),cnt=document.getElementById("scount");
+  if(!q){out.innerHTML="";cnt.hidden=true;}
+  else{
+    const hits=D.map(d=>{const ix=sIndex(d);if(!words.every(w=>ix.all.includes(w)))return null;let sc=0;words.forEach(w=>{if(ix.name.includes(w))sc+=10;if(ix.name.split(/\s+/).some(x=>x.startsWith(w)))sc+=5;});return{d,sc};}).filter(Boolean).sort((a,b)=>b.sc-a.sc||a.d.n.localeCompare(b.d.n,"fr"));
+    cnt.hidden=false;cnt.textContent=hits.length?`${hits.length} résultat${hits.length>1?"s":""}`:"Aucun résultat. Essayez un autre mot : un nom, un quartier, « méthadone », « jeunes »…";
+    out.innerHTML=hits.slice(0,60).map(({d})=>`<button type="button" class="scard" data-open="${d.id}"><div class="tags">${tagsHtml(d)}${d.warn?`<span class="verify">${esc(d.warn)}</span>`:""}</div><h3>${hl(d.n,words)}</h3><div class="org">${hl(d.o||"",words)}</div><div class="where">${esc(d.p)}${d.cover?" · secteur "+esc(d.sect):""}</div>${transit(d)}</button>`).join("");
+  }
+  if(focus)setTimeout(()=>{try{inp.focus({preventScroll:true})}catch(_){}},60);
+}
+(()=>{const s=["Méthadone","Jeunes","CMP 13ᵉ","Allauch","Castellane","Urgences","Sans rendez-vous","Alcool"];
+  document.getElementById("sugg").innerHTML=s.map(x=>`<button type="button" data-q="${esc(x)}">${esc(x)}</button>`).join("");})();
+document.getElementById("sq").addEventListener("input",()=>paintSearch(false));
+document.getElementById("sqclear").addEventListener("click",()=>{const i=document.getElementById("sq");i.value="";paintSearch(true);});
+document.getElementById("v-search").addEventListener("click",e=>{
+  const g=e.target.closest("[data-q]");if(g){const i=document.getElementById("sq");i.value=g.dataset.q.replace("ᵉ","e");paintSearch(false);return;}
+  const o=e.target.closest("[data-open]");if(o){document.getElementById("sq").blur();push("fiche:"+o.dataset.open);}
+});
+document.addEventListener("click",e=>{if(e.target.closest("[data-search]"))push("recherche");});
+
 /* ---------- Navigation ----------
    Une pile d'écrans gérée par l'application : les boutons « Retour » marchent toujours,
    et le bouton retour du téléphone suit la même pile quand le navigateur le permet. */
-const VIEWS={q1:"v-q1",p1:"v-p1",q2:"v-q2",resultats:"v-res"};
-const PARENT=e=>e.startsWith("fiche:")?"resultats":e==="resultats"?(S.mode==="psy"?"p1":"q2"):(S.mode==="psy"?"p1":"q1");
+const VIEWS={q1:"v-q1",p1:"v-p1",q2:"v-q2",resultats:"v-res",recherche:"v-search"};
+const PARENT=e=>e==="recherche"?(S.mode==="psy"?"p1":"q1"):e.startsWith("fiche:")?"resultats":e==="resultats"?(S.mode==="psy"?"p1":"q2"):(S.mode==="psy"?"p1":"q1");
 let stack=[],skipPop=0,skipT=0;
 const tok=e=>e.replace(":","-");
 function show(v){
   Object.entries(VIEWS).forEach(([k,id])=>document.getElementById(id).hidden=k!==v);
   document.querySelectorAll(".modetabs button").forEach(b=>b.setAttribute("aria-selected",b.dataset.mode===S.mode));
-  if(v==="q1")paintQ1();if(v==="p1")paintP1();if(v==="q2")paintQ2();if(v==="resultats")render();
+  if(v==="q1")paintQ1();if(v==="p1")paintP1();if(v==="recherche")paintSearch(true);if(v==="q2")paintQ2();if(v==="resultats")render();
 }
 function display(e){
   document.querySelectorAll("[data-ifhist]").forEach(b=>b.hidden=stack.length<2);
   document.querySelectorAll(".modetabs button").forEach(b=>b.setAttribute("aria-selected",b.dataset.mode===S.mode));
-  if(e.startsWith("fiche:")){if(document.getElementById("v-res").hidden)show("resultats");openFiche(e.slice(6));return;}
+  if(e.startsWith("fiche:")){if(Object.values(VIEWS).every(id=>document.getElementById(id).hidden))show("resultats");openFiche(e.slice(6));return;}
   const wasFiche=!fEl.hidden;hideFiche();
   if(document.getElementById(VIEWS[e]).hidden){show(e);window.scrollTo(0,0);}
   else if(!wasFiche)window.scrollTo(0,0);
