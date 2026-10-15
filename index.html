@@ -168,6 +168,47 @@ select.arrsel{width:100%;border:1.5px solid var(--line);background:var(--surface
 .scard .org{font-size:13px;color:var(--muted);overflow-wrap:anywhere}
 .scard .where{font:500 12px var(--mono);color:var(--muted)}
 .scard mark{background:color-mix(in srgb,var(--accent) 22%,transparent);color:inherit;border-radius:3px;padding:0 1px}
+/* ===== accueil condensé ===== */
+#v-q1 .hero,#v-p1 .hero{padding:12px 0 26px}
+#v-q1 .hero .col,#v-p1 .hero .col{gap:4px}
+#v-q1 .hero h1,#v-p1 .hero h1{font-size:clamp(21px,6vw,26px);margin:4px 0 0}
+#v-q1 .eyebrow,#v-p1 .eyebrow{font-size:10.5px}
+#v-q1 .dot13,#v-p1 .dot13{width:22px;height:22px;font-size:10px}
+.searchopen{margin-top:8px;padding:11px 12px;font-size:15px}
+.modetabs{margin-top:8px}.modetabs button{padding:8px 6px;font-size:14px}
+#v-q1 .wave,#v-p1 .wave{height:18px}
+#v-q1 .prog{display:none}
+#v-q1 .qh,#v-p1 .qh{font-size:19px;margin-top:4px}
+#v-q1 .qsub{margin:0 0 8px;font-size:13px}
+#opts{gap:8px}
+#opts .op{display:grid;grid-template-columns:30px 1fr;column-gap:9px;align-items:center;min-height:0;padding:9px 9px;border-radius:14px}
+#opts .op .ic{width:30px;height:30px;margin:0;border-radius:9px;transition:background .15s,color .15s}
+#opts .op .ic svg{width:18px;height:18px}
+#opts .op[aria-pressed="true"] .ic{background:var(--c);color:#fff}
+#opts .op .tick{display:none}
+#opts .op .tx{display:block;min-width:0}
+#opts .op b{display:block;font-size:14px;line-height:1.2}
+#opts .op .ds{display:inline;font-size:11.8px;color:var(--muted);line-height:1.25}
+#opts .op em{position:absolute;top:8px;right:9px;padding:0;font:600 11px var(--mono);color:var(--muted)}
+#opts .op b{padding-right:18px}
+#opts .op .ds{display:block}
+#opts .op:last-child:nth-child(odd){grid-column:1/-1}
+#v-q1 .alllink{margin-top:8px;padding:6px}
+#v-q1 .installbtn{padding:9px;font-size:14px}
+#v-q1 .arca{margin-top:12px;padding:10px 12px;font-size:13px}
+#v-q1 .arca .arcanum{font-size:16px}
+#v-p1 .qcard{padding:12px}
+#v-p1 .qsub{margin:0 0 8px;font-size:13px}
+#p-how{gap:8px}
+#p-how .op{padding:10px 10px 10px;gap:2px}
+#p-how .op .ic{width:32px;height:32px;margin-bottom:2px}
+#p-how .op .ic svg{width:19px;height:19px}
+#p-how .op b{font-size:14.5px}
+#p-how .op span:not(.ic):not(.tick){font-size:12px}
+#p-how .op .tick{width:18px;height:18px;font-size:10px;top:8px;right:8px}
+.mobbtn{padding:9px 12px;gap:10px}.mobbtn .ic{width:32px;height:32px}
+#v-p1 .alllink{margin-top:6px;padding:6px}
+#v-p1 .installbtn{padding:9px;font-size:14px}
 /* ---------- Résultats ---------- */
 .rtop{position:sticky;top:0;z-index:6;background:#0d5a88;color:#fff}
 .rtop .col{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:10px;padding-bottom:10px}
@@ -327,9 +368,8 @@ select.arrsel{width:100%;border:1.5px solid var(--line);background:var(--surface
     <div class="col">
       <button class="backlink" type="button" data-back data-ifhist hidden>← Retour</button>
       <div class="eyebrow"><span class="dot13">13</span>Marseille · Bouches-du-Rhône</div>
-      <h1>Trouver un lieu de soin en addictologie</h1>
-      <p>Deux questions, puis la carte et les fiches à montrer au patient.</p>
-      <button class="searchopen" type="button" data-search><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>Rechercher un lieu, un médecin, une ville…</button>
+      <h1>Addictologie et santé mentale</h1>
+      <button class="searchopen" type="button" data-search><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>Rechercher un lieu, un nom…</button>
       <div class="modetabs" role="tablist" aria-label="Domaine">
         <button type="button" role="tab" data-mode="addicto">Addictologie</button>
         <button type="button" role="tab" data-mode="psy">Psychiatrie · CMP</button>
@@ -346,7 +386,7 @@ select.arrsel{width:100%;border:1.5px solid var(--line);background:var(--surface
     <button class="installbtn" type="button" data-install><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M12 7.5v7M9 11.5l3 3 3-3"/></svg>Installer sur mon téléphone</button>
     <div class="arca">
       <b>Un doute sur l'orientation ? ARCA-Sud</b>
-      <span>Le dispositif régional d'appui en addictologie conseille soignants et usagers et aide à trouver la bonne structure. Équipe des Bouches-du-Rhône basée à Marseille (3 rue d'Arcole, 6ᵉ).</span>
+      <span>Appui régional pour orienter un patient, soignants et usagers.</span>
       <a class="arcanum" href="tel:+33488926888">04 88 92 68 88</a>
       <span class="mono" style="font-size:12.5px">contact@arca-sud.fr</span>
     </div>
@@ -363,8 +403,7 @@ select.arrsel{width:100%;border:1.5px solid var(--line);background:var(--surface
       <button class="backlink" type="button" data-back data-ifhist hidden>← Retour</button>
       <div class="eyebrow"><span class="dot13">13</span>Marseille · psychiatrie adulte</div>
       <h1>Trouver le CMP de secteur</h1>
-      <p>Par l'adresse du patient, ou par sa date de naissance s'il est sans domicile.</p>
-      <button class="searchopen" type="button" data-search><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>Rechercher un lieu, un médecin, une ville…</button>
+      <button class="searchopen" type="button" data-search><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>Rechercher un lieu, un nom…</button>
       <div class="modetabs" role="tablist" aria-label="Domaine">
         <button type="button" role="tab" data-mode="addicto">Addictologie</button>
         <button type="button" role="tab" data-mode="psy">Psychiatrie · CMP</button>
@@ -376,10 +415,10 @@ select.arrsel{width:100%;border:1.5px solid var(--line);background:var(--surface
     <h2 class="qh" style="margin-top:8px">Le patient a-t-il un domicile ?</h2>
     <p class="qsub">Le CMP dépend du lieu de vie.</p>
     <div class="howgrid" id="p-how">
-      <button type="button" class="op" data-how="addr" aria-pressed="false" style="--c:var(--t-cmp)"><span class="tick">✓</span><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v10h13V10"/><path d="M10 20v-5h4v5"/></svg></span><b>Oui, il a une adresse</b><span>Hébergé, en CHRS, CADA ou à l'hôtel compte aussi : c'est l'adresse du lieu de vie</span></button>
-      <button type="button" class="op" data-how="sdf" aria-pressed="false" style="--c:var(--t-cmp)"><span class="tick">✓</span><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></span><b>Sans domicile</b><span>Rue, squat, hébergement d'urgence : le secteur dépend de la date de naissance</span></button>
+      <button type="button" class="op" data-how="addr" aria-pressed="false" style="--c:var(--t-cmp)"><span class="tick">✓</span><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v10h13V10"/><path d="M10 20v-5h4v5"/></svg></span><b>Oui, il a une adresse</b><span>Domicile, CHRS, CADA, hôtel ou hébergé</span></button>
+      <button type="button" class="op" data-how="sdf" aria-pressed="false" style="--c:var(--t-cmp)"><span class="tick">✓</span><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></span><b>Sans domicile</b><span>Secteur selon la date de naissance</span></button>
     </div>
-    <button type="button" class="mobbtn" id="p-mob"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="7" r="3"/><circle cx="17" cy="8" r="2.5"/><path d="M2.5 20c0-3.3 2.5-6 5.5-6s5.5 2.7 5.5 6M14 14.3c.9-.5 1.9-.8 3-.8 2.5 0 4.5 2.2 4.5 5"/></svg></span><span><b>Équipes mobiles</b><small>Personne à la rue ou qui ne vient pas au CMP : MARSS, EMLPP</small></span><span aria-hidden="true">→</span></button>
+    <button type="button" class="mobbtn" id="p-mob"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="7" r="3"/><circle cx="17" cy="8" r="2.5"/><path d="M2.5 20c0-3.3 2.5-6 5.5-6s5.5 2.7 5.5 6M14 14.3c.9-.5 1.9-.8 3-.8 2.5 0 4.5 2.2 4.5 5"/></svg></span><span><b>Équipes mobiles</b><small>Personne à la rue : MARSS, EMLPP</small></span><span aria-hidden="true">→</span></button>
     <section class="qcard" id="p-addr" hidden style="margin-top:12px">
       <span class="lbl">Adresse</span>
       <h3>Arrondissement ou commune</h3>
@@ -1113,7 +1152,7 @@ const I={
  photo:'<rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.8"/><path d="m21 16-5-5-9 8"/>'
 };
 const ico=(k,extra="")=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"${extra}>${I[k]}</svg>`;
-const OPTS=[["cure","Cure","Sevrage hospitalier, 1 à 3 semaines"],["postcure","Post-cure","Consolidation, 5 semaines à 3 mois"],["hdj","Hôpital de jour","Soins en journée, retour le soir"],["resid","Hébergement","Centre ou appartement thérapeutique"],["csapa","CSAPA","Centre spécialisé : accueil, bilan, suivi, substitution"],["hosp","Consultation à l'hôpital","Addictologue hospitalier, ELSA"],["spec","Publics spécifiques","Jeunes consommateurs, parents"],["amob","Équipe mobile","Va vers les personnes, quartiers Nord"],["rdr","Réduction des risques","CAARUD, sans rendez-vous ni démarche de soin"],["liberal","Médecin libéral","Suivi en cabinet, substitution"]];
+const OPTS=[["cure","Cure","Sevrage, 1 à 3 sem."],["postcure","Post-cure","5 sem. à 3 mois"],["hdj","Hôpital de jour","Retour le soir"],["resid","Hébergement","Centre, appartement"],["csapa","CSAPA","Suivi, substitution"],["hosp","Consultation hôpital","Addictologue, ELSA"],["spec","Publics spécifiques","Jeunes, parents"],["amob","Équipe mobile","Va vers les gens"],["rdr","Réduction des risques","CAARUD"],["liberal","Médecin libéral","Cabinet, substitution"]];
 
 /* ---------- État et filtres ---------- */
 const S={mode:"addicto",types:[],lg:"oui",hm:"oui",sec:"all",arr:"",q:"",psy:{how:"",arr:"",sub:"",day:"",month:""}};
@@ -1138,12 +1177,12 @@ const needs=()=>({lg:S.types.includes("cure"),hm:(!S.types.length||S.types.some(
 
 /* ---------- Étape 1 ---------- */
 const optsEl=document.getElementById("opts");
-optsEl.innerHTML=OPTS.map(([k,l,s])=>`<button type="button" class="op" data-k="${k}" aria-pressed="false" style="--c:var(--t-${k})"><span class="tick">✓</span><span class="ic">${ico(k)}</span><b>${l}</b><span>${s}</span><em data-c="${k}"></em></button>`).join("");
+optsEl.innerHTML=OPTS.map(([k,l,s])=>`<button type="button" class="op" data-k="${k}" aria-pressed="false" style="--c:var(--t-${k})"><span class="tick">✓</span><span class="ic">${ico(k)}</span><span class="tx"><b>${l}</b><span class="ds">${s}</span><em data-c="${k}"></em></span></button>`).join("");
 function paintQ1(){
   optsEl.querySelectorAll(".op").forEach(b=>{
     const k=b.dataset.k;b.setAttribute("aria-pressed",S.types.includes(k));
     const n=D.filter(d=>d.t.includes(k)).length;
-    b.querySelector("em").textContent=n+(k==="liberal"?" fiche":" lieu")+(n>1?(k==="liberal"?"s":"x"):"");
+    b.querySelector("em").textContent=String(n);b.querySelector("em").title=n+(k==="liberal"?" fiche":" lieu")+(n>1?(k==="liberal"?"s":"x"):"");
   });
   document.getElementById("next1").textContent=S.types.length?"Continuer →":"Continuer sans choisir →";
 }
