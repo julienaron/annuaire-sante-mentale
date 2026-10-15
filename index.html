@@ -180,7 +180,8 @@ select.arrsel{width:100%;border:1.5px solid var(--line);background:var(--surface
 #v-q1 .prog{display:none}
 #v-q1 .qh,#v-p1 .qh{font-size:19px;margin-top:4px}
 #v-q1 .qsub{margin:0 0 8px;font-size:13px}
-#opts{gap:8px}
+#opts{gap:8px;margin-top:10px}
+#v-q1 .bottombar[hidden]{display:none!important}
 #opts .op{display:grid;grid-template-columns:30px 1fr;column-gap:9px;align-items:center;min-height:0;padding:9px 9px;border-radius:14px}
 #opts .op .ic{width:30px;height:30px;margin:0;border-radius:9px;transition:background .15s,color .15s}
 #opts .op .ic svg{width:18px;height:18px}
@@ -379,8 +380,6 @@ select.arrsel{width:100%;border:1.5px solid var(--line);background:var(--surface
   </header>
   <main class="col qpad">
     <div class="prog" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
-    <h2 class="qh">Que cherchez-vous ?</h2>
-    <p class="qsub">Plusieurs choix possibles.</p>
     <div class="opts" id="opts"></div>
     <button class="alllink" type="button" id="seeall">Tout voir, sans filtre →</button>
     <button class="installbtn" type="button" data-install><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M12 7.5v7M9 11.5l3 3 3-3"/></svg>Installer sur mon téléphone</button>
@@ -1184,7 +1183,7 @@ function paintQ1(){
     const n=D.filter(d=>d.t.includes(k)).length;
     b.querySelector("em").textContent=String(n);b.querySelector("em").title=n+(k==="liberal"?" fiche":" lieu")+(n>1?(k==="liberal"?"s":"x"):"");
   });
-  document.getElementById("next1").textContent=S.types.length?"Continuer →":"Continuer sans choisir →";
+  const nx=document.getElementById("next1");nx.textContent=S.types.length>1?`Continuer avec ${S.types.length} choix →`:"Continuer →";nx.closest(".bottombar").hidden=!S.types.length;
 }
 optsEl.addEventListener("click",e=>{const b=e.target.closest(".op");if(!b)return;const k=b.dataset.k;
   S.types=S.types.includes(k)?S.types.filter(x=>x!==k):[...S.types,k];paintQ1();});
