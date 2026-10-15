@@ -182,15 +182,15 @@ select.arrsel{width:100%;border:1.5px solid var(--line);background:var(--surface
 #v-q1 .qsub{margin:0 0 8px;font-size:13px}
 #opts{gap:8px;margin-top:10px}
 #v-q1 .bottombar[hidden]{display:none!important}
-#opts .op{display:grid;grid-template-columns:32px 1fr;grid-template-areas:"ic tx" "n tx";grid-template-rows:auto 1fr;column-gap:9px;row-gap:3px;align-items:start;min-height:0;padding:9px 9px;border-radius:14px}
-#opts .op .ic{grid-area:ic;width:32px;height:32px;margin:0;border-radius:9px;transition:background .15s,color .15s}
+#opts .op{display:grid;grid-template-columns:36px 1fr;column-gap:9px;align-items:center;min-height:0;padding:8px 9px;border-radius:14px}
+#opts .op .ic{width:36px;height:42px;margin:0;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;transition:background .15s,color .15s}
 #opts .op .ic svg{width:18px;height:18px}
 #opts .op[aria-pressed="true"] .ic{background:var(--c);color:#fff}
 #opts .op .tick{display:none}
-#opts .op .tx{grid-area:tx;display:block;min-width:0;align-self:center}
+#opts .op .tx{display:block;min-width:0}
 #opts .op b{display:block;font-size:14px;line-height:1.2}
 #opts .op .ds{display:block;margin-top:2px;font-size:11.8px;color:var(--muted);line-height:1.25}
-#opts .op em{grid-area:n;justify-self:center;padding:0;margin-top:1px;font:600 11.5px var(--mono);color:var(--muted)}
+#opts .op em{position:static;padding:0;margin:0;font:700 11px/1 var(--mono);font-style:normal;color:inherit}
 #opts .op:last-child:nth-child(odd){grid-column:1/-1}
 #v-q1 .alllink{margin-top:8px;padding:6px}
 #v-q1 .installbtn{padding:9px;font-size:14px}
@@ -1174,7 +1174,7 @@ const needs=()=>({lg:S.types.includes("cure"),hm:(!S.types.length||S.types.some(
 
 /* ---------- Étape 1 ---------- */
 const optsEl=document.getElementById("opts");
-optsEl.innerHTML=OPTS.map(([k,l,s])=>`<button type="button" class="op" data-k="${k}" aria-pressed="false" style="--c:var(--t-${k})"><span class="tick">✓</span><span class="ic">${ico(k)}</span><span class="tx"><b>${l}</b><span class="ds">${s}</span></span><em data-c="${k}"></em></button>`).join("");
+optsEl.innerHTML=OPTS.map(([k,l,s])=>`<button type="button" class="op" data-k="${k}" aria-pressed="false" style="--c:var(--t-${k})"><span class="tick">✓</span><span class="ic">${ico(k)}<em data-c="${k}"></em></span><span class="tx"><b>${l}</b><span class="ds">${s}</span></span></button>`).join("");
 function paintQ1(){
   optsEl.querySelectorAll(".op").forEach(b=>{
     const k=b.dataset.k;b.setAttribute("aria-pressed",S.types.includes(k));
