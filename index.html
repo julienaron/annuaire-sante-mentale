@@ -1152,11 +1152,11 @@ const ico=(k,extra="")=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentCol
 const OPTS=[["cure","Cure","Sevrage, 1 à 3 sem."],["postcure","Post-cure","5 sem. à 3 mois"],["hdj","Hôpital de jour","Retour le soir"],["resid","Hébergement","Centre, appartement"],["csapa","CSAPA","Suivi, substitution"],["hosp","Consultation hôpital","Addictologue, ELSA"],["spec","Publics spécifiques","Jeunes, parents"],["amob","Équipe mobile","Va vers les gens"],["rdr","Réduction des risques","CAARUD"],["liberal","Médecin libéral","Cabinet, substitution"]];
 
 /* ---------- État et filtres ---------- */
-const S={mode:"addicto",types:[],lg:"oui",hm:"oui",sec:"all",arr:"",q:"",psy:{how:"",arr:"",sub:"",day:"",month:""}};
+const S={mode:"addicto",only:"",types:[],lg:"oui",hm:"oui",sec:"all",arr:"",q:"",psy:{how:"",arr:"",sub:"",day:"",month:""}};
 const base=(d,s)=>{
   if(s.q&&!JSON.stringify(d).toLowerCase().includes(s.q))return false;
   const psyT=d.t.includes("cmp")||d.t.includes("urg")||d.t.includes("mob");
-  if(s.mode==="psy")return psyT;
+  if(s.mode==="psy")return psyT&&(!s.only||d.t.includes(s.only));
   if(psyT)return false;
   if(isLib(d)){
     if(!s.types.includes("liberal"))return true;
@@ -1382,10 +1382,11 @@ function render(){
   const nU=items.filter(d=>d.t.includes("urg")).length,nM=items.filter(d=>d.t.includes("mob")).length,nC=n-nU-nM;
   document.getElementById("count").textContent=psy?(n?`${n} lieu${n>1?"x":""}`:"Aucun résultat"):(n?`${n} lieu${n>1?"x":""}`:"Aucun lieu");
   const off=items.filter(d=>GEO[d.id]&&!inFrame(GEO[d.id])).length;
-  document.getElementById("countsub").textContent=psy?[`${nC} CMP`,nM&&`${nM} équipes mobiles`,nU&&`${nU} urgences`].filter(Boolean).join(" · "):off?`dont ${off} hors carte, listés sous la carte`:"Touchez un numéro sur la carte";
+  document.getElementById("countsub").textContent=psy?[nC&&`${nC} CMP`,nM&&`${nM} équipes mobiles`,nU&&`${nU} urgences`].filter(Boolean).join(" · "):off?`dont ${off} hors carte, listés sous la carte`:"Touchez un numéro sur la carte";
   /* pastilles */
   const ch=[];
-  if(psy){const pm=psyMatch();ch.push(`<button type="button" class="chip" data-to="p1" style="--c:var(--t-cmp)"><i></i>CMP adultes</button>`);
+  if(psy&&S.only){ch.push(`<button type="button" class="chip" data-to="p1" style="--c:var(--t-${S.only})"><i></i>${S.only==="mob"?"Équipes mobiles":"Urgences psy"}</button>`);ch.push(`<button type="button" class="chip edit" data-to="p1">✎ Modifier</button>`);}
+  else if(psy){const pm=psyMatch();ch.push(`<button type="button" class="chip" data-to="p1" style="--c:var(--t-cmp)"><i></i>CMP adultes</button>`);
     if(pm.label)ch.push(`<button type="button" class="chip cond" data-to="p1">${esc(pm.label)}</button>`);
     ch.push(`<button type="button" class="chip edit" data-to="p1">✎ Modifier</button>`);}
   else{
@@ -1554,11 +1555,12 @@ document.getElementById("v-p1").addEventListener("click",e=>{
 document.getElementById("p-arr").addEventListener("change",e=>{S.psy.arr=e.target.value;S.psy.sub="";paintP1();});
 document.getElementById("p-day").addEventListener("change",e=>{S.psy.day=e.target.value;paintP1();});
 document.getElementById("p-month").addEventListener("change",e=>{S.psy.month=e.target.value;paintP1();});
-document.getElementById("pnext").addEventListener("click",()=>go("resultats"));
-document.getElementById("p-all").addEventListener("click",()=>{S.psy.how="";paintP1();go("resultats");});
-const toGroup=re=>{S.psy.how="";paintP1();go("resultats");setTimeout(()=>{const g=[...document.querySelectorAll("#out .group-h")].find(h=>re.test(h.textContent));if(g){const top=g.getBoundingClientRect().top+scrollY-document.querySelector(".rtop").offsetHeight-12;window.scrollTo({top});}},80);};
-document.getElementById("p-urg").addEventListener("click",()=>toGroup(/Urgences/));
-document.getElementById("p-mob").addEventListener("click",()=>toGroup(/Équipes mobiles/));
+document.getElementById("pnext").addEventListener("click",()=>{S.only="";go("resultats");});
+document.getElementById("p-all").addEventListener("click",()=>{S.only="";S.psy.how="";paintP1();go("resultats");});
+/* « Urgences » et « Équipes mobiles » : n'affichent que ce type */
+const onlyType=k=>{S.only=k;S.psy.how="";paintP1();go("resultats");window.scrollTo({top:0});};
+document.getElementById("p-urg").addEventListener("click",()=>onlyType("urg"));
+document.getElementById("p-mob").addEventListener("click",()=>onlyType("mob"));
 document.querySelectorAll(".modetabs").forEach(t=>t.addEventListener("click",e=>{const b=e.target.closest("[data-mode]");if(!b||b.dataset.mode===S.mode)return;
   S.mode=b.dataset.mode;store("addicto13.mode",S.mode);S.q="";document.getElementById("q").value="";selId=null;
   const v=S.mode==="psy"?"p1":"q1";stack[stack.length-1]=v;display(v);
