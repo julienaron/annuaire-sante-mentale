@@ -1075,6 +1075,9 @@ D.push(
  site:"https://www.rdr-a-distance.info/",note:"D'après safe.asso.fr et le dépliant national du réseau (2022) pour le relais PACA : vérifier que le numéro d'Avignon est toujours actif."}
 );
 
+/* Point Marseille : nommé par ce que les collègues cherchent (« appartements thérapeutiques ») */
+D.forEach(d=>{if(d.id==="point"){d.n="Appartements thérapeutiques Point Marseille";d.o="CSAPA Point Marseille · Groupe SOS Solidarités · associatif";}});
+
 
 /* ===== Psychiatrie adulte : CMP de secteur de Marseille =====
    Sectorisation et règle « sans domicile » : site de l'AP-HM (secteur Centre) et guide d'orientation
@@ -1213,7 +1216,7 @@ const REPORT_TO="julienaron@gmail.com";
 /* Dernière vérification par défaut (mois du relevé) ; une fiche peut préciser d.chk="AAAA-MM-JJ" */
 const CHK_DEFAULT="2026-10";
 const CHANGELOG=[
-  ["2026-10-16",["Nouvelle présentation : bandeau bleu nuit avec la vague, catégories en pavés de couleur","Partage d'une fiche au patient par SMS ou WhatsApp","Fiche imprimable","Bouton « Signaler une erreur » sur chaque fiche","Date de vérification sur chaque fiche et cet écran « Nouveautés »","Psychiatrie : tous les numéros d'urgence en boutons d'appel, en bas de la page","« Proposer un lieu manquant », en bas de page et dans la recherche","Réduction des risques : ajout de la RdR à distance (SAFE, envoi postal gratuit)","Bus 31/32 : CSAPA Bus Méthadone désormais au 129 avenue de Toulon (5ᵉ)"]],
+  ["2026-10-16",["Nouvelle présentation : bandeau bleu nuit avec la vague, catégories en pavés de couleur","Partage d'une fiche au patient par SMS ou WhatsApp","Fiche imprimable","Bouton « Signaler une erreur » sur chaque fiche","Date de vérification sur chaque fiche et cet écran « Nouveautés »","Psychiatrie : tous les numéros d'urgence en boutons d'appel, en bas de la page","« Proposer un lieu manquant », en bas de page et dans la recherche","Hébergement : appartements thérapeutiques de Point Marseille, renommés pour être trouvés plus facilement","Réduction des risques : ajout de la RdR à distance (SAFE, envoi postal gratuit)","Bus 31/32 : CSAPA Bus Méthadone désormais au 129 avenue de Toulon (5ᵉ)"]],
   ["2026-10-15",["Psychiatrie : « Équipes mobiles » et « Urgences » n'affichent plus que ce type","Page de recherche dans tout l'annuaire (nom, quartier, station de métro…)","Accueil condensé, nombre de lieux dans chaque catégorie","Question « hors de Marseille » posée seulement quand elle change le résultat"]],
   ["2026-10-14",["Catégories « Publics spécifiques » et « Équipe mobile », séparées des CSAPA","CSAPA séparés des consultations d'addictologie hospitalières","Ajout des Drs Yannis Achour (3ᵉ) et Damien Driot (6ᵉ, Vauban)"]],
   ["2026-10-13",["Première version installable sur téléphone","CMP adultes de secteur, règle des personnes sans domicile, urgences psychiatriques (CAP 48, CAP 72…), équipes MARSS et EMLPP","Arrêts de métro et tram les plus proches, carte avec repères"]]
