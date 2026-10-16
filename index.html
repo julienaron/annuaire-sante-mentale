@@ -363,7 +363,11 @@ select.arrsel{width:100%;border:1.5px solid var(--line);background:var(--surface
 .chk a{color:var(--accent);font-weight:600;text-decoration:none;font-family:var(--body,inherit);font-size:13.5px}
 .printonly{display:none}
 /* ---- urgences en bandeau (psy) ---- */
-.urgbar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin:10px 0 0}
+.urgbar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin:4px 0 2px}
+.urglist{display:grid;gap:6px}
+.urglist a{display:flex;justify-content:space-between;align-items:center;gap:10px;text-decoration:none;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:9px 12px;color:var(--fg);font-size:13.5px;line-height:1.25;min-width:0}
+.urglist a span{min-width:0}
+.urglist a em{font:600 14.5px var(--mono);font-style:normal;white-space:nowrap;color:var(--t-urg)}
 .urgbar a{display:grid;justify-items:center;gap:1px;text-decoration:none;background:var(--surface);border:1px solid color-mix(in srgb,var(--t-urg) 35%,var(--line));border-radius:12px;padding:7px 4px;color:var(--fg);min-width:0}
 .urgbar b{font:700 17px/1.1 var(--mono);color:var(--t-urg)}
 .urgbar small{font-size:10.5px;color:var(--muted);line-height:1.15;text-align:center;overflow-wrap:anywhere}
@@ -446,12 +450,7 @@ select.arrsel{width:100%;border:1.5px solid var(--line);background:var(--surface
     <svg class="wave" viewBox="0 0 390 26" preserveAspectRatio="none" aria-hidden="true"><path d="M0 16 C55 4 110 24 190 13 S320 3 390 15 V26 H0Z"/></svg>
   </header>
   <main class="col qpad">
-    <div class="urgbar" aria-label="Numéros d'urgence">
-      <a href="tel:3114"><b>3114</b><small>Prévention suicide, 24h/24</small></a>
-      <a href="tel:15"><b>15</b><small>SAMU, urgence vitale</small></a>
-      <a href="tel:115"><b>115</b><small>Hébergement d'urgence</small></a>
-    </div>
-    <h2 class="qh" style="margin-top:14px">Le patient a-t-il un domicile ?</h2>
+    <h2 class="qh" style="margin-top:8px">Le patient a-t-il un domicile ?</h2>
     <p class="qsub">Le CMP dépend du lieu de vie.</p>
     <div class="howgrid" id="p-how">
       <button type="button" class="op" data-how="addr" aria-pressed="false" style="--c:var(--t-cmp)"><span class="tick">✓</span><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v10h13V10"/><path d="M10 20v-5h4v5"/></svg></span><b>Oui, il a une adresse</b><span>Domicile, CHRS, CADA, hôtel ou hébergé</span></button>
@@ -477,15 +476,21 @@ select.arrsel{width:100%;border:1.5px solid var(--line);background:var(--surface
     <div id="p-result" class="presult" hidden aria-live="polite"></div>
     <button class="alllink" type="button" id="p-all">Voir tous les CMP et les urgences →</button>
     <button class="installbtn" type="button" data-install><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M12 7.5v7M9 11.5l3 3 3-3"/></svg>Installer sur mon téléphone</button>
-    <div class="arca">
-      <b>Urgences psychiatriques, 24h/24</b>
-      <span><b>CAP 48</b>, hôpital de la Timone (AP-HM) :</span>
-      <a class="arcanum" href="tel:+33413429300">04 13 42 93 00</a>
-      <span><b>CAP 72</b>, hôpital Nord (CH Édouard Toulouse) :</span>
-      <a class="arcanum" href="tel:+33491964956">04 91 96 49 56</a>
-      <span><b>CACC</b> de l'hôpital Valvert, accueil de crise : 04 91 87 67 67. À Aubagne : UPAUL, 04 42 84 72 94. Sinon le 15.</span>
-      <span>Idées suicidaires : <a href="tel:3114"><b>3114</b></a>, prévention du suicide, 24h/24, gratuit.</span>
-      <span>Personne à la rue : équipe mobile <b>MARSS</b> (AP-HM), 06 16 19 33 42, ou <b>EMLPP</b> du CH Édouard Toulouse, 04 91 96 97 17.</span>
+    <div class="arca urgblock">
+      <b>Urgences, 24h/24</b>
+      <div class="urgbar" aria-label="Numéros nationaux">
+        <a href="tel:3114"><b>3114</b><small>Prévention suicide</small></a>
+        <a href="tel:15"><b>15</b><small>SAMU, urgence vitale</small></a>
+        <a href="tel:115"><b>115</b><small>Hébergement d'urgence</small></a>
+      </div>
+      <div class="urglist">
+        <a href="tel:+33413429300"><span><b>CAP 48</b> · hôpital de la Timone, AP-HM</span><em>04 13 42 93 00</em></a>
+        <a href="tel:+33491964956"><span><b>CAP 72</b> · hôpital Nord, CH Édouard Toulouse</span><em>04 91 96 49 56</em></a>
+        <a href="tel:+33491876767"><span><b>CACC</b> · hôpital Valvert, accueil de crise</span><em>04 91 87 67 67</em></a>
+        <a href="tel:+33442847294"><span><b>UPAUL</b> · Aubagne</span><em>04 42 84 72 94</em></a>
+        <a href="tel:+33616193342"><span><b>MARSS</b> · équipe mobile, personne à la rue (AP-HM)</span><em>06 16 19 33 42</em></a>
+        <a href="tel:+33491969717"><span><b>EMLPP</b> · équipe mobile, CH Édouard Toulouse</span><em>04 91 96 97 17</em></a>
+      </div>
       <button type="button" class="btn" id="p-urg" style="justify-self:start;margin-top:4px">Voir les urgences sur la carte</button>
     </div>
   </main>
@@ -587,7 +592,7 @@ select.arrsel{width:100%;border:1.5px solid var(--line);background:var(--surface
         <div class="mailbar"><label for="defmail">Adresse d'envoi par défaut des fiches</label><input id="defmail" type="email" placeholder="secretariat@votre-structure.fr" autocomplete="email"></div>
         <p style="margin:0">Relevé d'octobre 2026 : annuaires d'ARCA-Sud, de Santé publique France, de la Fédération Addiction, sante.fr, sites des établissements et <a href="https://www.has-sante.fr/jcms/c_1725555/fr/qualiscope-qualite-des-hopitaux-et-des-cliniques" target="_blank" rel="noopener">fiches Qualiscope de la HAS</a>. Les fiches « À confirmer » s'appuient sur une seule source. Numéros, formulaires et résultats HAS évoluent : vérifiez avant tout envoi. Carte schématique : positions et lignes de métro approximatives. L'adresse d'envoi n'est mémorisée que sur cet appareil.</p>
         <button class="installbtn" type="button" data-install style="margin:0">Installer sur mon téléphone</button>
-        <button class="btn" type="button" data-news id="footnews">Nouveautés et version</button>
+        <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn" id="suggest" href="#">Proposer un lieu manquant</a><button class="btn" type="button" data-news id="footnews">Nouveautés et version</button></div>
         <div class="sign">De l'Estaque aux Goudes · pensé pour les consultations marseillaises</div>
       </footer>
     </div>
@@ -613,7 +618,7 @@ select.arrsel{width:100%;border:1.5px solid var(--line);background:var(--surface
     <h2 id="news-title">Nouveautés</h2>
     <p class="hint" id="news-sub"></p>
     <ul class="news" id="news-list"></ul>
-    <p class="hint">Une information fausse ou périmée ? Chaque fiche a un bouton « Signaler une erreur » ; les signalements sont relus régulièrement.</p>
+    <p class="hint">Une information fausse ou périmée ? Chaque fiche a un bouton « Signaler une erreur ». Un lieu absent ? <a id="suggest2" href="#">Proposez-le</a>. Les messages sont relus régulièrement.</p>
     <button type="button" class="btn" data-closenews style="width:100%">Fermer</button>
   </div>
 </div>
@@ -1154,7 +1159,7 @@ const REPORT_TO="julienaron@gmail.com";
 /* Dernière vérification par défaut (mois du relevé) ; une fiche peut préciser d.chk="AAAA-MM-JJ" */
 const CHK_DEFAULT="2026-10";
 const CHANGELOG=[
-  ["2026-10-16",["Partage d'une fiche au patient par SMS ou WhatsApp","Fiche imprimable","Bouton « Signaler une erreur » sur chaque fiche","Date de vérification sur chaque fiche et cet écran « Nouveautés »","Numéros d'urgence (3114, 15, 115) en haut de la partie psychiatrie"]],
+  ["2026-10-16",["Partage d'une fiche au patient par SMS ou WhatsApp","Fiche imprimable","Bouton « Signaler une erreur » sur chaque fiche","Date de vérification sur chaque fiche et cet écran « Nouveautés »","Psychiatrie : tous les numéros d'urgence en boutons d'appel, en bas de la page","« Proposer un lieu manquant », en bas de page et dans la recherche"]],
   ["2026-10-15",["Psychiatrie : « Équipes mobiles » et « Urgences » n'affichent plus que ce type","Page de recherche dans tout l'annuaire (nom, quartier, station de métro…)","Accueil condensé, nombre de lieux dans chaque catégorie","Question « hors de Marseille » posée seulement quand elle change le résultat"]],
   ["2026-10-14",["Catégories « Publics spécifiques » et « Équipe mobile », séparées des CSAPA","CSAPA séparés des consultations d'addictologie hospitalières","Ajout des Drs Yannis Achour (3ᵉ) et Damien Driot (6ᵉ, Vauban)"]],
   ["2026-10-13",["Première version installable sur téléphone","CMP adultes de secteur, règle des personnes sans domicile, urgences psychiatriques (CAP 48, CAP 72…), équipes MARSS et EMLPP","Arrêts de métro et tram les plus proches, carte avec repères"]]
@@ -1163,6 +1168,7 @@ const MOIS_L=["janvier","février","mars","avril","mai","juin","juillet","août"
 const fmtDate=s=>{const[y,m,d]=String(s).split("-").map(Number);return d?`${d===1?"1er":d} ${MOIS_L[m-1]} ${y}`:`${MOIS_L[m-1]} ${y}`;};
 const chkText=d=>"Vérifié : "+fmtDate(d.chk||CHK_DEFAULT);
 const reportHref=d=>"mailto:"+REPORT_TO+"?subject="+encodeURIComponent(`[Annuaire] Signalement : ${d.n}`)+"&body="+encodeURIComponent(`Lieu : ${d.n} (${d.id})\nVersion de l'annuaire : ${VERSION}\n\nCe qui est faux ou manquant :\n\n\nLa bonne information (et sa source, si possible) :\n\n`);
+const suggestHref=()=>"mailto:"+REPORT_TO+"?subject="+encodeURIComponent("[Annuaire] Proposition d'un nouveau lieu")+"&body="+encodeURIComponent(`Version de l'annuaire : ${VERSION}\n\nNom du lieu ou du praticien :\n\nType (CSAPA, cure, CMP, médecin libéral…) :\n\nAdresse :\n\nTéléphone, e-mail :\n\nPublic accueilli, conditions d'admission :\n\nSource (site, plaquette…) :\n\n`);
 
 
 /* ================= Interface ================= */
@@ -1676,7 +1682,7 @@ function paintSearch(focus){
   else{
     const hits=D.map(d=>{const ix=sIndex(d);if(!words.every(w=>ix.all.includes(w)))return null;let sc=0;words.forEach(w=>{if(ix.name.includes(w))sc+=10;if(ix.name.split(/\s+/).some(x=>x.startsWith(w)))sc+=5;});return{d,sc};}).filter(Boolean).sort((a,b)=>b.sc-a.sc||a.d.n.localeCompare(b.d.n,"fr"));
     cnt.hidden=false;cnt.textContent=hits.length?`${hits.length} résultat${hits.length>1?"s":""}`:"Aucun résultat. Essayez un autre mot : un nom, un quartier, « méthadone », « jeunes »…";
-    out.innerHTML=hits.slice(0,60).map(({d})=>`<button type="button" class="scard" data-open="${d.id}"><div class="tags">${tagsHtml(d)}${d.warn?`<span class="verify">${esc(d.warn)}</span>`:""}</div><h3>${hl(d.n,words)}</h3><div class="org">${hl(d.o||"",words)}</div><div class="where">${esc(d.p)}${d.cover?" · secteur "+esc(d.sect):""}</div>${transit(d)}</button>`).join("");
+    out.innerHTML=(hits.length?"":`<a class="btn" href="${suggestHref()}" style="margin:4px 0 10px">Proposer un lieu manquant</a>`)+hits.slice(0,60).map(({d})=>`<button type="button" class="scard" data-open="${d.id}"><div class="tags">${tagsHtml(d)}${d.warn?`<span class="verify">${esc(d.warn)}</span>`:""}</div><h3>${hl(d.n,words)}</h3><div class="org">${hl(d.o||"",words)}</div><div class="where">${esc(d.p)}${d.cover?" · secteur "+esc(d.sect):""}</div>${transit(d)}</button>`).join("");
   }
   if(focus)setTimeout(()=>{try{inp.focus({preventScroll:true})}catch(_){}},60);
 }
@@ -1790,6 +1796,7 @@ function closeNews(){newsEl.hidden=true;if(fEl.hidden&&insEl.hidden)document.bod
 document.addEventListener("click",e=>{if(e.target.closest("[data-news]"))openNews();else if(e.target===newsEl||e.target.closest("[data-closenews]"))closeNews();});
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!newsEl.hidden)closeNews();});
 paintNewsBadge();
+document.querySelectorAll("#suggest,#suggest2").forEach(a=>a.href=suggestHref());
 
 if("serviceWorker" in navigator&&location.protocol!=="file:"){window.addEventListener("load",()=>{navigator.serviceWorker.register("sw.js").then(r=>r.update()).catch(()=>{});});}
 
