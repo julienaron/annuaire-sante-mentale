@@ -5,7 +5,8 @@
 <title>Annuaire Santé Mentale Marseille</title>
 <meta name="application-name" content="Annuaire Santé Mentale Marseille">
 <meta name="apple-mobile-web-app-title" content="Annuaire Santé Mentale Marseille">
-<meta name="theme-color" content="#0d5a88">
+<meta name="theme-color" content="#dfe8ee" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#152a38" media="(prefers-color-scheme: dark)">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
@@ -25,6 +26,7 @@
   --m1:#0075be; --m2:#e30513; --tram:#96be0d; --t1:#f18e00; --t2:#f5e615; --t3:#96be0d; --bus:#4c5a63;
   --t-cure:#b2473a; --t-postcure:#2b7a46; --t-hdj:#a8720c; --t-resid:#7a55a0; --t-csapa:#0d5a88; --t-liberal:#3d7480; --t-rdr:#b85a12; --t-hosp:#4b5fa8; --t-amob:#2f7d6d; --t-spec:#b0367f; --t-cmp:#8a3d6b; --t-urg:#b3261e; --t-mob:#2f7d6d;
   --sea:#bcd5e3; --sea-ink:#5f8aa6; --land:#ece6dc; --land-ink:#8a8173; --pin-ring:#ffffff; --pin-text:#ffffff;
+  --band:#dfe8ee; --band-line:#c9d7df;
   --shadow:0 8px 24px -12px rgba(20,40,55,.35);
   --display:"Newsreader",Georgia,"Times New Roman",serif;
   --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
@@ -37,6 +39,7 @@
   --m1:#3f9be0; --m2:#f0484f; --tram:#a8d12a; --t1:#f5a030; --t2:#f5e615; --t3:#a8d12a; --bus:#9aa8b1;
   --t-cure:#e8968a; --t-postcure:#8fcb9b; --t-hdj:#e8bf6a; --t-resid:#c3a6e2; --t-csapa:#7fbde2; --t-liberal:#8fc1cc; --t-rdr:#f0a86e; --t-hosp:#a3b1ef; --t-amob:#7fd1bf; --t-spec:#f08cc4; --t-cmp:#e3a2c8; --t-urg:#ff8f86; --t-mob:#7fd1bf;
   --sea:#14354a; --sea-ink:#6f9bb6; --land:#1b2932; --land-ink:#8797a1; --pin-ring:#0f1a22; --pin-text:#0b1c26;
+  --band:#152a38; --band-line:#24404f;
   --shadow:0 8px 24px -12px rgba(0,0,0,.7); color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#0f1a22; --surface:#17252f; --sunk:#1c2c37; --fg:#e4ebef; --muted:#9db0bb; --line:#2a3c48;
@@ -45,6 +48,7 @@
   --m1:#3f9be0; --m2:#f0484f; --tram:#a8d12a; --t1:#f5a030; --t2:#f5e615; --t3:#a8d12a; --bus:#9aa8b1;
   --t-cure:#e8968a; --t-postcure:#8fcb9b; --t-hdj:#e8bf6a; --t-resid:#c3a6e2; --t-csapa:#7fbde2; --t-liberal:#8fc1cc; --t-rdr:#f0a86e; --t-hosp:#a3b1ef; --t-amob:#7fd1bf; --t-spec:#f08cc4; --t-cmp:#e3a2c8; --t-urg:#ff8f86; --t-mob:#7fd1bf;
   --sea:#14354a; --sea-ink:#6f9bb6; --land:#1b2932; --land-ink:#8797a1; --pin-ring:#0f1a22; --pin-text:#0b1c26;
+  --band:#152a38; --band-line:#24404f;
   --shadow:0 8px 24px -12px rgba(0,0,0,.7); color-scheme:dark}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
@@ -357,6 +361,73 @@ select.arrsel{width:100%;border:1.5px solid var(--line);background:var(--surface
 .mailbox input{width:100%;border:1.5px solid var(--line);background:var(--bg);border-radius:12px;padding:11px 12px;font-size:15.5px}
 .mailbox textarea{width:100%;min-height:150px;border:1px solid var(--line);background:var(--bg);border-radius:12px;padding:10px;font:12.5px/1.45 var(--mono);resize:vertical}
 .fpad{padding-bottom:110px}
+
+/* ===== Thème éditorial sable : bandeaux clairs avec la vague, listes typographiques ===== */
+.hero,.fh{background:var(--band);color:var(--fg)}
+.hero .eyebrow,.fh .eyebrow{color:var(--accent);opacity:1}
+.dot13{border-color:var(--accent);color:var(--accent)}
+.hero h1{font-weight:500;letter-spacing:-.015em}
+#v-q1 .hero h1,#v-p1 .hero h1{font-size:clamp(24px,6.6vw,30px)}
+.hero p{opacity:1;color:var(--muted)}
+.backlink,.fh .backlink{color:var(--accent);opacity:1}
+.newsbtn{border-color:var(--band-line);background:var(--bg);color:var(--accent)}
+.newsbtn[data-new="1"]::after{box-shadow:0 0 0 2px var(--band)}
+.searchopen{background:var(--bg);color:var(--muted);box-shadow:none;border:1.5px solid var(--fg);border-radius:999px;margin-top:10px}
+.searchopen svg{color:var(--fg)}
+.modetabs{background:transparent;border:0;border-bottom:1px solid var(--band-line);border-radius:0;padding:0;gap:0;margin-top:10px}
+.modetabs button{color:var(--muted);opacity:1;border-radius:0;padding:9px 6px 8px;border-bottom:3px solid transparent;margin-bottom:-1px}
+.modetabs button[aria-selected="true"]{background:none;color:var(--fg);box-shadow:none;border-bottom-color:var(--accent)}
+#v-q1 .hero,#v-p1 .hero{padding:12px 0 24px}
+/* catégories : liste */
+#opts{display:grid;grid-template-columns:1fr;gap:0;margin-top:2px}
+#opts .op{grid-template-columns:22px 1fr auto;column-gap:12px;border:0;border-bottom:1px solid var(--line);border-radius:0;background:transparent;padding:9px 2px;transition:background .15s}
+#opts .op:last-child{border-bottom:0}
+#opts .op:last-child:nth-child(odd){grid-column:auto}
+#opts .op .ic{width:22px;height:22px;background:none!important;color:var(--c)!important;padding:0;display:grid;place-items:center}
+#opts .op .ic svg{width:20px;height:20px}
+#opts .op .tx{display:flex;align-items:baseline;flex-wrap:wrap;gap:0 8px}
+#opts .op b{font:500 16.5px/1.25 var(--display);color:var(--fg)}
+#opts .op .ds{display:inline;margin:0;font-size:12.5px}
+#opts .op em{font:500 12px/1 var(--mono);color:var(--muted);justify-self:end;white-space:nowrap}
+#opts .op[aria-pressed="true"]{background:var(--accent-soft);margin:0 -16px;padding-left:18px;padding-right:18px;border-bottom-color:transparent}
+#opts .op[aria-pressed="true"] em{color:var(--accent);font-weight:600}
+#opts .op[aria-pressed="true"] em::before{content:"✓ "}
+.alllink{font-weight:600}
+.installbtn{border:1px solid var(--fg);background:transparent;color:var(--fg);border-radius:999px}
+.installbtn svg{color:var(--accent)}
+.arca,.qcard,.mobbtn,.presult{border-radius:14px}
+/* résultats */
+.rtop{background:var(--band);color:var(--fg);border-bottom:1px solid var(--band-line)}
+.rtop h1{font-weight:500}
+.rtop .sub{opacity:1;color:var(--muted)}
+.iconback{border-color:var(--fg);background:transparent;color:var(--fg)}
+.pill{border-color:var(--fg);background:transparent;color:var(--fg)}
+.chips{background:var(--bg)}
+.chip{background:var(--bg)}
+.stop{background:var(--band);border-bottom:1px solid var(--band-line)}
+.sfield{background:var(--bg);border:1.5px solid var(--fg);border-radius:999px}
+.sfield svg{color:var(--fg)}
+.sfield input{color:var(--fg)}
+.sfield button{background:var(--sunk);color:var(--fg)}
+.group-h h2{font:500 20px/1.2 var(--display)}
+.cards{gap:0}
+.card,.scard{background:transparent;border:0;border-top:1px solid var(--line);border-radius:0;padding:11px 2px 12px;gap:5px}
+.card.sel{background:var(--accent-soft);box-shadow:none;border-radius:10px;border-top-color:transparent;padding-left:10px;padding-right:10px;margin:0 -8px;width:calc(100% + 16px)}
+.card.sel + .card{border-top-color:transparent}
+.card h3,.scard h3{font-weight:500}
+.card .go{display:none}
+.empty{border-radius:12px}
+/* fiche */
+.fh .tags .tag{color:var(--c);border-color:currentColor}
+.fh .transit{color:var(--muted)}
+.fh .prive{background:var(--sunk);color:var(--muted)}
+.fh h2{font-weight:500}
+.fh .org{opacity:1;color:var(--muted)}
+.big a,.big button{border-radius:14px}
+.sec h3{color:var(--muted)}
+.box,.minimap{border-radius:14px}
+/* feuilles */
+.isheet h2{font-weight:500}
 
 /* ---- vérification, signalement ---- */
 .chk{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:18px;padding:10px 12px;border:1px dashed var(--line);border-radius:12px;font:500 12.5px var(--mono);color:var(--muted)}
@@ -1021,6 +1092,21 @@ D.forEach(d=>{if(d.id==="filrouge"||d.id==="emap")d.t=["amob"];});
 /* Publics spécifiques : consultations jeunes consommateurs et accompagnement des parents */
 D.forEach(d=>{if(["filrouge","jam","pugetbis"].includes(d.id))d.t=["spec"];});
 
+/* Mise à jour d'octobre 2026 : le local de Bus 31/32 est au 129 avenue de Toulon */
+D.forEach(d=>{if(d.id==="bus"){d.a="129 avenue de Toulon, 13005 Marseille";d.p="Marseille 5ᵉ";d.o="Bus 31/32 · associatif (CSAPA)";d.chk="2026-10-16";d.note="Local commun avec le CAARUD Bus 31/32. Ancienne adresse : 4 av. Rostand (13003).";}
+  if(d.id==="micro")d.a="129 av. de Toulon, 13005 Marseille (siège et CSAPA)";});
+GEO.bus=[43.28489,5.39343];
+
+/* Réduction des risques à distance (par courrier), réseau national coordonné par SAFE */
+D.push(
+{id:"rdrad",t:["rdr"],pub:1,mrs:1,chk:"2026-10-16",p:"Par courrier, toute la France",
+ n:"RdR à distance · association SAFE",o:"SAFE (Paris) et relais régionaux · associatif",a:"Envoi postal gratuit et discret (Colissimo), partout en France",
+ f:["Pour les personnes éloignées d'un CAARUD, qui ne souhaitent pas s'y rendre, ou qui vivent hors Marseille","Plus de 120 matériels : injection, inhalation, sniff, plug, RdR sexuelle ; aussi pour les injections hors drogues (sport, traitement de transition)","Premier contact par téléphone ou e-mail : un entretien évalue les besoins, puis chaque envoi est adapté à la pratique","L'équipe répond aux questions sur les usages et oriente vers le CAARUD ou le CSAPA du département"],
+ send:"Le patient (ou vous, avec lui) appelle ou écrit : l'équipe prépare l'envoi après un échange sur ses pratiques.",
+ c:[["SAFE, coordination nationale","01 40 09 04 45"],["E-mail SAFE","contact@safe.asso.fr"],["Relais PACA · CAARUD Le Patio, Avignon","06 33 34 73 69"],["E-mail relais PACA","rdr-a-distance.paca@groupe-sos.org"]],
+ site:"https://www.rdr-a-distance.info/",note:"D'après safe.asso.fr et le dépliant national du réseau (2022) pour le relais PACA : vérifier que le numéro d'Avignon est toujours actif."}
+);
+
 
 /* ===== Psychiatrie adulte : CMP de secteur de Marseille =====
    Sectorisation et règle « sans domicile » : site de l'AP-HM (secteur Centre) et guide d'orientation
@@ -1159,7 +1245,7 @@ const REPORT_TO="julienaron@gmail.com";
 /* Dernière vérification par défaut (mois du relevé) ; une fiche peut préciser d.chk="AAAA-MM-JJ" */
 const CHK_DEFAULT="2026-10";
 const CHANGELOG=[
-  ["2026-10-16",["Partage d'une fiche au patient par SMS ou WhatsApp","Fiche imprimable","Bouton « Signaler une erreur » sur chaque fiche","Date de vérification sur chaque fiche et cet écran « Nouveautés »","Psychiatrie : tous les numéros d'urgence en boutons d'appel, en bas de la page","« Proposer un lieu manquant », en bas de page et dans la recherche"]],
+  ["2026-10-16",["Nouvelle présentation : bandeaux clairs, catégories en liste, fiches plus aérées","Partage d'une fiche au patient par SMS ou WhatsApp","Fiche imprimable","Bouton « Signaler une erreur » sur chaque fiche","Date de vérification sur chaque fiche et cet écran « Nouveautés »","Psychiatrie : tous les numéros d'urgence en boutons d'appel, en bas de la page","« Proposer un lieu manquant », en bas de page et dans la recherche","Réduction des risques : ajout de la RdR à distance (SAFE, envoi postal gratuit)","Bus 31/32 : CSAPA Bus Méthadone désormais au 129 avenue de Toulon (5ᵉ)"]],
   ["2026-10-15",["Psychiatrie : « Équipes mobiles » et « Urgences » n'affichent plus que ce type","Page de recherche dans tout l'annuaire (nom, quartier, station de métro…)","Accueil condensé, nombre de lieux dans chaque catégorie","Question « hors de Marseille » posée seulement quand elle change le résultat"]],
   ["2026-10-14",["Catégories « Publics spécifiques » et « Équipe mobile », séparées des CSAPA","CSAPA séparés des consultations d'addictologie hospitalières","Ajout des Drs Yannis Achour (3ᵉ) et Damien Driot (6ᵉ, Vauban)"]],
   ["2026-10-13",["Première version installable sur téléphone","CMP adultes de secteur, règle des personnes sans domicile, urgences psychiatriques (CAP 48, CAP 72…), équipes MARSS et EMLPP","Arrêts de métro et tram les plus proches, carte avec repères"]]
@@ -1252,7 +1338,7 @@ const needs=()=>({lg:S.types.includes("cure"),hm:(!S.types.length||S.types.some(
 
 /* ---------- Étape 1 ---------- */
 const optsEl=document.getElementById("opts");
-optsEl.innerHTML=OPTS.map(([k,l,s])=>`<button type="button" class="op" data-k="${k}" aria-pressed="false" style="--c:var(--t-${k})"><span class="tick">✓</span><span class="ic">${ico(k)}<em data-c="${k}"></em></span><span class="tx"><b>${l}</b><span class="ds">${s}</span></span></button>`).join("");
+optsEl.innerHTML=OPTS.map(([k,l,s])=>`<button type="button" class="op" data-k="${k}" aria-pressed="false" style="--c:var(--t-${k})"><span class="tick">✓</span><span class="ic">${ico(k)}</span><span class="tx"><b>${l}</b><span class="ds">${s}</span></span><em data-c="${k}"></em></button>`).join("");
 function paintQ1(){
   optsEl.querySelectorAll(".op").forEach(b=>{
     const k=b.dataset.k;b.setAttribute("aria-pressed",S.types.includes(k));
