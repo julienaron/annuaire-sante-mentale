@@ -402,7 +402,7 @@ select.arrsel{width:100%;border:1.5px solid var(--line);background:var(--surface
 .chk a{color:var(--accent);font-weight:600;text-decoration:none;font-family:var(--body,inherit);font-size:13.5px}
 .printonly{display:none}
 /* ---- urgences en bandeau (psy) ---- */
-.urgbar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin:4px 0 2px}
+.urgbar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin:4px 0 2px}
 .urglist{display:grid;gap:6px}
 .urglist a{display:flex;justify-content:space-between;align-items:center;gap:10px;text-decoration:none;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:9px 12px;color:var(--fg);font-size:13.5px;line-height:1.25;min-width:0}
 .urglist a span{min-width:0}
@@ -410,6 +410,11 @@ select.arrsel{width:100%;border:1.5px solid var(--line);background:var(--surface
 .urgbar a{display:grid;justify-items:center;gap:1px;text-decoration:none;background:var(--surface);border:1px solid color-mix(in srgb,var(--t-urg) 35%,var(--line));border-radius:12px;padding:7px 4px;color:var(--fg);min-width:0}
 .urgbar b{font:700 17px/1.1 var(--mono);color:var(--t-urg)}
 .urgbar small{font-size:10.5px;color:var(--muted);line-height:1.15;text-align:center;overflow-wrap:anywhere}
+/* ---- partage ---- */
+.isheet-scrim#sharesheet{z-index:45}
+.shpre{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;font:13px/1.45 var(--body);background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px;max-height:30vh;overflow:auto}
+.shgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.shgrid .btn{padding:13px 8px;font-size:15px}
 /* ---- nouveautés ---- */
 .newsbtn{margin-left:auto;display:inline-flex;align-items:center;gap:5px;border:1px solid rgba(255,255,255,.45);background:rgba(255,255,255,.12);color:inherit;border-radius:99px;padding:3px 9px;font:600 10.5px var(--mono);letter-spacing:.06em;text-transform:uppercase;position:relative}
 .newsbtn[data-new="1"]::after{content:"";width:8px;height:8px;border-radius:50%;background:#ffd166;box-shadow:0 0 0 2px var(--accent);position:absolute;top:-2px;right:-2px}
@@ -520,15 +525,12 @@ select.arrsel{width:100%;border:1.5px solid var(--line);background:var(--surface
       <div class="urgbar" aria-label="Numéros nationaux">
         <a href="tel:3114"><b>3114</b><small>Prévention suicide</small></a>
         <a href="tel:15"><b>15</b><small>SAMU, urgence vitale</small></a>
-        <a href="tel:115"><b>115</b><small>Hébergement d'urgence</small></a>
       </div>
       <div class="urglist">
         <a href="tel:+33413429300"><span><b>CAP 48</b> · hôpital de la Timone, AP-HM</span><em>04 13 42 93 00</em></a>
         <a href="tel:+33491964956"><span><b>CAP 72</b> · hôpital Nord, CH Édouard Toulouse</span><em>04 91 96 49 56</em></a>
         <a href="tel:+33491876767"><span><b>CACC</b> · hôpital Valvert, accueil de crise</span><em>04 91 87 67 67</em></a>
         <a href="tel:+33442847294"><span><b>UPAUL</b> · Aubagne</span><em>04 42 84 72 94</em></a>
-        <a href="tel:+33616193342"><span><b>MARSS</b> · équipe mobile, personne à la rue (AP-HM)</span><em>06 16 19 33 42</em></a>
-        <a href="tel:+33491969717"><span><b>EMLPP</b> · équipe mobile, CH Édouard Toulouse</span><em>04 91 96 97 17</em></a>
       </div>
       <button type="button" class="btn" id="p-urg" style="justify-self:start;margin-top:4px">Voir les urgences sur la carte</button>
     </div>
@@ -659,6 +661,21 @@ select.arrsel{width:100%;border:1.5px solid var(--line);background:var(--surface
     <ul class="news" id="news-list"></ul>
     <p class="hint">Une information fausse ou périmée ? Chaque fiche a un bouton « Signaler une erreur ». Un lieu absent ? <a id="suggest2" href="#">Proposez-le</a>. Les messages sont relus régulièrement.</p>
     <button type="button" class="btn" data-closenews style="width:100%">Fermer</button>
+  </div>
+</div>
+
+<div class="isheet-scrim" id="sharesheet" hidden>
+  <div class="isheet" role="dialog" aria-modal="true" aria-labelledby="sh-title">
+    <div class="grab"></div>
+    <h2 id="sh-title">Partager au patient</h2>
+    <pre class="shpre" id="sh-preview"></pre>
+    <div class="shgrid">
+      <a class="btn primary" id="sh-sms" href="#">SMS</a>
+      <a class="btn primary" id="sh-wa" href="#" target="_blank" rel="noopener">WhatsApp</a>
+      <button type="button" class="btn" id="sh-native">Autres applis…</button>
+      <button type="button" class="btn" id="sh-copy">Copier le texte</button>
+    </div>
+    <button type="button" class="btn" data-closeshare style="width:100%">Fermer</button>
   </div>
 </div>
 
@@ -1216,7 +1233,7 @@ const REPORT_TO="julienaron@gmail.com";
 /* Dernière vérification par défaut (mois du relevé) ; une fiche peut préciser d.chk="AAAA-MM-JJ" */
 const CHK_DEFAULT="2026-10";
 const CHANGELOG=[
-  ["2026-10-16",["Nouvelle présentation : bandeau bleu nuit avec la vague, catégories en pavés de couleur","Partage d'une fiche au patient par SMS ou WhatsApp","Fiche imprimable","Bouton « Signaler une erreur » sur chaque fiche","Date de vérification sur chaque fiche et cet écran « Nouveautés »","Psychiatrie : tous les numéros d'urgence en boutons d'appel, en bas de la page","« Proposer un lieu manquant », en bas de page et dans la recherche","Hébergement : appartements thérapeutiques de Point Marseille, renommés pour être trouvés plus facilement","Réduction des risques : ajout de la RdR à distance (SAFE, envoi postal gratuit)","Bus 31/32 : CSAPA Bus Méthadone désormais au 129 avenue de Toulon (5ᵉ)"]],
+  ["2026-10-16",["Nouvelle présentation : bandeau bleu nuit avec la vague, catégories en pavés de couleur","Partage d'une fiche au patient par SMS ou WhatsApp","Fiche imprimable","Bouton « Signaler une erreur » sur chaque fiche","Date de vérification sur chaque fiche et cet écran « Nouveautés »","« Proposer un lieu manquant », en bas de page et dans la recherche","Partage : panneau SMS, WhatsApp ou copie ; boutons d'appel réparés dans l'affichage intégré","Psychiatrie : bloc urgences recentré (3114, 15, CAP 48, CAP 72, CACC, UPAUL)","Hébergement : appartements thérapeutiques de Point Marseille, renommés pour être trouvés plus facilement","Réduction des risques : ajout de la RdR à distance (SAFE, envoi postal gratuit)","Bus 31/32 : CSAPA Bus Méthadone désormais au 129 avenue de Toulon (5ᵉ)"]],
   ["2026-10-15",["Psychiatrie : « Équipes mobiles » et « Urgences » n'affichent plus que ce type","Page de recherche dans tout l'annuaire (nom, quartier, station de métro…)","Accueil condensé, nombre de lieux dans chaque catégorie","Question « hors de Marseille » posée seulement quand elle change le résultat"]],
   ["2026-10-14",["Catégories « Publics spécifiques » et « Équipe mobile », séparées des CSAPA","CSAPA séparés des consultations d'addictologie hospitalières","Ajout des Drs Yannis Achour (3ᵉ) et Damien Driot (6ᵉ, Vauban)"]],
   ["2026-10-13",["Première version installable sur téléphone","CMP adultes de secteur, règle des personnes sans domicile, urgences psychiatriques (CAP 48, CAP 72…), équipes MARSS et EMLPP","Arrêts de métro et tram les plus proches, carte avec repères"]]
@@ -1657,12 +1674,36 @@ fEl.addEventListener("click",e=>{
 });
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!fEl.hidden)closeFiche();});
 /* Partage natif (SMS, WhatsApp…) ; sinon copie du texte */
-function shareFiche(d,btn){
-  const text=shareText(d);
-  if(navigator.share){navigator.share({title:d.n,text}).catch(()=>{});return;}
-  const small=btn.querySelector("small"),old=small.textContent;
-  try{navigator.clipboard.writeText(text).then(()=>{small.textContent="texte copié";setTimeout(()=>small.textContent=old,1800);});}catch(_){}
+/* Partage : un petit panneau SMS / WhatsApp / autres applis / copier, qui marche partout
+   (le menu natif seul échoue dans certains affichages intégrés) */
+const IOS=/iPhone|iPad|iPod/.test(navigator.userAgent);
+const shEl=document.getElementById("sharesheet");let shText="";
+function shareFiche(d){
+  shText=shareText(d);
+  document.getElementById("sh-preview").textContent=shText;
+  document.getElementById("sh-sms").href="sms:"+(IOS?"&":"?")+"body="+encodeURIComponent(shText);
+  document.getElementById("sh-wa").href="https://wa.me/?text="+encodeURIComponent(shText);
+  document.getElementById("sh-native").hidden=!navigator.share;
+  shEl.hidden=false;
 }
+function closeShare(){shEl.hidden=true;}
+shEl.addEventListener("click",e=>{
+  if(e.target===shEl||e.target.closest("[data-closeshare]"))return closeShare();
+  if(e.target.closest("#sh-native")){navigator.share({text:shText}).then(closeShare,()=>{});return;}
+  const c=e.target.closest("#sh-copy");if(c)return copy(shText,c);
+  if(e.target.closest("#sh-sms,#sh-wa"))setTimeout(closeShare,300);
+});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!shEl.hidden)closeShare();});
+/* Liens tel:, sms:, mailto: : dans un affichage intégré (iframe), on les ouvre via une nouvelle fenêtre,
+   sinon le navigateur bloque l'appel */
+const EMBED=(()=>{try{return window.top!==window.self}catch(_){return true}})();
+document.addEventListener("click",e=>{
+  const a=e.target.closest('a[href^="tel:"],a[href^="sms:"],a[href^="mailto:"]');
+  if(!a||!EMBED)return;
+  e.preventDefault();
+  const w=window.open(a.href,"_blank");
+  if(!w){try{window.top.location.href=a.href}catch(_){location.href=a.href}}
+},true);
 function copy(text,btn,el){
   if(!btn.dataset.label)btn.dataset.label=btn.textContent;
   const label=btn.dataset.label;
