@@ -320,7 +320,7 @@ select.arrsel{width:100%;border:1.5px solid var(--line);background:var(--surface
 .fh .tags .tag{color:#fff;border-color:rgba(255,255,255,.6)}
 .fh .transit{color:rgba(255,255,255,.88)}
 .fh .prive{background:rgba(255,255,255,.16);color:#fff}
-.big{display:grid;grid-template-columns:repeat(auto-fit,minmax(0,1fr));gap:8px;margin-top:-22px;position:relative;z-index:1}
+.big{display:grid;grid-template-columns:repeat(auto-fit,minmax(66px,1fr));gap:8px;margin-top:-22px;position:relative;z-index:1}
 .big a,.big button{display:grid;justify-items:center;gap:4px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:12px 6px 10px;font-size:13.5px;font-weight:600;color:var(--fg);text-decoration:none;box-shadow:var(--shadow)}
 .big .p{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
 .big svg{width:24px;height:24px}
@@ -357,6 +357,43 @@ select.arrsel{width:100%;border:1.5px solid var(--line);background:var(--surface
 .mailbox input{width:100%;border:1.5px solid var(--line);background:var(--bg);border-radius:12px;padding:11px 12px;font-size:15.5px}
 .mailbox textarea{width:100%;min-height:150px;border:1px solid var(--line);background:var(--bg);border-radius:12px;padding:10px;font:12.5px/1.45 var(--mono);resize:vertical}
 .fpad{padding-bottom:110px}
+
+/* ---- vérification, signalement ---- */
+.chk{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:18px;padding:10px 12px;border:1px dashed var(--line);border-radius:12px;font:500 12.5px var(--mono);color:var(--muted)}
+.chk a{color:var(--accent);font-weight:600;text-decoration:none;font-family:var(--body,inherit);font-size:13.5px}
+.printonly{display:none}
+/* ---- urgences en bandeau (psy) ---- */
+.urgbar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin:10px 0 0}
+.urgbar a{display:grid;justify-items:center;gap:1px;text-decoration:none;background:var(--surface);border:1px solid color-mix(in srgb,var(--t-urg) 35%,var(--line));border-radius:12px;padding:7px 4px;color:var(--fg);min-width:0}
+.urgbar b{font:700 17px/1.1 var(--mono);color:var(--t-urg)}
+.urgbar small{font-size:10.5px;color:var(--muted);line-height:1.15;text-align:center;overflow-wrap:anywhere}
+/* ---- nouveautés ---- */
+.newsbtn{margin-left:auto;display:inline-flex;align-items:center;gap:5px;border:1px solid rgba(255,255,255,.45);background:rgba(255,255,255,.12);color:inherit;border-radius:99px;padding:3px 9px;font:600 10.5px var(--mono);letter-spacing:.06em;text-transform:uppercase;position:relative}
+.newsbtn[data-new="1"]::after{content:"";width:8px;height:8px;border-radius:50%;background:#ffd166;box-shadow:0 0 0 2px var(--accent);position:absolute;top:-2px;right:-2px}
+.news{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.news>li{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px 12px}
+.news>li b{display:block;font:600 11.5px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.news li ul{margin:0;padding-left:18px;font-size:14px;line-height:1.35;display:grid;gap:3px}
+.news li ul li{list-style:disc}
+/* ---- impression d'une fiche ---- */
+@media print{
+  @page{margin:14mm}
+  body,body.locked{overflow:visible!important;background:#fff!important;color:#000!important}
+  body>*:not(#fiche),#install,.fab-back,.fiche .big,.fiche .links,.fiche .minimap,#mail-sec,.fiche .backlink,.fiche .wave,.fiche .copy,.fiche .acts,.chk a,.fiche .tags .verify,.fiche .btn{display:none!important}
+  .fiche{position:static!important;overflow:visible!important;background:#fff!important;color:#000!important}
+  .fiche .fh{background:none!important;color:#000!important;padding:0 0 8px!important;border-bottom:2px solid #000}
+  .fiche .fh h2{color:#000!important;font-size:24pt!important}
+  .fiche .org,.fiche .printonly{color:#333!important}
+  .printonly{display:block;margin-top:6px;font:500 10pt var(--mono)}
+  .fiche .col{max-width:none!important;padding-left:0!important;padding-right:0!important}
+  .fiche .sec{break-inside:avoid;margin-top:12pt!important}
+  .fiche .sec h3{color:#000!important}
+  .fiche .box,.fiche .crow,.fiche .doc{border-color:#bbb!important;background:#fff!important;box-shadow:none!important}
+  .fiche a{color:#000!important;text-decoration:none!important}
+  .fiche .doc a::after,.fiche .crow .v::after{content:none}
+  .hbar .tr{border:1px solid #999}
+  .chk{border-color:#bbb;color:#333}
+}
 </style>
 </head>
 <body>
@@ -366,7 +403,7 @@ select.arrsel{width:100%;border:1.5px solid var(--line);background:var(--surface
   <header class="hero">
     <div class="col">
       <button class="backlink" type="button" data-back data-ifhist hidden>← Retour</button>
-      <div class="eyebrow"><span class="dot13">13</span>Marseille · Bouches-du-Rhône</div>
+      <div class="eyebrow"><span class="dot13">13</span>Marseille · Bouches-du-Rhône<button type="button" class="newsbtn" data-news>Nouveautés</button></div>
       <h1>Addictologie et santé mentale</h1>
       <button class="searchopen" type="button" data-search><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>Rechercher un lieu, un nom…</button>
       <div class="modetabs" role="tablist" aria-label="Domaine">
@@ -398,7 +435,7 @@ select.arrsel{width:100%;border:1.5px solid var(--line);background:var(--surface
   <header class="hero">
     <div class="col">
       <button class="backlink" type="button" data-back data-ifhist hidden>← Retour</button>
-      <div class="eyebrow"><span class="dot13">13</span>Marseille · psychiatrie adulte</div>
+      <div class="eyebrow"><span class="dot13">13</span>Marseille · psychiatrie adulte<button type="button" class="newsbtn" data-news>Nouveautés</button></div>
       <h1>Trouver le CMP de secteur</h1>
       <button class="searchopen" type="button" data-search><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>Rechercher un lieu, un nom…</button>
       <div class="modetabs" role="tablist" aria-label="Domaine">
@@ -409,7 +446,12 @@ select.arrsel{width:100%;border:1.5px solid var(--line);background:var(--surface
     <svg class="wave" viewBox="0 0 390 26" preserveAspectRatio="none" aria-hidden="true"><path d="M0 16 C55 4 110 24 190 13 S320 3 390 15 V26 H0Z"/></svg>
   </header>
   <main class="col qpad">
-    <h2 class="qh" style="margin-top:8px">Le patient a-t-il un domicile ?</h2>
+    <div class="urgbar" aria-label="Numéros d'urgence">
+      <a href="tel:3114"><b>3114</b><small>Prévention suicide, 24h/24</small></a>
+      <a href="tel:15"><b>15</b><small>SAMU, urgence vitale</small></a>
+      <a href="tel:115"><b>115</b><small>Hébergement d'urgence</small></a>
+    </div>
+    <h2 class="qh" style="margin-top:14px">Le patient a-t-il un domicile ?</h2>
     <p class="qsub">Le CMP dépend du lieu de vie.</p>
     <div class="howgrid" id="p-how">
       <button type="button" class="op" data-how="addr" aria-pressed="false" style="--c:var(--t-cmp)"><span class="tick">✓</span><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v10h13V10"/><path d="M10 20v-5h4v5"/></svg></span><b>Oui, il a une adresse</b><span>Domicile, CHRS, CADA, hôtel ou hébergé</span></button>
@@ -545,6 +587,7 @@ select.arrsel{width:100%;border:1.5px solid var(--line);background:var(--surface
         <div class="mailbar"><label for="defmail">Adresse d'envoi par défaut des fiches</label><input id="defmail" type="email" placeholder="secretariat@votre-structure.fr" autocomplete="email"></div>
         <p style="margin:0">Relevé d'octobre 2026 : annuaires d'ARCA-Sud, de Santé publique France, de la Fédération Addiction, sante.fr, sites des établissements et <a href="https://www.has-sante.fr/jcms/c_1725555/fr/qualiscope-qualite-des-hopitaux-et-des-cliniques" target="_blank" rel="noopener">fiches Qualiscope de la HAS</a>. Les fiches « À confirmer » s'appuient sur une seule source. Numéros, formulaires et résultats HAS évoluent : vérifiez avant tout envoi. Carte schématique : positions et lignes de métro approximatives. L'adresse d'envoi n'est mémorisée que sur cet appareil.</p>
         <button class="installbtn" type="button" data-install style="margin:0">Installer sur mon téléphone</button>
+        <button class="btn" type="button" data-news id="footnews">Nouveautés et version</button>
         <div class="sign">De l'Estaque aux Goudes · pensé pour les consultations marseillaises</div>
       </footer>
     </div>
@@ -561,6 +604,17 @@ select.arrsel{width:100%;border:1.5px solid var(--line);background:var(--surface
     <div class="box"><span class="hint">Nom à donner au raccourci :</span><div style="display:flex;gap:8px;align-items:center;justify-content:space-between"><b id="ins-name">Annuaire Santé Mentale Marseille</b><button type="button" class="copy" data-copyname>Copier</button></div></div>
     <div class="seg" id="ins-os" style="margin-top:4px"><button type="button" data-os="ios">iPhone</button><button type="button" data-os="android">Android</button></div>
     <button type="button" class="btn" data-closeinstall style="width:100%">Fermer</button>
+  </div>
+</div>
+
+<div class="isheet-scrim" id="newsheet" hidden>
+  <div class="isheet" role="dialog" aria-modal="true" aria-labelledby="news-title">
+    <div class="grab"></div>
+    <h2 id="news-title">Nouveautés</h2>
+    <p class="hint" id="news-sub"></p>
+    <ul class="news" id="news-list"></ul>
+    <p class="hint">Une information fausse ou périmée ? Chaque fiche a un bouton « Signaler une erreur » ; les signalements sont relus régulièrement.</p>
+    <button type="button" class="btn" data-closenews style="width:100%">Fermer</button>
   </div>
 </div>
 
@@ -1094,6 +1148,22 @@ MOB.forEach(d=>{d.t=["mob"];d.pub=1;d.mrs=1;});
 D.push(...MOB);
 Object.assign(GEO,{"mob-marss":[43.28847,5.38159],"mob-emlpp":[43.38108,5.3596]});
 
+/* ---------- Version, nouveautés, signalement ---------- */
+const VERSION="2026-10-16";
+const REPORT_TO="julienaron@gmail.com";
+/* Dernière vérification par défaut (mois du relevé) ; une fiche peut préciser d.chk="AAAA-MM-JJ" */
+const CHK_DEFAULT="2026-10";
+const CHANGELOG=[
+  ["2026-10-16",["Partage d'une fiche au patient par SMS ou WhatsApp","Fiche imprimable","Bouton « Signaler une erreur » sur chaque fiche","Date de vérification sur chaque fiche et cet écran « Nouveautés »","Numéros d'urgence (3114, 15, 115) en haut de la partie psychiatrie"]],
+  ["2026-10-15",["Psychiatrie : « Équipes mobiles » et « Urgences » n'affichent plus que ce type","Page de recherche dans tout l'annuaire (nom, quartier, station de métro…)","Accueil condensé, nombre de lieux dans chaque catégorie","Question « hors de Marseille » posée seulement quand elle change le résultat"]],
+  ["2026-10-14",["Catégories « Publics spécifiques » et « Équipe mobile », séparées des CSAPA","CSAPA séparés des consultations d'addictologie hospitalières","Ajout des Drs Yannis Achour (3ᵉ) et Damien Driot (6ᵉ, Vauban)"]],
+  ["2026-10-13",["Première version installable sur téléphone","CMP adultes de secteur, règle des personnes sans domicile, urgences psychiatriques (CAP 48, CAP 72…), équipes MARSS et EMLPP","Arrêts de métro et tram les plus proches, carte avec repères"]]
+];
+const MOIS_L=["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"];
+const fmtDate=s=>{const[y,m,d]=String(s).split("-").map(Number);return d?`${d===1?"1er":d} ${MOIS_L[m-1]} ${y}`:`${MOIS_L[m-1]} ${y}`;};
+const chkText=d=>"Vérifié : "+fmtDate(d.chk||CHK_DEFAULT);
+const reportHref=d=>"mailto:"+REPORT_TO+"?subject="+encodeURIComponent(`[Annuaire] Signalement : ${d.n}`)+"&body="+encodeURIComponent(`Lieu : ${d.n} (${d.id})\nVersion de l'annuaire : ${VERSION}\n\nCe qui est faux ou manquant :\n\n\nLa bonne information (et sa source, si possible) :\n\n`);
+
 
 /* ================= Interface ================= */
 const ORDER=["cure","postcure","hdj","resid","csapa","hosp","spec","amob","rdr","liberal","cmp","mob","urg"];
@@ -1146,7 +1216,9 @@ const I={
  pin:'<path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>',
  route:'<circle cx="6" cy="18" r="2.2"/><circle cx="18" cy="6" r="2.2"/><path d="M8.2 18H15a3 3 0 0 0 0-6H9a3 3 0 0 1 0-6h6.8"/>',
  web:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/>',
- photo:'<rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.8"/><path d="m21 16-5-5-9 8"/>'
+ photo:'<rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.8"/><path d="m21 16-5-5-9 8"/>',
+ share:'<circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="m8.2 10.8 7.6-4.6M8.2 13.2l7.6 4.6"/>',
+ print:'<path d="M7 9V4h10v5M7 17H4.5A1.5 1.5 0 0 1 3 15.5v-5A1.5 1.5 0 0 1 4.5 9h15a1.5 1.5 0 0 1 1.5 1.5v5a1.5 1.5 0 0 1-1.5 1.5H17"/><rect x="7" y="14" width="10" height="6.5" rx="1"/>'
 };
 const ico=(k,extra="")=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"${extra}>${I[k]}</svg>`;
 const OPTS=[["cure","Cure","Sevrage, 1 à 3 sem."],["postcure","Post-cure","5 sem. à 3 mois"],["hdj","Hôpital de jour","Retour le soir"],["resid","Hébergement","Centre, appartement"],["csapa","CSAPA","Suivi, substitution"],["hosp","Consultation hôpital","Addictologue, ELSA"],["spec","Publics spécifiques","Jeunes, parents"],["amob","Équipe mobile","Va vers les gens"],["rdr","Réduction des risques","CAARUD"],["liberal","Médecin libéral","Cabinet, substitution"]];
@@ -1429,6 +1501,15 @@ function mailText(d){
   if(d.has)lines.push(`Évaluation HAS : ${LV[d.has[0]]} (${d.has[1]}) – ${HASURL(d.has[5])}`);
   return lines.join("\n");
 }
+/* Texte court pour le patient (SMS, WhatsApp) */
+function shareText(d){
+  const ph=d.c.find(([l,v])=>telHref(v)&&!/fax/i.test(l));
+  const lines=[d.n,d.a];
+  if(ph)lines.push("Tél. "+ph[1]);
+  {const ac=accessText(d);if(ac)lines.push(ac);}
+  lines.push("Itinéraire : "+dirUrl(d));
+  return lines.join("\n");
+}
 function miniMap(d){
   const g=GEO[d.id];if(!g)return"";
   const[x,y]=P(...g),vw=Math.min(innerWidth,640)-32,k=0.9,w=vw*k,h=150*k;
@@ -1440,6 +1521,7 @@ function fiche(d){
   const big=[];
   if(f.length)big.push(`<a class="p" href="${esc(f[0][1])}" target="_blank" rel="noopener">${ico("doc")}Dossier<small>en ligne</small></a>`);
   if(ph)big.push(`<a href="${telHref(ph[1])}">${ico("phone")}Appeler<small>${esc(ph[1])}</small></a>`);
+  big.push(`<button type="button" data-share>${ico("share")}Partager<small>au patient</small></button>`);
   big.push(`<button type="button" data-tomail>${ico("mail")}Envoyer<small>par e-mail</small></button>`);
   const hasHtml=h?`<section class="sec"><h3>Évaluation HAS</h3><div class="box">
       <div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;align-items:baseline"><span class="has-lvl">${LV[h[0]]}</span><span class="b ${h[0]}">Décision du ${esc(h[1])}</span></div>
@@ -1453,6 +1535,7 @@ function fiche(d){
       <button class="backlink" type="button" data-close>← Résultats</button>
       <div class="tags">${tagsHtml(d)}${d.v?`<span class="verify">À confirmer</span>`:""}${d.pub?"":`<span class="prive">Privé</span>`}${d.sec?`<span class="prive">${SECL[d.sec]}</span>`:""}</div>
       <h2 id="fh-title">${esc(d.n)}</h2>
+      <div class="printonly">Annuaire Santé Mentale Marseille · ${chkText(d).toLowerCase()} · ${esc(d.a)}</div>
       <div class="org">${esc(d.o)} · ${esc(d.p)}</div>
       ${transit(d)}
     </div><svg class="wave" viewBox="0 0 390 26" preserveAspectRatio="none" aria-hidden="true"><path d="M0 16 C55 4 110 24 190 13 S320 3 390 15 V26 H0Z"/></svg></header>
@@ -1463,6 +1546,7 @@ function fiche(d){
         <a class="btn" href="${dirUrl(d)}" target="_blank" rel="noopener">${ico("route")}Itinéraire</a>
         ${d.site?`<a class="btn" href="${esc(d.site)}" target="_blank" rel="noopener">${ico("web")}Site officiel</a>`:""}
         ${d.photos?`<a class="btn" href="${esc(d.photos)}" target="_blank" rel="noopener">${ico("photo")}Photos</a>`:""}
+        <button class="btn" type="button" data-print>${ico("print")}Imprimer</button>
       </div>
       ${miniMap(d)}
       ${d.cover?`<section class="sec"><h3>Secteur</h3><div class="box sectbox"><div><b>${/^13G/.test(d.sect)?"Secteur "+esc(d.sect):"CH Valvert"}</b> · ${esc(d.o.split(" · ")[0])}</div><div>Couvre : ${esc(d.cover)}</div>${d.sdf?`<div>Personnes sans domicile nées du ${esc(d.sdf)}</div>`:""}</div></section>`:""}
@@ -1475,6 +1559,7 @@ function fiche(d){
         ${d.send?`<div style="${docs.length?"border-top:1px solid var(--line);padding-top:8px":""}">${esc(d.send)}</div>`:""}
       </div></section>`:""}
       ${d.c.length?`<section class="sec"><h3>Contacts</h3><div class="box">${d.c.map(([l,v])=>{const t=telHref(v);return `<div class="crow"><div style="min-width:0"><span class="l">${esc(l)}</span><span class="v">${esc(v)}</span></div><div class="acts">${t&&!/fax/i.test(l)?`<a class="copy" href="${t}" style="text-decoration:none;color:inherit">Appeler</a>`:""}<button class="copy" type="button" data-v="${esc(v)}">Copier</button></div></div>`;}).join("")}</div>${d.note?`<p class="note" style="margin-top:8px">${esc(d.note)}</p>`:""}</section>`:""}
+      <div class="chk"><span>${chkText(d)}</span><a href="${reportHref(d)}">Signaler une erreur</a></div>
       <button class="fab-back" type="button" data-close>← Retour</button>
       <section class="sec" id="mail-sec"><h3>Envoyer cette fiche par e-mail</h3>
         <div class="box mailbox">
@@ -1502,10 +1587,19 @@ const closeFiche=()=>back();
 fEl.addEventListener("click",e=>{
   if(e.target.closest("[data-close]"))return closeFiche();
   if(e.target.closest("[data-tomail]")){document.getElementById("mail-sec").scrollIntoView({behavior:"smooth",block:"start"});return;}
+  if(e.target.closest("[data-print]")){window.print();return;}
+  const sh=e.target.closest("[data-share]");if(sh){const d=D.find(x=>x.id===fEl.dataset.id);shareFiche(d,sh);return;}
   const c=e.target.closest(".copy[data-v]");if(c)return copy(c.dataset.v,c);
   const t=e.target.closest("[data-copytext]");if(t){const ta=document.getElementById(t.dataset.copytext);return copy(ta.value,t,ta);}
 });
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!fEl.hidden)closeFiche();});
+/* Partage natif (SMS, WhatsApp…) ; sinon copie du texte */
+function shareFiche(d,btn){
+  const text=shareText(d);
+  if(navigator.share){navigator.share({title:d.n,text}).catch(()=>{});return;}
+  const small=btn.querySelector("small"),old=small.textContent;
+  try{navigator.clipboard.writeText(text).then(()=>{small.textContent="texte copié";setTimeout(()=>small.textContent=old,1800);});}catch(_){}
+}
 function copy(text,btn,el){
   if(!btn.dataset.label)btn.dataset.label=btn.textContent;
   const label=btn.dataset.label;
@@ -1683,6 +1777,19 @@ insEl.addEventListener("click",e=>{
   if(e.target.closest("#ins-prompt")&&bip){bip.prompt();bip.userChoice.finally(()=>{bip=null;closeInstall();});}
 });
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!insEl.hidden)closeInstall();});
+
+/* ---------- Nouveautés ---------- */
+const newsEl=document.getElementById("newsheet");
+function paintNewsBadge(){const nw=store("addicto13.seen")!==VERSION;document.querySelectorAll(".newsbtn").forEach(b=>b.dataset.new=nw?"1":"0");}
+function openNews(){
+  document.getElementById("news-sub").textContent=`Version du ${fmtDate(VERSION)}. L'application se met à jour toute seule à l'ouverture.`;
+  document.getElementById("news-list").innerHTML=CHANGELOG.map(([d,ls])=>`<li><b>${fmtDate(d)}</b><ul>${ls.map(l=>`<li>${esc(l)}</li>`).join("")}</ul></li>`).join("");
+  store("addicto13.seen",VERSION);paintNewsBadge();newsEl.hidden=false;document.body.classList.add("locked");
+}
+function closeNews(){newsEl.hidden=true;if(fEl.hidden&&insEl.hidden)document.body.classList.remove("locked");}
+document.addEventListener("click",e=>{if(e.target.closest("[data-news]"))openNews();else if(e.target===newsEl||e.target.closest("[data-closenews]"))closeNews();});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!newsEl.hidden)closeNews();});
+paintNewsBadge();
 
 if("serviceWorker" in navigator&&location.protocol!=="file:"){window.addEventListener("load",()=>{navigator.serviceWorker.register("sw.js").then(r=>r.update()).catch(()=>{});});}
 
