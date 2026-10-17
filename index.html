@@ -448,6 +448,8 @@ select.arrsel{width:100%;border:1.5px solid var(--line);background:var(--surface
 .isheet-scrim#sharesheet{z-index:45}
 .shpre{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;font:13px/1.45 var(--body);background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px;max-height:30vh;overflow:auto}
 .shgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.shgrid:has(>[hidden]){grid-template-columns:1fr}
+.msgmeta:has(b:empty){display:none}
 .shgrid .btn{padding:13px 8px;font-size:15px}
 /* ---- nouveautés ---- */
 .themebtn{margin-left:auto;padding:3px 7px;font-size:12px;letter-spacing:0}
@@ -1286,7 +1288,7 @@ const REPORT_TO="julienaron@gmail.com";
 /* Dernière vérification par défaut (mois du relevé) ; une fiche peut préciser d.chk="AAAA-MM-JJ" */
 const CHK_DEFAULT="2026-10";
 const CHANGELOG=[
-  ["2026-10-17",["Fiches : en haut, le numéro à appeler, le partage et le mail de la structure, en icônes","Équipe mobile : descriptif « Aller-vers »","Envoi par e-mail : lien vers la messagerie fiabilisé, et bouton Gmail en secours","Bouton de thème en haut : automatique (suit le téléphone), clair ou sombre"]],
+  ["2026-10-17",["Fiches : en haut, le numéro à appeler, le partage et le mail de la structure, en icônes","Équipe mobile : descriptif « Aller-vers »","Envoi par e-mail : lien vers la messagerie fiabilisé, et bouton Gmail en secours","Bouton de thème en haut : automatique (suit le téléphone), clair ou sombre","Ouverte depuis l'appli Claude : les e-mails passent par un panneau (Gmail ou copie) au lieu d'une page blanche"]],
   ["2026-10-16",["Nouvelle présentation : bandeau bleu nuit avec la vague, catégories en pavés de couleur","Partage d'une fiche au patient par SMS ou WhatsApp","Fiche imprimable","Bouton « Signaler une erreur » sur chaque fiche","Date de vérification sur chaque fiche et cet écran « Nouveautés »","« Proposer un lieu manquant », en bas de page et dans la recherche","« Signaler une erreur » et « Proposer un lieu » : panneau de message, envoi par la messagerie, Gmail ou copie","Page psychiatrie au même style que l'accueil","Partage : panneau SMS, WhatsApp ou copie ; boutons d'appel réparés dans l'affichage intégré","Psychiatrie : bloc urgences recentré (3114, 15, CAP 48, CAP 72, CACC, UPAUL)","Hébergement : appartements thérapeutiques de Point Marseille, renommés pour être trouvés plus facilement","Réduction des risques : ajout de la RdR à distance (SAFE, envoi postal gratuit)","Bus 31/32 : CSAPA Bus Méthadone désormais au 129 avenue de Toulon (5ᵉ)"]],
   ["2026-10-15",["Psychiatrie : « Équipes mobiles » et « Urgences » n'affichent plus que ce type","Page de recherche dans tout l'annuaire (nom, quartier, station de métro…)","Accueil condensé, nombre de lieux dans chaque catégorie","Question « hors de Marseille » posée seulement quand elle change le résultat"]],
   ["2026-10-14",["Catégories « Publics spécifiques » et « Équipe mobile », séparées des CSAPA","CSAPA séparés des consultations d'addictologie hospitalières","Ajout des Drs Yannis Achour (3ᵉ) et Damien Driot (6ᵉ, Vauban)"]],
@@ -1764,6 +1766,10 @@ document.addEventListener("click",e=>{
   /* Appli installée ou navigateur : on « navigue » vers le lien, ce que téléphones et ordinateurs
      transmettent à l'appli d'appel ou de mail. Affichage intégré : nouvelle fenêtre. */
   if(!EMBED){location.href=a.href;return;}
+  if(a.href.startsWith("mailto:")){
+    const u=a.href.slice(7),[to,q=""]=u.split("?"),P=new URLSearchParams(q);
+    openMsg("Écrire un e-mail",[P.get("subject")||"",P.get("body")||""],decodeURIComponent(to));return;
+  }
   let w=null;try{w=window.open(a.href,"_blank")}catch(_){}
   if(!w){try{window.top.location.href=a.href}catch(_){location.href=a.href}}
 },true);
@@ -1958,15 +1964,18 @@ document.addEventListener("click",e=>{if(e.target.closest("[data-news]"))openNew
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!newsEl.hidden)closeNews();});
 paintNewsBadge();
 /* ---------- Signaler / proposer : panneau de message (marche même quand les liens mailto sont bloqués) ---------- */
-const msgEl=document.getElementById("msgsheet");
+const msgEl=document.getElementById("msgsheet");let msgTo=REPORT_TO;
 function paintMsgLinks(){
   const su=document.getElementById("msg-sub").textContent,bo=document.getElementById("msg-body").value;
-  document.getElementById("msg-mail").href="mailto:"+REPORT_TO+"?subject="+encodeURIComponent(su)+"&body="+encodeURIComponent(bo);
-  document.getElementById("msg-gmail").href="https://mail.google.com/mail/?view=cm&fs=1&to="+encodeURIComponent(REPORT_TO)+"&su="+encodeURIComponent(su)+"&body="+encodeURIComponent(bo);
+  document.getElementById("msg-mail").href="mailto:"+msgTo+"?subject="+encodeURIComponent(su)+"&body="+encodeURIComponent(bo);
+  document.getElementById("msg-gmail").href="https://mail.google.com/mail/?view=cm&fs=1&to="+encodeURIComponent(msgTo)+"&su="+encodeURIComponent(su)+"&body="+encodeURIComponent(bo);
 }
-function openMsg(title,[su,bo]){
+function openMsg(title,[su,bo],to){
+  msgTo=to===undefined?REPORT_TO:to;
   document.getElementById("msg-title").textContent=title;
-  document.getElementById("msg-to").textContent=REPORT_TO;
+  document.getElementById("msg-to").textContent=msgTo||"(à compléter dans Gmail)";
+  /* dans l'appli Claude, la messagerie du téléphone ne s'ouvre pas : on ne propose que Gmail et la copie */
+  document.getElementById("msg-mail").hidden=EMBED;
   document.getElementById("msg-sub").textContent=su;
   const ta=document.getElementById("msg-body");ta.value=bo;
   paintMsgLinks();msgEl.hidden=false;
@@ -1979,8 +1988,8 @@ document.addEventListener("click",e=>{
 });
 msgEl.addEventListener("click",e=>{
   if(e.target===msgEl||e.target.closest("[data-closemsg]"))return closeMsg();
-  const c=e.target.closest("#msg-copy");if(c)return copy(`À : ${REPORT_TO}\nObjet : ${document.getElementById("msg-sub").textContent}\n\n${document.getElementById("msg-body").value}`,c);
-  const ca=e.target.closest("#msg-copyto");if(ca)return copy(REPORT_TO,ca);
+  const c=e.target.closest("#msg-copy");if(c)return copy(`À : ${msgTo}\nObjet : ${document.getElementById("msg-sub").textContent}\n\n${document.getElementById("msg-body").value}`,c);
+  const ca=e.target.closest("#msg-copyto");if(ca)return copy(msgTo,ca);
 });
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!msgEl.hidden)closeMsg();});
 
