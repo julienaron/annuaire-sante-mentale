@@ -1,0 +1,915 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#1f4d9e">
+<title>Annuaire Bus 31/32</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="logo.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Annuaire 31/32">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Atkinson+Hyperlegible+Mono:wght@400;600&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap">
+<style>
+/* Layout: sticky header (logo + recherche), rangée de catégories, liste de fiches ; feuilles plein écran pour édition et historique. */
+:root {
+  /* couleurs du logo Bus 31/32 : bleu, orange, gris */
+  --bg: #f1f3f7;
+  --surface: #ffffff;
+  --ink: #15203a;
+  --muted: #5d677a;
+  --line: #dadfe8;
+  --accent: #1f4d9e;
+  --accent-ink: #ffffff;
+  --accent-soft: #e6edf9;
+  --signal: #f3a21b;
+  --signal-ink: #3b2400;
+  --grey: #a7adb7;
+  --warn-bg: #fff2d9;
+  --warn-ink: #6e4600;
+  --danger: #b3261e;
+  --chip: #eceff4;
+  --shadow: 0 1px 2px rgba(21, 32, 58, .06), 0 4px 14px rgba(21, 32, 58, .05);
+  --c1: #1f4d9e; --c2: #c96a00; --c3: #6b4fb8; --c4: #0f7a6c; --c5: #b3305b; --c6: #5d677a; --c7: #2f7d32; --c8: #9a5b14; --c9: #2a7fb0; --c10: #7a6a00;
+  --font-display: "Bricolage Grotesque", "Arial Narrow", system-ui, sans-serif;
+  --font-body: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-data: "Atkinson Hyperlegible Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d1320; --surface: #151d2c; --ink: #e6ebf5; --muted: #98a3b8; --line: #283246;
+    --accent: #86aef5; --accent-ink: #0b1630; --accent-soft: #1b2a47; --signal: #f6b443; --signal-ink: #2b1a00; --grey: #6f7686;
+    --warn-bg: #3a2c0d; --warn-ink: #f7d68a; --danger: #ff8a80; --chip: #1e2738;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3);
+    --c1: #86aef5; --c2: #f2a65a; --c3: #b39cf0; --c4: #5fcfbd; --c5: #f08aa9; --c6: #a7b0c2; --c7: #7fcf86; --c8: #e0b070; --c9: #79c3ec; --c10: #d9c860; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0d1320; --surface: #151d2c; --ink: #e6ebf5; --muted: #98a3b8; --line: #283246;
+  --accent: #86aef5; --accent-ink: #0b1630; --accent-soft: #1b2a47; --signal: #f6b443; --signal-ink: #2b1a00; --grey: #6f7686;
+  --warn-bg: #3a2c0d; --warn-ink: #f7d68a; --danger: #ff8a80; --chip: #1e2738;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .3);
+  --c1: #86aef5; --c2: #f2a65a; --c3: #b39cf0; --c4: #5fcfbd; --c5: #f08aa9; --c6: #a7b0c2; --c7: #7fcf86; --c8: #e0b070; --c9: #79c3ec; --c10: #d9c860; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.45; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--surface); }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 3px solid var(--signal); outline-offset: 2px; }
+.wrap { max-width: 1080px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+
+header.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--surface); box-shadow: var(--shadow); }
+header.top::after { content: ""; display: block; height: 4px; background: linear-gradient(90deg, var(--accent) 0 50%, var(--signal) 50% 75%, var(--grey) 75%); }
+.top .wrap { display: grid; gap: 10px; padding-block: 12px 10px; }
+.brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.logo { flex: none; height: 52px; display: grid; place-items: center; }
+.logo img { height: 52px; width: 52px; object-fit: contain; border-radius: 10px; background: #fff; padding: 3px; }
+.plate { height: 44px; min-width: 64px; padding: 0 10px; border-radius: 8px; background: var(--signal); color: var(--signal-ink); font-family: var(--font-display); font-weight: 800; font-size: 22px; letter-spacing: -0.02em; display: grid; place-items: center; border: 2px solid var(--signal-ink); }
+.brand-text { min-width: 0; flex: 1; }
+.brand-text h1 { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: 24px; line-height: 1.05; letter-spacing: -0.015em; }
+.brand-text h1 span { color: var(--accent); }
+.brand-text p { margin: 2px 0 0; color: var(--muted); font-size: 13px; }
+.top-actions { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+.search { position: relative; }
+.search svg.lens { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 20px; height: 20px; color: var(--muted); pointer-events: none; }
+.search input { width: 100%; padding: 13px 44px 13px 44px; border-radius: 12px; border: 2px solid transparent; background: var(--chip); font-size: 17px; }
+.search input:focus { border-color: var(--accent); background: var(--surface); outline: none; }
+.search .clear { position: absolute; right: 6px; top: 50%; transform: translateY(-50%); border: 0; background: transparent; color: var(--muted); font-size: 22px; width: 36px; height: 36px; border-radius: 8px; }
+.cats { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 2px; scrollbar-width: thin; }
+.cat { flex: none; border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 6px 12px; font-size: 14px; white-space: nowrap; display: inline-flex; align-items: center; gap: 6px; }
+.cat:hover { border-color: var(--accent); }
+.cat[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.dot { width: 9px; height: 9px; border-radius: 50%; flex: none; background: var(--dc, var(--muted)); }
+.cat[aria-pressed="true"] .dot { box-shadow: 0 0 0 2px var(--accent-ink); }
+.cat .n { font-family: var(--font-data); font-size: 12px; opacity: .7; margin-left: 4px; }
+
+.btn { border: 1px solid var(--line); background: var(--surface); border-radius: 8px; padding: 7px 12px; font-size: 14px; display: inline-flex; align-items: center; gap: 6px; }
+.btn:hover { border-color: var(--accent); }
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 700; }
+.btn svg { width: 16px; height: 16px; flex: none; }
+.btn.danger { color: var(--danger); }
+.btn.danger.solid { background: var(--danger); color: var(--surface); border-color: var(--danger); }
+.btn.ghost { border-color: transparent; background: transparent; color: var(--muted); }
+.btn[disabled] { opacity: .5; cursor: default; }
+
+main { padding-block: 14px 60px; }
+.status { font-variant-numeric: tabular-nums; display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; color: var(--muted); font-size: 14px; margin-bottom: 10px; }
+.notice { background: var(--warn-bg); color: var(--warn-ink); border-radius: 10px; padding: 10px 12px; font-size: 14px; margin-bottom: 12px; }
+.list { display: grid; gap: 8px 14px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 440px), 1fr)); align-items: start; }
+.letter { grid-column: 1 / -1; display: flex; align-items: center; gap: 12px; margin-top: 8px; font-family: var(--font-display); font-weight: 800; font-size: 28px; line-height: 1; color: var(--accent); }
+.letter::after { content: ""; flex: 1; height: 2px; background: var(--line); }
+.letter:first-child { margin-top: 0; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; min-width: 0; box-shadow: var(--shadow); transition: border-color .15s; }
+.card.open { border-color: var(--accent); }
+.card-head { display: flex; align-items: center; gap: 10px; padding: 11px 12px 11px 14px; cursor: pointer; min-width: 0; }
+.card-head:hover .ct-name { color: var(--accent); }
+.card-toggle { flex: 1; min-width: 0; border: 0; background: none; padding: 0; margin: 0; text-align: left; display: grid; gap: 2px; cursor: pointer; color: inherit; }
+.ct-name { font-family: var(--font-display); font-weight: 700; font-size: 17px; line-height: 1.2; overflow-wrap: anywhere; }
+.quickwrap { flex: none; display: inline-flex; align-items: center; gap: 6px; }
+.quick { font-size: 15px; }
+.card.open .quickwrap { display: none; }
+.call { display: inline-grid; place-items: center; width: 34px; height: 34px; margin-left: 6px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); vertical-align: middle; flex: none; }
+.call:hover { filter: brightness(1.1); }
+.call svg { width: 17px; height: 17px; }
+.lines .pv { align-items: center; }
+.chev { flex: none; width: 22px; height: 22px; color: var(--muted); display: grid; place-items: center; }
+.chev svg { width: 20px; height: 20px; }
+@media (prefers-reduced-motion: no-preference) { .chev { transition: transform .18s ease; } }
+.card.open .chev { transform: rotate(180deg); color: var(--accent); }
+.card-body { display: grid; gap: 10px; padding: 12px 14px 14px; border-top: 1px solid var(--line); }
+.card-body[hidden] { display: none; }
+@media (max-width: 480px) { .quick { display: none; } .call { margin-left: 0; } }
+.card-top { display: grid; gap: 4px; }
+.card h2 { margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 19px; line-height: 1.2; letter-spacing: -0.005em; text-wrap: balance; overflow-wrap: anywhere; }
+.tag { justify-self: start; display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--muted); }
+.row { display: grid; grid-template-columns: 20px 1fr; gap: 10px; align-items: start; min-width: 0; }
+.ic { color: var(--muted); padding-top: 3px; display: grid; place-items: center; }
+.ic svg { width: 16px; height: 16px; }
+.row .v { min-width: 0; overflow-wrap: anywhere; white-space: pre-line; }
+.lines { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.lines li { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; padding: 3px 0; min-width: 0; }
+.lines li + li { border-top: 1px dotted var(--line); }
+.lines .pl { color: var(--muted); font-size: 14px; min-width: 0; overflow-wrap: anywhere; }
+.lines .pv { display: inline-flex; align-items: baseline; gap: 2px; flex: none; max-width: 100%; }
+.lines li.free .pv { flex: 1; display: block; white-space: normal; overflow-wrap: anywhere; }
+.tel { display: inline-block; padding: 2px 4px; margin: -2px -4px; border-radius: 6px; cursor: pointer; font-family: var(--font-data); font-weight: 600; font-size: 16px; color: var(--accent); text-decoration: none; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.tel:hover { background: var(--accent-soft); }
+.tel.ok { background: var(--accent); color: var(--accent-ink); }
+.mail { color: var(--accent); overflow-wrap: anywhere; }
+.cp { border: 0; background: transparent; color: var(--muted); border-radius: 6px; width: 28px; height: 26px; padding: 0; margin-left: 2px; display: inline-grid; place-items: center; vertical-align: middle; }
+.cp:hover { background: var(--chip); color: var(--accent); }
+.cp svg { width: 15px; height: 15px; }
+.cp.ok { color: var(--accent); }
+.maplink { font-size: 13px; color: var(--accent); white-space: nowrap; margin-left: 4px; }
+.notes { color: var(--ink); font-size: 14.5px; background: var(--chip); border-radius: 10px; padding: 9px 11px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; overflow-wrap: anywhere; }
+.notes.open { display: block; }
+.more { border: 0; background: none; color: var(--accent); padding: 0; font-size: 14px; justify-self: start; }
+.card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: 10px; margin-top: 2px; }
+.stamp { font-size: 12px; color: var(--muted); }
+.stamp.old { color: var(--warn-ink); background: var(--warn-bg); padding: 2px 6px; border-radius: 5px; }
+.card-actions { display: flex; gap: 4px; }
+.empty { text-align: center; color: var(--muted); padding: 40px 10px; }
+mark { background: var(--signal); color: var(--signal-ink); border-radius: 2px; }
+
+.sheet { position: fixed; inset: 0; z-index: 20; background: rgba(5, 20, 18, .45); display: flex; justify-content: center; align-items: flex-end; }
+.panel { background: var(--surface); width: 100%; max-width: 640px; max-height: calc(100% - env(safe-area-inset-top, 0px) - 12px); border-radius: 16px 16px 0 0; display: flex; flex-direction: column; }
+@media (min-width: 700px) { .sheet { align-items: center; } .panel { border-radius: 16px; max-height: 88%; } }
+.panel-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 14px max(16px, env(safe-area-inset-right, 0px)) 10px max(16px, env(safe-area-inset-left, 0px)); border-bottom: 1px solid var(--line); }
+.panel-head h3 { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: 20px; text-wrap: balance; }
+.panel-body { overflow-y: auto; padding: 14px max(16px, env(safe-area-inset-right, 0px)) 14px max(16px, env(safe-area-inset-left, 0px)); display: grid; gap: 12px; }
+.panel-foot { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; padding: 10px max(16px, env(safe-area-inset-right, 0px)) calc(12px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); border-top: 1px solid var(--line); }
+.field { display: grid; gap: 4px; }
+.field label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.field input, .field textarea { width: 100%; border: 1px solid var(--line); border-radius: 8px; padding: 9px 10px; background: var(--bg); }
+.field textarea { min-height: 64px; resize: vertical; }
+.field input:focus, .field textarea:focus { outline: none; border-color: var(--accent); }
+.telrows { display: grid; gap: 6px; }
+.telrow { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr) auto; gap: 6px; align-items: center; }
+.telrow input { width: 100%; min-width: 0; border: 1px solid var(--line); border-radius: 8px; padding: 9px 10px; background: var(--bg); }
+.telrow input:focus { outline: none; border-color: var(--accent); }
+.telrow .tn { font-family: var(--font-data); font-variant-numeric: tabular-nums; }
+.teldel { padding: 7px 10px; color: var(--danger); }
+.teldel:hover { border-color: var(--danger); }
+.addtel { justify-self: start; border-style: dashed; color: var(--accent); }
+.hint { margin: 0; font-size: 13px; color: var(--muted); }
+.catpick { display: flex; flex-wrap: wrap; gap: 6px; }
+.catpick .cat[aria-checked="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 700; }
+.catpick .newcat { border-style: dashed; color: var(--accent); }
+.newcat-row { display: flex; gap: 8px; }
+.newcat-row input { flex: 1; min-width: 0; border: 1px solid var(--line); border-radius: 8px; padding: 9px 10px; background: var(--bg); }
+.two { display: grid; grid-template-columns: 1fr 2fr; gap: 10px; }
+.conflict { border: 2px solid var(--signal); border-radius: 12px; padding: 12px; display: grid; gap: 10px; }
+.conflict h4 { margin: 0; font-size: 15px; }
+.choice { display: grid; gap: 6px; }
+.choice label { display: grid; grid-template-columns: 20px 1fr; gap: 8px; align-items: start; border: 1px solid var(--line); border-radius: 8px; padding: 8px; font-size: 14px; white-space: pre-line; overflow-wrap: anywhere; }
+.choice label b { display: block; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+.hist { display: grid; gap: 10px; }
+.day { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-top: 6px; }
+.h-item { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; display: grid; gap: 6px; }
+.h-item .who { font-size: 14px; }
+.h-item .when { color: var(--muted); font-size: 13px; font-family: var(--font-data); }
+.diff { font-size: 13px; display: grid; gap: 3px; }
+.diff div { overflow-wrap: anywhere; }
+.diff del { color: var(--danger); }
+.diff ins { color: var(--accent); text-decoration: none; }
+.badge { font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 5px; text-transform: uppercase; letter-spacing: .05em; }
+.b-modif { background: var(--chip); }
+.b-ajout { background: var(--accent); color: var(--accent-ink); }
+.b-suppression { background: var(--danger); color: var(--surface); }
+.b-restauration { background: var(--signal); color: var(--signal-ink); }
+.toast { position: fixed; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--ink); color: var(--surface); padding: 10px 16px; border-radius: 10px; z-index: 30; font-size: 15px; max-width: calc(100% - 32px); }
+@media (max-width: 520px) { .brand-text p { display: none; } .top-actions .label { display: none; } }
+@media (prefers-reduced-motion: no-preference) { .toast { animation: up .2s ease-out; } @keyframes up { from { transform: translate(-50%, 8px); opacity: 0; } } }
+/* reset (remplace celui que fournissait Claude) */
+html { -webkit-text-size-adjust: 100%; }
+:root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+body { margin: 0; }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+/* écran de connexion */
+.auth { min-height: 100vh; min-height: 100dvh; display: grid; place-items: center; padding-block: 24px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.auth-card { width: 100%; max-width: 400px; background: var(--surface); border: 1px solid var(--line); border-radius: 18px; box-shadow: var(--shadow); padding: 28px 22px; display: grid; gap: 14px; text-align: center; }
+.auth-card img { width: 88px; height: 88px; justify-self: center; border-radius: 16px; background: #fff; padding: 4px; }
+.auth-card h2 { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: 26px; }
+.auth-card h2 span { color: var(--accent); }
+.auth-card p { margin: 0; color: var(--muted); font-size: 15px; }
+.auth-card form { display: grid; gap: 10px; }
+.auth-card input { width: 100%; padding: 13px 14px; border-radius: 12px; border: 2px solid var(--line); background: var(--bg); font-size: 17px; text-align: center; }
+.auth-card input:focus { outline: none; border-color: var(--accent); }
+.auth-card .btn { justify-content: center; padding: 12px; font-size: 16px; }
+.auth-msg { font-size: 14px; border-radius: 10px; padding: 10px 12px; text-align: left; }
+.auth-msg.ok { background: var(--accent-soft); color: var(--ink); }
+.auth-msg.err { background: var(--warn-bg); color: var(--warn-ink); }
+.linkbtn { border: 0; background: none; color: var(--accent); font-size: 14px; text-decoration: underline; padding: 4px; }
+</style>
+</head>
+<body>
+
+<section class="auth" id="auth" hidden>
+  <div class="auth-card">
+    <img src="logo.png" alt="Logo Bus 31/32">
+    <h2>Annuaire <span>31/32</span></h2>
+    <p id="authIntro">Réservé à l'équipe. Entrez votre adresse e-mail : vous recevrez un lien de connexion.</p>
+    <form id="authForm">
+      <input id="authEmail" type="email" required autocomplete="email" inputmode="email" placeholder="votre.adresse@exemple.fr" aria-label="Adresse e-mail">
+      <button class="btn primary" type="submit" id="authSend">Recevoir le lien</button>
+    </form>
+    <form id="codeForm" hidden>
+      <input id="authCode" inputmode="numeric" autocomplete="one-time-code" maxlength="8" placeholder="Code reçu par e-mail" aria-label="Code reçu par e-mail">
+      <button class="btn primary" type="submit">Se connecter avec le code</button>
+      <button class="linkbtn" type="button" id="authBack">Changer d'adresse</button>
+    </form>
+    <div class="auth-msg" id="authMsg" hidden></div>
+  </div>
+</section>
+
+<div id="app" hidden>
+<header class="top">
+  <div class="wrap">
+    <div class="brand">
+      <div class="logo" id="logo"><img src="logo.png" alt="Logo Bus 31/32"></div>
+      <div class="brand-text">
+        <h1>Annuaire <span>31/32</span></h1>
+        <p id="sub">Les contacts partenaires de l'équipe</p>
+      </div>
+      <div class="top-actions">
+        <button class="btn primary" id="btnAdd" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg><span class="label">Contact</span></button>
+        <button class="btn" id="btnHist" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l3 2"/></svg><span class="label">Historique</span></button>
+        <button class="btn" id="btnMenu" hidden aria-label="Réglages"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg></button>
+      </div>
+    </div>
+    <div class="search">
+      <svg class="lens" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="Nom, numéro, ville, CMP, TSO…" autocomplete="off" aria-label="Rechercher un contact">
+      <button class="clear" id="clearQ" aria-label="Effacer" hidden>×</button>
+    </div>
+    <div class="cats" id="cats" role="toolbar" aria-label="Catégories"></div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div id="notice"></div>
+  <div class="status"><span id="count">Chargement de l'annuaire…</span><span id="sync"></span></div>
+  <div class="list" id="list"></div>
+</main>
+
+<div class="sheet" id="sheet" hidden>
+  <div class="panel" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+    <div class="panel-head"><h3 id="sheetTitle"></h3><button class="btn ghost" id="sheetClose" aria-label="Fermer">✕</button></div>
+    <div class="panel-body" id="sheetBody"></div>
+    <div class="panel-foot" id="sheetFoot"></div>
+  </div>
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="config.js"></script>
+<script>
+(function () {
+  const FIELDS = [
+    ["nom", "Nom"], ["categorie", "Catégorie"], ["telephones", "Téléphones"], ["email", "E-mails"],
+    ["adresse", "Adresse"], ["cp", "Code postal"], ["ville", "Ville"], ["notes", "Infos utiles"]
+  ];
+  const KEEP_MS = 7 * 24 * 3600 * 1000;
+  const tabId = "tab-" + Math.random().toString(36).slice(2, 10);
+  const $ = (s) => document.querySelector(s);
+  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const norm = (s) => String(s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+  const digits = (s) => String(s || "").replace(/\+33\s?\(?0?\)?/g, "0").replace(/\D/g, "");
+  const val = (o, k) => String((o && o[k]) ?? "").trim();
+  const fmtDay = new Intl.DateTimeFormat("fr-FR", { weekday: "long", day: "numeric", month: "long" });
+  const fmtTime = new Intl.DateTimeFormat("fr-FR", { hour: "2-digit", minute: "2-digit" });
+  const fmtMonth = new Intl.DateTimeFormat("fr-FR", { month: "long", year: "numeric" });
+
+  const CFG = window.ANNUAIRE_CONFIG || {};
+  let sb = null, uid = null, canWrite = false;
+  let contacts = [], byId = new Map(), history = [];
+  let q = "", cat = "Toutes", openNotes = new Set(), openCards = new Set();
+  let names = {};
+  let editor = null; // état de la feuille d'édition
+  let loaded = false;
+
+  // ---------- utilitaires ----------
+  function toast(msg) {
+    const t = document.createElement("div"); t.className = "toast"; t.textContent = msg;
+    document.body.appendChild(t); setTimeout(() => t.remove(), 3200);
+  }
+  function who(id) {
+    if (!id) return "Import initial";
+    if (id === uid) return "Vous";
+    return names[id] || String(id).split("@")[0];
+  }
+  async function loadNames() {
+    try {
+      const { data } = await sb.from("membres").select("email, nom");
+      (data || []).forEach((m) => { if (m.nom) names[m.email] = m.nom; });
+    } catch (e) {}
+  }
+  const IC = {"phone": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z\"/></svg>", "mail": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"2\" y=\"4\" width=\"20\" height=\"16\" rx=\"2\"/><path d=\"m22 7-10 6L2 7\"/></svg>", "pin": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z\"/><circle cx=\"12\" cy=\"10\" r=\"3\"/></svg>", "copy": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"9\" y=\"9\" width=\"13\" height=\"13\" rx=\"2\"/><path d=\"M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1\"/></svg>", "check": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M20 6 9 17l-5-5\"/></svg>", "edit": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 20h9\"/><path d=\"M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z\"/></svg>", "hist": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 12a9 9 0 1 0 3-6.7L3 8\"/><path d=\"M3 3v5h5\"/><path d=\"M12 7v5l3 2\"/></svg>", "plus": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\"><path d=\"M12 5v14M5 12h14\"/></svg>", "dots": "<svg viewBox=\"0 0 24 24\" fill=\"currentColor\"><circle cx=\"5\" cy=\"12\" r=\"2\"/><circle cx=\"12\" cy=\"12\" r=\"2\"/><circle cx=\"19\" cy=\"12\" r=\"2\"/></svg>"};
+  // couleur stable par catégorie (10 teintes, dans les deux thèmes)
+  function catColor(name) { let h = 0; for (const ch of String(name || '')) h = (h * 31 + ch.charCodeAt(0)) >>> 0; return 'var(--c' + (h % 10 + 1) + ')'; }
+  const callLink = (d) => '<a class="call" href="tel:' + d + '" aria-label="Appeler le ' + d + '" title="Appeler"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5c-1.2 0-2.4-.2-3.6-.6a1 1 0 0 0-1 .25l-2.2 2.2a15 15 0 0 1-6.6-6.6l2.2-2.2a1 1 0 0 0 .25-1A11.4 11.4 0 0 1 8.5 4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1 17 17 0 0 0 17 17 1 1 0 0 0 1-1v-3.5a1 1 0 0 0-1-1z"/></svg></a>';
+  const copyBtn = (v) => '<button class="cp" data-copy="' + esc(v) + '" aria-label="Copier" title="Copier">' + IC.copy + '</button>';
+  const PHONE = /(?:\+33\s?|0)[1-9](?:[\s.\-]?\d{2}){4}/g;
+  const MAIL = /[\w.+'À-ſ-]+@[\w-]+(?:\.[\w-]+)+/g;
+  function rich(text, hl) {
+    const s = String(text || "");
+    const parts = [];
+    const re = new RegExp(PHONE.source + "|" + MAIL.source, "g");
+    let last = 0, m;
+    while ((m = re.exec(s))) {
+      parts.push(highlight(s.slice(last, m.index), hl));
+      const tok = m[0];
+      if (tok.includes("@")) {
+        parts.push('<span class="mail">' + highlight(tok, hl) + '</span>' + copyBtn(tok));
+      } else {
+        const d = digits(tok);
+        parts.push('<a class="tel" href="tel:' + d + '" title="Appeler">' + highlight(tok, hl) + '</a>' + copyBtn(d));
+      }
+      last = m.index + tok.length;
+    }
+    parts.push(highlight(s.slice(last), hl));
+    return parts.join("");
+  }
+  function highlight(text, hl) {
+    const e = esc(text);
+    if (!hl || !hl.length) return e;
+    // surligne les mots recherchés sans tenir compte des accents
+    const n = norm(text);
+    const marks = [];
+    hl.forEach((t) => { if (t.length < 2) return; let i = 0; while ((i = n.indexOf(t, i)) !== -1) { marks.push([i, i + t.length]); i += t.length; } });
+    if (!marks.length) return e;
+    marks.sort((a, b) => a[0] - b[0]);
+    let out = "", pos = 0;
+    for (const [a, b] of marks) { if (a < pos) continue; out += esc(text.slice(pos, a)) + "<mark>" + esc(text.slice(a, b)) + "</mark>"; pos = b; }
+    return out + esc(text.slice(pos));
+  }
+
+  // ---------- recherche ----------
+  function matches(c) {
+    if (cat !== "Toutes" && (c.categorie || "Autres") !== cat) return false;
+    const raw = q.trim();
+    if (!raw) return true;
+    if (/^[\d\s.+\-]+$/.test(raw) && digits(raw).length >= 2) {
+      return digits([c.telephones, c.notes, c.cp].join(" ")).includes(digits(raw)) || norm(c.cp).includes(raw.trim());
+    }
+    const hay = norm(FIELDS.map(([k]) => c[k]).join(" "));
+    return norm(raw).split(/\s+/).filter(Boolean).every((t) => hay.includes(t));
+  }
+  const sortName = (a, b) => norm(a.nom).replace(/^(dr\.?|le|la|les)\s+/, "").localeCompare(norm(b.nom).replace(/^(dr\.?|le|la|les)\s+/, ""), "fr");
+
+  // ---------- rendu de la liste ----------
+  function linesHtml(text, hl) {
+    return '<ul class="lines">' + String(text || "").split("\n").map((l) => l.trim()).filter(Boolean).map((l) => {
+      const t = parseTels(l)[0] || { label: "", num: l };
+      const simple = new RegExp("^(?:" + PHONE.source + "|" + MAIL.source + ")$").test(t.num.trim());
+      if (!simple) return '<li class="free"><span class="pv">' + rich(l, hl) + "</span></li>";
+      return "<li>" + (t.label ? '<span class="pl">' + highlight(t.label, hl) + "</span>" : "<span></span>") + '<span class="pv">' + rich(t.num, hl) + "</span></li>";
+    }).join("") + "</ul>";
+  }
+  function emailLines(text, hl) {
+    return '<ul class="lines">' + String(text || "").split("\n").map((l) => l.trim()).filter(Boolean).map((l) => {
+      const m = l.match(/^(.*?\S)\s*:\s*(\S+@\S+)$/);
+      return m ? '<li><span class="pl">' + highlight(m[1], hl) + '</span><span class="pv">' + rich(m[2], hl) + "</span></li>"
+               : '<li class="free"><span class="pv">' + rich(l, hl) + "</span></li>";
+    }).join("") + "</ul>";
+  }
+  function stamp(c) {
+    let d = null, by = "";
+    if (c.updatedAt) { d = new Date(c.updatedAt); by = " · " + (c.updatedByLabel || who(c.updatedBy)); }
+    else if (c.majOrigine) d = new Date(c.majOrigine + "T12:00:00");
+    if (!d || isNaN(d)) return "";
+    const old = Date.now() - d.getTime() > 365 * 24 * 3600 * 1000;
+    return '<span class="stamp' + (old ? " old" : "") + '" title="' + (old ? "Info de plus d'un an, à vérifier" : "") + '">Mis à jour ' + fmtMonth.format(d) + esc(by) + (old ? " · à vérifier" : "") + "</span>";
+  }
+  function render() {
+    // catégories
+    const counts = {};
+    contacts.forEach((c) => { const k = c.categorie || "Autres"; counts[k] = (counts[k] || 0) + 1; });
+    const cats = ["Toutes", ...Object.keys(counts).sort((a, b) => a.localeCompare(b, "fr"))];
+    if (cat !== "Toutes" && !counts[cat]) cat = "Toutes";
+    $("#cats").innerHTML = cats.map((k) => '<button class="cat" data-cat="' + esc(k) + '" aria-pressed="' + (k === cat) + '">' + (k === "Toutes" ? "" : '<span class="dot" style="--dc:' + catColor(k) + '"></span>') + esc(k) + '<span class="n">' + (k === "Toutes" ? contacts.length : counts[k]) + "</span></button>").join("");
+
+    const hl = /^[\d\s.+\-]+$/.test(q.trim()) ? [] : norm(q).split(/\s+/).filter(Boolean);
+    const shown = contacts.filter(matches).sort(sortName);
+    if (!loaded) { $("#count").textContent = "Chargement de l'annuaire…"; return; }
+    $("#count").textContent = shown.length + (shown.length > 1 ? " contacts" : " contact") + (q || cat !== "Toutes" ? " sur " + contacts.length : "");
+    if (!contacts.length) {
+      $("#list").innerHTML = '<div class="empty">L\'annuaire est vide pour l\'instant.' + (canWrite ? '<br>Ajoutez le premier contact avec le bouton « + Contact ».' : "") + "</div>";
+      return;
+    }
+    if (!shown.length) { $("#list").innerHTML = '<div class="empty">Aucun contact ne correspond à « ' + esc(q) + ' ».</div>'; return; }
+    const initial = (c) => { const n = norm(c.nom).replace(/^(dr\.?|le|la|les)\s+/, "").trim(); const ch = n.charAt(0).toUpperCase(); return /[A-Z]/.test(ch) ? ch : "#"; };
+    let lastL = "";
+    $("#list").innerHTML = shown.map((c) => {
+      const L = initial(c); const head = L !== lastL ? '<div class="letter" aria-hidden="true">' + L + "</div>" : ""; lastL = L;
+      const rows = [];
+      if (val(c, "telephones")) rows.push([IC.phone, linesHtml(c.telephones, hl)]);
+      if (val(c, "email")) rows.push([IC.mail, emailLines(c.email, hl)]);
+      const addr = [val(c, "adresse"), [val(c, "cp"), val(c, "ville")].filter(Boolean).join(" ")].filter(Boolean).join(", ");
+      const mapQ = encodeURIComponent([val(c, "adresse"), val(c, "cp"), val(c, "ville") || "Marseille"].filter(Boolean).join(" "));
+      if (addr) rows.push([IC.pin, highlight(addr, hl) + (val(c, "adresse") ? ' <a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=' + mapQ + '" target="_blank" rel="noopener">Itinéraire ↗</a>' : "")]);
+      const notes = val(c, "notes");
+      const isOpen = openCards.has(c.id) || shown.length <= 2;
+      const firstTel = (String(c.telephones || "").match(PHONE) || [])[0];
+      const sub = [esc(c.categorie || "Autres"), val(c, "ville") && val(c, "ville") !== "Marseille" ? esc(val(c, "ville")) : (val(c, "cp").startsWith("130") ? esc(+val(c, "cp").slice(3) + (val(c, "cp") === "13001" ? "er" : "e")) : "")].filter(Boolean).join(" · ");
+      return head + '<article class="card' + (isOpen ? " open" : "") + '" data-id="' + esc(c.id) + '">' +
+        '<div class="card-head">' +
+          '<button type="button" class="card-toggle" aria-expanded="' + isOpen + '" aria-controls="b-' + esc(c.id) + '">' +
+            '<span class="ct-name">' + highlight(c.nom, hl) + '</span>' +
+            '<span class="tag"><span class="dot" style="--dc:' + catColor(c.categorie || "Autres") + '"></span>' + sub + "</span>" +
+          "</button>" +
+          (firstTel ? '<span class="quickwrap"><a class="tel quick" href="tel:' + digits(firstTel) + '" title="Appeler">' + esc(firstTel) + "</a>" + callLink(digits(firstTel)) + "</span>" : "") +
+          '<span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>' +
+        "</div>" +
+        '<div class="card-body" id="b-' + esc(c.id) + '"' + (isOpen ? "" : " hidden") + ">" +
+        rows.map(([ic, v]) => '<div class="row"><span class="ic" aria-hidden="true">' + ic + '</span><div class="v">' + v + "</div></div>").join("") +
+        (notes ? '<div class="notes open">' + rich(notes, hl).replace(/\n/g, "<br>") + "</div>" : "") +
+        '<div class="card-foot">' + stamp(c) + '<div class="card-actions">' +
+        (canWrite ? '<button class="btn" data-edit="' + esc(c.id) + '">' + IC.edit + "Modifier</button>" : "") +
+        '<button class="btn ghost" data-hist="' + esc(c.id) + '" title="Historique de cette fiche" aria-label="Historique de cette fiche">' + IC.hist + "</button></div></div></div></article>";
+    }).join("");
+  }
+
+  // ---------- feuilles (édition, historique, réglages) ----------
+  function openSheet(mode, title) {
+    $("#sheet").hidden = false; $("#sheet").dataset.mode = mode; $("#sheetTitle").textContent = title;
+    document.body.style.overflow = "hidden";
+  }
+  function closeSheet() {
+    if (editor && editor.timer) clearInterval(editor.timer);
+    if (editor && editor.id && sb) sb.from("verrous").delete().eq("contact_id", editor.id).eq("par", uid).then(() => {}, () => {});
+    editor = null; $("#sheet").hidden = true; $("#sheet").dataset.mode = ""; document.body.style.overflow = "";
+  }
+
+  function formValues() {
+    const o = {};
+    FIELDS.forEach(([k]) => { const el = document.getElementById("f-" + k); o[k] = el ? el.value.trim() : ""; });
+    if ($("#telRows")) o.telephones = serializeTels();
+    return o;
+  }
+
+  // ---------- téléphones : une ligne par numéro ----------
+  // "Prénom : 06 00 00 00 00" -> { label: "Prénom", num: "06 00 00 00 00" } ; une ligne sans nom reste un numéro seul
+  function parseTels(text) {
+    return String(text || "").split("\n").map((l) => l.trim()).filter(Boolean).map((l) => {
+      const m = l.match(/^(.*?\S)\s*:\s*((?:\+33|0)[\d\s.\/+()-]*\d)$/);
+      // si le "nom" contient lui-même un numéro, la ligne mélange plusieurs contacts : on la garde entière
+      return m && !/\d{2}[\s.]?\d{2}[\s.]?\d{2}/.test(m[1]) ? { label: m[1], num: m[2] } : { label: "", num: l };
+    });
+  }
+  function serializeTels() {
+    return [...document.querySelectorAll("#telRows .telrow")].map((r) => {
+      const label = r.querySelector(".tl").value.trim().replace(/\s*:\s*$/, "");
+      const num = r.querySelector(".tn").value.trim();
+      if (!num) return "";
+      return label ? label + " : " + num : num;
+    }).filter(Boolean).join("\n");
+  }
+  let telSeq = 0;
+  function addTelRow(label, num, focus) {
+    const n = ++telSeq;
+    const row = document.createElement("div");
+    row.className = "telrow";
+    row.innerHTML =
+      '<input class="tl" id="tl-' + n + '" placeholder="Nom ou rôle (facultatif)" aria-label="Nom ou rôle" value="' + esc(label) + '">' +
+      '<input class="tn" id="tn-' + n + '" placeholder="Numéro" aria-label="Numéro" inputmode="tel" value="' + esc(num) + '">' +
+      '<button type="button" class="btn ghost teldel" data-teldel="1" aria-label="Supprimer ce numéro" title="Supprimer ce numéro">✕</button>';
+    $("#telRows").appendChild(row);
+    if (focus) row.querySelector(".tl").focus();
+  }
+  function pick(o) { const r = {}; FIELDS.forEach(([k]) => r[k] = val(o, k)); return r; }
+
+  async function openEditor(id) {
+    const c = id ? byId.get(id) : null;
+    const base = c ? pick(c) : pick({ categorie: cat !== "Toutes" ? cat : "" });
+    editor = { id, base, baseRev: c ? (c.rev || 0) : 0, busy: false, remote: false, conflicts: null };
+    openSheet("edit", id ? "Modifier la fiche" : "Nouveau contact");
+    const catList = [...new Set(contacts.map((x) => x.categorie).filter(Boolean))].sort((a, b) => a.localeCompare(b, "fr"));
+    $("#sheetBody").innerHTML =
+      '<div id="edWarn"></div>' +
+      field("nom", "Nom", base.nom, "input") +
+      '<div class="field"><label id="catLabel">Catégorie</label><input type="hidden" id="f-categorie" value="' + esc(base.categorie) + '">' +
+      '<div class="catpick" role="radiogroup" aria-labelledby="catLabel">' +
+      catList.map((k) => '<button type="button" class="cat" role="radio" data-pick="' + esc(k) + '" aria-checked="' + (k === base.categorie) + '">' + esc(k) + "</button>").join("") +
+      '<button type="button" class="cat newcat" id="catNewBtn" aria-expanded="false">+ Nouvelle catégorie</button></div>' +
+      '<div class="newcat-row" id="catNewRow" hidden><input id="catNew" placeholder="Nom de la nouvelle catégorie" maxlength="40"><button type="button" class="btn primary" id="catNewOk">Créer</button></div></div>' +
+      '<div class="field"><label id="telLabel">Téléphones</label>' +
+      '<div class="telrows" id="telRows" role="group" aria-labelledby="telLabel"></div>' +
+      '<button type="button" class="btn addtel" id="telAdd">+ Ajouter un numéro</button>' +
+      '<p class="hint">Remplissez la nouvelle ligne, puis cliquez sur « Enregistrer » en bas.</p>' +
+      '<input type="hidden" id="f-telephones"></div>' +
+      field("email", "E-mails", base.email, "textarea") +
+      field("adresse", "Adresse", base.adresse, "input") +
+      '<div class="two">' + field("cp", "Code postal", base.cp, "input") + field("ville", "Ville", base.ville, "input") + "</div>" +
+      field("notes", "Infos utiles", base.notes, "textarea", "Horaires, conditions d'accès, DDN, personne référente…") +
+      '<div id="edConflict"></div>';
+    $("#sheetFoot").innerHTML = (id ? '<button class="btn danger" id="edDel">Supprimer</button>' : "<span></span>") +
+      '<div style="display:flex;gap:8px"><button class="btn" id="edCancel">Annuler</button><button class="btn primary" id="edSave">Enregistrer</button></div>';
+    parseTels(base.telephones).forEach((t) => addTelRow(t.label, t.num));
+    if (!base.telephones) addTelRow("", "");
+    $("#f-nom").focus();
+    if (id) {
+      const lease = async () => {
+        try {
+          const { data } = await sb.from("verrous").select("par, jusqua").eq("contact_id", id).maybeSingle();
+          const busy = !!(data && data.par !== uid && Date.parse(data.jusqua) > Date.now());
+          if (editor && editor.id === id) { editor.busy = busy; editor.busyBy = busy ? data.par : null; showWarn(); }
+          if (!busy) await sb.from("verrous").upsert({ contact_id: id, par: uid, jusqua: new Date(Date.now() + 45000).toISOString() });
+        } catch (e) {}
+      };
+      lease(); editor.timer = setInterval(lease, 30000);
+    }
+  }
+  function pickCat(name) {
+    $("#f-categorie").value = name;
+    document.querySelectorAll(".catpick [data-pick]").forEach((b) => b.setAttribute("aria-checked", String(b.dataset.pick === name)));
+  }
+  function createCat() {
+    const name = $("#catNew").value.trim().replace(/\s+/g, " ");
+    if (!name) { $("#catNew").focus(); return; }
+    const existing = [...document.querySelectorAll(".catpick [data-pick]")].find((b) => norm(b.dataset.pick) === norm(name));
+    if (!existing) {
+      const b = document.createElement("button");
+      b.type = "button"; b.className = "cat"; b.setAttribute("role", "radio"); b.dataset.pick = name; b.textContent = name;
+      $("#catNewBtn").before(b);
+    }
+    pickCat(existing ? existing.dataset.pick : name);
+    $("#catNew").value = ""; $("#catNewRow").hidden = true; $("#catNewBtn").setAttribute("aria-expanded", "false");
+    toast(existing ? "Cette catégorie existe déjà, elle est sélectionnée." : "Catégorie « " + name + " » créée.");
+  }
+  function field(k, label, v, kind, ph) {
+    const p = ph ? ' placeholder="' + esc(ph) + '"' : "";
+    return '<div class="field"><label for="f-' + k + '">' + label + "</label>" +
+      (kind === "textarea" ? '<textarea id="f-' + k + '"' + p + ">" + esc(v) + "</textarea>" : '<input id="f-' + k + '" value="' + esc(v) + '"' + p + ">") + "</div>";
+  }
+  function showWarn() {
+    if (!editor) return;
+    const msgs = [];
+    if (editor.busy) msgs.push((editor.busyBy ? who(editor.busyBy) : "Un·e collègue") + " a cette fiche ouverte en modification. Vous pouvez continuer : si vos changements se croisent, l'appli vous demandera quoi garder.");
+    if (editor.remote) msgs.push("Cette fiche vient d'être modifiée par " + who(editor.remoteBy) + ". Vos changements seront fusionnés à l'enregistrement.");
+    $("#edWarn").innerHTML = msgs.map((m) => '<div class="notice">' + esc(m) + "</div>").join("");
+  }
+
+  const toRow = (o) => ({ nom: o.nom, categorie: o.categorie, telephones: o.telephones, email: o.email, adresse: o.adresse, cp: o.cp, ville: o.ville, notes: o.notes });
+  const fromRow = (r) => ({ id: r.id, nom: r.nom || "", categorie: r.categorie || "", telephones: r.telephones || "", email: r.email || "",
+    adresse: r.adresse || "", cp: r.cp || "", ville: r.ville || "", notes: r.notes || "", majOrigine: r.maj_origine, rev: r.rev || 0,
+    updatedAt: r.updated_at, updatedBy: r.updated_by, updatedByLabel: r.updated_by_label });
+  const stampRow = () => ({ updated_at: new Date().toISOString(), updated_by: uid, updated_by_label: null });
+  // écrit seulement si la fiche est encore à la version attendue ; renvoie false si quelqu'un l'a changée entre-temps
+  async function updateIfRev(id, rev, fields) {
+    const { data, error } = await sb.from("contacts").update({ ...fields, rev: rev + 1, ...stampRow() }).eq("id", id).eq("rev", rev).select("id");
+    if (error) throw error;
+    return !!(data && data.length);
+  }
+
+  async function saveEditor(resolved) {
+    if (!editor) return;
+    const btn = $("#edSave"); btn.disabled = true;
+    try {
+      const mine = formValues();
+      if (!mine.nom) { toast("Indiquez au moins un nom."); btn.disabled = false; return; }
+      if (!editor.id) {
+        const id = norm(mine.nom).replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 40) + "-" + Math.random().toString(36).slice(2, 6);
+        const { error } = await sb.from("contacts").insert({ id, ...toRow(mine), rev: 1, ...stampRow() });
+        if (error) throw error;
+        await logHistory("ajout", id, mine.nom, null, mine);
+        closeSheet(); toast("Contact ajouté."); return;
+      }
+      const id = editor.id;
+      // cas courant : personne n'a touché la fiche depuis son ouverture
+      if (!resolved) {
+        const unchanged = FIELDS.every(([k]) => mine[k] === editor.base[k]);
+        if (unchanged) { closeSheet(); toast("Aucun changement."); return; }
+        if (await updateIfRev(id, editor.baseRev, toRow(mine))) {
+          await logHistory("modif", id, mine.nom, editor.base, mine);
+          closeSheet(); toast("Fiche enregistrée."); return;
+        }
+      }
+      // quelqu'un a modifié la fiche entre-temps : fusion à trois voies
+      const { data: freshRow, error } = await sb.from("contacts").select("*").eq("id", id).maybeSingle();
+      if (error) throw error;
+      if (!freshRow) {
+        $("#edConflict").innerHTML = '<div class="notice">Cette fiche a été supprimée par un·e collègue pendant que vous la modifiiez. « Enregistrer » la recrée avec votre version.</div>';
+        editor.id = null; btn.disabled = false; return;
+      }
+      const theirsFull = fromRow(freshRow); const theirs = pick(theirsFull);
+      let merged = {}, autoMerged = false; const clash = [];
+      FIELDS.forEach(([k]) => {
+        const b = editor.base[k], m = mine[k], t = theirs[k];
+        if (m === t) merged[k] = m;
+        else if (m === b) { merged[k] = t; autoMerged = true; }
+        else if (t === b) merged[k] = m;
+        else if (resolved && resolved.rev === theirsFull.rev && k in resolved.choice) merged[k] = resolved.choice[k] === "mine" ? m : t;
+        else clash.push(k);
+      });
+      if (clash.length) { showConflict(clash, mine, theirs, theirsFull); btn.disabled = false; return; }
+      const changed = FIELDS.some(([k]) => merged[k] !== theirs[k]);
+      if (!changed) { closeSheet(); toast("Déjà à jour avec les changements de vos collègues."); return; }
+      if (!(await updateIfRev(id, theirsFull.rev, toRow(merged)))) {
+        toast("La fiche vient encore de changer. Relisez puis enregistrez à nouveau."); btn.disabled = false; return;
+      }
+      await logHistory("modif", id, merged.nom, theirs, merged);
+      closeSheet(); toast(autoMerged ? "Enregistré et fusionné avec les changements d'un·e collègue." : "Fiche enregistrée.");
+    } catch (e) {
+      btn.disabled = false;
+      toast("Enregistrement impossible pour le moment. Vérifiez la connexion et réessayez.");
+    }
+  }
+  function showConflict(keys, mine, theirs, theirsFull) {
+    const label = Object.fromEntries(FIELDS);
+    editor.pendingRev = theirsFull.rev || 0;
+    $("#edConflict").innerHTML = '<div class="conflict"><h4>' + esc(who(theirsFull.updatedBy)) + ' a modifié les mêmes champs que vous. Que garder ?</h4>' +
+      keys.map((k) => '<div class="choice" data-k="' + k + '"><div class="field"><label>' + label[k] + "</label></div>" +
+        '<label><input type="radio" name="c-' + k + '" value="mine" checked><span><b>Ma version</b>' + (esc(mine[k]) || "<i>(vide)</i>") + "</span></label>" +
+        '<label><input type="radio" name="c-' + k + '" value="theirs"><span><b>Version de ' + esc(who(theirsFull.updatedBy)) + "</b>" + (esc(theirs[k]) || "<i>(vide)</i>") + "</span></label></div>").join("") +
+      '<button class="btn primary" id="edResolve">Enregistrer avec ces choix</button></div>';
+    $("#edConflict").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+  function readChoices() {
+    const choice = {};
+    document.querySelectorAll("#edConflict .choice").forEach((el) => {
+      const k = el.dataset.k; const r = el.querySelector("input:checked"); choice[k] = r ? r.value : "mine";
+    });
+    return { rev: editor.pendingRev, choice };
+  }
+
+  async function confirmDelete() {
+    if (!editor || !editor.id) return;
+    const c = byId.get(editor.id);
+    $("#sheetFoot").innerHTML = '<span style="align-self:center">Supprimer « ' + esc(c ? c.nom : "") + ' » ? Restaurable 7 jours.</span><div style="display:flex;gap:8px"><button class="btn" id="delNo">Garder</button><button class="btn danger solid" id="delYes">Supprimer</button></div>';
+  }
+  async function doDelete() {
+    const id = editor.id; const c = byId.get(id);
+    try {
+      const { error } = await sb.from("contacts").delete().eq("id", id);
+      if (error) throw error;
+      await logHistory("suppression", id, c ? c.nom : id, c ? pick(c) : null, null);
+      closeSheet(); toast("Contact supprimé. Restaurable depuis l'historique pendant 7 jours.");
+    } catch (e) { toast("Suppression impossible pour le moment."); }
+  }
+
+  async function logHistory(action, contactId, nom, before, after) {
+    try {
+      await sb.from("historique").insert({ action, contact_id: contactId, nom: nom || "", par: uid, avant: before || null, apres: after || null });
+    } catch (e) {}
+  }
+  const histFromRow = (r) => ({ id: String(r.id), action: r.action, contactId: r.contact_id, nom: r.nom || "", atMs: Date.parse(r.at),
+    by: r.par, byLabel: r.par_label, before: r.avant, after: r.apres });
+
+  // ---------- historique ----------
+  let histFilter = null;
+  function openHistory(contactId) {
+    histFilter = contactId || null;
+    const c = contactId ? byId.get(contactId) : null;
+    openSheet("hist", c ? "Historique · " + c.nom : "Historique des 7 derniers jours");
+    $("#sheetFoot").innerHTML = '<span class="stamp">Chaque changement est gardé 7 jours puis effacé.</span>' + (histFilter ? '<button class="btn" id="histAll">Tout l\'historique</button>' : "");
+    renderHistory();
+  }
+  function renderHistory() {
+    const cutoff = Date.now() - KEEP_MS;
+    const items = history.filter((h) => h.atMs >= cutoff && (!histFilter || h.contactId === histFilter));
+    if (!items.length) { $("#sheetBody").innerHTML = '<div class="empty">Aucun changement ces 7 derniers jours.</div>'; return; }
+    let day = "", html = "";
+    const label = Object.fromEntries(FIELDS);
+    const verbs = { modif: "a modifié", ajout: "a ajouté", suppression: "a supprimé", restauration: "a restauré" };
+    items.forEach((h) => {
+      const d = new Date(h.atMs); const dk = fmtDay.format(d);
+      if (dk !== day) { day = dk; html += '<div class="day">' + esc(dk) + "</div>"; }
+      let diff = "";
+      if (h.before && h.after) {
+        diff = FIELDS.filter(([k]) => val(h.before, k) !== val(h.after, k)).map(([k]) =>
+          "<div><b>" + label[k] + "</b> : " + (val(h.before, k) ? "<del>" + esc(cut(val(h.before, k))) + "</del> → " : "") + "<ins>" + (esc(cut(val(h.after, k))) || "<i>(vidé)</i>") + "</ins></div>").join("");
+      }
+      const current = byId.get(h.contactId);
+      let act = "";
+      if (canWrite) {
+        if ((h.action === "modif" || h.action === "restauration") && h.before) act = '<button class="btn" data-restore="' + esc(h.id) + '">Revenir à la version d\'avant</button>';
+        if (h.action === "suppression" && h.before && !current) act = '<button class="btn primary" data-restore="' + esc(h.id) + '">Restaurer la fiche</button>';
+        if (h.action === "ajout" && current) act = '<button class="btn danger" data-undoadd="' + esc(h.id) + '">Annuler l\'ajout</button>';
+      }
+      html += '<div class="h-item"><div class="who"><span class="badge b-' + h.action + '">' + esc(h.action) + "</span> " +
+        "<b>" + esc(h.byLabel || who(h.by)) + "</b> " + (verbs[h.action] || "") + " <b>" + esc(h.nom) + '</b></div><div class="when">' + fmtTime.format(d) + "</div>" +
+        (diff ? '<div class="diff">' + diff + "</div>" : "") + (act ? "<div>" + act + "</div>" : "") + "</div>";
+    });
+    $("#sheetBody").innerHTML = '<div class="hist">' + html + "</div>";
+  }
+  const cut = (s) => (s.length > 140 ? s.slice(0, 140) + "…" : s);
+
+  async function restore(hid) {
+    const h = history.find((x) => x.id === hid); if (!h || !h.before) return;
+    try {
+      const { data: cur } = await sb.from("contacts").select("*").eq("id", h.contactId).maybeSingle();
+      const row = { id: h.contactId, ...toRow({ ...pick({}), ...h.before }), rev: (cur ? cur.rev : 0) + 1, ...stampRow() };
+      const { error } = await sb.from("contacts").upsert(row);
+      if (error) throw error;
+      await logHistory("restauration", h.contactId, h.before.nom, cur ? pick(fromRow(cur)) : null, h.before);
+      toast("Version précédente restaurée.");
+    } catch (e) { toast("Restauration impossible pour le moment."); }
+  }
+  async function undoAdd(hid) {
+    const h = history.find((x) => x.id === hid); if (!h) return;
+    const c = byId.get(h.contactId); if (!c) return;
+    try {
+      const { error } = await sb.from("contacts").delete().eq("id", h.contactId);
+      if (error) throw error;
+      await logHistory("suppression", h.contactId, c.nom, pick(c), null);
+      toast("Ajout annulé.");
+    } catch (e) { toast("Action impossible pour le moment."); }
+  }
+
+  // ---------- réglages : logo + copie de sauvegarde ----------
+  function openMenu() {
+    openSheet("menu", "Réglages");
+    $("#sheetBody").innerHTML =
+      '<div class="field"><label>Connecté·e</label><div>' + esc(uid || "") + "</div></div>" +
+      '<div class="field"><label>Copie de sauvegarde</label><div><button class="btn" id="csv">Télécharger l\'annuaire (CSV, ouvre dans Excel)</button></div></div>' +
+      '<div class="field"><label>Sur le téléphone</label><div class="hint">Pour l\'avoir comme une appli : dans le navigateur, menu Partager (iPhone) ou ⋮ (Android), puis « Sur l\'écran d\'accueil ».</div></div>';
+    $("#sheetFoot").innerHTML = '<span class="stamp">' + contacts.length + ' contacts</span><button class="btn" id="logout">Se déconnecter</button>';
+  }
+  function exportCsv() {
+    const cols = FIELDS.map(([k]) => k);
+    const q2 = (v) => '"' + String(v ?? "").replace(/"/g, '""') + '"';
+    const lines = [FIELDS.map(([, l]) => q2(l)).join(";")].concat(contacts.slice().sort(sortName).map((c) => cols.map((k) => q2(c[k])).join(";")));
+    const blob = new Blob(["\ufeff" + lines.join("\r\n")], { type: "text/csv;charset=utf-8" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob); a.download = "annuaire-bus-3132-" + new Date().toISOString().slice(0, 10) + ".csv";
+    document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+  }
+
+  // ---------- événements ----------
+  $("#q").addEventListener("input", (e) => { q = e.target.value; $("#clearQ").hidden = !q; render(); });
+  $("#clearQ").addEventListener("click", () => { q = ""; $("#q").value = ""; $("#clearQ").hidden = true; render(); $("#q").focus(); });
+  $("#cats").addEventListener("click", (e) => { const b = e.target.closest("[data-cat]"); if (b) { cat = b.dataset.cat; render(); } });
+  $("#btnAdd").addEventListener("click", () => openEditor(null));
+  $("#btnHist").addEventListener("click", () => openHistory(null));
+  $("#btnMenu").addEventListener("click", openMenu);
+  $("#sheetClose").addEventListener("click", closeSheet);
+  $("#sheet").addEventListener("click", (e) => { if (e.target === $("#sheet")) closeSheet(); });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && e.target.id === "catNew") { e.preventDefault(); createCat(); return; }
+    if (e.key === "Escape" && !$("#sheet").hidden) closeSheet();
+  });
+
+  function toggleCard(card) {
+    const id = card.dataset.id; const open = !card.classList.contains("open");
+    if (open) openCards.add(id); else openCards.delete(id);
+    card.classList.toggle("open", open);
+    card.querySelector(".card-body").hidden = !open;
+    card.querySelector(".card-toggle").setAttribute("aria-expanded", String(open));
+  }
+  document.addEventListener("click", async (e) => {
+    const headEl = e.target.closest(".card-head");
+    if (headEl && !e.target.closest(".tel, .call")) { toggleCard(headEl.closest(".card")); return; }
+    const t = e.target.closest("button"); if (!t) return;
+    if (t.dataset.copy) {
+      const txt = t.dataset.copy;
+      const isTel = t.classList.contains("tel");
+      const what = isTel || /^\d+$/.test(txt) ? "Numéro" : "Adresse";
+      try { await navigator.clipboard.writeText(txt); t.classList.add("ok"); if (!isTel) t.innerHTML = IC.check; toast(what + " copié : " + txt + (what === "Numéro" ? " — collez-le dans votre téléphone pour appeler." : "")); }
+      catch (err) { const r = document.createRange(); r.selectNodeContents(isTel ? t : t.previousElementSibling); const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); toast(what + " sélectionné : copiez-le avec votre téléphone."); }
+      setTimeout(() => { t.classList.remove("ok"); if (!isTel) t.innerHTML = IC.copy; }, 1500);
+      return;
+    }
+    if (t.dataset.pick !== undefined) { pickCat(t.dataset.pick); return; }
+    if (t.id === "catNewBtn") { $("#catNewRow").hidden = false; t.setAttribute("aria-expanded", "true"); $("#catNew").focus(); return; }
+    if (t.id === "catNewOk") { createCat(); return; }
+    if (t.id === "telAdd") { addTelRow("", "", true); return; }
+    if (t.dataset.teldel) {
+      const row = t.closest(".telrow"); const next = row.nextElementSibling || row.previousElementSibling;
+      row.remove();
+      if (next) next.querySelector(".tn").focus(); else $("#telAdd").focus();
+      return;
+    }
+    if (t.dataset.more) { openNotes.add(t.dataset.more); render(); return; }
+    if (t.dataset.edit) { openEditor(t.dataset.edit); return; }
+    if (t.dataset.hist) { openHistory(t.dataset.hist); return; }
+    if (t.dataset.restore) { t.disabled = true; await restore(t.dataset.restore); return; }
+    if (t.dataset.undoadd) { t.disabled = true; await undoAdd(t.dataset.undoadd); return; }
+    switch (t.id) {
+      case "edSave": saveEditor(null); break;
+      case "edResolve": saveEditor(readChoices()); break;
+      case "edCancel": closeSheet(); break;
+      case "edDel": confirmDelete(); break;
+      case "delNo": $("#sheetFoot").innerHTML = '<button class="btn danger" id="edDel">Supprimer</button><div style="display:flex;gap:8px"><button class="btn" id="edCancel">Annuler</button><button class="btn primary" id="edSave">Enregistrer</button></div>'; break;
+      case "delYes": doDelete(); break;
+      case "histAll": openHistory(null); break;
+      case "csv": exportCsv(); break;
+      case "logout": await sb.auth.signOut(); location.reload(); break;
+    }
+  });
+
+  // ---------- démarrage ----------
+  function showAuth(msg, kind) {
+    $("#app").hidden = true; $("#auth").hidden = false;
+    if (msg) { $("#authMsg").hidden = false; $("#authMsg").className = "auth-msg " + (kind || "ok"); $("#authMsg").textContent = msg; }
+  }
+  $("#authForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = $("#authEmail").value.trim().toLowerCase(); if (!email) return;
+    $("#authSend").disabled = true;
+    const { error } = await sb.auth.signInWithOtp({ email, options: { emailRedirectTo: location.origin + location.pathname } });
+    $("#authSend").disabled = false;
+    if (error) { showAuth(/rate|limit|seconds/i.test(error.message) ? "Trop de demandes d'affilée. Attendez une minute puis réessayez." : "L'e-mail n'a pas pu être envoyé : " + error.message, "err"); return; }
+    $("#authForm").hidden = true; $("#codeForm").hidden = false;
+    showAuth("E-mail envoyé à " + email + ". Ouvrez le lien qu'il contient sur cet appareil, ou tapez ici le code s'il y en a un.", "ok");
+  });
+  $("#codeForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = $("#authEmail").value.trim().toLowerCase(), token = $("#authCode").value.replace(/\s/g, "");
+    if (!token) return;
+    const { error } = await sb.auth.verifyOtp({ email, token, type: "email" });
+    if (error) showAuth("Code incorrect ou expiré. Redemandez un e-mail.", "err");
+  });
+  $("#authBack").addEventListener("click", () => { $("#codeForm").hidden = true; $("#authForm").hidden = false; $("#authMsg").hidden = true; });
+
+  let started = false;
+  async function startApp(session) {
+    if (started) return; started = true;
+    uid = (session.user.email || "").toLowerCase();
+    const { data: me } = await sb.from("membres").select("email").eq("email", uid).maybeSingle();
+    if (!me) {
+      started = false;
+      await sb.auth.signOut();
+      $("#authForm").hidden = false; $("#codeForm").hidden = true;
+      showAuth("L'adresse " + uid + " n'est pas encore autorisée. Demandez à Julien de l'ajouter à l'annuaire.", "err");
+      return;
+    }
+    canWrite = true;
+    $("#auth").hidden = true; $("#app").hidden = false;
+    $("#btnAdd").hidden = false; $("#btnHist").hidden = false; $("#btnMenu").hidden = false;
+    render();
+    await loadNames();
+    await reloadContacts();
+    await reloadHistory();
+    sb.channel("annuaire")
+      .on("postgres_changes", { event: "*", schema: "public", table: "contacts" }, (p) => {
+        if (p.eventType === "DELETE") { const id = p.old && p.old.id; contacts = contacts.filter((c) => c.id !== id); }
+        else {
+          const c = fromRow(p.new); const i = contacts.findIndex((x) => x.id === c.id);
+          if (i >= 0) contacts[i] = c; else contacts.push(c);
+          if (editor && editor.id === c.id && c.rev !== editor.baseRev && c.updatedBy !== uid) { editor.remote = true; editor.remoteBy = c.updatedBy; showWarn(); }
+        }
+        byId = new Map(contacts.map((c) => [c.id, c])); render();
+      })
+      .on("postgres_changes", { event: "INSERT", schema: "public", table: "historique" }, (p) => {
+        history.unshift(histFromRow(p.new));
+        if (!$("#sheet").hidden && $("#sheet").dataset.mode === "hist") renderHistory();
+      })
+      .subscribe((status) => {
+        $("#sync").textContent = status === "SUBSCRIBED" ? "À jour" : status === "CHANNEL_ERROR" || status === "TIMED_OUT" ? "Connexion instable" : "";
+      });
+    // si l'appli revient au premier plan après une pause, on recharge tout
+    document.addEventListener("visibilitychange", () => { if (!document.hidden) { reloadContacts(); reloadHistory(); } });
+  }
+  async function reloadContacts() {
+    const { data, error } = await sb.from("contacts").select("*").limit(5000);
+    if (error) { $("#notice").innerHTML = '<div class="notice">Impossible de charger l\'annuaire. Vérifiez la connexion puis rechargez la page.</div>'; return; }
+    $("#notice").innerHTML = "";
+    contacts = data.map(fromRow); byId = new Map(contacts.map((c) => [c.id, c])); loaded = true; render();
+  }
+  async function reloadHistory() {
+    const since = new Date(Date.now() - KEEP_MS).toISOString();
+    const { data } = await sb.from("historique").select("*").gte("at", since).order("at", { ascending: false }).limit(800);
+    history = (data || []).map(histFromRow);
+    if (!$("#sheet").hidden && $("#sheet").dataset.mode === "hist") renderHistory();
+  }
+
+  if (!CFG.supabaseUrl || !CFG.supabaseAnonKey || !window.supabase) {
+    $("#auth").hidden = false; $("#authForm").hidden = true;
+    showAuth("L'annuaire n'est pas encore relié à sa base de données (fichier config.js à compléter).", "err");
+    return;
+  }
+  sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey, {
+    auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true, flowType: "implicit" }
+  });
+  sb.auth.onAuthStateChange((event, session) => { if (session) startApp(session); });
+  sb.auth.getSession().then(({ data }) => { if (data.session) startApp(data.session); else showAuth(); });
+})();
+</script>
+</body>
+</html>

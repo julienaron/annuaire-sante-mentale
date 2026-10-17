@@ -1,0 +1,15 @@
+{
+  "name": "Annuaire Bus 31/32",
+  "short_name": "Annuaire 31/32",
+  "description": "Contacts partenaires de l'équipe du Bus 31/32 (accès réservé).",
+  "lang": "fr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f1f3f7",
+  "theme_color": "#1f4d9e",
+  "icons": [
+    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"}
+  ]
+}
