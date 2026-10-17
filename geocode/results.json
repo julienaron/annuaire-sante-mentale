@@ -1,0 +1,11 @@
+{
+ "reseaux13": {
+  "addr": "53 avenue de Frais Vallon, 13013 Marseille",
+  "lat": 43.325381,
+  "lon": 5.42834,
+  "label": "53 Avenue de frais vallon 13013 Marseille",
+  "score": 0.9702509090909092,
+  "type": "housenumber",
+  "src": "ban"
+ }
+}
