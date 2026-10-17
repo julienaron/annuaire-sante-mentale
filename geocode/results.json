@@ -189,13 +189,7 @@
   "src": "ban"
  },
  "am-service-de-sante-etudiante-sse-d-aix-mar": {
-  "addr": "3 place Victor Hugo, 13003 Marseille",
-  "lat": 43.304325,
-  "lon": 5.37822,
-  "label": "Place victor hugo 13003 Marseille",
-  "score": 0.8180680213903743,
-  "type": "street",
-  "src": "ban"
+  "addr": "3 place Victor Hugo, bât. 5, bloc C, 6ᵉ étage, 13003 Marseille (antennes : 163 av. de Luminy 13009, tél. 04 13 94 24 58"
  },
  "am-al-anon-groupe-friedland-entourage-de-pe": {
   "addr": "13001 Marseille",
@@ -432,13 +426,7 @@
   "src": "ban"
  },
  "ah-permanence-addictions-france-a-miramas": {
-  "addr": "4 boulevard Docteur Jacques Minet, 13140 Miramas",
-  "lat": 43.575739,
-  "lon": 4.997673,
-  "label": "4 Boulevard Jacques Minet 13140 Miramas",
-  "score": 0.7259847826086956,
-  "type": "housenumber",
-  "src": "ban"
+  "addr": "4 boulevard du Docteur Jacques Minet, Maison des services , 13140 Miramas"
  },
  "ah-permanence-addictions-france-a-saint-rem": {
   "addr": "14A boulevard Gambetta, CCAS, 13210 Saint-Rémy-de-Provence",
