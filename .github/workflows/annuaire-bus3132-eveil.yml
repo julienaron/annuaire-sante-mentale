@@ -1,0 +1,49 @@
+# Annuaire Bus 31/32 : empêche la mise en pause de la base Supabase gratuite.
+# Supabase met en pause un projet gratuit après 7 jours sans activité ; un appel par jour suffit à l'éviter.
+# Si la base ne répond plus, la tâche échoue et GitHub prévient par e-mail le propriétaire du dépôt.
+name: Annuaire 31/32 - garder la base active
+
+on:
+  schedule:
+    - cron: "17 5 * * *"   # chaque jour, vers 7 h à Paris
+  workflow_dispatch:        # bouton « Run workflow » pour tester à la main
+
+permissions:
+  contents: write
+
+jobs:
+  eveil:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Interroger la base de l'annuaire
+        run: |
+          URL=$(grep -oP 'supabaseUrl:\s*"\K[^"]*' bus3132/config.js || true)
+          KEY=$(grep -oP 'supabaseAnonKey:\s*"\K[^"]*' bus3132/config.js || true)
+          if [ -z "$URL" ] || [ -z "$KEY" ]; then
+            echo "config.js n'est pas encore rempli : rien à faire."
+            exit 0
+          fi
+          CODE=$(curl -s -o /dev/null -w "%{http_code}" --max-time 30 \
+            "$URL/rest/v1/contacts?select=id&limit=1" \
+            -H "apikey: $KEY" -H "Authorization: Bearer $KEY")
+          echo "Réponse de la base : $CODE"
+          if [ "$CODE" != "200" ]; then
+            echo "::error::La base de l'annuaire ne répond pas ($CODE). Ouvrir supabase.com et cliquer sur « Resume project » si elle est en pause."
+            exit 1
+          fi
+
+      # GitHub désactive les tâches planifiées d'un dépôt public resté 60 jours sans activité :
+      # une petite mise à jour le 1er de chaque mois garde le dépôt actif.
+      - name: Garder le dépôt actif (le 1er du mois)
+        if: github.event_name == 'schedule'
+        run: |
+          if [ "$(date -u +%d)" = "01" ]; then
+            date -u +%FT%TZ > bus3132/.dernier-passage
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add bus3132/.dernier-passage
+            git commit -m "Annuaire 31/32 : passage mensuel automatique"
+            git push
+          fi

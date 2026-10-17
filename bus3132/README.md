@@ -29,5 +29,7 @@ Pour retirer l'accès : supprimer la ligne.
 
 - L'offre gratuite de Supabase envoie peu d'e-mails de connexion par heure : connecter les collègues un par un.
   Une fois connecté, on le reste sur l'appareil.
-- Un projet gratuit se met en pause après 7 jours sans aucune visite ; il se relance depuis le tableau de bord Supabase.
+- Un projet Supabase gratuit se met en pause après 7 jours sans activité. La tâche GitHub
+  `.github/workflows/annuaire-bus3132-eveil.yml` interroge la base chaque matin pour l'éviter.
+  Si la base ne répond plus, GitHub envoie un e-mail : ouvrir Supabase et cliquer sur « Resume project ».
 - Sauvegarde : menu ⋯ de l'appli > « Télécharger l'annuaire (CSV) ».
