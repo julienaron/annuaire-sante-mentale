@@ -1,0 +1,21 @@
+name: Géocodage des adresses
+on:
+  push:
+    paths: ["geocode/addresses.json", "geocode/run.py"]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  geocode:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: python geocode/run.py
+      - run: |
+          git config user.name "geocode-bot"
+          git config user.email "geocode-bot@users.noreply.github.com"
+          git add geocode/results.json
+          git diff --cached --quiet || git commit -m "Géocodage : résultats"
+          git push
