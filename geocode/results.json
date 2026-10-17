@@ -1375,5 +1375,14 @@
   "score": 0.9728581818181817,
   "type": "housenumber",
   "src": "ban"
+ },
+ "imaje": {
+  "addr": "35 rue Jean-Baptiste Estelle, 13001 Marseille",
+  "lat": 43.293311,
+  "lon": 5.381679,
+  "label": "35 Rue jean-baptiste estelle 13001 Marseille",
+  "score": 0.9655999999999999,
+  "type": "housenumber",
+  "src": "ban"
  }
 }
