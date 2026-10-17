@@ -1384,5 +1384,62 @@
   "score": 0.9655999999999999,
   "type": "housenumber",
   "src": "ban"
+ },
+ "us-france-assos-sante-paca": {
+  "addr": "215 rue de la Coquillade, Eole Parc, 13540 Aix-en-Provence",
+  "lat": 43.576696,
+  "lon": 5.429478,
+  "label": "215 Rue de la Coquillade 13540 Aix-en-Provence",
+  "score": 0.7280451239669422,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "us-groupe-d-entendeurs-de-voix-gev-le-cercl": {
+  "addr": "19 rue de l'Arc, 13001 Marseille",
+  "lat": 43.294358,
+  "lon": 5.380374,
+  "label": "19 Rue de l'arc 13001 Marseille",
+  "score": 0.9655999999999999,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "us-cofor-centre-de-formation-au-retablissem": {
+  "addr": "13 boulevard d'Athènes, 13001 Marseille",
+  "lat": 43.299892,
+  "lon": 5.380598,
+  "label": "13 Boulevard d'athenes 13001 Marseille",
+  "score": 0.9686354545454544,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "us-je-suis-bipolaire-marseille-ex-ifapb-ins": {
+  "addr": "58 cours Lieutaud, 13006 Marseille",
+  "lat": 43.292954,
+  "lon": 5.382366,
+  "label": "58 Cours lieutaud 13006 Marseille",
+  "score": 0.9748627272727272,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "us-nouvelle-aube": {
+  "addr": "141 avenue de la Capelette, 13010 Marseille",
+  "lat": 43.281201,
+  "lon": 5.405988,
+  "label": "141 Avenue de la capelette 13010 Marseille",
+  "score": 0.9779572727272726,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "us-alcooliques-anonymes-groupes-de-marseill": {
+  "addr": "Plusieurs lieux de réunion"
+ },
+ "us-renaitre-apres-l-inceste-agir-avec-les-b": {
+  "addr": "39 rue Antoine Maille, 13005 Marseille",
+  "lat": 43.285526,
+  "lon": 5.394327,
+  "label": "39 Rue antoine maille 13005 Marseille",
+  "score": 0.9696372727272725,
+  "type": "housenumber",
+  "src": "ban"
  }
 }
