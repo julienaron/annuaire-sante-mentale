@@ -7,5 +7,1373 @@
   "score": 0.9702509090909092,
   "type": "housenumber",
   "src": "ban"
+ },
+ "am-consultation-d-addictologie-specialisee-": {
+  "addr": "6 rue Désirée Clary, module C5, 1er étage, 13003 Marseille",
+  "lat": 43.309455,
+  "lon": 5.372305,
+  "label": "6 Rue desiree clary 13003 Marseille",
+  "score": 0.5723251515151515,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "am-consultation-de-tabacologie-hopital-euro": {
+  "addr": "6 rue Désirée Clary, module C5, 1er étage, 13003 Marseille",
+  "lat": 43.309455,
+  "lon": 5.372305,
+  "label": "6 Rue desiree clary 13003 Marseille",
+  "score": 0.5723251515151515,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "am-consultation-de-tabacologie-et-d-addicto": {
+  "addr": "26 boulevard de Louvain, 13008 Marseille",
+  "lat": 43.276249,
+  "lon": 5.392357,
+  "label": "26 Boulevard de louvain 13008 Marseille",
+  "score": 0.9719618181818181,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "am-consultation-d-addictologie-generale-hop": {
+  "addr": "Chemin des Bourrely, 13015 Marseille",
+  "lat": 43.382728,
+  "lon": 5.362037,
+  "label": "Chemin des bourrely 13015 Marseille",
+  "score": 0.9751699999999999,
+  "type": "street",
+  "src": "ban"
+ },
+ "am-consultation-d-addictologie-hopital-de-l": {
+  "addr": "264 rue Saint-Pierre, 13005 Marseille",
+  "lat": 43.29158,
+  "lon": 5.403215,
+  "label": "264 Rue saint pierre 13005 Marseille",
+  "score": 0.9791599999999998,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "am-elsa-du-ch-edouard-toulouse-equipe-de-li": {
+  "addr": "118 chemin de Mimet, 13015 Marseille",
+  "lat": 43.381563,
+  "lon": 5.358438,
+  "label": "118 Chemin de mimet 13015 Marseille",
+  "score": 0.9781727272727272,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "am-tema-13-equipe-mobile-addictions-jeunes": {
+  "addr": "175 rue Paradis, 13006 Marseille",
+  "lat": 43.285577,
+  "lon": 5.380186,
+  "label": "175 Rue paradis 13006 Marseille",
+  "score": 0.9764781818181817,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "am-utfa-13-unite-de-therapie-familiale-addi": {
+  "addr": "175 rue Paradis, 13006 Marseille",
+  "lat": 43.285577,
+  "lon": 5.380186,
+  "label": "175 Rue paradis 13006 Marseille",
+  "score": 0.9764781818181817,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "am-aides-marseille-lieu-de-mobilisation": {
+  "addr": "7 rue Consolat, 13001 Marseille",
+  "lat": 43.299857,
+  "lon": 5.38658,
+  "label": "7 Rue consolat 13001 Marseille",
+  "score": 0.9748781818181816,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "am-le-spot-longchamp-centre-de-sante-sexuel": {
+  "addr": "3 boulevard Longchamp, 13001 Marseille",
+  "lat": 43.300906,
+  "lon": 5.38701,
+  "label": "3 Boulevard longchamp 13001 Marseille",
+  "score": 0.9742790909090908,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "am-plus-belle-la-nuit-reduction-des-risques": {
+  "addr": "4 avenue Rostand, 13003 Marseille",
+  "lat": 43.311952,
+  "lon": 5.377903,
+  "label": "4 Avenue rostand 13003 Marseille",
+  "score": 0.9602563636363635,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "am-nouvelle-aube-association-d-auto-support": {
+  "addr": "141 avenue de la Capelette, 13010 Marseille",
+  "lat": 43.281201,
+  "lon": 5.405988,
+  "label": "141 Avenue de la capelette 13010 Marseille",
+  "score": 0.9779572727272726,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "am-automates-distributeurs-echangeurs-de-se": {
+  "addr": "16 allée Léon Gambetta 13001",
+  "lat": 43.298896,
+  "lon": 5.381866,
+  "label": "16 Allée leon gambetta 13001 Marseille",
+  "score": 0.9705172727272726,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "am-doser-ex-sante-alcool-et-reduction-des-r": {
+  "addr": "16 rue Beauvau, 13001 Marseille",
+  "lat": 43.294259,
+  "lon": 5.375394,
+  "label": "16 Rue beauvau 13001 Marseille",
+  "score": 0.9662345454545455,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "am-csapa-le-cabanon-ex-reseau-canebiere": {
+  "addr": "34 rue du Petit Chantier, 13007 Marseille",
+  "lat": 43.290494,
+  "lon": 5.368754,
+  "label": "34 Rue du petit chantier 13007 Marseille",
+  "score": 0.9675727272727271,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "am-act-habitat-alternatif-social-appartemen": {
+  "addr": "3 rue d'Arcole, 13006 Marseille",
+  "lat": 43.289508,
+  "lon": 5.377048,
+  "label": "3 Rue d'arcole 13006 Marseille",
+  "score": 0.9637463636363637,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "am-sos-habitat-et-soins-marseille-act-heber": {
+  "addr": "187 rue Paradis, 13006 Marseille",
+  "lat": 43.284948,
+  "lon": 5.380454,
+  "label": "187 Rue paradis 13006 Marseille",
+  "score": 0.9764781818181817,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "am-arca-sud-delegation-des-bouches-du-rhone": {
+  "addr": "13006 Marseille",
+  "lat": 43.287545,
+  "lon": 5.381329,
+  "label": "Marseille 6e Arrondissement",
+  "score": 0.8611781818181817,
+  "type": "municipality",
+  "src": "ban"
+ },
+ "am-service-de-prevention-departemental-addi": {
+  "addr": "24A rue Fort Notre-Dame, 13007 Marseille",
+  "lat": 43.29204,
+  "lon": 5.371561,
+  "label": "24a Rue fort notre dame 13007 Marseille",
+  "score": 0.9639890909090909,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "am-approches-prevention-service-de-preventi": {
+  "addr": "7 square Stalingrad, 13001 Marseille",
+  "lat": 43.300091,
+  "lon": 5.385027,
+  "label": "7 Square stalingrad 13001 Marseille",
+  "score": 0.9614345454545453,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "am-service-de-sante-etudiante-sse-d-aix-mar": {
+  "addr": "3 place Victor Hugo, bât. 5, bloc C, 6ᵉ étage, 13003 Marseille (antennes : 163 av. de Luminy 13009, tél. 04 13 94 24 58"
+ },
+ "am-al-anon-groupe-friedland-entourage-de-pe": {
+  "addr": "13001 Marseille",
+  "lat": 43.282,
+  "lon": 5.405,
+  "label": "Marseille",
+  "score": 0.9663454545454545,
+  "type": "municipality",
+  "src": "ban"
+ },
+ "ah-centre-de-soins-les-collines-du-revest-s": {
+  "addr": "1251 route du Général de Gaulle, 83200 Le Revest-les-Eaux",
+  "lat": 43.168124,
+  "lon": 5.920469,
+  "label": "1251 Route General de Gaulle 83200 Le Revest-les-Eaux",
+  "score": 0.8256582644628099,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ah-clinique-la-bastide-de-callian-smr-addic": {
+  "addr": "Chemin des Moulins, 83440 Callian",
+  "lat": 43.619701,
+  "lon": 6.743544,
+  "label": "Chemin des Moulins 83440 Callian",
+  "score": 0.9528899999999999,
+  "type": "street",
+  "src": "ban"
+ },
+ "ah-centre-d-addictologie-d-arzeliers-cure-r": {
+  "addr": "Route d'Arzeliers, 05300 Laragne-Montéglin",
+  "lat": 44.338976,
+  "lon": 5.808872,
+  "label": "Route d’Arzeliers 05300 Laragne-Montéglin",
+  "score": 0.9562381818181818,
+  "type": "street",
+  "src": "ban"
+ },
+ "ah-smr-addictologie-jean-paul-gonod-hospita": {
+  "addr": "Avenue de la Pinède, CS 20107, 84918 Avignon cedex 9",
+  "lat": 43.918718,
+  "lon": 4.891246,
+  "label": "Avenue de la Pinède 84140 Avignon",
+  "score": 0.49424365491651207,
+  "type": "street",
+  "src": "ban"
+ },
+ "ah-unite-d-addictologie-alcoologie-du-centr": {
+  "addr": "15 rue du Poët Ollagnier, bâtiment Bois de l'Ours, 05107 Briançon cedex",
+  "lat": 44.917336,
+  "lon": 6.625814,
+  "label": "15 Route du Poet Ollagnier 05100 Briançon",
+  "score": 0.43973895392278955,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ah-clinique-le-calme-centre-de-cure-alcoolo": {
+  "addr": "358 avenue de la Plantade, BP 2, 06530 Cabris",
+  "lat": 43.655633,
+  "lon": 6.870124,
+  "label": "Avenue de la Plantade 06530 Cabris",
+  "score": 0.6862662337662337,
+  "type": "street",
+  "src": "ban"
+ },
+ "ah-smr-addictologie-du-chu-de-nimes-hopital": {
+  "addr": "Route de Carnon, hôpital de soins de suite et de rééducation, 30240 Le Grau-du-Roi",
+  "lat": 43.552815,
+  "lon": 4.112223,
+  "label": "Route de Carnon 30240 Le Grau-du-Roi",
+  "score": 0.40811834292289983,
+  "type": "street",
+  "src": "ban"
+ },
+ "ah-clinique-belle-rive-sevrage-hospitalier-": {
+  "addr": "55 avenue Gabriel Péri, 30400 Villeneuve-lès-Avignon",
+  "lat": 43.95592,
+  "lon": 4.792687,
+  "label": "55 Avenue Gabriel Péri 30400 Villeneuve-lès-Avignon",
+  "score": 0.9641972727272726,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ah-hopital-de-jour-la-lezardiere-pole-d-add": {
+  "addr": "66 chemin de la Villette, quartier de la gare, 83400 Hyères",
+  "lat": 43.107293,
+  "lon": 6.124711,
+  "label": "Chemin de la Vilette 83400 Hyères",
+  "score": 0.5226897402597401,
+  "type": "street",
+  "src": "ban"
+ },
+ "ah-centre-d-addictologie-guillaume-broutet-": {
+  "addr": "1 boulevard Anatole France, 84000 Avignon",
+  "lat": 43.935328,
+  "lon": 4.812062,
+  "label": "1 Boulevard Anatole France 84000 Avignon",
+  "score": 0.9738409090909091,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ah-unite-d-addictologie-et-hopital-de-jour-": {
+  "addr": "Quartier Saint-Christophe, centre hospitalier , 04100 Digne-les-Bains",
+  "lat": 44.076324,
+  "lon": 6.187397,
+  "label": "Avenue de Saint-Christophe 04000 Digne-les-Bains",
+  "score": 0.4646801474201474,
+  "type": "street",
+  "src": "ban"
+ },
+ "ah-elsa-et-consultations-externes-d-addicto": {
+  "addr": "179 avenue des Sœurs Gastine, 13400 Aubagne",
+  "lat": 43.291573,
+  "lon": 5.563527,
+  "label": "179 Avenue des Soeurs Gastine 13400 Aubagne",
+  "score": 0.9681945454545453,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ah-equipe-de-liaison-en-addictologie-elsa-d": {
+  "addr": "Avenue du Petit Barthélémy, CH du Pays d'Aix, 13616 Aix-en-Provence",
+  "lat": 43.52057,
+  "lon": 5.437114,
+  "label": "Avenue du Petit Barthélémy 13090 Aix-en-Provence",
+  "score": 0.5856286363636364,
+  "type": "street",
+  "src": "ban"
+ },
+ "ah-equipe-mobile-d-addictologie-ema-du-ch-m": {
+  "addr": "13 avenue Louis Coirard, 13617 Aix-en-Provence",
+  "lat": 43.519953,
+  "lon": 5.438237,
+  "label": "13 Avenue  Louis Coirard 13090 Aix-en-Provence",
+  "score": 0.7698333884297521,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ah-elsa-et-consultations-externes-d-addictox": {
+  "addr": "305 rue Raoul Follereau, consultations externes de médecine, 1er étage, 84902 Avignon",
+  "lat": 43.920219,
+  "lon": 4.805178,
+  "label": "305 Rue Raoul Follereau 84000 Avignon",
+  "score": 0.3599832085561497,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ah-service-d-addictologie-du-chits-hopital-": {
+  "addr": "Avenue Jules Renard, 83056 La Seyne-sur-Mer",
+  "lat": 43.110569,
+  "lon": 5.870667,
+  "label": "avenue jules renard 83500 La Seyne-sur-Mer",
+  "score": 0.7510542572062083,
+  "type": "street",
+  "src": "ban"
+ },
+ "ah-csapa-de-draguignan-avec-unite-methadone": {
+  "addr": "65 boulevard Joseph Collomp, site du Malmont, 83300 Draguignan",
+  "lat": 43.542366,
+  "lon": 6.465196,
+  "label": "65 Boulevard Joseph Collomp 83300 Draguignan",
+  "score": 0.6579456394453004,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ah-antenne-du-csapa-villa-floreal-au-centre": {
+  "addr": "2285 route de l'Enfant, centre pénitentiaire d'Aix-Luynes, 13085 Aix-en-Provence cedex 02",
+  "lat": 43.482707,
+  "lon": 5.396476,
+  "label": "2285 Route de l'Enfant 13290 Aix-en-Provence",
+  "score": 0.4171009090909091,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ah-antenne-du-csapa-villa-floreal-a-salon-d": {
+  "addr": "356 boulevard Clemenceau, 13300 Salon-de-Provence",
+  "lat": 43.641186,
+  "lon": 5.090131,
+  "label": "356 Boulevard Georges Clémenceau 13300 Salon-de-Provence",
+  "score": 0.7630999173553719,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ah-antenne-du-csapa-villa-floreal-au-centrex": {
+  "addr": "Route nationale 113, centre de détention, 13300 Salon-de-Provence",
+  "lat": 43.640861,
+  "lon": 5.020802,
+  "label": "113 Route d’Arles 13300 Salon-de-Provence",
+  "score": 0.4513443478260869,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ah-antenne-du-csapa-villa-floreal-a-pertuis": {
+  "addr": "Place Garcin , 84120 Pertuis",
+  "lat": 43.692321,
+  "lon": 5.505069,
+  "label": "Place Garcin 84120 Pertuis",
+  "score": 0.9621481818181817,
+  "type": "street",
+  "src": "ban"
+ },
+ "ah-consultation-avancee-du-csapa-l-entre-te": {
+  "addr": "Place Champollion, Maison régionale de la santé La Pyramide, 13800 Istres",
+  "lat": 43.503753,
+  "lon": 4.986526,
+  "label": "Place Jean Francois Champollion 13800 Istres",
+  "score": 0.3842872727272727,
+  "type": "street",
+  "src": "ban"
+ },
+ "ah-consultation-avancee-du-csapa-l-entre-tex": {
+  "addr": "11 avenue Camille Pelletan, place de la Paix , 13270 Fos-sur-Mer",
+  "lat": 43.43644,
+  "lon": 4.944414,
+  "label": "11 Avenue Camille Pelletan 13270 Fos-sur-Mer",
+  "score": 0.6422127272727273,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ah-consultation-avancee-du-csapa-l-entre-texx": {
+  "addr": "Avenue de Figueras, résidence Le Saint-Pierre 5 , 13700 Marignane",
+  "lat": 43.420134,
+  "lon": 5.207622,
+  "label": "Rue de Figueras 13700 Marignane",
+  "score": 0.4413797653958944,
+  "type": "street",
+  "src": "ban"
+ },
+ "ah-consultation-avancee-du-csapa-l-entre-texxx": {
+  "addr": "Rue Charles Nédelec, Maison des services au public, 13110 Port-de-Bouc",
+  "lat": 43.406418,
+  "lon": 4.983934,
+  "label": "Rue Charles Nédélec 13110 Port-de-Bouc",
+  "score": 0.5065372048846675,
+  "type": "street",
+  "src": "ban"
+ },
+ "ah-permanence-addictions-france-a-miramas": {
+  "addr": "4 boulevard du Docteur Jacques Minet, Maison des services , 13140 Miramas"
+ },
+ "ah-permanence-addictions-france-a-saint-rem": {
+  "addr": "14A boulevard Gambetta, CCAS, 13210 Saint-Rémy-de-Provence",
+  "lat": 43.790436,
+  "lon": 4.831402,
+  "label": "14a Boulevard Gambetta 13210 Saint-Rémy-de-Provence",
+  "score": 0.7977916528925619,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ah-consultation-avancee-du-csapa-addictions": {
+  "addr": "3 place de la Liberté, Espace de santé Simone Veil, 13127 Vitrolles",
+  "lat": 43.442592,
+  "lon": 5.253509,
+  "label": "3 Place de la liberté 13127 Vitrolles",
+  "score": 0.5093172727272727,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ah-caarud-l-elf-egalite-liberte-fraternite-": {
+  "addr": "Aix-en-Provence (pas de local d'accueil"
+ },
+ "ah-caarud-antenne-mobile-camargue-arles": {
+  "addr": "Arles , 13200 Arles",
+  "lat": 43.677797,
+  "lon": 4.628651,
+  "label": "Rue des Arènes 13200 Arles",
+  "score": 0.4862815151515151,
+  "type": "street",
+  "src": "ban"
+ },
+ "ah-csapa-equinoxe-hyeres-avec-unite-methado": {
+  "addr": "66 chemin de la Villette, quartier de la gare, 83400 Hyères",
+  "lat": 43.107293,
+  "lon": 6.124711,
+  "label": "Chemin de la Vilette 83400 Hyères",
+  "score": 0.5226897402597401,
+  "type": "street",
+  "src": "ban"
+ },
+ "ah-csapa-equinoxe-brignoles-et-equipe-mobil": {
+  "addr": "12 boulevard Saint-Louis, immeuble Le Pascal, 2e étage, 83170 Brignoles",
+  "lat": 43.408763,
+  "lon": 6.070311,
+  "label": "Immeuble le Saint-Louis 83170 Brignoles",
+  "score": 0.5116934192672997,
+  "type": "street",
+  "src": "ban"
+ },
+ "ah-csapa-avastofa-la-seyne-sur-mer-avec-app": {
+  "addr": "73 boulevard de Stalingrad, 83500 La Seyne-sur-Mer",
+  "lat": 43.106895,
+  "lon": 5.865496,
+  "label": "73 boulevard stalingrad 83500 La Seyne-sur-Mer",
+  "score": 0.8312399999999999,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ah-csapa-addictions-france-toulon-avec-unit": {
+  "addr": "8 rue Francis de Pressensé, 83000 Toulon",
+  "lat": 43.120916,
+  "lon": 5.933256,
+  "label": "8 Rue Francis de Pressensé 83000 Toulon",
+  "score": 0.9713872727272728,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ah-csapa-addictions-france-avignon": {
+  "addr": "57 avenue Pierre Sémard, 84000 Avignon",
+  "lat": 43.939611,
+  "lon": 4.821263,
+  "label": "57 Avenue Pierre Sémard 84000 Avignon",
+  "score": 0.9784881818181819,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ah-caarud-le-patio-avignon": {
+  "addr": "4 avenue Saint-Ruf, 84000 Avignon",
+  "lat": 43.941941,
+  "lon": 4.808909,
+  "label": "4 Avenue Saint-Ruf 84000 Avignon",
+  "score": 0.9775072727272727,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ah-appartements-therapeutiques-relais-le-re": {
+  "addr": "4 avenue Saint-Ruf, 84000 Avignon",
+  "lat": 43.941941,
+  "lon": 4.808909,
+  "label": "4 Avenue Saint-Ruf 84000 Avignon",
+  "score": 0.9775072727272727,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ah-csapa-residentiel-de-blannaves-ctr-appar": {
+  "addr": "551 route de la Royale, 30100 Alès",
+  "lat": 44.142979,
+  "lon": 4.074645,
+  "label": "551 Route de la Royale 30100 Alès",
+  "score": 0.9708718181818182,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ah-communaute-therapeutique-le-mas-saint-gi": {
+  "addr": "5250 chemin des Loubes, BP 36, 30800 Saint-Gilles",
+  "lat": 43.716708,
+  "lon": 4.43635,
+  "label": "Chemin des Loubes 30800 Saint-Gilles",
+  "score": 0.6756096442687747,
+  "type": "street",
+  "src": "ban"
+ },
+ "ah-centre-therapeutique-residentiel-le-peyr": {
+  "addr": "D820, lieu-dit Saint-Barthélémy, 1170 chemin des Cigalles, 46170 Pern",
+  "lat": 44.311524,
+  "lon": 1.467142,
+  "label": "1170 Chemin des Cigales 46170 Pern-Lhospitalet",
+  "score": 0.4477518881118881,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ah-ctr-et-appartements-therapeutiques-entr-": {
+  "addr": "23 chemin des Chênes, 34170 Castelnau-le-Lez",
+  "lat": 43.639181,
+  "lon": 3.909377,
+  "label": "23 Chemin des Chênes 34170 Castelnau-le-Lez",
+  "score": 0.9657763636363635,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ah-maison-d-accueil-le-gue-ctr-moins-de-40-": {
+  "addr": "30 place André Pernet, 26160 Le Poët-Laval",
+  "lat": 44.533833,
+  "lon": 5.013414,
+  "label": "30 Place Andre Pernet 26160 Le Poët-Laval",
+  "score": 0.9384472727272727,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ah-ctr-la-cerisaie-hommes": {
+  "addr": "1510 route de Celles-les-Bains, 07250 Rompon",
+  "lat": 44.789205,
+  "lon": 4.743843,
+  "label": "1510 Route de Celles les Bains 07250 Rompon",
+  "score": 0.953881818181818,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ah-communaute-therapeutique-du-fleuve-barsa": {
+  "addr": "10-18 place Franck Chassaigne, 33720 Barsac",
+  "lat": 44.607701,
+  "lon": -0.318695,
+  "label": "18 Place Franck Chassaigne 33720 Barsac",
+  "score": 0.8013912195121952,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ah-communaute-therapeutique-maison-d-andre-": {
+  "addr": "438 route François de la Béraudière, Le Grand Bost, 24310 Brantôme",
+  "lat": 45.375748,
+  "lon": 0.656845,
+  "label": "438 Route François de Labéraudière 24310 Brantôme en Périgord",
+  "score": 0.6406004545454546,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ah-communaute-therapeutique-les-portes-de-l": {
+  "addr": "9 route de Saint-Julien, La Côte-Saint-Didier, 42111 Saint-Didier-sur-Rochefort",
+  "lat": 45.794898,
+  "lon": 3.84443,
+  "label": "9 Route de Saint-Julien 42111 La Côte-Saint-Didier",
+  "score": 0.6260307177033493,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ah-communaute-therapeutique-le-val-d-adour-": {
+  "addr": "7 rue de la Tuilerie, 65700 Lafitole",
+  "lat": 43.447755,
+  "lon": 0.065397,
+  "label": "7 Rue de la Tuilerie 65700 Lafitole",
+  "score": 0.9405681818181817,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ah-reseau-d-accueil-en-famille-raf-des-wads": {
+  "addr": "31 allée du Mauzac, 46140 Luzech (antenne Sud",
+  "lat": 44.478022,
+  "lon": 1.296002,
+  "label": "31 Allée du Mauzac 46140 Luzech",
+  "score": 0.6256819480519481,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ah-appartements-therapeutiques-la-maison-pa": {
+  "addr": "42 rue des Champs-Élysées, 31500 Toulouse",
+  "lat": 43.613589,
+  "lon": 1.457435,
+  "label": "42 Rue des Champs Elysées 31500 Toulouse",
+  "score": 0.9825627272727272,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "se-gem-l-e-o-lieu-d-echanges-et-d-ouverture": {
+  "addr": "20 rue Despieds, 13003 Marseille",
+  "lat": 43.31142,
+  "lon": 5.386115,
+  "label": "20 Rue despieds 13003 Marseille",
+  "score": 0.9665581818181819,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "se-gem-club-parenthese-gem-club-de-marseill": {
+  "addr": "28 rue Bérard, 13005 Marseille",
+  "lat": 43.287229,
+  "lon": 5.394201,
+  "label": "28 Rue berard 13005 Marseille",
+  "score": 0.9654727272727271,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "se-gemarseille": {
+  "addr": "10 square Paul Arène, 13012 Marseille",
+  "lat": 43.30316,
+  "lon": 5.419369,
+  "label": "Square paul arene 13012 Marseille",
+  "score": 0.7965401298701298,
+  "type": "street",
+  "src": "ban"
+ },
+ "se-gem-les-sentinelles-egalite": {
+  "addr": "2 rue Friedland, 13006 Marseille",
+  "lat": 43.286549,
+  "lon": 5.386877,
+  "label": "2 Rue de friedland 13006 Marseille",
+  "score": 0.8032116528925619,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "se-grand-gem-tc-club-marseille-le-cabanon-d": {
+  "addr": "46 rue de Ruffi, 13003 Marseille",
+  "lat": 43.31128,
+  "lon": 5.371632,
+  "label": "46 Rue de ruffi 13003 Marseille",
+  "score": 0.9701154545454544,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "se-gem-tc-aubagne-la-ciotat-cerebro-leses": {
+  "addr": "1645 route de la Légion, immeuble Le Galaxie, 1er étage, 13400 Aubagne",
+  "lat": 43.288113,
+  "lon": 5.541401,
+  "label": "1645 Route de la Légion 13400 Aubagne",
+  "score": 0.5116446280991735,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "se-gem-tc-vitrolles-cerebro-leses": {
+  "addr": "Arcades des Abbayes, 13127 Vitrolles",
+  "lat": 43.429425,
+  "lon": 5.282183,
+  "label": "Chemin des gorges de Cabriès 13127 Vitrolles",
+  "score": 0.4760622994652406,
+  "type": "street",
+  "src": "ban"
+ },
+ "se-clubhouse-marseille-ceisp": {
+  "addr": "12 rue de Provence, 13004 Marseille",
+  "lat": 43.301591,
+  "lon": 5.396804,
+  "label": "12 Rue de provence 13004 Marseille",
+  "score": 0.9660981818181817,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "se-unafam-delegation-des-bouches-du-rhone": {
+  "addr": "28 rue Bérard, 13005 Marseille",
+  "lat": 43.287229,
+  "lon": 5.394201,
+  "label": "28 Rue berard 13005 Marseille",
+  "score": 0.9654727272727271,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "se-espoir-provence-association-de-familles": {
+  "addr": "214 avenue du Petit Barthélémy, 13090 Aix-en-Provence",
+  "lat": 43.521599,
+  "lon": 5.43778,
+  "label": "214 Avenue du Petit Barthélémy 13090 Aix-en-Provence",
+  "score": 0.970571818181818,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "se-solidarite-rehabilitation-sre": {
+  "addr": "7 rue Esquirros, 13010 Marseille",
+  "lat": 43.280668,
+  "lon": 5.405541,
+  "label": "7 Rue esquiros 13010 Marseille",
+  "score": 0.8476081818181818,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "se-argos-2001-antenne-provence-troubles-bip": {
+  "addr": "Hôpital de jour Villa des 3 Pins, 2 ancienne route de Marseille, 13500 Martigues",
+  "lat": 43.398775,
+  "lon": 5.065084,
+  "label": "2 Ancienne Route de Marseille 13500 Martigues",
+  "score": 0.5308733766233765,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "se-autisme-13": {
+  "addr": "La Bastidonne, 3 allée de la Grimpette, 13821 La Penne-sur-Huveaune",
+  "lat": 43.287285,
+  "lon": 5.517624,
+  "label": "3 Montee de la Grimpette 13821 La Penne-sur-Huveaune",
+  "score": 0.6124916577540107,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "se-aftc-13-association-des-familles-de-trau": {
+  "addr": "85 rue Pierre Berthier, 13290 Aix-en-Provence",
+  "lat": 43.480582,
+  "lon": 5.379023,
+  "label": "85 Rue  Pierre Berthier 13290 Aix-en-Provence",
+  "score": 0.9671072727272726,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "se-maison-departementale-des-aidants": {
+  "addr": "15 place de la Joliette, 13002 Marseille",
+  "lat": 43.304638,
+  "lon": 5.365541,
+  "label": "15 Place de la joliette 13002 Marseille",
+  "score": 0.9604799999999999,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "se-lieu-de-repit-de-marseille": {
+  "addr": "85 rue Jean de Bernardy, 13001 Marseille",
+  "lat": 43.303531,
+  "lon": 5.391112,
+  "label": "85 Rue jean de bernardy 13001 Marseille",
+  "score": 0.9735509090909089,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "se-act-13-appartements-de-coordination-ther": {
+  "addr": "22 rue Longue des Capucins, 13001 Marseille (siège",
+  "lat": 43.296742,
+  "lon": 5.379445,
+  "label": "22 Rue longue des capucins 13001 Marseille",
+  "score": 0.7764858027079303,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "se-un-chez-soi-d-abord-marseille-housing-fi": {
+  "addr": "44 cours Belsunce, 13001 Marseille",
+  "lat": 43.298457,
+  "lon": 5.376947,
+  "label": "44 Cours belsunce 13001 Marseille",
+  "score": 0.9678763636363636,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "se-savs-de-marseille-espoir-provence": {
+  "addr": "10 rue Brandis, 13005 Marseille",
+  "lat": 43.287467,
+  "lon": 5.394275,
+  "label": "10 Rue brandis 13005 Marseille",
+  "score": 0.9710018181818182,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "se-samsah-la-racine": {
+  "addr": "84 rue de Lodi, 13005 Marseille",
+  "lat": 43.288579,
+  "lon": 5.387741,
+  "label": "84 Rue de lodi 13006 Marseille",
+  "score": 0.7769308797653959,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "se-samsah-antonin-artaud": {
+  "addr": "23 rue de la Rotonde, 13001 Marseille",
+  "lat": 43.301255,
+  "lon": 5.384963,
+  "label": "Rue de la rotonde 13001 Marseille",
+  "score": 0.8089037662337661,
+  "type": "street",
+  "src": "ban"
+ },
+ "se-samsah-valmante": {
+  "addr": "42 boulevard de la Gaye, 13009 Marseille",
+  "lat": 43.258698,
+  "lon": 5.412151,
+  "label": "42 Boulevard de la gaye 13009 Marseille",
+  "score": 0.9647163636363636,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "se-samsah-service-appuis-specifiques-sas-de": {
+  "addr": "7 cours Jean Ballard, Les Lofts du Vieux-Port, 13001 Marseille",
+  "lat": 43.293266,
+  "lon": 5.374682,
+  "label": "7 Cours jean ballard 13001 Marseille",
+  "score": 0.5408566409861325,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "se-samsah-aqueduc": {
+  "addr": "78 boulevard des Libérateurs, 13011 Marseille",
+  "lat": 43.297357,
+  "lon": 5.460529,
+  "label": "78 Boulevard des liberateurs 13011 Marseille",
+  "score": 0.9728581818181817,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "se-residence-accueil-armee-du-salut-maison-": {
+  "addr": "190 rue Félix Pyat, 13003 Marseille",
+  "lat": 43.320489,
+  "lon": 5.374718,
+  "label": "190 Rue felix pyat 13003 Marseille",
+  "score": 0.9741490909090907,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "se-familles-gouvernantes-site-du-ch-edouard": {
+  "addr": "Site du CH Édouard Toulouse, 118 chemin de Mimet, 13015 Marseille",
+  "lat": 43.381563,
+  "lon": 5.358438,
+  "label": "118 Chemin de mimet 13015 Marseille",
+  "score": 0.5177621700879765,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "se-esat-leon-berenger-andre-de-villeneuve-f": {
+  "addr": "4-10 rue Gabriel Marie, 13010 Marseille",
+  "lat": 43.284673,
+  "lon": 5.401775,
+  "label": "10 Rue gabriel marie 13010 Marseille",
+  "score": 0.8323794103194102,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "se-mdph-des-bouches-du-rhone": {
+  "addr": "4 quai d'Arenc , CS 80096, 13304 Marseille Cedex 02",
+  "lat": 43.313575,
+  "lon": 5.36622,
+  "label": "4 Boulevard jacques saade quai d'arenc 13002 Marseille",
+  "score": 0.41481256916996045,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "se-pass-psy-du-ch-edouard-toulouse-permanen": {
+  "addr": "118 chemin de Mimet, 13015 Marseille",
+  "lat": 43.381563,
+  "lon": 5.358438,
+  "label": "118 Chemin de mimet 13015 Marseille",
+  "score": 0.9781727272727272,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "se-pass-adultes-de-l-ap-hm-timone-et-reseau": {
+  "addr": "Hôpital de la Timone, 264 rue Saint-Pierre, 13005 Marseille",
+  "lat": 43.29158,
+  "lon": 5.403215,
+  "label": "264 Rue saint pierre 13005 Marseille",
+  "score": 0.5814327272727272,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ss-hopital-de-jour-et-cattp-lafon-pole-psyc": {
+  "addr": "9 rue Lafon, 13006 Marseille",
+  "lat": 43.291518,
+  "lon": 5.381616,
+  "label": "9 Rue lafon 13006 Marseille",
+  "score": 0.9661372727272727,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ss-hopital-de-jour-intersectoriel-et-atelie": {
+  "addr": "Hôpital de la Conception, pôle psychiatrique, 145 boulevard Baille, 13005 Marseille",
+  "lat": 43.289297,
+  "lon": 5.395782,
+  "label": "145 Boulevard baille 13005 Marseille",
+  "score": 0.4288856156501725,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ss-hopital-de-jour-et-cattp-de-sainte-margu": {
+  "addr": "Hôpital Sainte-Marguerite, bâtiment Solaris, 270 boulevard de Sainte-Marguerite, 13009 Marseille",
+  "lat": 43.262521,
+  "lon": 5.412686,
+  "label": "270 Boulevard de sainte marguerite 13009 Marseille",
+  "score": 0.5147394439541042,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ss-hopital-de-jour-pressense-secteur-11": {
+  "addr": "39 rue Francis de Pressensé, 13001 Marseille",
+  "lat": 43.300824,
+  "lon": 5.376688,
+  "label": "Rue francis de pressense 13001 Marseille",
+  "score": 0.8197284415584415,
+  "type": "street",
+  "src": "ban"
+ },
+ "ss-cattp-michel-bastianelli-pole-centre-vil": {
+  "addr": "2 rue des Trois Rois, 13006 Marseille",
+  "lat": 43.294722,
+  "lon": 5.384312,
+  "label": "2 Rue des trois rois 13006 Marseille",
+  "score": 0.9686218181818181,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ss-cattp-maison-rose-secteur-12": {
+  "addr": "10 rue Boyer, 13003 Marseille",
+  "lat": 43.312743,
+  "lon": 5.386448,
+  "label": "10 Boulevard boyer 13003 Marseille",
+  "score": 0.5704531449631448,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ss-hopital-de-jour-camille-claudel-secteur-": {
+  "addr": "23 impasse Magne, 13015 Marseille",
+  "lat": 43.368214,
+  "lon": 5.358088,
+  "label": "23 Impasse magne 13015 Marseille",
+  "score": 0.9692054545454544,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ss-hopital-de-jour-les-colombes-secteur-13": {
+  "addr": "46-48 avenue de la Croix Rouge, 13013 Marseille",
+  "lat": 43.331408,
+  "lon": 5.433159,
+  "label": "48 Avenue de la croix rouge 13013 Marseille",
+  "score": 0.8313981818181818,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ss-cattp-lou-blai-secteur-13": {
+  "addr": "1A rue Sainte-Agnès, 13004 Marseille",
+  "lat": 43.314146,
+  "lon": 5.408101,
+  "label": "Rue sainte agnes 13004 Marseille",
+  "score": 0.7974338502673796,
+  "type": "street",
+  "src": "ban"
+ },
+ "ss-hopital-de-jour-la-marine-blanche-ii-et-": {
+  "addr": "3 chemin de Saint-Joseph à Sainte-Marthe, 13014 Marseille",
+  "lat": 43.340859,
+  "lon": 5.386567,
+  "label": "3 Chemin de saint joseph a sainte marthe 13014 Marseille",
+  "score": 0.9685909090909091,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ss-hopital-de-jour-henri-collomb-secteur-15": {
+  "addr": "161 avenue de la Viste, 13015 Marseille",
+  "lat": 43.36352,
+  "lon": 5.35703,
+  "label": "161 Avenue de la viste 13015 Marseille",
+  "score": 0.9767736363636363,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ss-cattp-le-lacydon-secteur-15": {
+  "addr": "43 avenue de la Viste, 13015 Marseille",
+  "lat": 43.355769,
+  "lon": 5.357223,
+  "label": "43 Avenue de la viste 13015 Marseille",
+  "score": 0.9767736363636363,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ss-hopital-de-jour-balthazar-blanc-et-cattp": {
+  "addr": "4 rue Balthazar Blanc, 13015 Marseille",
+  "lat": 43.344356,
+  "lon": 5.358745,
+  "label": "4 Boulevard balthazar blanc 13015 Marseille",
+  "score": 0.6327490513833992,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ss-hopital-de-jour-l-escale-secteur-7": {
+  "addr": "Centre hospitalier Valvert, 78 boulevard des Libérateurs, 13011 Marseille",
+  "lat": 43.297357,
+  "lon": 5.460529,
+  "label": "78 Boulevard des liberateurs 13011 Marseille",
+  "score": 0.5663646753246754,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ss-cattg-le-pre-en-bulle-secteur-7": {
+  "addr": "2 traverse Notre-Dame, 13011 Marseille",
+  "lat": 43.287664,
+  "lon": 5.463744,
+  "label": "Traverse notre dame 13011 Marseille",
+  "score": 0.8208854545454545,
+  "type": "locality",
+  "src": "ban"
+ },
+ "ss-hopital-de-jour-gasquy-secteur-8": {
+  "addr": "2 boulevard Gasquy, 13012 Marseille",
+  "lat": 43.303905,
+  "lon": 5.422498,
+  "label": "2 Boulevard ernest gasquy 13012 Marseille",
+  "score": 0.7381199999999999,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ss-hopital-de-jour-aubignane-secteur-9": {
+  "addr": "6 rue Roger Salengro, 13400 Aubagne",
+  "lat": 43.296172,
+  "lon": 5.568714,
+  "label": "6 Avenue Roger Salengro 13400 Aubagne",
+  "score": 0.7279559330143539,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ss-rehab-marseille-centre-de-rehabilitation": {
+  "addr": "44 et 52 boulevard Michelet, 13008 Marseille",
+  "lat": 43.269297,
+  "lon": 5.39249,
+  "label": "52 Boulevard michelet 13008 Marseille",
+  "score": 0.7651841558441557,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ss-service-de-la-rehab-rehabilitation-psych": {
+  "addr": "UMA 9, Centre hospitalier Valvert, 78 boulevard des Libérateurs, 13011 Marseille",
+  "lat": 43.291369,
+  "lon": 5.463118,
+  "label": "9 Boulevard des liberateurs 13011 Marseille",
+  "score": 0.5159203827751196,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ss-pole-rehabilitation-et-medico-social-du-": {
+  "addr": "118 chemin de Mimet, 13015 Marseille",
+  "lat": 43.381563,
+  "lon": 5.358438,
+  "label": "118 Chemin de mimet 13015 Marseille",
+  "score": 0.9781727272727272,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ss-leaf-leisure-and-activity-first-loisirs-": {
+  "addr": "Bâtiment Solaris, Hôpital Sainte-Marguerite, 270 boulevard de Sainte-Marguerite, 13009 Marseille",
+  "lat": 43.262521,
+  "lon": 5.412686,
+  "label": "270 Boulevard de sainte marguerite 13009 Marseille",
+  "score": 0.5147394439541042,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ss-la-calanque-unite-de-rehabilitation-et-r": {
+  "addr": "Centre hospitalier Valvert, 78 boulevard des Libérateurs, 13011 Marseille",
+  "lat": 43.297357,
+  "lon": 5.460529,
+  "label": "78 Boulevard des liberateurs 13011 Marseille",
+  "score": 0.5663646753246754,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ss-centres-experts-fondamental-schizophreni": {
+  "addr": "Hôpital Sainte-Marguerite, 270 boulevard de Sainte-Marguerite, 13009 Marseille",
+  "lat": 43.262521,
+  "lon": 5.412686,
+  "label": "270 Boulevard de sainte marguerite 13009 Marseille",
+  "score": 0.6044481818181817,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ss-centre-expert-fondamental-troubles-bipol": {
+  "addr": "Hôpital Sainte-Marguerite, pavillon Solaris , 270 boulevard de Sainte-Marguerite, 13009 Marseille",
+  "lat": 43.262521,
+  "lon": 5.412686,
+  "label": "270 Boulevard de sainte marguerite 13009 Marseille",
+  "score": 0.5056734782608696,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ss-centre-regional-du-psychotraumatisme-pac": {
+  "addr": "Hôpital de la Conception, 147 boulevard Baille, 13005 Marseille",
+  "lat": 43.288785,
+  "lon": 5.394582,
+  "label": "Boulevard baille 13005 Marseille",
+  "score": 0.48912727272727274,
+  "type": "street",
+  "src": "ban"
+ },
+ "ss-prise-en-charge-des-troubles-du-comporte": {
+  "addr": "Hôpital de la Conception, pôle psychiatrique, 145 boulevard Baille, 13005 Marseille",
+  "lat": 43.289297,
+  "lon": 5.395782,
+  "label": "145 Boulevard baille 13005 Marseille",
+  "score": 0.4288856156501725,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ss-unite-parents-enfants-upe-hospitalisatio": {
+  "addr": "Hôpital Sainte-Marguerite, 270 boulevard de Sainte-Marguerite, BP 29, 13274 Marseille Cedex 9",
+  "lat": 43.262521,
+  "lon": 5.412686,
+  "label": "270 Boulevard de sainte marguerite 13009 Marseille",
+  "score": 0.4789936363636364,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ss-unite-de-soins-precoces-didier-houzel-ps": {
+  "addr": "Cité La Bégude Sud, 98 avenue de la Croix Rouge, 13013 Marseille",
+  "lat": 43.333127,
+  "lon": 5.438123,
+  "label": "98 Avenue de la croix rouge 13013 Marseille",
+  "score": 0.6311001192250372,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ss-centre-ressources-autisme-paca-unite-d-e": {
+  "addr": "Hôpital Sainte-Marguerite, 270 boulevard de Sainte-Marguerite, 13009 Marseille",
+  "lat": 43.262521,
+  "lon": 5.412686,
+  "label": "270 Boulevard de sainte marguerite 13009 Marseille",
+  "score": 0.6044481818181817,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ss-unite-mobile-autisme-adultes-les-makaras": {
+  "addr": "Centre hospitalier Valvert, 78 boulevard des Libérateurs, 13011 Marseille",
+  "lat": 43.297357,
+  "lon": 5.460529,
+  "label": "78 Boulevard des liberateurs 13011 Marseille",
+  "score": 0.5663646753246754,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ss-centre-regional-de-pathologies-professio": {
+  "addr": "Hôpital de la Timone, bâtiment 10, 2ᵉ étage, 264 rue Saint-Pierre, 13385 Marseille Cedex 5",
+  "lat": 43.29158,
+  "lon": 5.403215,
+  "label": "264 Rue saint pierre 13005 Marseille",
+  "score": 0.3923831404958677,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ss-pole-de-psychiatrie-de-la-personne-agee-": {
+  "addr": "78 boulevard des Libérateurs, 13011 Marseille",
+  "lat": 43.297357,
+  "lon": 5.460529,
+  "label": "78 Boulevard des liberateurs 13011 Marseille",
+  "score": 0.9728581818181817,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ss-unite-mobile-de-psychiatrie-de-la-person": {
+  "addr": "Centre hospitalier Valvert, 78 boulevard des Libérateurs, 13011 Marseille",
+  "lat": 43.297357,
+  "lon": 5.460529,
+  "label": "78 Boulevard des liberateurs 13011 Marseille",
+  "score": 0.5663646753246754,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ss-unite-ambulatoire-surdite-et-sante-menta": {
+  "addr": "Hôpital de la Conception, pôle psychiatrique, 145 boulevard Baille, 13005 Marseille",
+  "lat": 43.289297,
+  "lon": 5.395782,
+  "label": "145 Boulevard baille 13005 Marseille",
+  "score": 0.4288856156501725,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ss-parcours-transidentite-et-consultation-d": {
+  "addr": "Hôpital Sainte-Marguerite, bâtiment Solaris 1ᵉʳ étage, 270 boulevard de Sainte-Marguerite, 13009 Marseille",
+  "lat": 43.262521,
+  "lon": 5.412686,
+  "label": "270 Boulevard de sainte marguerite 13009 Marseille",
+  "score": 0.4753733628318584,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ss-electroconvulsivotherapie-sismotherapie-": {
+  "addr": "Hôpital de la Conception, pôle psychiatrique, 145 boulevard Baille, 13005 Marseille",
+  "lat": 43.289297,
+  "lon": 5.395782,
+  "label": "145 Boulevard baille 13005 Marseille",
+  "score": 0.4288856156501725,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ss-unite-de-therapies-complementaires-utc-t": {
+  "addr": "UTC – UMA 8, Centre hospitalier Valvert, 78 boulevard des Libérateurs, 13011 Marseille",
+  "lat": 43.294409,
+  "lon": 5.461541,
+  "label": "Boulevard des liberateurs 13011 Marseille",
+  "score": 0.47285818181818184,
+  "type": "street",
+  "src": "ban"
+ },
+ "ss-ulice-unite-locale-d-intervention-de-cri": {
+  "addr": "40 rue Sainte-Baume, 13010 Marseille",
+  "lat": 43.286807,
+  "lon": 5.400946,
+  "label": "40 Rue sainte baume 13010 Marseille",
+  "score": 0.9657899999999998,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ss-maison-des-femmes-marseille-provence": {
+  "addr": "165 rue Saint-Pierre, 13005 Marseille",
+  "lat": 43.292206,
+  "lon": 5.395007,
+  "label": "165 Rue saint pierre 13005 Marseille",
+  "score": 0.9791599999999998,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ss-avad-france-victimes-13-marseille-aide-a": {
+  "addr": "13 boulevard de la Corderie, 13007 Marseille",
+  "lat": 43.290553,
+  "lon": 5.37128,
+  "label": "13 Boulevard de la corderie 13007 Marseille",
+  "score": 0.9707236363636362,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ss-clinique-des-trois-cypres-hospitalisatio": {
+  "addr": "Boulevard des Candolles, 13821 La Penne-sur-Huveaune",
+  "lat": 43.280114,
+  "lon": 5.50832,
+  "label": "Boulevard des Candolles 13821 La Penne-sur-Huveaune",
+  "score": 0.9579181818181817,
+  "type": "street",
+  "src": "ban"
+ },
+ "ss-clinique-des-quatre-saisons": {
+  "addr": "165 route des Camoins, 13011 Marseille",
+  "lat": 43.297596,
+  "lon": 5.495664,
+  "label": "Route des camoins 13011 Marseille",
+  "score": 0.7867254545454544,
+  "type": "street",
+  "src": "ban"
+ },
+ "ss-clinique-mon-repos": {
+  "addr": "67 boulevard Léau, 13008 Marseille",
+  "lat": 43.253406,
+  "lon": 5.386331,
+  "label": "67 Boulevard leau 13008 Marseille",
+  "score": 0.9751127272727272,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ss-clinique-l-emeraude-etablissement-de-san": {
+  "addr": "34 traverse de la Seigneurie, Mazargues, 13009 Marseille",
+  "lat": 43.241683,
+  "lon": 5.408608,
+  "label": "34 Traverse de la seigneurie 13009 Marseille",
+  "score": 0.7281133447684391,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ss-clinique-des-trois-lucs": {
+  "addr": "28 traverse de la Salette, 13012 Marseille",
+  "lat": 43.314139,
+  "lon": 5.469857,
+  "label": "Traverse de la salette 13012 Marseille",
+  "score": 0.8169654545454546,
+  "type": "street",
+  "src": "ban"
+ },
+ "ss-clinique-saint-roch-montfleuri": {
+  "addr": "160 route des Camoins, 13011 Marseille",
+  "lat": 43.297596,
+  "lon": 5.495664,
+  "label": "Route des camoins 13011 Marseille",
+  "score": 0.7867254545454544,
+  "type": "street",
+  "src": "ban"
+ },
+ "ss-clinique-saint-michel-aubagne": {
+  "addr": "Route d'Éoures, 13400 Aubagne",
+  "lat": 43.303881,
+  "lon": 5.549768,
+  "label": "Route d'Eoures 13400 Aubagne",
+  "score": 0.9749945454545454,
+  "type": "street",
+  "src": "ban"
+ },
+ "ss-cpct-marseille-centre-psychanalytique-de": {
+  "addr": "314 avenue du Prado , 13008 Marseille",
+  "lat": 43.272287,
+  "lon": 5.390561,
+  "label": "314 Avenue du prado 13008 Marseille",
+  "score": 0.9804699999999998,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ss-centre-osiris-soins-interpretariat-et-re": {
+  "addr": "10 boulevard d'Athènes, 13001 Marseille",
+  "lat": 43.299874,
+  "lon": 5.380951,
+  "label": "10 Boulevard d'athenes 13001 Marseille",
+  "score": 0.9686354545454544,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ss-hospitalisation-temps-plein-pole-psychia": {
+  "addr": "Hôpital de la Conception, pôle psychiatrique , 145-147 boulevard Baille, 13005 Marseille",
+  "lat": 43.288785,
+  "lon": 5.394582,
+  "label": "Boulevard baille 13005 Marseille",
+  "score": 0.3719859802847754,
+  "type": "street",
+  "src": "ban"
+ },
+ "ss-hospitalisation-temps-plein-pole-psychiax": {
+  "addr": "Hôpital Sainte-Marguerite, bâtiment Solaris, 270 boulevard de Sainte-Marguerite, 13009 Marseille",
+  "lat": 43.262521,
+  "lon": 5.412686,
+  "label": "270 Boulevard de sainte marguerite 13009 Marseille",
+  "score": 0.5147394439541042,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ss-hospitalisation-temps-plein-ch-edouard-t": {
+  "addr": "118 chemin de Mimet, 13015 Marseille",
+  "lat": 43.381563,
+  "lon": 5.358438,
+  "label": "118 Chemin de mimet 13015 Marseille",
+  "score": 0.9781727272727272,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "ss-hospitalisation-temps-plein-ch-valvert-l": {
+  "addr": "78 boulevard des Libérateurs, 13011 Marseille",
+  "lat": 43.297357,
+  "lon": 5.460529,
+  "label": "78 Boulevard des liberateurs 13011 Marseille",
+  "score": 0.9728581818181817,
+  "type": "housenumber",
+  "src": "ban"
  }
 }
