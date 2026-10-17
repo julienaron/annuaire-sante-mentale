@@ -411,7 +411,11 @@ select.arrsel{width:100%;border:1.5px solid var(--line);background:var(--surface
 .cta,.btn.primary{background:var(--cta);border-color:var(--cta);color:#fff}
 .qh{font-family:var(--body);font-weight:700;letter-spacing:-.01em}
 /* fiche : boutons d'action compacts */
-.big{grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:6px;margin-top:-18px}
+.big{display:flex;gap:8px;margin-top:-18px}
+.big>*{flex:0 0 auto}
+.big>a:not(.ico){flex:1 1 auto;min-width:0}
+.big .ico{width:46px;padding:9px 0}
+.big .telnum{font:600 15px var(--mono);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .big a,.big button{display:flex;align-items:center;justify-content:center;gap:6px;padding:9px 6px;border-radius:12px;font-size:13.5px;line-height:1.1}
 .big svg{width:18px;height:18px;flex:none}
 .big small{display:none}
@@ -1282,7 +1286,7 @@ const REPORT_TO="julienaron@gmail.com";
 /* Dernière vérification par défaut (mois du relevé) ; une fiche peut préciser d.chk="AAAA-MM-JJ" */
 const CHK_DEFAULT="2026-10";
 const CHANGELOG=[
-  ["2026-10-17",["Fiches : boutons Appeler, Partager, Envoyer plus compacts","Équipe mobile : descriptif « Aller-vers »","Envoi par e-mail : lien vers la messagerie fiabilisé, et bouton Gmail en secours","Bouton de thème en haut : automatique (suit le téléphone), clair ou sombre"]],
+  ["2026-10-17",["Fiches : en haut, le numéro à appeler, le partage et le mail de la structure, en icônes","Équipe mobile : descriptif « Aller-vers »","Envoi par e-mail : lien vers la messagerie fiabilisé, et bouton Gmail en secours","Bouton de thème en haut : automatique (suit le téléphone), clair ou sombre"]],
   ["2026-10-16",["Nouvelle présentation : bandeau bleu nuit avec la vague, catégories en pavés de couleur","Partage d'une fiche au patient par SMS ou WhatsApp","Fiche imprimable","Bouton « Signaler une erreur » sur chaque fiche","Date de vérification sur chaque fiche et cet écran « Nouveautés »","« Proposer un lieu manquant », en bas de page et dans la recherche","« Signaler une erreur » et « Proposer un lieu » : panneau de message, envoi par la messagerie, Gmail ou copie","Page psychiatrie au même style que l'accueil","Partage : panneau SMS, WhatsApp ou copie ; boutons d'appel réparés dans l'affichage intégré","Psychiatrie : bloc urgences recentré (3114, 15, CAP 48, CAP 72, CACC, UPAUL)","Hébergement : appartements thérapeutiques de Point Marseille, renommés pour être trouvés plus facilement","Réduction des risques : ajout de la RdR à distance (SAFE, envoi postal gratuit)","Bus 31/32 : CSAPA Bus Méthadone désormais au 129 avenue de Toulon (5ᵉ)"]],
   ["2026-10-15",["Psychiatrie : « Équipes mobiles » et « Urgences » n'affichent plus que ce type","Page de recherche dans tout l'annuaire (nom, quartier, station de métro…)","Accueil condensé, nombre de lieux dans chaque catégorie","Question « hors de Marseille » posée seulement quand elle change le résultat"]],
   ["2026-10-14",["Catégories « Publics spécifiques » et « Équipe mobile », séparées des CSAPA","CSAPA séparés des consultations d'addictologie hospitalières","Ajout des Drs Yannis Achour (3ᵉ) et Damien Driot (6ᵉ, Vauban)"]],
@@ -1652,10 +1656,10 @@ function fiche(d){
   const h=d.has,docs=d.docs||[],f=forms(d);
   const ph=d.c.find(([l,v])=>telHref(v)&&!/fax/i.test(l));
   const big=[];
-  if(f.length)big.push(`<a class="p" href="${esc(f[0][1])}" target="_blank" rel="noopener">${ico("doc")}Dossier<small>en ligne</small></a>`);
-  if(ph)big.push(`<a href="${telHref(ph[1])}">${ico("phone")}Appeler<small>${esc(ph[1])}</small></a>`);
-  big.push(`<button type="button" data-share>${ico("share")}Partager<small>au patient</small></button>`);
-  big.push(`<button type="button" data-tomail>${ico("mail")}Envoyer<small>par e-mail</small></button>`);
+  const em=d.c.find(([l,v])=>/@/.test(v));
+  if(ph)big.push(`<a href="${telHref(ph[1])}" aria-label="Appeler le ${esc(ph[1])}">${ico("phone")}<span class="telnum">${esc(ph[1])}</span></a>`);
+  big.push(`<button type="button" class="ico" data-share aria-label="Partager au patient" title="Partager au patient">${ico("share")}</button>`);
+  if(em)big.push(`<a class="ico" href="mailto:${esc(em[1].trim())}" aria-label="Écrire à ${esc(em[1])}" title="Écrire à ${esc(em[1])}">${ico("mail")}</a>`);
   const hasHtml=h?`<section class="sec"><h3>Évaluation HAS</h3><div class="box">
       <div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;align-items:baseline"><span class="has-lvl">${LV[h[0]]}</span><span class="b ${h[0]}">Décision du ${esc(h[1])}</span></div>
       ${h[0]==="non"||h[0]==="conditions"?`<div class="warnbox">${esc(h[4])}</div>`:`<div>${esc(h[4])}</div>`}
