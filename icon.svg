@@ -1,19 +1,52 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1170a6"/><stop offset="1" stop-color="#0a4366"/></linearGradient>
-    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6fb7de"/><stop offset="1" stop-color="#2f86b8"/></linearGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#16405e"/><stop offset="1" stop-color="#0b1f2e"/></linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe08a"/><stop offset="1" stop-color="#e2a92e"/></linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5fa9d3"/><stop offset="1" stop-color="#2a77a6"/></linearGradient>
   </defs>
   <rect width="512" height="512" fill="url(#bg)"/>
-  <circle cx="378" cy="150" r="38" fill="#f6c25a"/>
-  <!-- colline et basilique, silhouette stylisée -->
-  <path d="M190 336 C240 316 280 270 330 262 C372 256 400 286 440 300 L460 352 L190 352Z" fill="#082f47" opacity=".7"/>
-  <rect x="322" y="214" width="16" height="52" rx="3" fill="#082f47" opacity=".7"/>
-  <rect x="309" y="238" width="42" height="28" rx="3" fill="#082f47" opacity=".7"/>
-  <circle cx="330" cy="208" r="7" fill="#f6c25a"/>
+  <!-- halo derrière la Vierge -->
+  <circle cx="256" cy="118" r="62" fill="#ffd36b" opacity=".16"/>
+  <!-- colline de la Garde -->
+  <path d="M40 400 C110 392 150 352 196 336 L316 336 C362 352 402 392 472 400 L472 430 L40 430Z" fill="#f2e8d8" opacity=".95"/>
+  <!-- basilique : nef, coupole, clocher -->
+  <g fill="#f8f3ea">
+    <!-- nef et abside -->
+    <rect x="148" y="274" width="216" height="66" rx="4"/>
+    <!-- coupole sur tambour -->
+    <rect x="160" y="246" width="58" height="32" rx="3"/>
+    <path d="M158 248 a31 31 0 0 1 62 0Z"/>
+    <rect x="186" y="203" width="6" height="16" rx="2"/>
+    <!-- clocher -->
+    <rect x="226" y="164" width="60" height="116" rx="3"/>
+    <rect x="220" y="226" width="72" height="9" rx="2"/>
+    <rect x="220" y="156" width="72" height="12" rx="2"/>
+    <!-- socle de la statue -->
+    <rect x="240" y="136" width="32" height="24" rx="3"/>
+  </g>
+  <!-- bandes de pierre bicolores -->
+  <g fill="#c7a77e" opacity=".55">
+    <rect x="148" y="296" width="216" height="6"/>
+    <rect x="148" y="316" width="216" height="6"/>
+    <rect x="160" y="260" width="58" height="5"/>
+  </g>
+  <!-- ouvertures -->
+  <g fill="#16405e">
+    <rect x="236" y="178" width="9" height="34" rx="4.5"/>
+    <rect x="251.5" y="178" width="9" height="34" rx="4.5"/>
+    <rect x="267" y="178" width="9" height="34" rx="4.5"/>
+    <rect x="249" y="248" width="14" height="26" rx="7"/>
+    <rect x="290" y="284" width="10" height="20" rx="5"/>
+    <rect x="312" y="284" width="10" height="20" rx="5"/>
+    <rect x="334" y="284" width="10" height="20" rx="5"/>
+    <rect x="168" y="284" width="10" height="20" rx="5"/><rect x="190" y="284" width="10" height="20" rx="5"/>
+  </g>
+  <!-- la Bonne Mère, statue dorée -->
+  <g fill="url(#gold)">
+    <path d="M256 70 c-9 0-15 7-15 15 c0 6 3 10 7 13 l-9 36 c-1 4 2 7 6 7 h22 c4 0 7-3 6-7 l-9-36 c4-3 7-7 7-13 c0-8-6-15-15-15z"/>
+    <circle cx="256" cy="58" r="5"/>
+  </g>
   <!-- mer -->
-  <path d="M0 336 C70 310 130 362 200 338 S330 308 400 336 S480 356 512 342 V512 H0Z" fill="url(#sea)"/>
-  <path d="M56 388 C106 372 146 400 192 386 S282 370 328 386 S406 402 456 386" fill="none" stroke="#ffffff" stroke-width="13" stroke-linecap="round" opacity=".9"/>
-  <!-- épingle avec croix de soin -->
-  <path d="M190 118 c-44 0 -78 34 -78 77 c0 56 78 127 78 127 s78 -71 78 -127 c0 -43 -34 -77 -78 -77z" fill="#ffffff"/>
-  <path d="M190 157 v76 M152 195 h76" stroke="#0d5a88" stroke-width="21" stroke-linecap="round"/>
+  <path d="M0 418 C70 402 130 436 200 420 S330 400 400 418 S480 432 512 422 V512 H0Z" fill="url(#sea)"/>
+  <path d="M70 458 C120 444 160 468 206 456 S296 442 342 456 S406 468 442 456" fill="none" stroke="#ffffff" stroke-width="11" stroke-linecap="round" opacity=".85"/>
 </svg>
