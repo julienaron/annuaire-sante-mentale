@@ -1,4 +1,4 @@
--- Annuaire Bus 31/32 : structure de la base (aucune donnée de contact ici).
+-- Annuaire BPM Marseille : structure de la base (aucune donnée de contact ici).
 -- À coller une seule fois dans Supabase > SQL Editor > New query, puis « Run ».
 -- Seules les adresses e-mail listées dans la table « membres » peuvent lire ou modifier l'annuaire.
 

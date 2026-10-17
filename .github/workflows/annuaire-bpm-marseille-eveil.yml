@@ -1,7 +1,7 @@
-# Annuaire Bus 31/32 : empêche la mise en pause de la base Supabase gratuite.
+# Annuaire BPM Marseille : empêche la mise en pause de la base Supabase gratuite.
 # Supabase met en pause un projet gratuit après 7 jours sans activité ; un appel par jour suffit à l'éviter.
 # Si la base ne répond plus, la tâche échoue et GitHub prévient par e-mail le propriétaire du dépôt.
-name: Annuaire 31/32 - garder la base active
+name: Annuaire BPM Marseille - garder la base active
 
 on:
   schedule:
@@ -19,8 +19,8 @@ jobs:
 
       - name: Interroger la base de l'annuaire
         run: |
-          URL=$(grep -oP 'supabaseUrl:\s*"\K[^"]*' bus3132/config.js || true)
-          KEY=$(grep -oP 'supabaseAnonKey:\s*"\K[^"]*' bus3132/config.js || true)
+          URL=$(grep -oP 'supabaseUrl:\s*"\K[^"]*' bpm-marseille/config.js || true)
+          KEY=$(grep -oP 'supabaseAnonKey:\s*"\K[^"]*' bpm-marseille/config.js || true)
           if [ -z "$URL" ] || [ -z "$KEY" ]; then
             echo "config.js n'est pas encore rempli : rien à faire."
             exit 0
@@ -40,10 +40,10 @@ jobs:
         if: github.event_name == 'schedule'
         run: |
           if [ "$(date -u +%d)" = "01" ]; then
-            date -u +%FT%TZ > bus3132/.dernier-passage
+            date -u +%FT%TZ > bpm-marseille/.dernier-passage
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add bus3132/.dernier-passage
-            git commit -m "Annuaire 31/32 : passage mensuel automatique"
+            git add bpm-marseille/.dernier-passage
+            git commit -m "Annuaire BPM Marseille : passage mensuel automatique"
             git push
           fi

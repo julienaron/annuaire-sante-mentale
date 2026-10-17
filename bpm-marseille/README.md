@@ -1,8 +1,8 @@
-# Annuaire Bus 31/32 (accès réservé à l'équipe)
+# Annuaire BPM Marseille (accès réservé à l'équipe)
 
-Adresse : https://julienaron.github.io/annuaire-sante-mentale/bus3132/
+Adresse : https://julienaron.github.io/annuaire-sante-mentale/bpm-marseille/
 
-Annuaire des partenaires de l'équipe du Bus 31/32 : recherche, appel en un clic,
+Annuaire des partenaires de l'équipe BPM Marseille : recherche, appel en un clic,
 modification à plusieurs (avec détection des modifications simultanées), historique de 7 jours.
 
 **Aucun contact n'est stocké dans ce dépôt public.** Les fiches sont dans une base Supabase
@@ -14,9 +14,9 @@ dont l'accès est limité aux adresses e-mail de la table `membres`.
 2. *SQL Editor* > *New query* : coller `supabase-schema.sql`, puis *Run*.
 3. *SQL Editor* > *New query* : coller le fichier d'import confidentiel (envoyé à part, jamais sur GitHub), puis *Run*.
 4. *Authentication* > *URL Configuration* :
-   - *Site URL* : `https://julienaron.github.io/annuaire-sante-mentale/bus3132/`
+   - *Site URL* : `https://julienaron.github.io/annuaire-sante-mentale/bpm-marseille/`
    - *Redirect URLs* : ajouter la même adresse.
-5. Facultatif, utile sur iPhone : *Authentication* > *Emails* > *Magic Link*, ajouter `{{ .Token }}` dans le message.
+5. Indispensable pour les iPhone : *Authentication* > *Emails* > *Magic Link*, ajouter `Votre code : {{ .Token }}` dans le message.
    Le mail contiendra alors un code à 6 chiffres, à taper dans l'appli si le lien s'ouvre dans un autre navigateur.
 6. *Project Settings* > *API* : copier l'*URL* et la clé *anon / publishable* dans `config.js`.
 
@@ -30,6 +30,6 @@ Pour retirer l'accès : supprimer la ligne.
 - L'offre gratuite de Supabase envoie peu d'e-mails de connexion par heure : connecter les collègues un par un.
   Une fois connecté, on le reste sur l'appareil.
 - Un projet Supabase gratuit se met en pause après 7 jours sans activité. La tâche GitHub
-  `.github/workflows/annuaire-bus3132-eveil.yml` interroge la base chaque matin pour l'éviter.
+  `.github/workflows/annuaire-bpm-marseille-eveil.yml` interroge la base chaque matin pour l'éviter.
   Si la base ne répond plus, GitHub envoie un e-mail : ouvrir Supabase et cliquer sur « Resume project ».
 - Sauvegarde : menu ⋯ de l'appli > « Télécharger l'annuaire (CSV) ».

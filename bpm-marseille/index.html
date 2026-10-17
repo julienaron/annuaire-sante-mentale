@@ -5,18 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#1f4d9e">
-<title>Annuaire Bus 31/32</title>
+<title>Annuaire BPM Marseille</title>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="logo.png">
 <link rel="apple-touch-icon" href="icon-192.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Annuaire 31/32">
+<meta name="apple-mobile-web-app-title" content="Annuaire BPM">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Atkinson+Hyperlegible+Mono:wght@400;600&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap">
 <style>
 /* Layout: sticky header (logo + recherche), rangée de catégories, liste de fiches ; feuilles plein écran pour édition et historique. */
 :root {
-  /* couleurs du logo Bus 31/32 : bleu, orange, gris */
+  /* couleurs du logo : bleu, orange, gris */
   --bg: #f1f3f7;
   --surface: #ffffff;
   --ink: #15203a;
@@ -231,8 +231,8 @@ img { max-width: 100%; }
 
 <section class="auth" id="auth" hidden>
   <div class="auth-card">
-    <img src="logo.png" alt="Logo Bus 31/32">
-    <h2>Annuaire <span>31/32</span></h2>
+    <img src="logo.png" alt="Logo">
+    <h2>Annuaire <span>BPM</span> Marseille</h2>
     <p id="authIntro">Réservé à l'équipe. Entrez votre adresse e-mail : vous recevrez un lien de connexion.</p>
     <form id="authForm">
       <input id="authEmail" type="email" required autocomplete="email" inputmode="email" placeholder="votre.adresse@exemple.fr" aria-label="Adresse e-mail">
@@ -251,10 +251,10 @@ img { max-width: 100%; }
 <header class="top">
   <div class="wrap">
     <div class="brand">
-      <div class="logo" id="logo"><img src="logo.png" alt="Logo Bus 31/32"></div>
+      <div class="logo" id="logo"><img src="logo.png" alt="Logo"></div>
       <div class="brand-text">
-        <h1>Annuaire <span>31/32</span></h1>
-        <p id="sub">Les contacts partenaires de l'équipe</p>
+        <h1>Annuaire <span>BPM</span></h1>
+        <p id="sub">BPM Marseille · contacts partenaires</p>
       </div>
       <div class="top-actions">
         <button class="btn primary" id="btnAdd" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg><span class="label">Contact</span></button>
@@ -757,7 +757,7 @@ img { max-width: 100%; }
     const lines = [FIELDS.map(([, l]) => q2(l)).join(";")].concat(contacts.slice().sort(sortName).map((c) => cols.map((k) => q2(c[k])).join(";")));
     const blob = new Blob(["\ufeff" + lines.join("\r\n")], { type: "text/csv;charset=utf-8" });
     const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob); a.download = "annuaire-bus-3132-" + new Date().toISOString().slice(0, 10) + ".csv";
+    a.href = URL.createObjectURL(blob); a.download = "annuaire-bpm-marseille-" + new Date().toISOString().slice(0, 10) + ".csv";
     document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 2000);
   }
 
