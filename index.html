@@ -1280,7 +1280,7 @@ const REPORT_TO="julienaron@gmail.com";
 /* Dernière vérification par défaut (mois du relevé) ; une fiche peut préciser d.chk="AAAA-MM-JJ" */
 const CHK_DEFAULT="2026-10";
 const CHANGELOG=[
-  ["2026-10-17",["Fiches : boutons Appeler, Partager, Envoyer plus compacts","Équipe mobile : descriptif « Aller-vers »"]],
+  ["2026-10-17",["Fiches : boutons Appeler, Partager, Envoyer plus compacts","Équipe mobile : descriptif « Aller-vers »","Envoi par e-mail : lien vers la messagerie fiabilisé, et bouton Gmail en secours"]],
   ["2026-10-16",["Nouvelle présentation : bandeau bleu nuit avec la vague, catégories en pavés de couleur","Partage d'une fiche au patient par SMS ou WhatsApp","Fiche imprimable","Bouton « Signaler une erreur » sur chaque fiche","Date de vérification sur chaque fiche et cet écran « Nouveautés »","« Proposer un lieu manquant », en bas de page et dans la recherche","« Signaler une erreur » et « Proposer un lieu » : panneau de message, envoi par la messagerie, Gmail ou copie","Page psychiatrie au même style que l'accueil","Partage : panneau SMS, WhatsApp ou copie ; boutons d'appel réparés dans l'affichage intégré","Psychiatrie : bloc urgences recentré (3114, 15, CAP 48, CAP 72, CACC, UPAUL)","Hébergement : appartements thérapeutiques de Point Marseille, renommés pour être trouvés plus facilement","Réduction des risques : ajout de la RdR à distance (SAFE, envoi postal gratuit)","Bus 31/32 : CSAPA Bus Méthadone désormais au 129 avenue de Toulon (5ᵉ)"]],
   ["2026-10-15",["Psychiatrie : « Équipes mobiles » et « Urgences » n'affichent plus que ce type","Page de recherche dans tout l'annuaire (nom, quartier, station de métro…)","Accueil condensé, nombre de lieux dans chaque catégorie","Question « hors de Marseille » posée seulement quand elle change le résultat"]],
   ["2026-10-14",["Catégories « Publics spécifiques » et « Équipe mobile », séparées des CSAPA","CSAPA séparés des consultations d'addictologie hospitalières","Ajout des Drs Yannis Achour (3ᵉ) et Damien Driot (6ᵉ, Vauban)"]],
@@ -1695,7 +1695,7 @@ function fiche(d){
       <section class="sec" id="mail-sec"><h3>Envoyer cette fiche par e-mail</h3>
         <div class="box mailbox">
           <input id="to-${d.id}" type="email" value="${esc(def)}" placeholder="adresse@exemple.fr" aria-label="Destinataire">
-          <a class="btn primary" id="send-${d.id}" href="#" target="_blank" rel="noopener">${ico("mail")}Ouvrir dans ma messagerie</a>
+          <div class="shgrid"><a class="btn primary" id="send-${d.id}" href="#">${ico("mail")}Ma messagerie</a><a class="btn primary" id="gsend-${d.id}" href="#" target="_blank" rel="noopener">Gmail</a></div>
           <textarea id="body-${d.id}" aria-label="Contenu de l'e-mail" readonly>${esc(mailText(d))}</textarea>
           <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><button class="btn" type="button" data-copytext="body-${d.id}">Copier le texte</button><span class="note">Le message contient les liens vers les dossiers, pas les fichiers. Si la messagerie ne s'ouvre pas, copiez le texte.</span></div>
         </div>
@@ -1709,7 +1709,10 @@ function openFiche(id){
   lastFocus=document.activeElement;
   fEl.innerHTML=fiche(d);fEl.dataset.id=id;fEl.hidden=false;document.body.classList.add("locked");fEl.scrollTop=0;
   const to=document.getElementById("to-"+id),send=document.getElementById("send-"+id);
-  const upd=()=>{send.href="mailto:"+encodeURIComponent(to.value.trim()).replace(/%40/g,"@")+"?subject="+encodeURIComponent("Addictologie – "+d.n)+"&body="+encodeURIComponent(mailText(d));};
+  const gsend=document.getElementById("gsend-"+id);
+  const upd=()=>{const t=to.value.trim(),su="Addictologie – "+d.n,bo=mailText(d);
+    send.href="mailto:"+encodeURIComponent(t).replace(/%40/g,"@")+"?subject="+encodeURIComponent(su)+"&body="+encodeURIComponent(bo);
+    gsend.href="https://mail.google.com/mail/?view=cm&fs=1&to="+encodeURIComponent(t)+"&su="+encodeURIComponent(su)+"&body="+encodeURIComponent(bo);};
   upd();to.addEventListener("input",upd);
   fEl.focus({preventScroll:true});
 }
@@ -1750,9 +1753,12 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!shEl.hidden)closeS
 const EMBED=(()=>{try{return window.top!==window.self}catch(_){return true}})();
 document.addEventListener("click",e=>{
   const a=e.target.closest('a[href^="tel:"],a[href^="sms:"],a[href^="mailto:"]');
-  if(!a||!EMBED)return;
+  if(!a)return;
   e.preventDefault();
-  const w=window.open(a.href,"_blank");
+  /* Appli installée ou navigateur : on « navigue » vers le lien, ce que téléphones et ordinateurs
+     transmettent à l'appli d'appel ou de mail. Affichage intégré : nouvelle fenêtre. */
+  if(!EMBED){location.href=a.href;return;}
+  let w=null;try{w=window.open(a.href,"_blank")}catch(_){}
   if(!w){try{window.top.location.href=a.href}catch(_){location.href=a.href}}
 },true);
 function copy(text,btn,el){
