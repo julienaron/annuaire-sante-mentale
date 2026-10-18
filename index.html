@@ -323,7 +323,9 @@ select.arrsel{width:100%;border:1.5px solid var(--line);background:var(--surface
 .big .p{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
 .big svg{width:24px;height:24px}
 .big small{font:500 11px var(--mono);color:inherit;opacity:.8;font-weight:400}
-.links{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:12px}
+.links .btn{justify-content:center;width:100%;min-width:0}
+.links .btn:last-child:nth-child(odd){grid-column:1/-1}
 .minimap{display:block;margin-top:12px;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--land);position:relative;text-decoration:none}
 .minimap>.mmsvg svg{display:block;width:100%;height:200px}
 .mmsvg{display:block}
@@ -375,7 +377,7 @@ select.arrsel{width:100%;border:1.5px solid var(--line);background:var(--surface
 .hero,.fh{background:var(--band);color:#fff}
 .hero h1,.fh h2{font-family:var(--body);font-weight:700;letter-spacing:-.025em}
 #v-q1 .hero h1,#v-p1 .hero h1{font-size:clamp(23px,6.4vw,28px)}
-.hero .eyebrow{opacity:.75}
+.hero .eyebrow{opacity:1}.hero .eyebrow .dot13{opacity:.75}
 .searchopen{background:var(--band-2);color:#c9d6e0;box-shadow:none;border:1px solid var(--band-line)}
 .searchopen svg{color:#fff}
 .modetabs{background:var(--band-2);border-color:var(--band-line)}
@@ -553,6 +555,25 @@ select.arrsel{width:100%;border:1.5px solid var(--line);background:var(--surface
   #printsheet{position:static!important;left:auto;width:auto;font:9.5pt/1.35 var(--body);color:#000}
 }
 .sublist button small{display:block;font-weight:400;font-size:12.5px;opacity:.78;line-height:1.3;margin-top:2px}
+#v-q1 .arca:not(.urgblock){justify-items:center;text-align:center}
+.eyebrow .brand{flex:1 1 auto;width:0;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:.02em;font-size:10px}
+.eyebrow .themebtn{margin-left:0;flex:none}
+@media (max-width:350px){.eyebrow .brand{font:600 10.8px var(--body);text-transform:none;letter-spacing:-.01em}.eyebrow{gap:6px}}
+.infobtn{flex:none;width:26px;height:26px;padding:0!important;justify-content:center;font:700 14px/1 Georgia,"Times New Roman",serif!important;letter-spacing:0!important;text-transform:none!important;position:relative}
+.infosheet .ab{font-size:14px;line-height:1.5;color:var(--fg);display:grid;gap:8px}
+.infosheet .ab p{margin:0}
+.infosheet .ab .stats3{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.infosheet .ab .stats3 div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:8px;text-align:center;font-size:12px;color:var(--muted)}
+.infosheet .ab .stats3 b{display:block;font-size:19px;color:var(--fg)}
+.infosheet .backi{justify-self:start}
+#v-q1 .eyebrow,#v-p1 .eyebrow{margin-bottom:14px}
+.leaflet-container,.mapbox{isolation:isolate}
+.srcdet{margin-top:10px}
+.srcdet summary{cursor:pointer;list-style:none;font:600 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:6px}
+.srcdet summary::-webkit-details-marker{display:none}
+.srcdet[open] .chev{transform:rotate(180deg)}
+.srcdet ul{margin:6px 0 0;padding-left:18px;font-size:13px;color:var(--muted)}
+.srcdet a{color:var(--accent);word-break:break-all}
 
 /* Leaflet 1.9.4 (BSD-2) */
 /* required styles */
@@ -1226,8 +1247,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
   <header class="hero">
     <div class="col">
       <button class="backlink" type="button" data-back data-ifhist hidden>← Retour</button>
-      <div class="eyebrow"><span class="dot13">13</span>MAP · Marseille<button type="button" class="newsbtn themebtn" data-theme-toggle aria-label="Thème">Auto</button><button type="button" class="newsbtn" data-news>Nouveautés</button></div>
-      <h1>Addictologie et psychiatrie</h1>
+      <div class="eyebrow"><span class="brand">MAP : Marseille Addictologie Psychiatrie</span><button type="button" class="newsbtn themebtn" data-theme-toggle aria-label="Thème">Auto</button><button type="button" class="newsbtn infobtn" data-info aria-label="Informations, nouveautés et contact">i</button></div>
       <button class="searchopen" type="button" data-search><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>Rechercher un lieu, un nom…</button>
       <div class="modetabs" role="tablist" aria-label="Domaine">
         <button type="button" role="tab" data-mode="addicto">Addictologie</button>
@@ -1258,8 +1278,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
   <header class="hero">
     <div class="col">
       <button class="backlink" type="button" data-back data-ifhist hidden>← Retour</button>
-      <div class="eyebrow"><span class="dot13">13</span>MAP · Marseille<button type="button" class="newsbtn themebtn" data-theme-toggle aria-label="Thème">Auto</button><button type="button" class="newsbtn" data-news>Nouveautés</button></div>
-      <h1>Trouver le CMP de secteur</h1>
+      <div class="eyebrow"><span class="brand">MAP : Marseille Addictologie Psychiatrie</span><button type="button" class="newsbtn themebtn" data-theme-toggle aria-label="Thème">Auto</button><button type="button" class="newsbtn infobtn" data-info aria-label="Informations, nouveautés et contact">i</button></div>
       <button class="searchopen" type="button" data-search><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>Rechercher un lieu, un nom…</button>
       <div class="modetabs" role="tablist" aria-label="Domaine">
         <button type="button" role="tab" data-mode="addicto">Addictologie</button>
@@ -2054,7 +2073,7 @@ const REPORT_TO="julienaron@gmail.com";
 /* Dernière vérification par défaut (mois du relevé) ; une fiche peut préciser d.chk="AAAA-MM-JJ" */
 const CHK_DEFAULT="2026-10";
 const CHANGELOG=[
-  ["2026-10-18",["Accueil : pavé « Sevrage » qui ouvre le choix Cure / Post-cure / Communauté","Nouvel onglet « Communautés », classées par type : les 9 communautés thérapeutiques médico-sociales de France, les lieux à vivre non médicalisés du Sud-Est (Bergerie de Berdine, Mas de Carles, Vogue la Galère, La Celle…), les communautés confessionnelles (Cenacolo, Village Saint-Joseph, AC3) et les communautés Emmaüs de PACA et du Gard ; chaque fiche indique si un sevrage préalable est exigé et les points de vigilance (pas de TSO, pas d'encadrement médical)","Nouveau nom : MAP, pour Marseille Addicto Psy","Nouveau logo : une tête de profil avec la Bonne Mère dedans, posée sur son socle","Carte : la bulle d'un lieu se ferme quand on ouvre sa fiche","Impression d'une fiche sur une page A4, en deux colonnes, avec la carte","Envoyer la fiche en PDF ou en image (avec la carte) : depuis « Partager » ou le bloc e-mail de la fiche","Vraie carte OpenStreetMap (rues, zoom au doigt, fond OpenStreetMap) avec les lignes de métro et de tram en transparence, aussi sur la petite carte des fiches, qu'on peut déplacer et zoomer, avec les stations et le nom des arrêts les plus proches ; sans réseau, la carte dessinée prend le relais","Horaires publiés sur les fiches (à déplier en touchant « Horaires »), et « Ouvert / Fermé » en temps réel sur les fiches et dans les listes"]],
+  ["2026-10-18",["Fiches : les sources sont repliées (toucher « Sources » pour les voir) ; boutons Google Maps, Itinéraire, Site officiel et Imprimer alignés sur deux colonnes ; les boutons de zoom de la grande carte ne passent plus par-dessus la fiche","En-tête allégé : « MAP : Marseille Addictologie Psychiatrie » sur une ligne, et un bouton « i » qui regroupe À propos, Nouveautés et Contact","Accueil : pavé « Sevrage » qui ouvre le choix Cure / Post-cure / Communauté","Nouvel onglet « Communautés », classées par type : les 9 communautés thérapeutiques médico-sociales de France, les lieux à vivre non médicalisés du Sud-Est (Bergerie de Berdine, Mas de Carles, Vogue la Galère, La Celle…), les communautés confessionnelles (Cenacolo, Village Saint-Joseph, AC3) et les communautés Emmaüs de PACA et du Gard ; chaque fiche indique si un sevrage préalable est exigé et les points de vigilance (pas de TSO, pas d'encadrement médical)","Nouveau nom : MAP, pour Marseille Addicto Psy","Nouveau logo : une tête de profil avec la Bonne Mère dedans, posée sur son socle","Carte : la bulle d'un lieu se ferme quand on ouvre sa fiche","Impression d'une fiche sur une page A4, en deux colonnes, avec la carte","Envoyer la fiche en PDF ou en image (avec la carte) : depuis « Partager » ou le bloc e-mail de la fiche","Vraie carte OpenStreetMap (rues, zoom au doigt, fond OpenStreetMap) avec les lignes de métro et de tram en transparence, aussi sur la petite carte des fiches, qu'on peut déplacer et zoomer, avec les stations et le nom des arrêts les plus proches ; sans réseau, la carte dessinée prend le relais","Horaires publiés sur les fiches (à déplier en touchant « Horaires »), et « Ouvert / Fermé » en temps réel sur les fiches et dans les listes"]],
   ["2026-10-17",["Recensement élargi : 164 lieux ajoutés. Addictologie : consultations hospitalières (chemsex, tabac, Nord, Timone), AIDES et le Spot Longchamp, TEMA 13, groupes d'entraide (AA, NA, Al-Anon), SMR et cures de PACA, communautés thérapeutiques, antennes des CSAPA du département","Psychiatrie : nouvelle partie « Autres ressources » : GEM, associations de familles (UNAFAM…), hôpitaux de jour et CATTP, réhabilitation, consultations spécialisées (psychotrauma, TCA, périnatalité, autisme, personnes âgées…), cliniques privées, répit, logement accompagné, insertion (dont Un chez-soi d'abord), lignes d'écoute, droits, admissions en hospitalisation","Fiches : en haut, le numéro à appeler, le partage et le mail de la structure, en icônes","Équipe mobile : descriptif « Aller-vers »","Envoi par e-mail : lien vers la messagerie fiabilisé, et bouton Gmail en secours","Bouton de thème en haut : automatique (suit le téléphone), clair ou sombre","Nouvelle icône : la Bonne Mère","Bas de page allégé","Accueil : une seule catégorie, toucher suffit (plus de bouton Continuer)","Psychiatrie : titre « CMP » au-dessus de la question du domicile","Consultations spécialisées : menu pour choisir le public ou le besoin (psychotrauma, TCA, périnatalité, autisme, personnes âgées…)","Hospitalisation : hôpital public et cliniques privées regroupés, avec le choix l'un, l'autre ou les deux ; pour l'hôpital public, l'appli demande le secteur (adresse ou date de naissance) et donne l'hôpital de rattachement","PASS : rangées dans Consultations","Résultats : les lieux de Marseille et ceux hors de Marseille sont séparés dans chaque catégorie","Réduction des risques : descriptif « CAARUD et associations »","Associations d'usagers : entendeurs de voix « Le Cercle », CoFoR (formation au rétablissement), Bipolaire Provence, Je Suis Bipolaire, Anorexie Boulimie 13, France Assos Santé, collectif antivalidiste, Renaître après l'inceste","Liste des résultats : l'arrondissement passe à droite des étiquettes, le titre a toute la largeur","Ajout de Réseaux 13 (Frais-Vallon) et d'IMAJE Santé (espace santé jeunes) dans Publics spécifiques","Ouverte depuis l'appli Claude : les e-mails passent par un panneau (Gmail ou copie) au lieu d'une page blanche"]],
   ["2026-10-16",["Nouvelle présentation : bandeau bleu nuit avec la vague, catégories en pavés de couleur","Partage d'une fiche au patient par SMS ou WhatsApp","Fiche imprimable","Bouton « Signaler une erreur » sur chaque fiche","Date de vérification sur chaque fiche et cet écran « Nouveautés »","« Proposer un lieu manquant », en bas de page et dans la recherche","« Signaler une erreur » et « Proposer un lieu » : panneau de message, envoi par la messagerie, Gmail ou copie","Page psychiatrie au même style que l'accueil","Partage : panneau SMS, WhatsApp ou copie ; boutons d'appel réparés dans l'affichage intégré","Psychiatrie : bloc urgences recentré (3114, 15, CAP 48, CAP 72, CACC, UPAUL)","Hébergement : appartements thérapeutiques de Point Marseille, renommés pour être trouvés plus facilement","Réduction des risques : ajout de la RdR à distance (SAFE, envoi postal gratuit)","Bus 31/32 : CSAPA Bus Méthadone désormais au 129 avenue de Toulon (5ᵉ)"]],
   ["2026-10-15",["Psychiatrie : « Équipes mobiles » et « Urgences » n'affichent plus que ce type","Page de recherche dans tout l'annuaire (nom, quartier, station de métro…)","Accueil condensé, nombre de lieux dans chaque catégorie","Question « hors de Marseille » posée seulement quand elle change le résultat"]],
@@ -2569,7 +2588,7 @@ function bubblePin(id){
   const d=D.find(x=>x.id===id);selId=id;offSel=null;
   const b=document.getElementById("bubble");
   b.innerHTML=`<div class="bh"><div style="display:grid;gap:4px"><div style="display:flex;gap:8px;align-items:center"><span class="num" style="--c:var(--t-${kindOf[id]})">${numOf[id]}</span><b>${esc(d.n)}</b></div><span class="meta">${esc(d.p)} · ${esc(d.o)}</span></div><button class="x" type="button" data-closebubble aria-label="Fermer">×</button></div>
-  <div class="row"><button class="btn primary" type="button" data-open="${id}">Voir la fiche</button><a class="btn" href="${mapUrl(d)}" target="_blank" rel="noopener">${ico("pin")}Ouvrir sur Google Maps</a></div>`;
+  <div class="row"><button class="btn primary" type="button" data-open="${id}">Voir la fiche</button><a class="btn" href="${mapUrl(d)}" target="_blank" rel="noopener">${ico("pin")}Google Maps</a></div>`;
   b.hidden=false;markSel();
 }
 function bubbleEdge(c){
@@ -2703,6 +2722,14 @@ function hoursHtml(d){
   const o=openState(d);
   return `<section class="sec"><details class="hdet"><summary><span class="hsum">Horaires</span>${o?`<span class="open ${o.open?"y":"n"}">${o.txt}</span>`:""}<span class="chev" aria-hidden="true">▾</span></summary><div class="box hours">${rows}${H.texte&&(!rows||/rendez|rdv|permanence|sans |méthadone|réunion|secrétariat|fermé|ferm|visite|accueil|téléphon|mobile|confirmer|sauf|vacances|été|uniquement|selon/i.test(H.texte))?`<p class="note" style="margin:${rows?"6px":"0"} 0 0">${esc(H.texte)}</p>`:""}${H.src?`<small class="note">Source : <a href="${esc(H.src)}" target="_blank" rel="noopener">${esc(H.src.replace(/^https?:\/\/(www\.)?/,"").split("/")[0])}</a></small>`:""}</div></details></section>`;
 }
+/* Sources de la fiche : repliées par défaut, dépliées en touchant « Sources » */
+const splitNote=d=>{const n=String(d.note||"");const m=n.match(/^([\s\S]*?)\s*Sources?\s*:\s*([\s\S]*)$/);return m?[m[1].trim(),m[2].trim()]:[n.trim(),""];};
+const noteOf=d=>splitNote(d)[0];
+function srcHtml(d){const raw=splitNote(d)[1];const urls=[...raw.matchAll(/https?:\/\/[^\s,;)]+/g)].map(x=>x[0].replace(/[.]$/,""));
+  if(d.site&&!urls.includes(d.site))urls.push(d.site);
+  if(!urls.length&&!raw)return "";
+  const items=urls.length?urls.map(u=>`<li><a href="${esc(u)}" target="_blank" rel="noopener">${esc(u.replace(/^https?:\/\/(www\.)?/,"").replace(/\/$/,""))}</a></li>`).join(""):`<li>${esc(raw)}</li>`;
+  return `<details class="srcdet"><summary>Sources<span class="chev" aria-hidden="true">▾</span></summary><ul>${items}</ul></details>`;}
 const card=d=>`<button type="button" class="card" data-id="${d.id}" style="--c:var(--t-${kindOf[d.id]})" aria-label="Ouvrir la fiche ${esc(d.n)}">
   <div class="h"><span class="num" style="--c:var(--t-${kindOf[d.id]})">${numOf[d.id]}</span><div><h3>${esc(d.n)}</h3><div class="org">${esc(d.o)}</div></div></div>
   <div class="tags">${tagsHtml(d)}${d.warn?`<span class="verify">${esc(d.warn)}</span>`:""}${d.v?`<span class="verify">À confirmer</span>`:""}${d.pub?"":`<span class="prive">Privé</span>`}${openBadge(d)}<span class="where">${esc(d.p.replace(/^Marseille /,""))}</span></div>
@@ -2823,7 +2850,7 @@ function fiche(d){
     <div class="col fpad">
       <div class="big">${big.join("")}</div>
       <div class="links">
-        <a class="btn" href="${mapUrl(d)}" target="_blank" rel="noopener">${ico("pin")}Ouvrir sur Google Maps</a>
+        <a class="btn" href="${mapUrl(d)}" target="_blank" rel="noopener">${ico("pin")}Google Maps</a>
         <a class="btn" href="${dirUrl(d)}" target="_blank" rel="noopener">${ico("route")}Itinéraire</a>
         ${d.site?`<a class="btn" href="${esc(d.site)}" target="_blank" rel="noopener">${ico("web")}Site officiel</a>`:""}
         ${d.photos?`<a class="btn" href="${esc(d.photos)}" target="_blank" rel="noopener">${ico("photo")}Photos</a>`:""}
@@ -2840,7 +2867,8 @@ function fiche(d){
         ${docs.length?docs.map(([l,u,s,k])=>`<div class="doc"><div><b>${esc(l)}</b><small>${esc(s||"")}</small></div><a class="btn ${k==="form"?"primary":""}" href="${esc(u)}" target="_blank" rel="noopener">Ouvrir</a></div>`).join(""):`<span class="note">Pas de formulaire téléchargeable.</span>`}
         ${d.send?`<div style="${docs.length?"border-top:1px solid var(--line);padding-top:8px":""}">${esc(d.send)}</div>`:""}
       </div></section>`:""}
-      ${d.c.length?`<section class="sec"><h3>Contacts</h3><div class="box">${d.c.map(([l,v])=>{const t=telHref(v);return `<div class="crow"><div style="min-width:0"><span class="l">${esc(l)}</span><span class="v">${esc(v)}</span></div><div class="acts">${t&&!/fax/i.test(l)?`<a class="copy" href="${t}" style="text-decoration:none;color:inherit">Appeler</a>`:""}<button class="copy" type="button" data-v="${esc(v)}">Copier</button></div></div>`;}).join("")}</div>${d.note?`<p class="note" style="margin-top:8px">${esc(d.note)}</p>`:""}</section>`:""}
+      ${d.c.length?`<section class="sec"><h3>Contacts</h3><div class="box">${d.c.map(([l,v])=>{const t=telHref(v);return `<div class="crow"><div style="min-width:0"><span class="l">${esc(l)}</span><span class="v">${esc(v)}</span></div><div class="acts">${t&&!/fax/i.test(l)?`<a class="copy" href="${t}" style="text-decoration:none;color:inherit">Appeler</a>`:""}<button class="copy" type="button" data-v="${esc(v)}">Copier</button></div></div>`;}).join("")}</div>${noteOf(d)?`<p class="note" style="margin-top:8px">${esc(noteOf(d))}</p>`:""}</section>`:""}
+      ${srcHtml(d)}
       <div class="chk"><span>${chkText(d)}</span><button type="button" class="linkbtn" data-report="${d.id}">Signaler une erreur</button></div>
       <button class="fab-back" type="button" data-close>← Retour</button>
       <section class="sec" id="mail-sec"><h3>Envoyer cette fiche par e-mail</h3>
@@ -3217,7 +3245,7 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!insEl.hidden)close
 
 /* ---------- Nouveautés ---------- */
 const newsEl=document.getElementById("newsheet");
-function paintNewsBadge(){const nw=store("addicto13.seen")!==VERSION;document.querySelectorAll(".newsbtn[data-news]").forEach(b=>b.dataset.new=nw?"1":"0");}
+function paintNewsBadge(){const nw=store("addicto13.seen")!==VERSION;document.querySelectorAll(".newsbtn[data-news],.infobtn").forEach(b=>b.dataset.new=nw?"1":"0");}
 function openNews(){
   document.getElementById("news-sub").textContent=`Version du ${fmtDate(VERSION)}. L'application se met à jour toute seule à l'ouverture.`;
   document.getElementById("news-list").innerHTML=CHANGELOG.map(([d,ls])=>`<li><b>${fmtDate(d)}</b><ul>${ls.map(l=>`<li>${esc(l)}</li>`).join("")}</ul></li>`).join("");
@@ -3227,6 +3255,41 @@ function closeNews(){newsEl.hidden=true;if(fEl.hidden&&insEl.hidden)document.bod
 document.addEventListener("click",e=>{if(e.target.closest("[data-news]"))openNews();else if(e.target===newsEl||e.target.closest("[data-closenews]"))closeNews();});
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!newsEl.hidden)closeNews();});
 paintNewsBadge();
+/* ---------- Bouton « i » : à propos, nouveautés, contact ---------- */
+const infoEl=document.createElement("div");infoEl.className="isheet-scrim infosheet";infoEl.id="infosheet";infoEl.hidden=true;document.body.appendChild(infoEl);
+const infoMenu=()=>`<div class="sublist">
+  <button type="button" data-ipage="about" style="--c:var(--accent)"><span><b>À propos de l'application</b><br><small>Ce que contient MAP, d'où viennent les informations</small></span><em>›</em></button>
+  <button type="button" data-inews style="--c:var(--accent)"><span><b>Nouveautés</b><br><small>Version du ${fmtDate(VERSION)}${store("addicto13.seen")!==VERSION?" · nouvelle version":""}</small></span><em>›</em></button>
+  <button type="button" data-ipage="contact" style="--c:var(--accent)"><span><b>Contact</b><br><small>Écrire, signaler une erreur, proposer un lieu</small></span><em>›</em></button></div>`;
+function infoPage(pg){const box=document.getElementById("info-body");
+  if(pg==="about"){const nA=D.filter(d=>!d.t.some(t=>PSYT.includes(t))).length,nP=D.length-nA;
+    box.innerHTML=`<div class="ab"><p><b>MAP</b> (Marseille Addictologie Psychiatrie) est un annuaire d'orientation pour les soignants et les travailleurs sociaux : cures, post-cures, communautés, CSAPA, réduction des risques, CMP de secteur, urgences, équipes mobiles, entraide et associations d'usagers.</p>
+    <div class="stats3"><div><b>${D.length}</b>lieux</div><div><b>${nA}</b>addictologie</div><div><b>${nP}</b>psychiatrie</div></div>
+    <p>Les informations viennent des sites des établissements, de l'ARS, d'ARCA-Sud, de Santé publique France et de la Fédération Addiction. Chaque fiche porte sa date de vérification ; celles marquées « à confirmer » doivent être vérifiées avant d'orienter.</p>
+    <p>MAP ne demande et ne garde aucune information sur les patients. Gratuit, sans compte, mis à jour automatiquement à chaque ouverture.</p></div>
+    <button type="button" class="installbtn" data-install style="margin:0">Installer sur mon téléphone</button>
+    <button type="button" class="btn backi" data-ipage="menu">← Retour</button>`;}
+  else if(pg==="contact"){box.innerHTML=`<p class="hint" style="margin:0">Une erreur, un lieu qui manque, une idée : les messages arrivent à l'équipe de MAP.</p><div class="sublist">
+    <button type="button" data-imsg="write" style="--c:var(--accent)"><span><b>Écrire à l'équipe</b><br><small>${esc(REPORT_TO)}</small></span><em>›</em></button>
+    <button type="button" data-imsg="error" style="--c:var(--accent)"><span><b>Signaler une erreur</b><br><small>Sur une fiche, un numéro, une adresse</small></span><em>›</em></button>
+    <button type="button" data-imsg="suggest" style="--c:var(--accent)"><span><b>Proposer un lieu manquant</b></span><em>›</em></button></div>
+    <div class="arca" style="margin:0"><b>Pour un avis sur une orientation : ARCA-Sud</b><a class="arcanum" href="tel:+33488926888">04 88 92 68 88</a><span class="mono" style="font-size:12.5px">contact@arca-sud.fr</span></div>
+    <button type="button" class="btn backi" data-ipage="menu">← Retour</button>`;}
+  else box.innerHTML=infoMenu();}
+function openInfo(){infoEl.innerHTML=`<div class="isheet" role="dialog" aria-modal="true" aria-labelledby="info-title"><div class="grab"></div><h2 id="info-title">MAP</h2><p class="hint" style="margin:-6px 0 0">Marseille Addictologie Psychiatrie</p><div id="info-body" style="display:grid;gap:12px"></div><button type="button" class="btn" data-closeinfo style="width:100%">Fermer</button></div>`;
+  infoPage("menu");infoEl.hidden=false;}
+const closeInfo=()=>{infoEl.hidden=true;};
+document.addEventListener("click",e=>{if(e.target.closest("[data-info]"))openInfo();});
+infoEl.addEventListener("click",e=>{
+  if(e.target===infoEl||e.target.closest("[data-closeinfo]")){closeInfo();return;}
+  const pg=e.target.closest("[data-ipage]");if(pg){infoPage(pg.dataset.ipage);return;}
+  if(e.target.closest("[data-inews]")){closeInfo();openNews();return;}
+  if(e.target.closest("[data-install]")){closeInfo();return;}
+  const m=e.target.closest("[data-imsg]");if(m){closeInfo();const k=m.dataset.imsg;
+    if(k==="write")openMsg("Écrire à l'équipe MAP",["[Annuaire] Message",`Version de l'annuaire : ${VERSION}\n\n`]);
+    else if(k==="error")openMsg("Signaler une erreur",["[Annuaire] Signalement",`Version de l'annuaire : ${VERSION}\n\nLieu concerné :\n\nCe qui est faux ou manquant :\n\nLa bonne information (et sa source, si possible) :\n\n`]);
+    else openMsg("Proposer un lieu manquant",suggestMsg());}});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!infoEl.hidden)closeInfo();});
 /* ---------- Signaler / proposer : panneau de message (marche même quand les liens mailto sont bloqués) ---------- */
 const msgEl=document.getElementById("msgsheet");let msgTo=REPORT_TO;
 function paintMsgLinks(){
