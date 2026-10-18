@@ -1551,7 +1551,13 @@
   "src": "ban"
  },
  "co-village-saint-joseph-le-sycomore-pont-ch": {
-  "addr": "6 rue du Père Jacques Barré, Le Calvaire, 44160 Pont-Château"
+  "addr": "6 rue du Père Jacques Barré , 44160 Pont-Château",
+  "lat": 47.439133,
+  "lon": -2.137106,
+  "label": "6 Route du Père de Montfort 44160 Pontchâteau",
+  "score": 0.4487054545454545,
+  "type": "housenumber",
+  "src": "ban"
  },
  "co-village-saint-joseph-laudato-si-genac": {
   "addr": "5 route de Bignac, 16170 Genac-Bignac",
@@ -1662,7 +1668,13 @@
   "src": "ban"
  },
  "co-communaute-emmaus-la-seyne-sur-mer-emmau": {
-  "addr": "275 avenue Robert Brun, ZAC Camp Laurent, 83500 La Seyne-sur-Mer"
+  "addr": "275 avenue Robert Brun , 83500 La Seyne-sur-Mer",
+  "lat": 43.116829,
+  "lon": 5.874456,
+  "label": "275 avenue robert brun et robert brun prolonge 83500 La Seyne-sur-Mer",
+  "score": 0.5919026737967914,
+  "type": "housenumber",
+  "src": "ban"
  },
  "co-communaute-emmaus-cote-d-azur-saint-andr": {
   "addr": "158 chemin des Arnauds, 06730 Saint-André-de-la-Roche",
