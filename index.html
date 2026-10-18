@@ -523,23 +523,33 @@ select.arrsel{width:100%;border:1.5px solid var(--line);background:var(--surface
 .news li ul{margin:0;padding-left:18px;font-size:14px;line-height:1.35;display:grid;gap:3px}
 .news li ul li{list-style:disc}
 /* ---- impression d'une fiche ---- */
+#printsheet{position:fixed;left:-10000px;top:0;width:186mm;background:#fff;color:#000}
 @media print{
-  @page{margin:14mm}
-  body,body.locked{overflow:visible!important;background:#fff!important;color:#000!important}
-  body>*:not(#fiche),#install,.fab-back,.fiche .big,.fiche .links,.fiche .minimap,#mail-sec,.fiche .backlink,.fiche .wave,.fiche .copy,.fiche .acts,.chk a,.fiche .tags .verify,.fiche .btn{display:none!important}
-  .fiche{position:static!important;overflow:visible!important;background:#fff!important;color:#000!important}
-  .fiche .fh{background:none!important;color:#000!important;padding:0 0 8px!important;border-bottom:2px solid #000}
-  .fiche .fh h2{color:#000!important;font-size:24pt!important}
-  .fiche .org,.fiche .printonly{color:#333!important}
-  .printonly{display:block;margin-top:6px;font:500 10pt var(--mono)}
-  .fiche .col{max-width:none!important;padding-left:0!important;padding-right:0!important}
-  .fiche .sec{break-inside:avoid;margin-top:12pt!important}
-  .fiche .sec h3{color:#000!important}
-  .fiche .box,.fiche .crow,.fiche .doc{border-color:#bbb!important;background:#fff!important;box-shadow:none!important}
-  .fiche a{color:#000!important;text-decoration:none!important}
-  .fiche .doc a::after,.fiche .crow .v::after{content:none}
-  .hbar .tr{border:1px solid #999}
-  .chk{border-color:#bbb;color:#333}
+  @page{size:A4;margin:12mm}
+  html,body,body.locked{overflow:visible!important;background:#fff!important;color:#000!important;height:auto!important}
+  body.printing>*:not(#printsheet){display:none!important}
+  body:not(.printing)>*{display:none!important}
+  #printsheet{position:static!important;left:auto;width:auto;font:9.5pt/1.35 var(--body);color:#000}
+  #printsheet h1{font:700 17pt/1.15 var(--body);margin:2pt 0 2pt}
+  #printsheet h2{font:700 8pt var(--mono);letter-spacing:.08em;text-transform:uppercase;color:#333;margin:9pt 0 3pt;border-bottom:1px solid #ccc;padding-bottom:1pt}
+  #printsheet ul{margin:0;padding-left:12pt}#printsheet li{margin:1pt 0}
+  #printsheet p{margin:2pt 0}
+  #printsheet table{border-collapse:collapse;width:100%}
+  #printsheet td{padding:1.5pt 4pt 1.5pt 0;vertical-align:top;border-bottom:1px dotted #ccc;font-size:8.5pt;line-height:1.3;overflow-wrap:anywhere}
+  #printsheet table{table-layout:fixed}#printsheet td:first-child{width:38%!important;white-space:normal!important}#printsheet .ps-h td:first-child{width:14%!important}
+  #printsheet td:first-child{color:#444;white-space:nowrap;width:1%}
+  #printsheet .pn{color:#444;font-style:italic;white-space:normal!important;width:auto!important}
+  .ps-tags{font:600 8pt var(--mono);text-transform:uppercase;letter-spacing:.06em;color:#444}
+  .ps-org{color:#333}
+  .ps-addr{margin-top:4pt;padding:4pt 6pt;border:1px solid #bbb;border-radius:4pt}
+  .ps-warn{font-weight:700}
+  .ps-cols{display:grid;grid-template-columns:1fr 95mm;column-gap:7mm;margin-top:4pt}
+  .ps-url{font:8pt var(--mono);word-break:break-all;color:#333}
+  #ps-map .minimap{margin:4pt 0 0;border:1px solid #999;border-radius:4pt;max-width:95mm}
+  #ps-map .mmlink,#ps-map .leaflet-control-zoom{display:none!important}
+  #ps-map .leaflet-tile-pane{filter:none!important}
+  .ps-foot{margin-top:8pt;padding-top:4pt;border-top:1px solid #999;font:7.5pt var(--mono);color:#444}
+  #printsheet *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
 
 /* Leaflet 1.9.4 (BSD-2) */
@@ -2040,7 +2050,7 @@ const REPORT_TO="julienaron@gmail.com";
 /* Dernière vérification par défaut (mois du relevé) ; une fiche peut préciser d.chk="AAAA-MM-JJ" */
 const CHK_DEFAULT="2026-10";
 const CHANGELOG=[
-  ["2026-10-18",["Vraie carte OpenStreetMap (rues, zoom au doigt, fond OpenStreetMap) avec les lignes de métro et de tram en transparence, aussi sur la petite carte des fiches, qu'on peut déplacer et zoomer, avec les stations et le nom des arrêts les plus proches ; sans réseau, la carte dessinée prend le relais","Horaires publiés sur les fiches (à déplier en touchant « Horaires »), et « Ouvert / Fermé » en temps réel sur les fiches et dans les listes"]],
+  ["2026-10-18",["Impression d'une fiche sur une page A4, en deux colonnes, avec la carte","Vraie carte OpenStreetMap (rues, zoom au doigt, fond OpenStreetMap) avec les lignes de métro et de tram en transparence, aussi sur la petite carte des fiches, qu'on peut déplacer et zoomer, avec les stations et le nom des arrêts les plus proches ; sans réseau, la carte dessinée prend le relais","Horaires publiés sur les fiches (à déplier en touchant « Horaires »), et « Ouvert / Fermé » en temps réel sur les fiches et dans les listes"]],
   ["2026-10-17",["Recensement élargi : 164 lieux ajoutés. Addictologie : consultations hospitalières (chemsex, tabac, Nord, Timone), AIDES et le Spot Longchamp, TEMA 13, groupes d'entraide (AA, NA, Al-Anon), SMR et cures de PACA, communautés thérapeutiques, antennes des CSAPA du département","Psychiatrie : nouvelle partie « Autres ressources » : GEM, associations de familles (UNAFAM…), hôpitaux de jour et CATTP, réhabilitation, consultations spécialisées (psychotrauma, TCA, périnatalité, autisme, personnes âgées…), cliniques privées, répit, logement accompagné, insertion (dont Un chez-soi d'abord), lignes d'écoute, droits, admissions en hospitalisation","Fiches : en haut, le numéro à appeler, le partage et le mail de la structure, en icônes","Équipe mobile : descriptif « Aller-vers »","Envoi par e-mail : lien vers la messagerie fiabilisé, et bouton Gmail en secours","Bouton de thème en haut : automatique (suit le téléphone), clair ou sombre","Nouvelle icône : la Bonne Mère","Bas de page allégé","Accueil : une seule catégorie, toucher suffit (plus de bouton Continuer)","Psychiatrie : titre « CMP » au-dessus de la question du domicile","Consultations spécialisées : menu pour choisir le public ou le besoin (psychotrauma, TCA, périnatalité, autisme, personnes âgées…)","Hospitalisation : hôpital public et cliniques privées regroupés, avec le choix l'un, l'autre ou les deux ; pour l'hôpital public, l'appli demande le secteur (adresse ou date de naissance) et donne l'hôpital de rattachement","PASS : rangées dans Consultations","Résultats : les lieux de Marseille et ceux hors de Marseille sont séparés dans chaque catégorie","Réduction des risques : descriptif « CAARUD et associations »","Associations d'usagers : entendeurs de voix « Le Cercle », CoFoR (formation au rétablissement), Bipolaire Provence, Je Suis Bipolaire, Anorexie Boulimie 13, France Assos Santé, collectif antivalidiste, Renaître après l'inceste","Liste des résultats : l'arrondissement passe à droite des étiquettes, le titre a toute la largeur","Ajout de Réseaux 13 (Frais-Vallon) et d'IMAJE Santé (espace santé jeunes) dans Publics spécifiques","Ouverte depuis l'appli Claude : les e-mails passent par un panneau (Gmail ou copie) au lieu d'une page blanche"]],
   ["2026-10-16",["Nouvelle présentation : bandeau bleu nuit avec la vague, catégories en pavés de couleur","Partage d'une fiche au patient par SMS ou WhatsApp","Fiche imprimable","Bouton « Signaler une erreur » sur chaque fiche","Date de vérification sur chaque fiche et cet écran « Nouveautés »","« Proposer un lieu manquant », en bas de page et dans la recherche","« Signaler une erreur » et « Proposer un lieu » : panneau de message, envoi par la messagerie, Gmail ou copie","Page psychiatrie au même style que l'accueil","Partage : panneau SMS, WhatsApp ou copie ; boutons d'appel réparés dans l'affichage intégré","Psychiatrie : bloc urgences recentré (3114, 15, CAP 48, CAP 72, CACC, UPAUL)","Hébergement : appartements thérapeutiques de Point Marseille, renommés pour être trouvés plus facilement","Réduction des risques : ajout de la RdR à distance (SAFE, envoi postal gratuit)","Bus 31/32 : CSAPA Bus Méthadone désormais au 129 avenue de Toulon (5ᵉ)"]],
   ["2026-10-15",["Psychiatrie : « Équipes mobiles » et « Urgences » n'affichent plus que ce type","Page de recherche dans tout l'annuaire (nom, quartier, station de métro…)","Accueil condensé, nombre de lieux dans chaque catégorie","Question « hors de Marseille » posée seulement quand elle change le résultat"]],
@@ -2807,7 +2817,7 @@ const closeFiche=()=>back();
 fEl.addEventListener("click",e=>{
   if(e.target.closest("[data-close]"))return closeFiche();
   if(e.target.closest("[data-tomail]")){document.getElementById("mail-sec").scrollIntoView({behavior:"smooth",block:"start"});return;}
-  if(e.target.closest("[data-print]")){window.print();return;}
+  if(e.target.closest("[data-print]")){printFiche(D.find(x=>x.id===fEl.dataset.id));return;}
   const sh=e.target.closest("[data-share]");if(sh){const d=D.find(x=>x.id===fEl.dataset.id);shareFiche(d,sh);return;}
   const c=e.target.closest(".copy[data-v]");if(c)return copy(c.dataset.v,c);
   const t=e.target.closest("[data-copytext]");if(t){const ta=document.getElementById(t.dataset.copytext);return copy(ta.value,t,ta);}
@@ -2851,6 +2861,45 @@ document.addEventListener("click",e=>{
   let w=null;try{w=window.open(a.href,"_blank")}catch(_){}
   if(!w){try{window.top.location.href=a.href}catch(_){location.href=a.href}}
 },true);
+/* ---------- Impression d'une fiche : une page A4, deux colonnes, avec la carte ---------- */
+function printSheet(d){
+  const H=d.hours,J=["Lun","Mar","Mer","Jeu","Ven","Sam","Dim"];
+  const hrs=H?(H.semaine?J.map((j,i)=>{const sl=H.semaine[i+1]||[];return `<tr><td>${j}</td><td>${sl.length?sl.map(([a,b])=>fmtH(a)+"–"+fmtH(b)).join(", "):"fermé"}</td></tr>`;}).join(""):"")+(H.texte?`<tr><td colspan="2" class="pn">${esc(H.texte)}</td></tr>`:""):"";
+  const tr=access(d).map(x=>`${x.lines.join("/")} ${esc(x.txt)}${x.min?` (${x.min} min à pied)`:""}`).join(" · ");
+  const docs=d.docs||[];
+  return `<div class="ps-head"><div class="ps-tags">${d.t.map(t=>esc(L[t]||t)).join(" · ")}</div><h1>${esc(d.n)}</h1><div class="ps-org">${esc(d.o||"")}</div>
+    <div class="ps-addr"><b>${esc(d.a||"")}</b>${tr?`<br>Accès : ${tr}`:""}</div></div>
+  <div class="ps-cols"><div class="ps-left">
+    ${d.warn?`<p class="ps-warn">${esc(d.warn)}</p>`:""}
+    <h2>En bref</h2><ul>${(d.f||[]).map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
+    ${d.der?`<h2>Déroulement</h2><ul>${d.der.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:""}
+    ${(d.send||docs.length)?`<h2>Admission</h2>${d.send?`<p>${esc(d.send)}</p>`:""}${docs.length?`<ul>${docs.map(([l,u])=>`<li>${esc(l)} : <span class="ps-url">${esc(u.replace(/^https?:\/\/(www\.)?/,""))}</span></li>`).join("")}</ul>`:""}`:""}
+    ${d.has?`<h2>Évaluation HAS</h2><p>${esc(LV[d.has[0]])} (${esc(d.has[1])})</p>`:""}
+  </div><div class="ps-right">
+    <div id="ps-map"></div>
+    ${d.c.length?`<h2>Contacts</h2><table>${d.c.map(([l,v])=>`<tr><td>${esc(l)}</td><td><b>${esc(v)}</b></td></tr>`).join("")}</table>`:""}
+    ${hrs?`<h2>Horaires</h2><table class="ps-h">${hrs}</table>`:""}
+    ${d.site?`<p class="ps-url">${esc(d.site.replace(/^https?:\/\/(www\.)?/,"").replace(/\/$/,""))}</p>`:""}
+  </div></div>
+  <div class="ps-foot">Annuaire Santé Mentale Marseille · ${chkText(d).toLowerCase()} · imprimé le ${fmtDate(new Date().toISOString().slice(0,10))} · vérifiez les informations avant tout envoi</div>`;
+}
+let PR=null;
+function printFiche(d){
+  if(!d)return;printDone();
+  const sh=document.createElement("div");sh.id="printsheet";sh.innerHTML=printSheet(d);document.body.appendChild(sh);
+  /* la carte de la fiche est déplacée dans la feuille, à taille fixe, puis remise en place */
+  const mm=fEl.querySelector(".minimap");
+  if(mm){PR={mm,parent:mm.parentNode,next:mm.nextSibling};const w=mm.offsetWidth,h=mm.offsetHeight;document.getElementById("ps-map").appendChild(mm);mm.style.width=w+"px";mm.style.height=h+"px";}
+  document.body.classList.add("printing");
+  setTimeout(()=>{try{window.print();}finally{setTimeout(printDone,400);}},350);
+}
+function printDone(){
+  if(PR){PR.mm.style.width="";PR.mm.style.height="";PR.parent.insertBefore(PR.mm,PR.next);PR=null;}
+  const sh=document.getElementById("printsheet");if(sh)sh.remove();document.body.classList.remove("printing");
+}
+window.addEventListener("afterprint",()=>{if(document.body.classList.contains("printing"))setTimeout(printDone,100);});
+/* impression lancée par le navigateur (menu) sur une fiche ouverte */
+window.addEventListener("beforeprint",()=>{if(!document.body.classList.contains("printing")&&!fEl.hidden&&fEl.dataset.id){const d=D.find(x=>x.id===fEl.dataset.id);if(d){const sh=document.createElement("div");sh.id="printsheet";sh.innerHTML=printSheet(d);document.body.appendChild(sh);const mm=fEl.querySelector(".minimap");if(mm){PR={mm,parent:mm.parentNode,next:mm.nextSibling};const w=mm.offsetWidth,h=mm.offsetHeight;document.getElementById("ps-map").appendChild(mm);mm.style.width=w+"px";mm.style.height=h+"px";}document.body.classList.add("printing");}}});
 function copy(text,btn,el){
   if(!btn.dataset.label)btn.dataset.label=btn.textContent;
   const label=btn.dataset.label;
