@@ -1269,7 +1269,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
     <button class="installbtn" type="button" data-install><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M12 7.5v7M9 11.5l3 3 3-3"/></svg>Installer sur mon téléphone</button>
     <div class="arca">
       <b>Un doute sur l'orientation ? ARCA-Sud</b>
-      <span>Appui régional pour orienter un patient, soignants et usagers.</span>
+      <span>Appui régional à l'orientation, pour les soignants, les usagers et leurs proches.</span>
       <a class="arcanum" href="tel:+33488926888">04 88 92 68 88</a>
       <span class="mono" style="font-size:12.5px">contact@arca-sud.fr</span>
     </div>
@@ -1295,7 +1295,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
   </header>
   <main class="col qpad">
     <h2 class="qh qtitle" style="margin-top:8px">CMP</h2>
-    <h2 class="qh" style="margin-top:2px;font-size:16px">Le patient a-t-il un domicile ?</h2>
+    <h2 class="qh" style="margin-top:2px;font-size:16px">La personne a-t-elle un domicile ?</h2>
     <p class="qsub">Le CMP dépend du lieu de vie.</p>
     <div class="howgrid" id="p-how">
       <button type="button" class="op" data-how="addr" aria-pressed="false" style="--c:var(--t-cmp)"><span class="tick">✓</span><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v10h13V10"/><path d="M10 20v-5h4v5"/></svg></span><b>Oui, il a une adresse</b><span>Domicile, CHRS, CADA, hôtel ou hébergé</span></button>
@@ -1372,13 +1372,13 @@ svg.leaflet-image-layer.leaflet-interactive path {
     <div class="prog" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i></div>
     <section class="qcard" id="q-lg">
       <span class="lbl">Pour la cure</span>
-      <h3>Le patient a-t-il un logement ?</h3>
+      <h3>La personne a-t-elle un logement ?</h3>
       <div class="seg" data-key="lg"><button type="button" data-v="oui">Oui</button><button type="button" data-v="non">Non</button></div>
       <p class="hint">Sans logement, les cliniques privées ne sont pas proposées pour la cure : seuls les hôpitaux publics restent.</p>
     </section>
     <section class="qcard" id="q-hm">
       <span class="lbl" id="hm-lbl">Pour les structures</span>
-      <h3>Peut-il aller hors de Marseille ?</h3>
+      <h3>Afficher les lieux hors de Marseille ?</h3>
       <div class="seg" data-key="hm"><button type="button" data-v="oui">Oui</button><button type="button" data-v="non">Non</button></div>
       <p class="hint">Non : uniquement Marseille et Allauch (métro M1 jusqu'à La Rose, puis bus).</p>
     </section>
@@ -1474,7 +1474,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
     <div class="msgmeta"><span>À</span><b id="msg-to"></b><button type="button" class="copy" id="msg-copyto">Copier</button></div>
     <div class="msgmeta"><span>Objet</span><b id="msg-sub"></b></div>
     <textarea id="msg-body" class="msgbody" aria-label="Votre message" rows="9"></textarea>
-    <p class="hint" style="margin:0">Complétez le message, puis envoyez-le. Pas d'information sur un patient.</p>
+    <p class="hint" style="margin:0">Complétez le message, puis envoyez-le. N'y mettez pas d'information personnelle.</p>
     <div class="shgrid">
       <a class="btn primary" id="msg-mail" href="#">Ma messagerie</a>
       <a class="btn primary" id="msg-gmail" href="#" target="_blank" rel="noopener">Gmail</a>
@@ -1487,7 +1487,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 <div class="isheet-scrim" id="sharesheet" hidden>
   <div class="isheet" role="dialog" aria-modal="true" aria-labelledby="sh-title">
     <div class="grab"></div>
-    <h2 id="sh-title">Partager au patient</h2>
+    <h2 id="sh-title">Partager la fiche</h2>
     <pre class="shpre" id="sh-preview"></pre>
     <div class="shgrid">
       <a class="btn primary" id="sh-sms" href="#">SMS</a>
@@ -2079,7 +2079,7 @@ const REPORT_TO="julienaron@gmail.com";
 /* Dernière vérification par défaut (mois du relevé) ; une fiche peut préciser d.chk="AAAA-MM-JJ" */
 const CHK_DEFAULT="2026-10";
 const CHANGELOG=[
-  ["2026-10-18",["Fiches : les sources sont repliées (toucher « Sources » pour les voir) ; boutons Google Maps, Itinéraire, Site officiel et Imprimer alignés sur deux colonnes ; les boutons de zoom de la grande carte ne passent plus par-dessus la fiche","En-tête allégé : « MAP : Marseille Addictologie Psychiatrie » sur une ligne, et un bouton « i » qui regroupe À propos, Nouveautés et Contact","Accueil : pavé « Sevrage » qui ouvre le choix Cure / Post-cure / Communauté","Nouvel onglet « Communautés », classées par type : les 9 communautés thérapeutiques médico-sociales de France, les lieux à vivre non médicalisés du Sud-Est (Bergerie de Berdine, Mas de Carles, Vogue la Galère, La Celle…), les communautés confessionnelles (Cenacolo, Village Saint-Joseph, AC3) et les communautés Emmaüs de PACA et du Gard ; chaque fiche indique si un sevrage préalable est exigé et les points de vigilance (pas de TSO, pas d'encadrement médical)","Nouveau nom : MAP, pour Marseille Addicto Psy","Nouveau logo : une tête de profil avec la Bonne Mère dedans, posée sur son socle","Carte : la bulle d'un lieu se ferme quand on ouvre sa fiche","Impression d'une fiche sur une page A4, en deux colonnes, avec la carte","Envoyer la fiche en PDF ou en image (avec la carte) : depuis « Partager » ou le bloc e-mail de la fiche","Vraie carte OpenStreetMap (rues, zoom au doigt, fond OpenStreetMap) avec les lignes de métro et de tram en transparence, aussi sur la petite carte des fiches, qu'on peut déplacer et zoomer, avec les stations et le nom des arrêts les plus proches ; sans réseau, la carte dessinée prend le relais","Horaires publiés sur les fiches (à déplier en touchant « Horaires »), et « Ouvert / Fermé » en temps réel sur les fiches et dans les listes"]],
+  ["2026-10-18",["Périmètre recentré sur la moitié sud de la France : les structures du nord sont retirées","La question « Afficher les lieux hors de Marseille ? » n'est posée que s'il existe des lieux à Marseille et en dehors ; sinon on passe directement aux résultats","Formulations neutres (« la personne » plutôt que « le patient »), l'appli pouvant être utilisée par tous","Fiches : les sources sont repliées (toucher « Sources » pour les voir) ; boutons Google Maps, Itinéraire, Site officiel et Imprimer alignés sur deux colonnes ; les boutons de zoom de la grande carte ne passent plus par-dessus la fiche","En-tête allégé : « MAP : Marseille Addictologie Psychiatrie » sur une ligne, et un bouton « i » qui regroupe À propos, Nouveautés et Contact","Accueil : pavé « Sevrage » qui ouvre le choix Cure / Post-cure / Communauté","Nouvel onglet « Communautés », classées par type : les 9 communautés thérapeutiques médico-sociales de France, les lieux à vivre non médicalisés du Sud-Est (Bergerie de Berdine, Mas de Carles, Vogue la Galère, La Celle…), les communautés confessionnelles (Cenacolo, Village Saint-Joseph, AC3) et les communautés Emmaüs de PACA et du Gard ; chaque fiche indique si un sevrage préalable est exigé et les points de vigilance (pas de TSO, pas d'encadrement médical)","Nouveau nom : MAP, pour Marseille Addicto Psy","Nouveau logo : une tête de profil avec la Bonne Mère dedans, posée sur son socle","Carte : la bulle d'un lieu se ferme quand on ouvre sa fiche","Impression d'une fiche sur une page A4, en deux colonnes, avec la carte","Envoyer la fiche en PDF ou en image (avec la carte) : depuis « Partager » ou le bloc e-mail de la fiche","Vraie carte OpenStreetMap (rues, zoom au doigt, fond OpenStreetMap) avec les lignes de métro et de tram en transparence, aussi sur la petite carte des fiches, qu'on peut déplacer et zoomer, avec les stations et le nom des arrêts les plus proches ; sans réseau, la carte dessinée prend le relais","Horaires publiés sur les fiches (à déplier en touchant « Horaires »), et « Ouvert / Fermé » en temps réel sur les fiches et dans les listes"]],
   ["2026-10-17",["Recensement élargi : 164 lieux ajoutés. Addictologie : consultations hospitalières (chemsex, tabac, Nord, Timone), AIDES et le Spot Longchamp, TEMA 13, groupes d'entraide (AA, NA, Al-Anon), SMR et cures de PACA, communautés thérapeutiques, antennes des CSAPA du département","Psychiatrie : nouvelle partie « Autres ressources » : GEM, associations de familles (UNAFAM…), hôpitaux de jour et CATTP, réhabilitation, consultations spécialisées (psychotrauma, TCA, périnatalité, autisme, personnes âgées…), cliniques privées, répit, logement accompagné, insertion (dont Un chez-soi d'abord), lignes d'écoute, droits, admissions en hospitalisation","Fiches : en haut, le numéro à appeler, le partage et le mail de la structure, en icônes","Équipe mobile : descriptif « Aller-vers »","Envoi par e-mail : lien vers la messagerie fiabilisé, et bouton Gmail en secours","Bouton de thème en haut : automatique (suit le téléphone), clair ou sombre","Nouvelle icône : la Bonne Mère","Bas de page allégé","Accueil : une seule catégorie, toucher suffit (plus de bouton Continuer)","Psychiatrie : titre « CMP » au-dessus de la question du domicile","Consultations spécialisées : menu pour choisir le public ou le besoin (psychotrauma, TCA, périnatalité, autisme, personnes âgées…)","Hospitalisation : hôpital public et cliniques privées regroupés, avec le choix l'un, l'autre ou les deux ; pour l'hôpital public, l'appli demande le secteur (adresse ou date de naissance) et donne l'hôpital de rattachement","PASS : rangées dans Consultations","Résultats : les lieux de Marseille et ceux hors de Marseille sont séparés dans chaque catégorie","Réduction des risques : descriptif « CAARUD et associations »","Associations d'usagers : entendeurs de voix « Le Cercle », CoFoR (formation au rétablissement), Bipolaire Provence, Je Suis Bipolaire, Anorexie Boulimie 13, France Assos Santé, collectif antivalidiste, Renaître après l'inceste","Liste des résultats : l'arrondissement passe à droite des étiquettes, le titre a toute la largeur","Ajout de Réseaux 13 (Frais-Vallon) et d'IMAJE Santé (espace santé jeunes) dans Publics spécifiques","Ouverte depuis l'appli Claude : les e-mails passent par un panneau (Gmail ou copie) au lieu d'une page blanche"]],
   ["2026-10-16",["Nouvelle présentation : bandeau bleu nuit avec la vague, catégories en pavés de couleur","Partage d'une fiche au patient par SMS ou WhatsApp","Fiche imprimable","Bouton « Signaler une erreur » sur chaque fiche","Date de vérification sur chaque fiche et cet écran « Nouveautés »","« Proposer un lieu manquant », en bas de page et dans la recherche","« Signaler une erreur » et « Proposer un lieu » : panneau de message, envoi par la messagerie, Gmail ou copie","Page psychiatrie au même style que l'accueil","Partage : panneau SMS, WhatsApp ou copie ; boutons d'appel réparés dans l'affichage intégré","Psychiatrie : bloc urgences recentré (3114, 15, CAP 48, CAP 72, CACC, UPAUL)","Hébergement : appartements thérapeutiques de Point Marseille, renommés pour être trouvés plus facilement","Réduction des risques : ajout de la RdR à distance (SAFE, envoi postal gratuit)","Bus 31/32 : CSAPA Bus Méthadone désormais au 129 avenue de Toulon (5ᵉ)"]],
   ["2026-10-15",["Psychiatrie : « Équipes mobiles » et « Urgences » n'affichent plus que ce type","Page de recherche dans tout l'annuaire (nom, quartier, station de métro…)","Accueil condensé, nombre de lieux dans chaque catégorie","Question « hors de Marseille » posée seulement quand elle change le résultat"]],
@@ -2313,6 +2313,8 @@ D.forEach(d=>{if(HOURS[d.id])d.hours=HOURS[d.id];});
 
 
 /* ================= Interface ================= */
+/* Périmètre : pas de structures de la moitié nord de la France */
+for(let i=D.length-1;i>=0;i--){const g=GEO[D[i].id];if(g&&g[0]>46.5)D.splice(i,1);}
 const ORDER=["cure","postcure","commu","hdj","resid","csapa","hosp","spec","amob","rdr","liberal","entraide","cmp","mob","urg","hdjpsy","rehab","specialise","clinique","consult","gem","famille","repit","logement","insertion","ecoute","droits","hospit"];
 /* Familles de la partie psy : une tuile regroupe plusieurs types, avec un menu de choix */
 const SPECSUB=[["experts","Centres experts : bipolaire, schizophrénie, dépression résistante"],["trauma","Psychotraumatisme, victimes de violences"],["tca","Troubles des conduites alimentaires"],["perinat","Périnatalité, parents-bébé"],["autisme","Autisme de l'adulte"],["agees","Personnes âgées"],["surdite","Personnes sourdes (LSF)"],["travail","Souffrance au travail"],["transid","Transidentité, sexologie"],["famille","Thérapie familiale"],["ect","Électroconvulsivothérapie, rTMS"],["crise","Crise à domicile (ULICE)"]];
@@ -2422,7 +2424,11 @@ const matched=(d,s)=>{if(s.mode==="psy")return[d.t[0]];let ts=d.t.filter(t=>!s.t
   if(s.types.includes("cure")&&s.lg==="non"&&!d.pub)ts=ts.filter(t=>t!=="cure");return ts;};
 const rank=(d,s)=>Math.min(...matched(d,s).map(t=>ORDER.indexOf(t)));
 /* « Hors de Marseille ? » n'est demandé que si un des types choisis a vraiment des lieux hors de Marseille */
-const hasOutside=()=>D.some(d=>!d.mrs&&!isLib(d)&&!PSYT.includes(d.t[0])&&matched(d,{...S,mode:"addicto"}).length);
+const typeMatch=d=>!isLib(d)&&!PSYT.includes(d.t[0])&&matched(d,{...S,mode:"addicto"}).length>0&&!(S.types.includes("commu")&&S.csub&&d.t.includes("commu")&&d.sub!==S.csub);
+/* la question n'a de sens que s'il y a des lieux des deux côtés */
+const hasOutside=()=>D.some(d=>!d.mrs&&typeMatch(d))&&D.some(d=>d.mrs&&typeMatch(d));
+/* passe directement aux résultats quand il n'y a aucune question à poser */
+function goQ2(){const n=needs();if(!n.hm)S.hm="oui";if(!n.lg&&!n.hm&&!n.lib)go("resultats");else go("q2");}
 const needs=()=>({lg:S.types.includes("cure"),hm:(!S.types.length||S.types.some(t=>t!=="liberal"))&&hasOutside(),lib:S.types.includes("liberal")});
 
 /* ---------- Étape 1 ---------- */
@@ -2439,7 +2445,7 @@ function paintQ1(){
 }
 optsEl.addEventListener("click",e=>{const b=e.target.closest(".op");if(!b)return;
   if(b.dataset.k==="sevrage"){openSevrage();return;}
-  S.types=[b.dataset.k];S.csub="";paintQ1();go("q2");});
+  S.types=[b.dataset.k];S.csub="";paintQ1();goQ2();});
 const SEVT=["cure","postcure","commu"];
 /* Sevrage : cure, post-cure ou communauté ; les communautés sont ensuite classées par type */
 function openSevrage(){const cnt=t=>D.filter(d=>d.t.includes(t)).length;
@@ -2455,7 +2461,7 @@ document.getElementById("seeall").addEventListener("click",()=>{S.types=[];S.csu
 
 /* ---------- Étape 2 ---------- */
 function paintQ2(){
-  const n=needs();
+  const n=needs();if(!n.hm)S.hm="oui";
   document.getElementById("q-lg").hidden=!n.lg;
   document.getElementById("q-hm").hidden=!n.hm;
   document.getElementById("q-sec").hidden=!n.lib;
@@ -2835,7 +2841,7 @@ function fiche(d){
   const big=[];
   const em=d.c.find(([l,v])=>/@/.test(v));
   if(ph)big.push(`<a href="${telHref(ph[1])}" aria-label="Appeler le ${esc(ph[1])}">${ico("phone")}<span class="telnum">${esc(ph[1])}</span></a>`);
-  big.push(`<button type="button" class="ico" data-share aria-label="Partager au patient" title="Partager au patient">${ico("share")}</button>`);
+  big.push(`<button type="button" class="ico" data-share aria-label="Partager la fiche" title="Partager la fiche">${ico("share")}</button>`);
   if(em)big.push(`<a class="ico" href="mailto:${esc(em[1].trim())}" aria-label="Écrire à ${esc(em[1])}" title="Écrire à ${esc(em[1])}">${ico("mail")}</a>`);
   const hasHtml=h?`<section class="sec"><h3>Évaluation HAS</h3><div class="box">
       <div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;align-items:baseline"><span class="has-lvl">${LV[h[0]]}</span><span class="b ${h[0]}">Décision du ${esc(h[1])}</span></div>
@@ -3097,7 +3103,7 @@ function openSub(k){const F=FAM[k];const cnt=f=>D.filter(d=>d.t.some(t=>F.types.
 function openHospSect(){
   const pm=psyMatch();
   const arrBtn=ARR_PSY.map(([v,l])=>`<button type="button" data-arr="${v}">${esc(l)}</button>`).join("");
-  subEl.innerHTML=`<div class="isheet" role="dialog" aria-modal="true" aria-labelledby="sub-title"><div class="grab"></div><h2 id="sub-title">Hôpital public</h2><p class="hint" style="margin:0">L'hospitalisation dépend du secteur. Où vit le patient ?</p>
+  subEl.innerHTML=`<div class="isheet" role="dialog" aria-modal="true" aria-labelledby="sub-title"><div class="grab"></div><h2 id="sub-title">Hôpital public</h2><p class="hint" style="margin:0">L'hospitalisation dépend du secteur. Où vit la personne ?</p>
   ${pm.sect?`<div class="sublist"><button type="button" data-hs="${pm.sect}" data-hl="${esc(pm.label)}" style="--c:var(--t-cmp)"><span>Secteur déjà trouvé : ${esc(pm.label)}</span><em>${esc(pm.sect)}</em></button></div>`:""}
   <div class="arrgrid">${arrBtn}</div><div id="hs-sub" class="sublist" hidden></div>
   <details class="hsdf"><summary>Sans domicile : par la date de naissance</summary><div class="hsdfrow"><select id="hs-day" aria-label="Jour">${Array.from({length:31},(_,i)=>`<option value="${i+1}">${i+1}</option>`).join("")}</select><select id="hs-month" aria-label="Mois">${MOIS.map((m,i)=>`<option value="${i+1}">${m}</option>`).join("")}</select><button type="button" class="btn primary" id="hs-dob">OK</button></div></details>
@@ -3115,8 +3121,8 @@ subEl.addEventListener("click",e=>{if(e.target===subEl||e.target.closest("[data-
     box.scrollIntoView({block:"nearest"});return;}
   if(e.target.closest("#hs-dob")){const d=+document.getElementById("hs-day").value,mo=+document.getElementById("hs-month").value,sc=sectFromDob(d,mo);
     if(sc){subEl.hidden=true;onlyType("hospit","hospit",sc,"sans domicile, né(e) le "+(d===1?"1er":d)+" "+MOIS[mo-1]);}return;}
-  const sv=e.target.closest("[data-sev]");if(sv){if(sv.dataset.sev==="commu"){openCommu();return;}subEl.hidden=true;S.types=[sv.dataset.sev];S.csub="";paintQ1();go("q2");return;}
-  const cs=e.target.closest("[data-csub]");if(cs){subEl.hidden=true;S.types=["commu"];S.csub=cs.dataset.csub;paintQ1();go("q2");return;}
+  const sv=e.target.closest("[data-sev]");if(sv){if(sv.dataset.sev==="commu"){openCommu();return;}subEl.hidden=true;S.types=[sv.dataset.sev];S.csub="";paintQ1();goQ2();return;}
+  const cs=e.target.closest("[data-csub]");if(cs){subEl.hidden=true;S.types=["commu"];S.csub=cs.dataset.csub;paintQ1();goQ2();return;}
   const b=e.target.closest("[data-sub]");if(b){if(subEl.dataset.k==="hospit"&&b.dataset.sub==="hospit"){openHospSect();return;}subEl.hidden=true;onlyType(subEl.dataset.k,b.dataset.sub);}});
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!subEl.hidden)subEl.hidden=true;});
 document.getElementById("p-urg").addEventListener("click",()=>onlyType("urg"));
@@ -3272,7 +3278,7 @@ function infoPage(pg){const box=document.getElementById("info-body");
     box.innerHTML=`<div class="ab"><p><b>MAP</b> (Marseille Addictologie Psychiatrie) est un annuaire d'orientation pour les soignants et les travailleurs sociaux : cures, post-cures, communautés, CSAPA, réduction des risques, CMP de secteur, urgences, équipes mobiles, entraide et associations d'usagers.</p>
     <div class="stats3"><div><b>${D.length}</b>lieux</div><div><b>${nA}</b>addictologie</div><div><b>${nP}</b>psychiatrie</div></div>
     <p>Les informations viennent des sites des établissements, de l'ARS, d'ARCA-Sud, de Santé publique France et de la Fédération Addiction. Chaque fiche porte sa date de vérification ; celles marquées « à confirmer » doivent être vérifiées avant d'orienter.</p>
-    <p>MAP ne demande et ne garde aucune information sur les patients. Gratuit, sans compte, mis à jour automatiquement à chaque ouverture.</p></div>
+    <p>MAP ne demande et ne garde aucune information personnelle. Gratuit, sans compte, mis à jour automatiquement à chaque ouverture.</p></div>
     <button type="button" class="installbtn" data-install style="margin:0">Installer sur mon téléphone</button>
     <button type="button" class="btn backi" data-ipage="menu">← Retour</button>`;}
   else if(pg==="contact"){box.innerHTML=`<p class="hint" style="margin:0">Une erreur, un lieu qui manque, une idée : les messages arrivent à l'équipe de MAP.</p><div class="sublist">
