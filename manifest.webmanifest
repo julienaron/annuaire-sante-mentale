@@ -1,5 +1,5 @@
 {
-  "name": "MAP · Marseille Addicto Psy",
+  "name": "MAP · Marseille Addictologie Psychiatrie",
   "short_name": "MAP",
   "description": "Addictologie, CMP de secteur, urgences psychiatriques et équipes mobiles à Marseille et dans les Bouches-du-Rhône.",
   "lang": "fr",
@@ -7,8 +7,8 @@
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#f6f3ee",
-  "theme_color": "#dfe8ee",
+  "background_color": "#0f2a3f",
+  "theme_color": "#0f2a3f",
   "icons": [
     {
       "src": "icons/icon-192.png",
