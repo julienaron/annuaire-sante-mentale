@@ -1441,5 +1441,353 @@
   "score": 0.9696372727272725,
   "type": "housenumber",
   "src": "ban"
+ },
+ "co-bergerie-de-berdine": {
+  "addr": "Les Basses Courennes, 84750 Saint-Martin-de-Castillon",
+  "lat": 43.876156,
+  "lon": 5.538684,
+  "label": "Chemin des hautes Courennes 84750 Saint-Martin-de-Castillon",
+  "score": 0.6088604545454546,
+  "type": "street",
+  "src": "ban"
+ },
+ "co-lieu-a-vivre-le-mas-de-carles": {
+  "addr": "140 chemin de la Garenne, 30400 Villeneuve-lès-Avignon",
+  "lat": 43.975228,
+  "lon": 4.778459,
+  "label": "Allée de la Garenne 30400 Villeneuve-lès-Avignon",
+  "score": 0.6565962679425836,
+  "type": "street",
+  "src": "ban"
+ },
+ "co-lieu-a-vivre-vogue-la-galere": {
+  "addr": "890 chemin de la Louve, 13400 Aubagne",
+  "lat": 43.30691,
+  "lon": 5.560918,
+  "label": "890 Chemin de la Louve 13400 Aubagne",
+  "score": 0.9685081818181817,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "co-fraternite-de-moreuil-les-moreuils": {
+  "addr": "Place Chanoine Paulius Agard, Fraternité de Moreuil, 13116 Vernègues",
+  "lat": 43.685946,
+  "lon": 5.171593,
+  "label": "Place Chanoine Agard 13116 Vernègues",
+  "score": 0.47363489510489504,
+  "type": "street",
+  "src": "ban"
+ },
+ "co-communaute-la-celle": {
+  "addr": "La Celle, 30440 Roquedur",
+  "lat": 43.990516,
+  "lon": 3.686551,
+  "label": "La Celle 30440 Roquedur",
+  "score": 0.9326781818181817,
+  "type": "street",
+  "src": "ban"
+ },
+ "co-ac3-accueil-accompagnement-action-les-co": {
+  "addr": "4444 Les Collines, route départementale 955, 83131 Montferrat",
+  "lat": 43.629707,
+  "lon": 6.492742,
+  "label": "4444 Route Départementale 955 83131 Montferrat",
+  "score": 0.6762744200626958,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "co-communaute-cenacolo-fraternite-vierge-de": {
+  "addr": "Chemin des Coustères, 65100 Lourdes",
+  "lat": 43.105816,
+  "lon": -0.054331,
+  "label": "Chemin des Coustères 65100 Lourdes",
+  "score": 0.9560927272727271,
+  "type": "street",
+  "src": "ban"
+ },
+ "co-communaute-cenacolo-fraternite-mere-de-m": {
+  "addr": "65100 Bartrès",
+  "lat": 43.122867,
+  "lon": -0.050174,
+  "label": "Bartrès",
+  "score": 0.9322354545454544,
+  "type": "municipality",
+  "src": "ban"
+ },
+ "co-communaute-cenacolo-fraternite-sainte-be": {
+  "addr": "5 rue du Rieutord, 65100 Adé",
+  "lat": 43.133515,
+  "lon": -0.029677,
+  "label": "5 Rue du Rieutord 65100 Adé",
+  "score": 0.9447927272727271,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "co-communaute-cenacolo-fraternite-sainte-th": {
+  "addr": "815 Bogaerd Straat, 59190 Hondeghem",
+  "lat": 50.758335,
+  "lon": 2.49061,
+  "label": "Bogaert Straete 59190 Hondeghem",
+  "score": 0.5674493301435407,
+  "type": "street",
+  "src": "ban"
+ },
+ "co-communaute-cenacolo-fraternite-la-rencon": {
+  "addr": "489 chemin du Château, 01480 Ars-sur-Formans",
+  "lat": 45.987723,
+  "lon": 4.820869,
+  "label": "489 Chemin du Château 01480 Ars-sur-Formans",
+  "score": 0.9474190909090909,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "co-village-saint-joseph-maison-de-plounevez": {
+  "addr": "20 route de Gouarec, 22110 Plounévez-Quintin",
+  "lat": 48.287028,
+  "lon": -3.232798,
+  "label": "20 Route de Gouarec 22110 Plounévez-Quintin",
+  "score": 0.94963,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "co-village-saint-joseph-le-sycomore-pont-ch": {
+  "addr": "6 rue du Père Jacques Barré, Le Calvaire, 44160 Pont-Château"
+ },
+ "co-village-saint-joseph-laudato-si-genac": {
+  "addr": "5 route de Bignac, 16170 Genac-Bignac",
+  "lat": 45.797661,
+  "lon": 0.027753,
+  "label": "5 Route de Bignac 16170 Genac-Bignac",
+  "score": 0.9492290909090908,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "co-village-saint-joseph-kerlevenez-maison-d": {
+  "addr": "4 Beauregard, 56480 Cléguérec",
+  "lat": 48.103321,
+  "lon": -3.027898,
+  "label": "4 Beauregard 56480 Cléguérec",
+  "score": 0.9512163636363635,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "co-village-saint-joseph-la-presence-may-en-": {
+  "addr": "35 rue de Soissons, 77145 May-en-Multien",
+  "lat": 49.073446,
+  "lon": 3.022958,
+  "label": "35 Rue de Soissons 77145 May-en-Multien",
+  "score": 0.9534490909090908,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "co-village-saint-joseph-stella-maris-saint-": {
+  "addr": "2 rue du Denacre, 62280 Saint-Martin-Boulogne",
+  "lat": 50.732568,
+  "lon": 1.631302,
+  "label": "2 Rue du Denacre 62280 Saint-Martin-Boulogne",
+  "score": 0.9551954545454545,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "co-village-saint-joseph-la-maison-du-pain-m": {
+  "addr": "10 rue du Court s'il Pleut, 72150 Montreuil-le-Henri",
+  "lat": 47.867769,
+  "lon": 0.567466,
+  "label": "10 Rue du Court S'Il Pleut 72150 Montreuil-le-Henri",
+  "score": 0.9388381818181817,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "co-village-saint-joseph-le-pressoir-croisy-": {
+  "addr": "21 route de Vaux, 27120 Croisy-sur-Eure",
+  "lat": 49.03227,
+  "lon": 1.341574,
+  "label": "21 Route de Vaux 27120 Croisy-sur-Eure",
+  "score": 0.9438618181818181,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "co-village-saint-joseph-sainte-famille-bell": {
+  "addr": "60 rue du Val, 02200 Belleu",
+  "lat": 49.357241,
+  "lon": 3.343804,
+  "label": "60 Rue du Val 02200 Belleu",
+  "score": 0.9591781818181818,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "co-village-saint-joseph-magnificat-mieges": {
+  "addr": "12 rue de l'Ermitage, 39250 Mièges",
+  "lat": 46.782201,
+  "lon": 6.04169,
+  "label": "12 Rue de l'Ermitage -Mièges 39250 Mièges",
+  "score": 0.7968795867768595,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "co-communaute-emmaus-marseille-pointe-rouge": {
+  "addr": "110 traverse Parangon, 13008 Marseille",
+  "lat": 43.238073,
+  "lon": 5.377623,
+  "label": "110 Traverse parangon 13008 Marseille",
+  "score": 0.9712818181818181,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "co-communaute-emmaus-marseille-saint-marcel": {
+  "addr": "46 boulevard de la Cartonnerie, 13011 Marseille",
+  "lat": 43.29114,
+  "lon": 5.461628,
+  "label": "46 Boulevard de la cartonnerie 13011 Marseille",
+  "score": 0.9685436363636364,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "co-communaute-emmaus-cabries": {
+  "addr": "Chemin d'Emmaüs, 13480 Cabriès",
+  "lat": 43.426511,
+  "lon": 5.380207,
+  "label": "Chemin d’Emmaus 13480 Cabriès",
+  "score": 0.9603236363636364,
+  "type": "street",
+  "src": "ban"
+ },
+ "co-communaute-emmaus-arles": {
+  "addr": "299 avenue de l'Abbé Pierre, 13200 Arles",
+  "lat": 43.664917,
+  "lon": 4.617922,
+  "label": "Rue de l'Aube 13200 Arles",
+  "score": 0.47286964523281594,
+  "type": "street",
+  "src": "ban"
+ },
+ "co-communaute-emmaus-la-seyne-sur-mer-emmau": {
+  "addr": "275 avenue Robert Brun, ZAC Camp Laurent, 83500 La Seyne-sur-Mer"
+ },
+ "co-communaute-emmaus-cote-d-azur-saint-andr": {
+  "addr": "158 chemin des Arnauds, 06730 Saint-André-de-la-Roche",
+  "lat": 43.745574,
+  "lon": 7.287948,
+  "label": "158 Chemin des Arnaud 06730 Saint-André-de-la-Roche",
+  "score": 0.82147993006993,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "co-communaute-emmaus-vaucluse-courthezon": {
+  "addr": "748 chemin de la Papeterie, ZA la Grange Blanche Ouest, 84350 Courthézon",
+  "lat": 44.107931,
+  "lon": 4.886538,
+  "label": "748 Chemin de la Papeterie 84350 Courthézon",
+  "score": 0.5428746245059289,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "co-communaute-emmaus-nimes-marguerittes": {
+  "addr": "730 avenue Clément Ader, 30320 Marguerittes",
+  "lat": 43.864604,
+  "lon": 4.436044,
+  "label": "730 Avenue Clément Ader 30320 Marguerittes",
+  "score": 0.9619099999999999,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "co-communaute-emmaus-ales": {
+  "addr": "120 avenue Jean-Philippe Rameau, 30100 Alès",
+  "lat": 44.135473,
+  "lon": 4.1068,
+  "label": "120 Avenue Jean Philippe Rameau 30100 Alès",
+  "score": 0.9686645454545454,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "co-communaute-emmaus-montpellier-saint-aune": {
+  "addr": "Vieille Cadoule, 34130 Saint-Aunès",
+  "lat": 43.636032,
+  "lon": 3.943332,
+  "label": "Chemin de la Vieille Poste 34130 Saint-Aunès",
+  "score": 0.4486672727272727,
+  "type": "street",
+  "src": "ban"
+ },
+ "co-communaute-therapeutique-du-fleuve": {
+  "addr": "10-18 place Franck Chassaigne, 33720 Barsac",
+  "lat": 44.607701,
+  "lon": -0.318695,
+  "label": "18 Place Franck Chassaigne 33720 Barsac",
+  "score": 0.8013912195121952,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "co-communaute-therapeutique-de-brantome-mai": {
+  "addr": "438 route François de La Béraudière, Le Grand Bost, 24310 Brantôme",
+  "lat": 45.375748,
+  "lon": 0.656845,
+  "label": "438 Route François de Labéraudière 24310 Brantôme en Périgord",
+  "score": 0.6406004545454546,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "co-communaute-therapeutique-le-mas-saint-gi": {
+  "addr": "5250 chemin des Loubes, BP 36, 30800 Saint-Gilles",
+  "lat": 43.716708,
+  "lon": 4.43635,
+  "label": "Chemin des Loubes 30800 Saint-Gilles",
+  "score": 0.6756096442687747,
+  "type": "street",
+  "src": "ban"
+ },
+ "co-communaute-therapeutique-du-val-d-adour": {
+  "addr": "7 rue de la Tuilerie, 65700 Lafitole",
+  "lat": 43.447755,
+  "lon": 0.065397,
+  "label": "7 Rue de la Tuilerie 65700 Lafitole",
+  "score": 0.9405681818181817,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "co-communaute-therapeutique-les-portes-de-l": {
+  "addr": "9 route de Saint-Julien, La Côte-Saint-Didier, 42111 Saint-Didier-sur-Rochefort",
+  "lat": 45.794898,
+  "lon": 3.84443,
+  "label": "9 Route de Saint-Julien 42111 La Côte-Saint-Didier",
+  "score": 0.6260307177033493,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "co-communaute-therapeutique-du-sato-chateau": {
+  "addr": "2 rue des Malades, Château de Flambermont, 60000 Saint-Martin-le-Nœud",
+  "lat": 49.399985,
+  "lon": 2.056737,
+  "label": "2 Rue des Malades 60000 Saint-Martin-le-Nœud",
+  "score": 0.5780361601085482,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "co-communaute-therapeutique-l-espace-du-pos": {
+  "addr": "2 bis route de Guise, 59360 Le Cateau-Cambrésis",
+  "lat": 50.091965,
+  "lon": 3.543674,
+  "label": "2b Route de Guise 59360 Le Cateau-Cambrésis",
+  "score": 0.7594927272727272,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "co-communaute-therapeutique-d-aubervilliers": {
+  "addr": "13-15 rue Madeleine Vionnet, 93300 Aubervilliers",
+  "lat": 48.904827,
+  "lon": 2.376058,
+  "label": "15 Rue Madeleine Vionnet 93300 Aubervilliers",
+  "score": 0.8247357707509881,
+  "type": "housenumber",
+  "src": "ban"
+ },
+ "co-communaute-therapeutique-de-pre-en-pail-": {
+  "addr": "Le Grand Pré Davert, ZA des Avaloirs, 53140 Pré-en-Pail-Saint-Samson",
+  "lat": 48.462166,
+  "lon": -0.189363,
+  "label": "ZA des Avaloirs 53140 Pré-en-Pail-Saint-Samson",
+  "score": 0.6088862937062937,
+  "type": "street",
+  "src": "ban"
  }
 }
