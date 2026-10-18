@@ -325,15 +325,18 @@ select.arrsel{width:100%;border:1.5px solid var(--line);background:var(--surface
 .big small{font:500 11px var(--mono);color:inherit;opacity:.8;font-weight:400}
 .links{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
 .minimap{display:block;margin-top:12px;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--land);position:relative;text-decoration:none}
-.minimap svg{display:block;width:100%;height:150px}
-.mmreal{position:absolute;inset:0;z-index:0;pointer-events:none;background:var(--land)}
+.minimap svg{display:block;width:100%;height:200px}
+.mmsvg{display:block}
+.mmreal{position:absolute;inset:0;z-index:1;background:var(--land);touch-action:none}
+.minimap:not(.real) .mmreal{pointer-events:none;opacity:0}
+.mmreal .leaflet-control-zoom a{width:32px;height:32px;line-height:30px;font-size:18px}
 .minimap.real svg{visibility:hidden}
-.minimap>span{z-index:2}
+.minimap>.mmlink{z-index:500}
 .mmreal .leaflet-tile-pane{filter:saturate(.55) brightness(1.03)}
 .mmreal.dark .leaflet-tile-pane{filter:invert(1) hue-rotate(180deg) brightness(.85) contrast(.9) saturate(.5)}
 .mmreal .leaflet-control-attribution{font-size:9px!important}
 .lpin.mm{width:22px;height:22px}
-.minimap>span{position:absolute;right:8px;bottom:8px;background:var(--surface);color:var(--fg);border-radius:99px;padding:5px 10px;font-size:12.5px;font-weight:600;box-shadow:var(--shadow)}
+.minimap>.mmlink{position:absolute;right:8px;bottom:22px;text-decoration:none;background:var(--surface);color:var(--fg);border-radius:99px;padding:5px 10px;font-size:12.5px;font-weight:600;box-shadow:var(--shadow)}
 .sec{margin-top:20px}
 .sec h3{margin:0 0 8px;font:600 11.5px var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--accent)}
 .sec p{margin:0 0 8px;font-size:15px}
@@ -2034,7 +2037,7 @@ const REPORT_TO="julienaron@gmail.com";
 /* Dernière vérification par défaut (mois du relevé) ; une fiche peut préciser d.chk="AAAA-MM-JJ" */
 const CHK_DEFAULT="2026-10";
 const CHANGELOG=[
-  ["2026-10-18",["Vraie carte OpenStreetMap (rues, zoom au doigt, fond OpenStreetMap) avec les lignes de métro et de tram en transparence, aussi sur la petite carte des fiches ; sans réseau, la carte dessinée prend le relais","Horaires publiés sur les fiches (à déplier en touchant « Horaires »), et « Ouvert / Fermé » en temps réel sur les fiches et dans les listes"]],
+  ["2026-10-18",["Vraie carte OpenStreetMap (rues, zoom au doigt, fond OpenStreetMap) avec les lignes de métro et de tram en transparence, aussi sur la petite carte des fiches, qu'on peut déplacer et zoomer ; sans réseau, la carte dessinée prend le relais","Horaires publiés sur les fiches (à déplier en touchant « Horaires »), et « Ouvert / Fermé » en temps réel sur les fiches et dans les listes"]],
   ["2026-10-17",["Recensement élargi : 164 lieux ajoutés. Addictologie : consultations hospitalières (chemsex, tabac, Nord, Timone), AIDES et le Spot Longchamp, TEMA 13, groupes d'entraide (AA, NA, Al-Anon), SMR et cures de PACA, communautés thérapeutiques, antennes des CSAPA du département","Psychiatrie : nouvelle partie « Autres ressources » : GEM, associations de familles (UNAFAM…), hôpitaux de jour et CATTP, réhabilitation, consultations spécialisées (psychotrauma, TCA, périnatalité, autisme, personnes âgées…), cliniques privées, répit, logement accompagné, insertion (dont Un chez-soi d'abord), lignes d'écoute, droits, admissions en hospitalisation","Fiches : en haut, le numéro à appeler, le partage et le mail de la structure, en icônes","Équipe mobile : descriptif « Aller-vers »","Envoi par e-mail : lien vers la messagerie fiabilisé, et bouton Gmail en secours","Bouton de thème en haut : automatique (suit le téléphone), clair ou sombre","Nouvelle icône : la Bonne Mère","Bas de page allégé","Accueil : une seule catégorie, toucher suffit (plus de bouton Continuer)","Psychiatrie : titre « CMP » au-dessus de la question du domicile","Consultations spécialisées : menu pour choisir le public ou le besoin (psychotrauma, TCA, périnatalité, autisme, personnes âgées…)","Hospitalisation : hôpital public et cliniques privées regroupés, avec le choix l'un, l'autre ou les deux ; pour l'hôpital public, l'appli demande le secteur (adresse ou date de naissance) et donne l'hôpital de rattachement","PASS : rangées dans Consultations","Résultats : les lieux de Marseille et ceux hors de Marseille sont séparés dans chaque catégorie","Réduction des risques : descriptif « CAARUD et associations »","Associations d'usagers : entendeurs de voix « Le Cercle », CoFoR (formation au rétablissement), Bipolaire Provence, Je Suis Bipolaire, Anorexie Boulimie 13, France Assos Santé, collectif antivalidiste, Renaître après l'inceste","Liste des résultats : l'arrondissement passe à droite des étiquettes, le titre a toute la largeur","Ajout de Réseaux 13 (Frais-Vallon) et d'IMAJE Santé (espace santé jeunes) dans Publics spécifiques","Ouverte depuis l'appli Claude : les e-mails passent par un panneau (Gmail ou copie) au lieu d'une page blanche"]],
   ["2026-10-16",["Nouvelle présentation : bandeau bleu nuit avec la vague, catégories en pavés de couleur","Partage d'une fiche au patient par SMS ou WhatsApp","Fiche imprimable","Bouton « Signaler une erreur » sur chaque fiche","Date de vérification sur chaque fiche et cet écran « Nouveautés »","« Proposer un lieu manquant », en bas de page et dans la recherche","« Signaler une erreur » et « Proposer un lieu » : panneau de message, envoi par la messagerie, Gmail ou copie","Page psychiatrie au même style que l'accueil","Partage : panneau SMS, WhatsApp ou copie ; boutons d'appel réparés dans l'affichage intégré","Psychiatrie : bloc urgences recentré (3114, 15, CAP 48, CAP 72, CACC, UPAUL)","Hébergement : appartements thérapeutiques de Point Marseille, renommés pour être trouvés plus facilement","Réduction des risques : ajout de la RdR à distance (SAFE, envoi postal gratuit)","Bus 31/32 : CSAPA Bus Méthadone désormais au 129 avenue de Toulon (5ᵉ)"]],
   ["2026-10-15",["Psychiatrie : « Équipes mobiles » et « Urgences » n'affichent plus que ce type","Page de recherche dans tout l'annuaire (nom, quartier, station de métro…)","Accueil condensé, nombre de lieux dans chaque catégorie","Question « hors de Marseille » posée seulement quand elle change le résultat"]],
@@ -2574,7 +2577,9 @@ function realFit(){if(REAL.on&&cur.length)drawMap(cur);}
 function miniReal(d){
   const a=fEl.querySelector(".minimap"),g=GEO[d.id];if(!a||!g||!LF||!navigator.onLine||!REAL.on)return;
   const box=document.createElement("div");box.className="mmreal";a.insertBefore(box,a.firstChild);
-  const m=LF.map(box,{zoomControl:false,attributionControl:true,dragging:false,touchZoom:false,doubleClickZoom:false,scrollWheelZoom:false,boxZoom:false,keyboard:false,tap:false}).setView(g,15);
+  /* carte interactive : déplacement au doigt, zoom à deux doigts et boutons + / − */
+  const m=LF.map(box,{zoomControl:true,attributionControl:true,dragging:true,touchZoom:true,doubleClickZoom:true,scrollWheelZoom:false,boxZoom:false,keyboard:false,tap:true,minZoom:10,maxZoom:18}).setView(g,15);
+  m.zoomControl.setPosition("topright");
   m.attributionControl.setPrefix(false);
   box.classList.toggle("dark",isDark());
   let ok=0,err=0;
@@ -2583,7 +2588,7 @@ function miniReal(d){
   t.on("tileerror",()=>{err++;if(!ok&&err>=3){m.remove();box.remove();a.classList.remove("real");}});
   ["T1","T2","T3"].forEach(r=>LF.polyline(LPTS(r),{color:cssVar("--"+r.toLowerCase()),weight:4,dashArray:"7 6",opacity:.55,interactive:false}).addTo(m));
   ["M1","M2"].forEach(r=>LF.polyline(LPTS(r),{color:cssVar("--"+r.toLowerCase()),weight:5,opacity:.45,interactive:false}).addTo(m));
-  LF.marker(g,{interactive:false,icon:LF.divIcon({className:"",html:`<span class="lpin mm" style="--c:var(--t-${kindOf[d.id]||d.t[0]})"></span>`,iconSize:[22,22],iconAnchor:[11,11]})}).addTo(m);
+  LF.marker(g,{interactive:false,keyboard:false,icon:LF.divIcon({className:"",html:`<span class="lpin mm" style="--c:var(--t-${kindOf[d.id]||d.t[0]})"></span>`,iconSize:[22,22],iconAnchor:[11,11]})}).addTo(m);
   setTimeout(()=>m.invalidateSize(),60);
 }
 REAL.on=realInit();
@@ -2712,7 +2717,7 @@ function shareText(d){
 function miniMap(d){
   const g=GEO[d.id];if(!g)return"";
   const[x,y]=P(...g),vw=Math.min(innerWidth,640)-32,k=0.9,w=vw*k,h=150*k;
-  return `<a class="minimap" href="${mapUrl(d)}" target="_blank" rel="noopener" aria-label="Ouvrir sur Google Maps"><svg viewBox="${(x-w/2).toFixed(1)} ${(y-h/2).toFixed(1)} ${w.toFixed(1)} ${h.toFixed(1)}" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${baseMap(k)}<g transform="translate(${x} ${y})"><circle r="${10*k}" fill="var(--t-${kindOf[d.id]||d.t[0]})" stroke="var(--pin-ring)" stroke-width="${3*k}"/><circle r="${3.5*k}" fill="#fff"/></g></svg><span>Carte et avis Google ↗</span></a>`;
+  return `<div class="minimap"><a class="mmsvg" href="${mapUrl(d)}" target="_blank" rel="noopener" aria-label="Ouvrir sur Google Maps"><svg viewBox="${(x-w/2).toFixed(1)} ${(y-h/2).toFixed(1)} ${w.toFixed(1)} ${h.toFixed(1)}" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${baseMap(k)}<g transform="translate(${x} ${y})"><circle r="${10*k}" fill="var(--t-${kindOf[d.id]||d.t[0]})" stroke="var(--pin-ring)" stroke-width="${3*k}"/><circle r="${3.5*k}" fill="#fff"/></g></svg></a><a class="mmlink" href="${mapUrl(d)}" target="_blank" rel="noopener">Carte et avis Google ↗</a></div>`;
 }
 function fiche(d){
   const h=d.has,docs=d.docs||[],f=forms(d);
