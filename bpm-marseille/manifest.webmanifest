@@ -1,6 +1,6 @@
 {
-  "name": "Annuaire BPM Marseille",
-  "short_name": "BPM Marseille",
+  "name": "Annubus",
+  "short_name": "Annubus",
   "description": "Contacts partenaires de l'équipe BPM Marseille (accès réservé).",
   "lang": "fr",
   "start_url": "./",
