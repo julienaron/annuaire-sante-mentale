@@ -1,15 +1,16 @@
 {
   "name": "Annubus",
   "short_name": "Annubus",
-  "description": "Contacts partenaires de l'équipe BPM Marseille (accès réservé).",
+  "description": "Annuaire professionnel des partenaires de l'équipe (accès réservé).",
   "lang": "fr",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#f1f3f7",
+  "background_color": "#fafaf8",
   "theme_color": "#1f4d9e",
   "icons": [
     {"src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
-    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"}
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
   ]
 }

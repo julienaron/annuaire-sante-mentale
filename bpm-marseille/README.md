@@ -1,8 +1,8 @@
-# Annuaire BPM Marseille (accès réservé à l'équipe)
+# Annubus (accès réservé à l'équipe)
 
 Adresse : https://julienaron.github.io/annuaire-sante-mentale/bpm-marseille/
 
-Annuaire des partenaires de l'équipe BPM Marseille : recherche, appel en un clic,
+Annubus, l'annuaire professionnel des partenaires de l'équipe : recherche, appel en un clic,
 modification à plusieurs (avec détection des modifications simultanées), historique de 7 jours.
 
 **Aucun contact n'est stocké dans ce dépôt public.** Les fiches sont dans une base Supabase
@@ -22,8 +22,15 @@ dont l'accès est limité aux adresses e-mail de la table `membres`.
 
 ## Ajouter ou retirer un membre de l'équipe
 
-*Table Editor* > `membres` > *Insert row* : son adresse e-mail et son prénom.
-Pour retirer l'accès : supprimer la ligne.
+Dans l'application, un **administrateur** ouvre le bouton « Accès » (ou menu ⋯ > « Gérer les accès ») :
+ajout d'une adresse, retrait d'un accès, nomination d'autres administrateurs.
+Il reste toujours au moins un administrateur (la base refuse de retirer le dernier).
+
+Le premier administrateur est créé par le fichier d'import confidentiel. En secours, depuis Supabase :
+*Table Editor* > `membres`, cocher la colonne `admin` sur la ligne voulue.
+
+Le guide d'installation (bouton « ? ») s'ouvre tout seul à la première visite. Pour y afficher le nom de la personne
+à contacter pour obtenir l'accès, ajouter dans `config.js` : `contactAcces: "Prénom Nom (chef de service)"`.
 
 ## Bon à savoir
 

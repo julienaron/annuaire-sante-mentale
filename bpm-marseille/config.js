@@ -4,5 +4,6 @@
 // de la base (réservée aux membres) qui protègent les données, pas cette clé.
 window.ANNUAIRE_CONFIG = {
   supabaseUrl: "",      // ex. "https://abcdxyz.supabase.co"
-  supabaseAnonKey: ""   // ex. "eyJhbGciOi..." ou "sb_publishable_..."
+  supabaseAnonKey: "",  // ex. "eyJhbGciOi..." ou "sb_publishable_..."
+  contactAcces: ""      // facultatif : qui contacter pour obtenir l'accès, ex. "Julien (chef de service)"
 };
