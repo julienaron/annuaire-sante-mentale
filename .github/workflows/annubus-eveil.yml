@@ -1,7 +1,7 @@
-# Annuaire BPM Marseille : empêche la mise en pause de la base Supabase gratuite.
+# Annubus : empêche la mise en pause de la base Supabase gratuite.
 # Supabase met en pause un projet gratuit après 7 jours sans activité ; un appel par jour suffit à l'éviter.
 # Si la base ne répond plus, la tâche échoue et GitHub prévient par e-mail le propriétaire du dépôt.
-name: Annuaire BPM Marseille - garder la base active
+name: Annubus - garder la base active
 
 on:
   schedule:
@@ -44,6 +44,6 @@ jobs:
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add bpm-marseille/.dernier-passage
-            git commit -m "Annuaire BPM Marseille : passage mensuel automatique"
+            git commit -m "Annubus : passage mensuel automatique"
             git push
           fi

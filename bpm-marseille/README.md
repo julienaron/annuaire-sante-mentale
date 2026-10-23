@@ -37,7 +37,7 @@ Le guide d'installation (bouton « ? ») s'ouvre tout seul à la première visit
 - L'offre gratuite de Supabase envoie peu d'e-mails de connexion par heure : connecter les collègues un par un.
   Une fois connecté, on le reste sur l'appareil.
 - Un projet Supabase gratuit se met en pause après 7 jours sans activité. La tâche GitHub
-  `.github/workflows/annuaire-bpm-marseille-eveil.yml` interroge la base chaque matin pour l'éviter.
+  `.github/workflows/annubus-eveil.yml` interroge la base chaque matin pour l'éviter.
   Si la base ne répond plus, GitHub envoie un e-mail : ouvrir Supabase et cliquer sur « Resume project ».
 - Sauvegarde : menu ⋯ de l'appli > « Télécharger l'annuaire (CSV) ».
 - La bibliothèque Supabase (version 2.45.4, licence MIT) est copiée dans `vendor/` : l'appli ne dépend que de GitHub et de Supabase.
