@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MAP a déménagé</title>
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://mapannuaire.github.io/map/">
+<script>
+/* Garde le lien vers la fiche (#fiche-…) et nettoie l'ancienne version installée */
+var dest="https://mapannuaire.github.io/map/"+location.search+location.hash;
+try{if("serviceWorker" in navigator)navigator.serviceWorker.getRegistrations().then(function(r){r.forEach(function(x){x.unregister()})});}catch(e){}
+try{if(window.caches)caches.keys().then(function(k){k.forEach(function(n){caches.delete(n)})});}catch(e){}
+setTimeout(function(){location.replace(dest)},400);
+</script>
+<style>
+body{margin:0;min-height:100vh;display:grid;place-items:center;background:#f5f5f7;color:#1d1d1f;font:17px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif;text-align:center;padding:16px}
+a{color:#0d5a88;font-weight:600}
+</style></head>
+<body><main><h1 style="font-size:28px;margin:0 0 8px">MAP a déménagé</h1>
+<p>Nouvelle adresse : <a id="go" href="https://mapannuaire.github.io/map/">mapannuaire.github.io/map</a></p>
+<p style="color:#6e6e73;font-size:15px">Si l'appli était installée sur votre téléphone, supprimez l'ancienne icône et réinstallez-la depuis la nouvelle adresse.</p></main>
+<script>document.getElementById("go").href=dest;</script>
+</body></html>
